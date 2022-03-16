@@ -1,2 +1,2 @@
-# automated-imbalanced-classification
-Automated Imbalanced Classification
+# Automated Imbalanced Classification
+work in progress, description to be written
