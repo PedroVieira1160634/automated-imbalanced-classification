@@ -1,2 +1,2 @@
 # Automated Imbalanced Classification
-work in progress, description to be written
+description to be written, work in progress
