@@ -1,4 +1,5 @@
-print('start\n')
+from datetime import datetime
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 import time
 import sys
@@ -8,12 +9,13 @@ from xgboost import XGBClassifier
 import lightgbm as lgb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+import csv
 
-start_time = time.time()
+#glass1.dat
+#page-blocks0.dat
+dataset_name = "page-blocks0.dat"
 
-#glass1
-#page-blocks0
-df = pd.read_csv(sys.path[0] + "/input/page-blocks0.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
 
 Y = df.iloc[:,-1:]
 X = df.iloc[:,:-1]
@@ -23,21 +25,51 @@ x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_
 #lgb.LGBMClassifier()
 #XGBClassifier()
 #RandomForestClassifier()
-algorithm = RandomForestClassifier().fit(x_train, y_train)
 
-algorithm_pred = algorithm.predict(x_test)
+#algorithm_name = "RandomForestClassifier"
 
-print("\n-------")
+array_classifiers = [lgb.LGBMClassifier(), XGBClassifier(), RandomForestClassifier()]
 
-print('accuracy:')
-print(round(accuracy_score(y_test, algorithm_pred),5),"\n")
+for classifier in array_classifiers:
+    
+    start_time = time.time()
+    
+    algorithm = classifier.fit(x_train, y_train)
 
-print('f1 score:')
-print(round(f1_score(y_test, algorithm_pred),5),"\n")
+    finish_time = (round(time.time() - start_time,5))
 
-print('roc_auc_score:')
-print(round(roc_auc_score(y_test, algorithm_pred),5),"\n")
+    algorithm_pred = algorithm.predict(x_test)
 
-print("%s seconds" % (round(time.time() - start_time,5)))
+    #print("\n-------")
 
-print('\nfinish')
+    #print('accuracy:')
+    metric_accuracy = round(accuracy_score(y_test, algorithm_pred),5)
+    #print(metric_accuracy,"\n")
+
+    #print('f1 score:')
+    metric_f1_score = round(f1_score(y_test, algorithm_pred),5)
+    #print(metric_f1_score,"\n")
+
+    #print('roc_auc_score:')
+    metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),5)
+    #print(metric_roc_auc_score,"\n")
+
+    #print("%s seconds\n" % finish_time)
+
+    #print("write to file")
+    
+    
+    #w - write and replace
+    #a - append
+    with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
+        writer = csv.writer(f)
+
+        writer.writerow([dataset_name, classifier.__class__.__name__])
+        writer.writerow(["accuracy_score", str(metric_accuracy)])
+        writer.writerow(["f1_score", str(metric_f1_score)])
+        writer.writerow(["roc_auc_score", str(metric_roc_auc_score)])
+        writer.writerow(["time", str(finish_time)])
+        writer.writerow(["---"])
+
+
+print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
