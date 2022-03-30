@@ -8,9 +8,8 @@ from ml import *
 dataset_name = "page-blocks0.dat"
 
 df = read_file(sys.path[0] + "/input/" + dataset_name)
-
 x_train, x_test, y_train, y_test = train_test_split_func(df)
-
-classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name)
+resultsList = classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name)
+#print("\n", find_best_result(resultsList), "\n")
 
 print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
