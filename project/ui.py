@@ -15,14 +15,6 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
     
-    dataset_name = values[0].split('/')[-1]
-    
-    #-, SMOTE, OVER, UNDER
-    balancing = "-"
-    
-    df = read_file(values[0])
-    x_train, x_test, y_train, y_test = train_test_split_func(df, balancing)
-    resultsList = classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name, balancing)
-    print("\n", find_best_result(resultsList), "\n")
+    execute_ml(values[0])
 
 window.close()

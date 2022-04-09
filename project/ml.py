@@ -11,6 +11,27 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 import csv
 
 
+def execute_ml(dataset_location):
+    
+    dataset_name = dataset_location.split('/')[-1]
+    
+    df = read_file(dataset_location)
+    
+    #-, SMOTE, OVER, UNDER
+    #balancing = "-"
+    
+    array_balancing = ["-","SMOTE","OVER","UNDER"]
+    
+    for balancing in array_balancing:
+        x_train, x_test, y_train, y_test = train_test_split_func(df, balancing)
+        resultsList = classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name, balancing)
+        
+        if(balancing == "-"):
+            balancing = "None"
+            
+        print("\n", balancing, ":", find_best_result(resultsList), "\n")
+    
+
 def read_file(path):
     return pd.read_csv(path)
 
@@ -24,7 +45,7 @@ def train_test_split_func(df, balancing):
         X, y = oversample.fit_resample(X, y)
     
     if(balancing == "OVER"):
-        over = SMOTE(sampling_strategy=0.1)
+        over = SMOTE(sampling_strategy=0.2)
         X, y = over.fit_resample(X, y)
      
     if(balancing == "UNDER"):
@@ -36,8 +57,9 @@ def train_test_split_func(df, balancing):
 
 def classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name, balancing):
 
-    array_classifiers = [lgb.LGBMClassifier(), XGBClassifier(), RandomForestClassifier()]
-
+    #naives bayes, SVM, k neighbour
+    array_classifiers = [lgb.LGBMClassifier(), XGBClassifier(use_label_encoder=False, eval_metric='logloss'), RandomForestClassifier()]
+    
     resultsList = []
     
     str_balancing = ""
@@ -48,7 +70,7 @@ def classify_evaluate_write(x_train, x_test, y_train, y_test, dataset_name, bala
         
         start_time = time.time()
         
-        algorithm = classifier.fit(x_train, y_train)
+        algorithm = classifier.fit(x_train, y_train.values.ravel())
 
         finish_time = (round(time.time() - start_time,5))
 
