@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from ml import *
+from ml import execute_ml
 
 #sg.theme('Dark Blue 3')
 
