@@ -48,15 +48,15 @@ def train_test_split_func(df, balancing):
     y = df.iloc[:,-1:]
     X = df.iloc[:,:-1]
 
-    if(balancing == "SMOTE"):
+    if balancing == "SMOTE":
         oversample = SMOTE()
         X, y = oversample.fit_resample(X, y)
     
-    if(balancing == "OVER"):
+    if balancing == "OVER":
         over = SMOTE(sampling_strategy=0.2)
         X, y = over.fit_resample(X, y)
      
-    if(balancing == "UNDER"):
+    if balancing == "UNDER":
         under = RandomUnderSampler(sampling_strategy=0.5)
         X, y = under.fit_resample(X, y)
     
@@ -120,7 +120,7 @@ def write(best_result, dataset_name):
     print("previous_result :", float(previous_result))
     print("\n")
     
-    if(float(best_result.f1_score) <= float(previous_result)):
+    if float(best_result.f1_score) <= float(previous_result):
         return False
     
     str_balancing = string_balancing(best_result.balancing)
@@ -152,12 +152,12 @@ def read(dataset_name):
         found = False
         
         for line in f:
-            if(i % (j+1) == 0):
-                if(line.startswith(dataset_name)):
+            if i % (j+1) == 0:
+                if line.startswith(dataset_name):
                     found = True
                 else:
                     found = False
-            elif(found and line.startswith(selected_metric)):
+            elif found and line.startswith(selected_metric):
                 result = line.partition(selected_metric)[2]
             i+=1
         
@@ -171,7 +171,7 @@ def find_best_result(resultsList):
 
 def string_balancing(balancing):
     str_balancing = ""
-    if(balancing != "-"):
+    if balancing != "-":
         str_balancing = balancing + " _ "
     return str_balancing
     
