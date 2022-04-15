@@ -1,21 +1,24 @@
 print("inicio")
 
-class Res(object):
-    def __init__(self, dataset_name):
-        self.dataset_name = dataset_name
+import sys
 
-resultsList = []
-for x in range(5):
-    r1 = Res(x)
-    resultsList.append(r1)
+# dataset_name = "page-blocks0.dat" + ","
+# selected_metric = "f1_score" + ","
+# result = 0
 
-print(resultsList[0].dataset_name)
-
-best_result=None
-for result in resultsList:
-    if(result.dataset_name == 1):
-        best_result = result
-
-print(best_result.dataset_name)
-
+# with open(sys.path[0] + '/output/results.csv', 'w', newline='') as f:
+#     writer = csv.writer(f)
+    
+#     i=0
+#     j=5 #4 metrics + 1 seperator
+#     found = False
+    
+#     for line in f:
+#         if(i % (j+1) == 0 and i==0):
+#             writer.
+#         elif(found and line.startswith(selected_metric)):
+#             result = line.partition(selected_metric)[2]
+#         i+=1
+    
+    
 print("fim")

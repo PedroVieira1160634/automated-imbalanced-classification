@@ -6,7 +6,8 @@ from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 from xgboost import XGBClassifier
 import lightgbm as lgb
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
@@ -30,14 +31,13 @@ def execute_ml(dataset_location):
     
     for balancing in array_balancing:
         x_train, x_test, y_train, y_test = train_test_split_func(df, balancing)
-        #resultsList.append(classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing))
         resultsList += classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
 
     best_result = find_best_result(resultsList)
     
-    write(best_result)
-    
     print("Best classifier is ", best_result.balancing, " _ ", best_result.algorithm, "\n")
+    
+    write(best_result, dataset_name)
     
 
 def read_file(path):
@@ -66,21 +66,18 @@ def train_test_split_func(df, balancing):
 def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing):
 
     array_classifiers = [
-        #LogisticRegression()
-        #,GaussianNB (naive bayes)
+        #LogisticRegression(max_iter=10000)
+        #,GaussianNB() #(naive bayes)
         #,svm.SVC() 
         #,KNeighborsClassifier()
         lgb.LGBMClassifier() #objective='binary' 
         ,XGBClassifier(use_label_encoder=False, eval_metric='logloss')
         ,RandomForestClassifier()
-        #,ExtraTreesClassifier()
+        ,ExtraTreesClassifier()
         ]
     
     resultsList = []
     
-    #str_balancing = ""
-    #if(balancing != "-"):
-    #    str_balancing = balancing + " _ "
     str_balancing = string_balancing(balancing)
     
     for classifier in array_classifiers:
@@ -101,23 +98,31 @@ def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
         resultsList.append(r1)
         
         #print's
-        print("algorithm:", str_balancing + classifier.__class__.__name__)
-        print("accuracy_score:", metric_accuracy)
-        print("f1_score:", metric_f1_score)
-        print("roc_auc_score:", metric_roc_auc_score)
-        print("time:", finish_time)
-        print("\n")
+        #print("algorithm:", str_balancing + classifier.__class__.__name__)
+        #print("accuracy_score:", metric_accuracy)
+        #print("f1_score:", metric_f1_score)
+        #print("roc_auc_score:", metric_roc_auc_score)
+        #print("time:", finish_time)
+        #print("\n")
         
     
-    print("--\n")
+    #print("--\n")
     
     return resultsList
+    
 
-
-def write(best_result):
-    #str_balancing = ""
-    #if(best_result.balancing != "-"):
-    #    str_balancing = best_result.balancing + " _ "
+def write(best_result, dataset_name):
+    
+    previous_result = read(dataset_name)
+    
+    print("\n")
+    print("best_result     :", float(best_result.f1_score))
+    print("previous_result :", float(previous_result))
+    print("\n")
+    
+    if(float(best_result.f1_score) <= float(previous_result)):
+        return False
+    
     str_balancing = string_balancing(best_result.balancing)
     
     # #w - write and replace  #a - append
@@ -130,8 +135,36 @@ def write(best_result):
         writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
         writer.writerow(["time", str(best_result.time)])
         writer.writerow(["---"])
+    
+    return True
         
 
+def read(dataset_name):
+    #dataset_name = "page-blocks0.dat" + ","
+    dataset_name = dataset_name + ","
+    selected_metric = "f1_score" + ","
+    result = 0
+
+    with open(sys.path[0] + '/output/results.csv') as f:
+
+        i=0
+        j=5 #4 metrics + 1 seperator
+        found = False
+        
+        for line in f:
+            if(i % (j+1) == 0):
+                if(line.startswith(dataset_name)):
+                    found = True
+                else:
+                    found = False
+            elif(found and line.startswith(selected_metric)):
+                result = line.partition(selected_metric)[2]
+            i+=1
+        
+    #returns the last result founded
+    return result
+    
+    
 def find_best_result(resultsList):
     return max(resultsList, key=lambda Results: Results.f1_score)
 
