@@ -1,24 +1,18 @@
-page-blocks0.dat,SMOTE _ ExtraTreesClassifier
-accuracy_score,0.98118
-f1_score,0.98113
-roc_auc_score,0.9814
-time,0.46379
----
-page-blocks0.dat,SMOTE _ ExtraTreesClassifier
-accuracy_score,0.98321
-f1_score,0.98317
-roc_auc_score,0.98343
-time,0.45781
+test.dat,SMOTE _ ExtraTreesClassifier
+accuracy_score,0.98
+f1_score,0.99
+roc_auc_score,0.97
+time,0.4
 ---
 page-blocks0.dat,SMOTE _ ExtraTreesClassifier
 accuracy_score,0.98525
-f1_score,0.90
+f1_score,0.98518
 roc_auc_score,0.98544
-time,0.43583
+time,0.43539
 ---
-page-blocks0.dat,SMOTE _ ExtraTreesClassifier
-accuracy_score,0.9822
-f1_score,0.98215
-roc_auc_score,0.98242
-time,0.4478
+test2.dat,SMOTE _ ExtraTreesClassifier
+accuracy_score,0.96
+f1_score,0.999
+roc_auc_score,0.95
+time,0.5
 ---

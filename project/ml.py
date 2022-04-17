@@ -1,3 +1,4 @@
+from random import random
 import time
 import sys
 import pandas as pd
@@ -49,15 +50,15 @@ def train_test_split_func(df, balancing):
     X = df.iloc[:,:-1]
 
     if balancing == "SMOTE":
-        oversample = SMOTE()
+        oversample = SMOTE(random_state=42)
         X, y = oversample.fit_resample(X, y)
     
     if balancing == "OVER":
-        over = SMOTE(sampling_strategy=0.2)
+        over = SMOTE(random_state=42, sampling_strategy=0.2)
         X, y = over.fit_resample(X, y)
      
     if balancing == "UNDER":
-        under = RandomUnderSampler(sampling_strategy=0.5)
+        under = RandomUnderSampler(random_state=42, sampling_strategy=0.5)
         X, y = under.fit_resample(X, y)
     
     return train_test_split(X, y, test_size=0.2, random_state=42)
@@ -66,14 +67,14 @@ def train_test_split_func(df, balancing):
 def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing):
 
     array_classifiers = [
-        #LogisticRegression(max_iter=10000)
-        #,GaussianNB() #(naive bayes)
-        #,svm.SVC() 
-        #,KNeighborsClassifier()
-        lgb.LGBMClassifier() #objective='binary' 
-        ,XGBClassifier(use_label_encoder=False, eval_metric='logloss')
-        ,RandomForestClassifier()
-        ,ExtraTreesClassifier()
+        LogisticRegression(random_state=42,max_iter=10000)
+        ,GaussianNB() #(naive bayes) random_state?
+        ,svm.SVC(random_state=42) 
+        ,KNeighborsClassifier() #random_state?
+        ,lgb.LGBMClassifier(random_state=42) #objective='binary' 
+        ,XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss')
+        ,RandomForestClassifier(random_state=42)
+        ,ExtraTreesClassifier(random_state=42)
         ]
     
     resultsList = []
@@ -113,56 +114,82 @@ def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
 
 def write(best_result, dataset_name):
     
-    previous_result = read(dataset_name)
+    previous_result, found_index = read(dataset_name)
     
     print("\n")
     print("best_result     :", float(best_result.f1_score))
     print("previous_result :", float(previous_result))
-    print("\n")
     
     if float(best_result.f1_score) <= float(previous_result):
+        print("File NOT written!","\n")
         return False
+    
+    print("File written!","\n")
     
     str_balancing = string_balancing(best_result.balancing)
     
-    # #w - write and replace  #a - append
-    with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
-        writer = csv.writer(f)
+    reading_file = open(sys.path[0] + '/output/results.csv', "r")
 
-        writer.writerow([best_result.dataset_name, str_balancing + best_result.algorithm])
-        writer.writerow(["accuracy_score", str(best_result.accuracy)])
-        writer.writerow(["f1_score", str(best_result.f1_score)])
-        writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
-        writer.writerow(["time", str(best_result.time)])
-        writer.writerow(["---"])
+    new_file_content = ""
+    i = 0
+    j = 5               #4 metrics + 1 seperator
     
-    return True
+    for line in reading_file:
+        stripped_line = line.strip()
         
+        if found_index <= i <= (found_index + j):
+            if i == found_index:
+                new_line = stripped_line.replace(stripped_line, best_result.dataset_name + "," + str_balancing + best_result.algorithm)
+            if i == found_index + 1:
+                new_line = stripped_line.replace(stripped_line, "accuracy_score" + "," + str(best_result.accuracy))
+            if i == found_index + 2:
+                new_line = stripped_line.replace(stripped_line, "f1_score" + "," + str(best_result.f1_score))
+            if i == found_index + 3:
+                new_line = stripped_line.replace(stripped_line, "roc_auc_score" + "," + str(best_result.roc_auc_score))
+            if i == found_index + 4:
+                new_line = stripped_line.replace(stripped_line, "time" + "," + str(best_result.time))
+            if i == found_index + 5:
+                new_line = stripped_line.replace(stripped_line, "---")
+        else:
+            new_line = stripped_line
+            
+        new_file_content += new_line +"\n"
+        i+=1
+    reading_file.close()
+
+    writing_file = open(sys.path[0] + '/output/results.csv', "w")
+    writing_file.write(new_file_content)
+    writing_file.close()
+
+    return True
+    
 
 def read(dataset_name):
-    #dataset_name = "page-blocks0.dat" + ","
     dataset_name = dataset_name + ","
     selected_metric = "f1_score" + ","
     result = 0
 
     with open(sys.path[0] + '/output/results.csv') as f:
 
-        i=0
-        j=5 #4 metrics + 1 seperator
+        i = 0
+        j = 5             #4 metrics + 1 seperator
         found = False
+        only_once = True
+        found_index = 0
         
         for line in f:
             if i % (j+1) == 0:
-                if line.startswith(dataset_name):
+                if line.startswith(dataset_name) and only_once == True:
                     found = True
+                    only_once = False
+                    found_index = i
                 else:
                     found = False
             elif found and line.startswith(selected_metric):
                 result = line.partition(selected_metric)[2]
             i+=1
         
-    #returns the last result founded
-    return result
+    return result, found_index
     
     
 def find_best_result(resultsList):
