@@ -6,11 +6,11 @@ from sklearn.model_selection import train_test_split #, RepeatedStratifiedKFold,
 from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 from xgboost import XGBClassifier
-import lightgbm as lgb
-from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from lightgbm import LGBMClassifier
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
-from sklearn import svm
+from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 #import lazypredict from lazypredict.Supervised import LazyClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
@@ -67,14 +67,17 @@ def train_test_split_func(df, balancing):
 def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing):
 
     array_classifiers = [
-        LogisticRegression(random_state=42,max_iter=10000)
-        ,GaussianNB() #(naive bayes) random_state?
-        ,svm.SVC(random_state=42) 
-        ,KNeighborsClassifier() #random_state?
-        ,lgb.LGBMClassifier(random_state=42) #objective='binary' 
-        ,XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss')
-        ,RandomForestClassifier(random_state=42)
-        ,ExtraTreesClassifier(random_state=42)
+        #LogisticRegression(random_state=42,max_iter=10000)
+        #,GaussianNB() #(naive bayes) random_state?
+        #,SVC(random_state=42) 
+        #,KNeighborsClassifier() #random_state?
+        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced') 
+        ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric=f1_score) #gpu 
+        ,RandomForestClassifier(random_state=42, class_weight='balanced')
+        ,ExtraTreesClassifier(random_state=42, class_weight='balanced')
+        ,AdaBoostClassifier(random_state=42)
+        ,BaggingClassifier(random_state=42)
+        ,GradientBoostingClassifier(random_state=42)
         ]
     
     resultsList = []
@@ -85,7 +88,7 @@ def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
         
         start_time = time.time()
         
-        algorithm = classifier.fit(x_train, y_train.values.ravel())
+        algorithm = classifier.fit(x_train, y_train.values.ravel()) #eval_metric 
 
         finish_time = (round(time.time() - start_time,5))
 

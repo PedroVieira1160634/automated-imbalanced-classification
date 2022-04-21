@@ -1,14 +1,8 @@
-test.dat,SMOTE _ ExtraTreesClassifier
-accuracy_score,0.98
-f1_score,0.99
-roc_auc_score,0.97
-time,0.4
----
 page-blocks0.dat,SMOTE _ ExtraTreesClassifier
 accuracy_score,0.98525
 f1_score,0.98518
 roc_auc_score,0.98544
-time,0.43539
+time,0.58104
 ---
 test2.dat,SMOTE _ ExtraTreesClassifier
 accuracy_score,0.96
