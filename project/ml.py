@@ -31,8 +31,8 @@ def execute_ml(dataset_location):
     resultsList = []
     
     for balancing in array_balancing:
-        x_train, x_test, y_train, y_test = train_test_split_func(df, balancing)
-        resultsList += classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
+        X_train, X_test, y_train, y_test = train_test_split_func(df, balancing)
+        resultsList += classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
 
     best_result = find_best_result(resultsList)
     
@@ -46,8 +46,18 @@ def read_file(path):
 
 
 def train_test_split_func(df, balancing):
-    y = df.iloc[:,-1:]
+    
+    encoded_columns = []
+    for column_name in df.columns:
+        if df[column_name].dtype == object:
+            encoded_columns.extend([column_name])
+        else:
+            pass
+
+    df = pd.get_dummies(df, columns=df[encoded_columns].columns, drop_first=True)
+    
     X = df.iloc[:,:-1]
+    y = df.iloc[:,-1:]
 
     if balancing == "SMOTE":
         oversample = SMOTE(random_state=42)
@@ -64,7 +74,7 @@ def train_test_split_func(df, balancing):
     return train_test_split(X, y, test_size=0.2, random_state=42)
 
 
-def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing):
+def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing):
 
     array_classifiers = [
         #LogisticRegression(random_state=42,max_iter=10000)
@@ -72,7 +82,7 @@ def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
         #,SVC(random_state=42) 
         #,KNeighborsClassifier() #random_state?
         LGBMClassifier(random_state=42, objective='binary', class_weight='balanced') 
-        ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric=f1_score) #gpu 
+        ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss') #eval_metric=f1_score ; gpu 
         ,RandomForestClassifier(random_state=42, class_weight='balanced')
         ,ExtraTreesClassifier(random_state=42, class_weight='balanced')
         ,AdaBoostClassifier(random_state=42)
@@ -88,15 +98,15 @@ def classify_evaluate(x_train, x_test, y_train, y_test, dataset_name, balancing)
         
         start_time = time.time()
         
-        algorithm = classifier.fit(x_train, y_train.values.ravel()) #eval_metric 
+        algorithm = classifier.fit(X_train, y_train.values.ravel()) #eval_metric 
 
-        finish_time = (round(time.time() - start_time,5))
+        finish_time = (round(time.time() - start_time,3))
 
-        algorithm_pred = algorithm.predict(x_test)
+        algorithm_pred = algorithm.predict(X_test)
 
-        metric_accuracy = round(accuracy_score(y_test, algorithm_pred),5)
-        metric_f1_score = round(f1_score(y_test, algorithm_pred),5)
-        metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),5)
+        metric_accuracy = round(accuracy_score(y_test, algorithm_pred),3)
+        metric_f1_score = round(f1_score(y_test, algorithm_pred),3)
+        metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),3)
         
         r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, metric_accuracy, metric_f1_score, metric_roc_auc_score)
         resultsList.append(r1)
