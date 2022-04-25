@@ -1,12 +1,18 @@
+glass1.dat,OVER _ LGBMClassifier
+accuracy_score,0.929
+f1_score,0.926
+roc_auc_score,0.928
+time,0.032
+---
 page-blocks0.dat,OVER _ ExtraTreesClassifier
 accuracy_score,0.992
 f1_score,0.992
 roc_auc_score,0.992
-time,0.416
+time,0.408
 ---
-test2.dat,SMOTE _ ExtraTreesClassifier
-accuracy_score,0.96
-f1_score,0.999
-roc_auc_score,0.95
-time,0.5
+kddcup-rootkit-imap_vs_back.dat,LGBMClassifier
+accuracy_score,1.0
+f1_score,1.0
+roc_auc_score,1.0
+time,0.06
 ---

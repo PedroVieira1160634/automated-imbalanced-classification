@@ -146,13 +146,13 @@ def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
 
 def write(best_result, dataset_name):
     
-    previous_result, found_index = read(dataset_name)
+    previous_result, previous_found, found_index = read(dataset_name)
     
     print("\n")
     print("best_result     :", float(best_result.f1_score))
     print("previous_result :", float(previous_result))
     
-    if float(best_result.f1_score) <= float(previous_result):
+    if previous_found and float(best_result.f1_score) <= float(previous_result):
         print("File NOT written!","\n")
         return False
     
@@ -160,38 +160,49 @@ def write(best_result, dataset_name):
     
     str_balancing = string_balancing(best_result.balancing)
     
-    reading_file = open(sys.path[0] + '/output/results.csv', "r")
-
-    new_file_content = ""
-    i = 0
-    j = 5               #4 metrics + 1 seperator
-    
-    for line in reading_file:
-        stripped_line = line.strip()
+    if not previous_found:
+        with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
+           writer = csv.writer(f)
         
-        if found_index <= i <= (found_index + j):
-            if i == found_index:
-                new_line = stripped_line.replace(stripped_line, best_result.dataset_name + "," + str_balancing + best_result.algorithm)
-            if i == found_index + 1:
-                new_line = stripped_line.replace(stripped_line, "accuracy_score" + "," + str(best_result.accuracy))
-            if i == found_index + 2:
-                new_line = stripped_line.replace(stripped_line, "f1_score" + "," + str(best_result.f1_score))
-            if i == found_index + 3:
-                new_line = stripped_line.replace(stripped_line, "roc_auc_score" + "," + str(best_result.roc_auc_score))
-            if i == found_index + 4:
-                new_line = stripped_line.replace(stripped_line, "time" + "," + str(best_result.time))
-            if i == found_index + 5:
-                new_line = stripped_line.replace(stripped_line, "---")
-        else:
-            new_line = stripped_line
+           writer.writerow([best_result.dataset_name, str_balancing + best_result.algorithm])
+           writer.writerow(["accuracy_score", str(best_result.accuracy)])
+           writer.writerow(["f1_score", str(best_result.f1_score)])
+           writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
+           writer.writerow(["time", str(best_result.time)])
+           writer.writerow(["---"])
+           
+    else:
+        new_file_content = ""
+        with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
+        
+            i = 0
+            j = 5               #4 metrics + 1 seperator
             
-        new_file_content += new_line +"\n"
-        i+=1
-    reading_file.close()
+            for line in reading_file:
+                stripped_line = line.strip()
+                
+                if found_index <= i <= (found_index + j):
+                    if i == found_index:
+                        new_line = stripped_line.replace(stripped_line, best_result.dataset_name + "," + str_balancing + best_result.algorithm)
+                    if i == found_index + 1:
+                        new_line = stripped_line.replace(stripped_line, "accuracy_score" + "," + str(best_result.accuracy))
+                    if i == found_index + 2:
+                        new_line = stripped_line.replace(stripped_line, "f1_score" + "," + str(best_result.f1_score))
+                    if i == found_index + 3:
+                        new_line = stripped_line.replace(stripped_line, "roc_auc_score" + "," + str(best_result.roc_auc_score))
+                    if i == found_index + 4:
+                        new_line = stripped_line.replace(stripped_line, "time" + "," + str(best_result.time))
+                    if i == found_index + 5:
+                        new_line = stripped_line.replace(stripped_line, "---")
+                else:
+                    new_line = stripped_line
+                    
+                new_file_content += new_line +"\n"
+                i+=1
 
-    writing_file = open(sys.path[0] + '/output/results.csv', "w")
-    writing_file.write(new_file_content)
-    writing_file.close()
+        if new_file_content:
+            with open(sys.path[0] + '/output/results.csv', "w") as writing_file:
+                writing_file.write(new_file_content)
 
     return True
     
@@ -200,28 +211,33 @@ def read(dataset_name):
     dataset_name = dataset_name + ","
     selected_metric = "f1_score" + ","
     result = 0
-
-    with open(sys.path[0] + '/output/results.csv') as f:
+    
+    with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
 
         i = 0
         j = 5             #4 metrics + 1 seperator
         found = False
         only_once = True
-        found_index = 0
+        found_index = -1
+        found_result = False
         
-        for line in f:
+        for line in reading_file:
             if i % (j+1) == 0:
                 if line.startswith(dataset_name) and only_once == True:
                     found = True
                     only_once = False
                     found_index = i
+                    found_result = True
                 else:
                     found = False
             elif found and line.startswith(selected_metric):
                 result = line.partition(selected_metric)[2]
             i+=1
         
-    return result, found_index
+        if found_index == -1:
+            found_index = i
+    
+    return result, found_result, found_index
     
     
 def find_best_result(resultsList):

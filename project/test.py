@@ -19,7 +19,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 #glass1.dat
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "kddcup-rootkit-imap_vs_back.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "page-blocks0.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -51,7 +51,7 @@ if preserve_name:
 # print(list(X.columns))
 # print(list(y.columns))
 
-#print(y.value_counts())
+# print(y.value_counts())
 
 minimum_samples = min(y.value_counts())
 if minimum_samples >= 5:
@@ -72,8 +72,16 @@ algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced').fit(X
 
 finish_time = (round(time.time() - start_time,3))
 
+algorithm_pred = algorithm.predict(X_train)
+
+print("train")
+print("metric_accuracy:         ", round(accuracy_score(y_train, algorithm_pred),3))
+print("metric_f1_score          ", round(f1_score(y_train, algorithm_pred),3))
+print("metric_roc_auc_score:    ", round(roc_auc_score(y_train, algorithm_pred),3))
+
 algorithm_pred = algorithm.predict(X_test)
 
+print("test")
 print("metric_accuracy:         ", round(accuracy_score(y_test, algorithm_pred),3))
 print("metric_f1_score          ", round(f1_score(y_test, algorithm_pred),3))
 print("metric_roc_auc_score:    ", round(roc_auc_score(y_test, algorithm_pred),3))
