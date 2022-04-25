@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split #, RepeatedStratifiedKFold, cross_val_score
 from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
+from imblearn.over_sampling import RandomOverSampler
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
@@ -46,29 +47,47 @@ def read_file(path):
 
 
 def train_test_split_func(df, balancing):
-    
+    X = df.iloc[:,:-1]
+    y = df.iloc[:,-1:]
+
     encoded_columns = []
-    for column_name in df.columns:
-        if df[column_name].dtype == object:
+    for column_name in X.columns:
+        if X[column_name].dtype == object:
             encoded_columns.extend([column_name])
         else:
             pass
 
-    df = pd.get_dummies(df, columns=df[encoded_columns].columns, drop_first=True)
-    
-    X = df.iloc[:,:-1]
-    y = df.iloc[:,-1:]
+    X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
+    encoded_columns = []
+    preserve_name = ""
+    for column_name in y.columns:
+        if y[column_name].dtype == object:
+            encoded_columns.extend([column_name])
+            preserve_name = column_name
+        else:
+            pass
+
+    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+
+    if preserve_name:
+        y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+    
     if balancing == "SMOTE":
-        oversample = SMOTE(random_state=42)
-        X, y = oversample.fit_resample(X, y)
+        minimum_samples = min(y.value_counts())
+        if minimum_samples >= 5:
+            minimum_samples = 5
+        else:
+            minimum_samples -= 1
+        smote = SMOTE(random_state=42, k_neighbors=minimum_samples) #sampling_strategy=0.5
+        X, y = smote.fit_resample(X, y)
     
     if balancing == "OVER":
-        over = SMOTE(random_state=42, sampling_strategy=0.2)
+        over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
         X, y = over.fit_resample(X, y)
      
     if balancing == "UNDER":
-        under = RandomUnderSampler(random_state=42, sampling_strategy=0.5)
+        under = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
         X, y = under.fit_resample(X, y)
     
     return train_test_split(X, y, test_size=0.2, random_state=42)

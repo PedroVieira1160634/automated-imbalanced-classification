@@ -1,9 +1,9 @@
 from datetime import datetime
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
-from ml import execute_ml
 import sys
 import time
+from ml import execute_ml
 
 start_time = time.time()
 
