@@ -7,14 +7,14 @@ import sys
 import time
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
+from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
-from imblearn.over_sampling import RandomOverSampler
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from numpy import mean
 
 #glass1.dat
 #page-blocks0.dat
@@ -59,33 +59,43 @@ if minimum_samples >= 5:
 else:
     minimum_samples -= 1
     
+
 smote = SMOTE(random_state=42, k_neighbors=minimum_samples)
 X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 start_time = time.time()
 
-algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced').fit(X_train, y_train.values.ravel())
+algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
 
-finish_time = (round(time.time() - start_time,3))
+cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-algorithm_pred = algorithm.predict(X_train)
+scores = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1_weighted', cv=cv, n_jobs=-1) #scoring='roc_auc'
 
-print("train")
-print("metric_accuracy:         ", round(accuracy_score(y_train, algorithm_pred),3))
-print("metric_f1_score          ", round(f1_score(y_train, algorithm_pred),3))
-print("metric_roc_auc_score:    ", round(roc_auc_score(y_train, algorithm_pred),3))
+finish_time = time.time() - start_time
 
-algorithm_pred = algorithm.predict(X_test)
+print('Mean F1 Score Weighted   : %.3f' % mean(scores))
 
-print("test")
-print("metric_accuracy:         ", round(accuracy_score(y_test, algorithm_pred),3))
-print("metric_f1_score          ", round(f1_score(y_test, algorithm_pred),3))
-print("metric_roc_auc_score:    ", round(roc_auc_score(y_test, algorithm_pred),3))
-print("time:                    ", finish_time)
+print("time                     : %.3f" % finish_time)
+
+#see if overfitting
+# algorithm_pred = algorithm.predict(X_train)
+
+# print("train")
+# print("metric_accuracy:         ", round(accuracy_score(y_train, algorithm_pred),3))
+# print("metric_f1_score          ", round(f1_score(y_train, algorithm_pred),3))
+# print("metric_roc_auc_score:    ", round(roc_auc_score(y_train, algorithm_pred),3))
+
+# algorithm_pred = algorithm.predict(X_test)
+
+# print("test")
+# print("metric_accuracy:         ", round(accuracy_score(y_test, algorithm_pred),3))
+# print("metric_f1_score          ", round(f1_score(y_test, algorithm_pred),3))
+# print("metric_roc_auc_score:    ", round(roc_auc_score(y_test, algorithm_pred),3))
+# print("time:                    ", finish_time)
 
 
 
