@@ -1,4 +1,3 @@
-print("inicio")
 
 
 #example ML
@@ -13,13 +12,14 @@ from imblearn.under_sampling import RandomUnderSampler
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from numpy import mean
 
 #glass1.dat
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "page-blocks0.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "kddcup-rootkit-imap_vs_back.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -34,52 +34,45 @@ for column_name in X.columns:
 X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
 encoded_columns = []
-preserve_name = ""
 for column_name in y.columns:
     if y[column_name].dtype == object:
         encoded_columns.extend([column_name])
-        preserve_name = column_name
     else:
         pass
 
 y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
-if preserve_name:
-    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
-    
-# print(list(df.columns))
-# print(list(X.columns))
-# print(list(y.columns))
 
-# print(y.value_counts())
+#print(list(df.columns))
+#print(list(X.columns))
+#print(list(y.columns))
 
-minimum_samples = min(y.value_counts())
-if minimum_samples >= 5:
-    minimum_samples = 5
-else:
-    minimum_samples -= 1
-    
+#print(y.value_counts())
 
-smote = SMOTE(random_state=42, k_neighbors=minimum_samples)
-X, y = smote.fit_resample(X, y)
+
+# smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
+# X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 
 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#0.452 sec (23x more fast)
 
 start_time = time.time()
 
 algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
+#algorithm = KNeighborsClassifier() 
 
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-scores = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1_weighted', cv=cv, n_jobs=-1) #scoring='roc_auc'
+scores = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1', cv=cv, n_jobs=-1) #scoring='roc_auc' f1 balanced_accuracy
+#10.547 sec
 
 finish_time = time.time() - start_time
 
-print('Mean F1 Score Weighted   : %.3f' % mean(scores))
+print('Mean F1 Score    : %.3f' % mean(scores))
 
-print("time                     : %.3f" % finish_time)
+print('time             : %.3f' % finish_time)
 
 #see if overfitting
 # algorithm_pred = algorithm.predict(X_train)
@@ -148,6 +141,3 @@ print("time                     : %.3f" % finish_time)
 
 
 
-
-
-print("fim")

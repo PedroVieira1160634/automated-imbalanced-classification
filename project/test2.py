@@ -1,5 +1,0 @@
-print("inicio")
-
-
-  
-print("fim")
