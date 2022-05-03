@@ -135,10 +135,10 @@ def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
         #print("f1_score:", metric_f1_score)
         #print("roc_auc_score:", metric_roc_auc_score)
         #print("time:", finish_time)
-        #print("\n")
+        #print("")
         
     
-    #print("--\n")
+    #print("--")
     
     return resultsList
     
@@ -147,7 +147,7 @@ def write(best_result, dataset_name):
     
     previous_result, previous_found, found_index = read(dataset_name)
     
-    print("\n")
+    print("")
     print("best_result     :", float(best_result.f1_score))
     print("previous_result :", float(previous_result))
     

@@ -5,6 +5,7 @@
 import sys
 import time
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
 from imblearn.over_sampling import SMOTE, RandomOverSampler
@@ -14,7 +15,7 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
-from numpy import mean
+
 
 #glass1.dat
 #page-blocks0.dat
@@ -23,6 +24,15 @@ df = pd.read_csv(sys.path[0] + "/input/" + "kddcup-rootkit-imap_vs_back.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
+
+
+# -- characteristics of datasets
+
+print("")
+print("numeric columns      :", X.select_dtypes(include=np.number).shape[1])
+print("non-numeric columns  :", X.select_dtypes(include=object).shape[1])
+
+
 
 encoded_columns = []
 for column_name in X.columns:
@@ -33,6 +43,8 @@ for column_name in X.columns:
 
 X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
+
+
 encoded_columns = []
 for column_name in y.columns:
     if y[column_name].dtype == object:
@@ -42,6 +54,11 @@ for column_name in y.columns:
 
 y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
+# -- characteristics of datasets
+
+print("imbalance ratio      : %.3f" % (y.values.tolist().count([0])/y.values.tolist().count([1])))  #todo fix problems
+print("")
+
 
 #print(list(df.columns))
 #print(list(X.columns))
@@ -50,8 +67,8 @@ y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 #print(y.value_counts())
 
 
-# smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
-# X, y = smote.fit_resample(X, y)
+smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
+X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 
@@ -70,7 +87,7 @@ scores = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1', cv=cv, n_
 
 finish_time = time.time() - start_time
 
-print('Mean F1 Score    : %.3f' % mean(scores))
+print('Mean F1 Score    : %.3f' % np.mean(scores))
 
 print('time             : %.3f' % finish_time)
 
