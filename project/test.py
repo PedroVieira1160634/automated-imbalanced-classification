@@ -56,7 +56,11 @@ y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
 # -- characteristics of datasets
 
-print("imbalance ratio      : %.3f" % (y.values.tolist().count([0])/y.values.tolist().count([1])))  #todo fix problems
+#todo fix problems
+#if y.values.tolist().count([1]) > 0
+#if y.values.tolist().count([0]) > y.values.tolist().count([1])
+
+print("imbalance ratio      : %.3f" % (y.values.tolist().count([0])/y.values.tolist().count([1])))
 print("")
 
 
