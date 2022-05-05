@@ -1,5 +1,3 @@
-
-
 #example ML
 
 import sys
@@ -10,6 +8,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
+from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
@@ -83,6 +82,10 @@ start_time = time.time()
 
 algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
 #algorithm = KNeighborsClassifier() 
+#algorithm = EasyEnsembleClassifier(random_state=42, n_jobs=-1)
+#algorithm = RUSBoostClassifier(random_state=42)
+#algorithm = BalancedBaggingClassifier(random_state=42, n_jobs=-1)
+#algorithm = BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
 
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
@@ -94,6 +97,28 @@ finish_time = time.time() - start_time
 print('Mean F1 Score    : %.3f' % np.mean(scores))
 
 print('time             : %.3f' % finish_time)
+
+#ExtraTreesClassifier
+#0.986
+#11.205
+
+#EasyEnsembleClassifier
+#0.770
+#24.240
+
+#RUSBoostClassifier
+#0.645
+#8.173
+
+#BalancedBaggingClassifier
+#0.849
+#5.740
+
+#BalancedRandomForestClassifier
+#0.814
+#12.067
+
+
 
 #see if overfitting
 # algorithm_pred = algorithm.predict(X_train)
@@ -110,55 +135,6 @@ print('time             : %.3f' % finish_time)
 # print("metric_f1_score          ", round(f1_score(y_test, algorithm_pred),3))
 # print("metric_roc_auc_score:    ", round(roc_auc_score(y_test, algorithm_pred),3))
 # print("time:                    ", finish_time)
-
-
-
-
-
-#new write
-
-#import sys
-##import csv
-#
-#reading_file = open(sys.path[0] + '/output/results.csv', "r")
-#
-#new_file_content = ""
-#i = 0
-#j = 5           # 4 metrics + 1 seperator
-#interval = 7-1  # if line to start is 7
-#
-#for line in reading_file:
-#    stripped_line = line.strip()
-#    
-#    if interval <= i < (interval + j):
-#        new_line = stripped_line.replace(stripped_line, "new string")
-#    else:
-#        new_line = stripped_line
-#        
-#    new_file_content += new_line +"\n"
-#    i+=1
-#reading_file.close()
-#
-#writing_file = open(sys.path[0] + '/output/results.csv', "w")
-#writing_file.write(new_file_content)
-#writing_file.close()
-
-
-
-
-
-#previous write
-
-## #w - write and replace  #a - append
-#with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
-#    writer = csv.writer(f)
-#
-#    writer.writerow([best_result.dataset_name, str_balancing + best_result.algorithm])
-#    writer.writerow(["accuracy_score", str(best_result.accuracy)])
-#    writer.writerow(["f1_score", str(best_result.f1_score)])
-#    writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
-#    writer.writerow(["time", str(best_result.time)])
-#    writer.writerow(["---"])
 
 
 
