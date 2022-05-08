@@ -1,18 +1,18 @@
-from random import random
 import time
 import sys
 import pandas as pd
-from sklearn.model_selection import train_test_split #, RepeatedStratifiedKFold, cross_val_score
+import numpy as np
+from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
-from xgboost import XGBClassifier
-from lightgbm import LGBMClassifier
-from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-#import lazypredict from lazypredict.Supervised import LazyClassifier
+from lightgbm import LGBMClassifier
+from xgboost import XGBClassifier
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
+from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 import csv
 #import warnings
@@ -31,8 +31,8 @@ def execute_ml(dataset_location):
     resultsList = []
     
     for balancing in array_balancing:
-        X_train, X_test, y_train, y_test = train_test_split_func(df, balancing)
-        resultsList += classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
+        X, y = pre_processing(df, balancing) 
+        resultsList += classify_evaluate(X, y, dataset_name, balancing)
 
     best_result = find_best_result(resultsList)
     
@@ -45,7 +45,7 @@ def read_file(path):
     return pd.read_csv(path)
 
 
-def train_test_split_func(df, balancing):
+def pre_processing(df, balancing):
     X = df.iloc[:,:-1]
     y = df.iloc[:,-1:]
 
@@ -89,10 +89,10 @@ def train_test_split_func(df, balancing):
         under = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
         X, y = under.fit_resample(X, y)
     
-    return train_test_split(X, y, test_size=0.2, random_state=42)
+    return X, y
 
 
-def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing):
+def classify_evaluate(X, y, dataset_name, balancing):
 
     array_classifiers = [
         #LogisticRegression(random_state=42,max_iter=10000)
@@ -103,9 +103,13 @@ def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss') #eval_metric=f1_score ; gpu 
         ,RandomForestClassifier(random_state=42, class_weight='balanced')
         ,ExtraTreesClassifier(random_state=42, class_weight='balanced')
-        ,AdaBoostClassifier(random_state=42)
-        ,BaggingClassifier(random_state=42)
-        ,GradientBoostingClassifier(random_state=42)
+        # ,AdaBoostClassifier(random_state=42)
+        # ,BaggingClassifier(random_state=42)
+        # ,GradientBoostingClassifier(random_state=42)
+        # ,EasyEnsembleClassifier(random_state=42, n_jobs=-1)
+        # ,RUSBoostClassifier(random_state=42)
+        # ,BalancedBaggingClassifier(random_state=42, n_jobs=-1)
+        # ,BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
         ]
     
     resultsList = []
@@ -114,19 +118,29 @@ def classify_evaluate(X_train, X_test, y_train, y_test, dataset_name, balancing)
     
     for classifier in array_classifiers:
         
+        #start_time = time.time()
+        
+        #algorithm = classifier.fit(X_train, y_train.values.ravel()) #eval_metric 
+        
+        #finish_time = (round(time.time() - start_time,3))
+
+        #algorithm_pred = algorithm.predict(X_test)
+
+        # metric_accuracy = round(accuracy_score(y_test, algorithm_pred),3)
+        # metric_f1_score = round(f1_score(y_test, algorithm_pred),3)
+        # metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),3)
+        
         start_time = time.time()
         
-        algorithm = classifier.fit(X_train, y_train.values.ravel()) #eval_metric 
-
-        finish_time = (round(time.time() - start_time,3))
-
-        algorithm_pred = algorithm.predict(X_test)
-
-        metric_accuracy = round(accuracy_score(y_test, algorithm_pred),3)
-        metric_f1_score = round(f1_score(y_test, algorithm_pred),3)
-        metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),3)
+        cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+        scores = cross_val_score(classifier, X, y.values.ravel(), scoring='f1', cv=cv, n_jobs=-1) #scoring='roc_auc' f1 balanced_accuracy
         
-        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, metric_accuracy, metric_f1_score, metric_roc_auc_score)
+        finish_time = round(time.time() - start_time,3)
+        
+        metric_f1_score = round(np.mean(scores),3)
+        
+        #metric_accuracy, metric_roc_auc_score
+        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, 0, metric_f1_score, 0)
         resultsList.append(r1)
         
         #print's

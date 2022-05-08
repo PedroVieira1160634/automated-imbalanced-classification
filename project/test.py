@@ -4,11 +4,8 @@ import sys
 import time
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
-from imblearn.over_sampling import SMOTE, RandomOverSampler
-from imblearn.under_sampling import RandomUnderSampler
-from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
+from imblearn.over_sampling import SMOTE
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
@@ -81,11 +78,7 @@ X, y = smote.fit_resample(X, y)
 start_time = time.time()
 
 algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
-#algorithm = KNeighborsClassifier() 
-#algorithm = EasyEnsembleClassifier(random_state=42, n_jobs=-1)
-#algorithm = RUSBoostClassifier(random_state=42)
-#algorithm = BalancedBaggingClassifier(random_state=42, n_jobs=-1)
-#algorithm = BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
+#algorithm = KNeighborsClassifier()
 
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
@@ -97,26 +90,6 @@ finish_time = time.time() - start_time
 print('Mean F1 Score    : %.3f' % np.mean(scores))
 
 print('time             : %.3f' % finish_time)
-
-#ExtraTreesClassifier
-#0.986
-#11.205
-
-#EasyEnsembleClassifier
-#0.770
-#24.240
-
-#RUSBoostClassifier
-#0.645
-#8.173
-
-#BalancedBaggingClassifier
-#0.849
-#5.740
-
-#BalancedRandomForestClassifier
-#0.814
-#12.067
 
 
 

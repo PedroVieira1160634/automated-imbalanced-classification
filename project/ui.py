@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 from ml import execute_ml
 
-#sg.theme('Dark Blue 3')
+sg.theme('Dark Blue 3')
 
 layout = [[sg.Text('Automated Imbalanced Classification')],
       [sg.Text('Dataset file location ', size=(15, 1)), sg.InputText(), sg.FileBrowse()],
