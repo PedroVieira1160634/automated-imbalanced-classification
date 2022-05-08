@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 #glass1.dat
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "kddcup-rootkit-imap_vs_back.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "page-blocks0.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -82,12 +82,15 @@ algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit
 
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-scores = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1', cv=cv, n_jobs=-1) #scoring='roc_auc' f1 balanced_accuracy
+scores_f1 = cross_val_score(algorithm, X, y.values.ravel(), scoring='f1', cv=cv, n_jobs=-1) #scoring='roc_auc' f1 balanced_accuracy
 #10.547 sec
+scores_roc_auc = cross_val_score(algorithm, X, y.values.ravel(), scoring='roc_auc', cv=cv, n_jobs=-1)
+#17.509 sec (with both)
 
 finish_time = time.time() - start_time
 
-print('Mean F1 Score    : %.3f' % np.mean(scores))
+print('Mean F1 Score        : %.3f' % np.mean(scores_f1))
+print('Mean ROC AUC Score   : %.3f' % np.mean(scores_roc_auc))
 
 print('time             : %.3f' % finish_time)
 
