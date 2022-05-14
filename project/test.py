@@ -2,6 +2,7 @@
 
 import sys
 import time
+import copy
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
@@ -15,8 +16,9 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 
 #glass1.dat
 #page-blocks0.dat
+#car-good.dat
 #kddcup-rootkit-imap_vs_back.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "kddcup-rootkit-imap_vs_back.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "glass1.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -24,8 +26,9 @@ y = df.iloc[:,-1:]
 
 # -- characteristics of datasets
 
-# n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-# n_non_numeric_col = X.select_dtypes(include=object).shape[1]
+n_columns = len(X.columns)
+n_numeric_col = X.select_dtypes(include=np.number).shape[1]
+n_non_numeric_col = X.select_dtypes(include=object).shape[1]
 
 
 
@@ -61,12 +64,11 @@ if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
     else:
         imbalance_ratio = y.values.tolist().count([1])/y.values.tolist().count([0])
 
-
 print("")
 print("number of rows       :", len(df))
-print("number of columns    :", len(df.columns))
-print("numeric columns      :", df.select_dtypes(include=np.number).shape[1])       #to fix
-print("non-numeric columns  :", df.select_dtypes(include=object).shape[1])          #to fix
+print("number of columns    :", n_columns)
+print("numeric columns      :", n_numeric_col)
+print("non-numeric columns  :", n_non_numeric_col)
 
 print("")
 print("imbalance ratio      : %.3f" % (imbalance_ratio))
@@ -77,9 +79,17 @@ for column in df:
     print(column, " - ", df[column].nunique())
 print("")
 
-#https://stackoverflow.com/questions/17778394/list-highest-correlation-pairs-from-a-large-correlation-matrix-in-pandas
+# X2 = copy.deepcopy(X)
+# X2['Class'] = y
+c = df.corr().abs()
+sol = (c.where(np.triu(np.ones(c.shape), k=1).astype(bool))
+                  .stack()
+                  .sort_values(ascending=False))
 
-
+print("Max Correlation      : %.3f" % (sol.max()))
+print("Average Correlation  : %.3f" % (sol.mean(skipna = True)))
+print("Minimum Correlation  : %.3f" % (sol.min()))
+print("")
 
 
 #print(y.value_counts())

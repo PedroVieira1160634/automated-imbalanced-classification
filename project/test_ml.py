@@ -9,6 +9,7 @@ start_time = time.time()
 
 #glass1.dat                             - 2.719 sec     - 27.891 sec
 #page-blocks0.dat                       - 12.868 sec    - 128.502 sec
+#car-good.dat
 #kddcup-rootkit-imap_vs_back.dat        - 3.435 sec     - 36.234 sec
 dataset_name = "kddcup-rootkit-imap_vs_back.dat"
 

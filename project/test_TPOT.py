@@ -9,6 +9,7 @@ from tpot import TPOTClassifier
 
 #glass1.dat
 #page-blocks0.dat
+#car-good.dat
 #kddcup-rootkit-imap_vs_back.dat
 df = pd.read_csv(sys.path[0] + "/input/" + "glass1.dat")
 
