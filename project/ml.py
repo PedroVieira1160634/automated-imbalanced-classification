@@ -2,7 +2,7 @@ import time
 import sys
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score
+from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.linear_model import LogisticRegression
@@ -133,14 +133,21 @@ def classify_evaluate(X, y, dataset_name, balancing):
         start_time = time.time()
         
         cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
-        scores = cross_val_score(classifier, X, y.values.ravel(), scoring='f1', cv=cv, n_jobs=-1) #scoring='roc_auc' f1 balanced_accuracy
+        
+        scoring = {
+            'balanced_accuracy': 'balanced_accuracy',
+            'f1': 'f1', 
+            'roc_auc': 'roc_auc'}
+        
+        scores = cross_validate(classifier, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1) #, return_train_score=True
         
         finish_time = round(time.time() - start_time,3)
         
-        metric_f1_score = round(np.mean(scores),3)
+        metric_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+        metric_f1_score = round(np.mean(scores['test_f1']),3)
+        metric_roc_auc_score = round(np.mean(scores['test_roc_auc']),3)
         
-        #metric_accuracy, metric_roc_auc_score
-        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, 0, metric_f1_score, 0)
+        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, metric_accuracy, metric_f1_score, metric_roc_auc_score)
         resultsList.append(r1)
         
         #print's

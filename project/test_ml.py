@@ -7,11 +7,11 @@ from ml import execute_ml
 
 start_time = time.time()
 
-#glass1.dat                             - 2.719 sec     - 27.891 sec
-#page-blocks0.dat                       - 12.868 sec    - 128.502 sec
-#car-good.dat
-#kddcup-rootkit-imap_vs_back.dat        - 3.435 sec     - 36.234 sec
-dataset_name = "kddcup-rootkit-imap_vs_back.dat"
+#glass1.dat                             - 2.719 sec     - 34.246 sec
+#page-blocks0.dat                       - 12.868 sec    - 146.825 sec
+#kddcup-rootkit-imap_vs_back.dat        - 3.435 sec     - 39.723 sec
+#car-good.dat                                           - 36.940 sec
+dataset_name = "car-good.dat"
 
 execute_ml(sys.path[0] + "/input/" + dataset_name)
 

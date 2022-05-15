@@ -71,6 +71,3 @@ print('time     : %.3f' % finish_time)
 #F1 -   0.923
 #time - 97 sec
 #RandomForestClassifier
-
-
-
