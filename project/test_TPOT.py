@@ -1,11 +1,16 @@
 #test TOPT
 
+from datetime import datetime
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
+
+
 import sys
 import time
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 from tpot import TPOTClassifier
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 
 #glass1.dat
 #page-blocks0.dat
@@ -47,7 +52,7 @@ start_time = time.time()
 #generations=5, population_size=20, cv=5
 pipeline_optimizer = TPOTClassifier(generations=2, population_size=5, scoring='f1', cv=2, n_jobs=-1, random_state=42, verbosity=2, memory='auto')
 
-pipeline_optimizer.fit(X_train, y_train.values.ravel())
+algorithm = pipeline_optimizer.fit(X_train, y_train.values.ravel())
 
 print('score    : %.3f' % pipeline_optimizer.score(X_test, y_test.values.ravel()))
 
@@ -56,8 +61,19 @@ print('score    : %.3f' % pipeline_optimizer.score(X_test, y_test.values.ravel()
 finish_time = time.time() - start_time
 print('time     : %.3f' % finish_time)
 
+
+algorithm_pred = algorithm.predict(X_test)
+
+print("accuracy :", round(accuracy_score(y_test, algorithm_pred),3))
+print("f1 score :", round(f1_score(y_test, algorithm_pred),3))
+print("roc auc  :", round(roc_auc_score(y_test, algorithm_pred),3))
+
+
 # ...
-#print("class name: ", pipeline_optimizer.__class__.__name__)
+# print("class name: ", pipeline_optimizer.__class__.__name__)
+
+
+
 
 #glass1.dat
 #without preprocessing
@@ -71,3 +87,5 @@ print('time     : %.3f' % finish_time)
 #F1 -   0.923
 #time - 97 sec
 #RandomForestClassifier
+
+print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
