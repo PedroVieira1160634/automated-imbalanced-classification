@@ -22,7 +22,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
 #car-good.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "car-good.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "page-blocks0.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -113,7 +113,7 @@ X, y = smote.fit_resample(X, y)
 
 
 
-print("Final Results:\n")
+print("\nFinal Results:\n")
 
 #   --- k-Fold Cross-Validation ---
 
@@ -134,22 +134,22 @@ scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n
 
 finish_time = time.time() - start_time
 
-#print('Mean F1 Score        : %.3f' % np.mean(scores_f1))
-#print('Mean ROC AUC Score   : %.3f' % np.mean(scores_roc_auc))
+#print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
+#print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
 
 # print("train:")
-# print('Mean Accuracy Score  : %.3f' % np.mean(scores['train_balanced_accuracy']))
-# print('Mean F1 Score        : %.3f' % np.mean(scores['train_f1']))
-# print('Mean ROC AUC         : %.3f' % np.mean(scores['train_roc_auc']))
+# print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
+# print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
+# print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
 # print("")
 
 # print("test:")
-print('Mean Accuracy Score  : %.3f' % np.mean(scores['test_balanced_accuracy']))
-print('Mean F1 Score        : %.3f' % np.mean(scores['test_f1']))
-print('Mean ROC AUC         : %.3f' % np.mean(scores['test_roc_auc']))
+print("Mean Accuracy Score  : %.3f" % np.mean(scores['test_balanced_accuracy']))
+print("Mean F1 Score        : %.3f" % np.mean(scores['test_f1']))
+print("Mean ROC AUC         : %.3f" % np.mean(scores['test_roc_auc']))
 
 print("")
-print('time                 : %.3f' % finish_time)
+print("time                 : %.3f" % finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
