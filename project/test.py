@@ -22,7 +22,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
 #car-good.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "page-blocks0.dat")
+df = pd.read_csv(sys.path[0] + "/input/" + "car-good.dat")
 
 X = df.iloc[:,:-1]
 y = df.iloc[:,-1:]
@@ -79,10 +79,10 @@ print("minimum correlation  : %.3f" % (sol.min()))
 print("")
 
 
-# print("distinct values in columns:")
-# for column in df:
-#     print(column, " - ", df[column].nunique())
-# print("")
+print("distinct values in columns:")
+for column in df:
+    print(column, " - ", df[column].nunique())
+print("")
 
 list_unique_values = []
 for column in df:

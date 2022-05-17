@@ -52,28 +52,28 @@ start_time = time.time()
 
 #https://epistasislab.github.io/tpot/api/
 #generations=5, population_size=20, cv=5
-model = TPOTClassifier(generations=2, population_size=5, scoring='f1', cv=2, n_jobs=-1, random_state=42, verbosity=2, memory='auto')
+algorithm = TPOTClassifier(generations=2, population_size=5, scoring='f1', cv=2, n_jobs=-1, random_state=42, verbosity=2, memory='auto')
 
-algorithm = model.fit(X_train, y_train.values.ravel())
+model = algorithm.fit(X_train, y_train.values.ravel())
 
-#print("score    : %.3f" % model.score(X_test, y_test.values.ravel()))
+#print("score    : %.3f" % algorithm.score(X_test, y_test.values.ravel()))
 
-#model.export('tpot_exported_pipeline.py')
+#algorithm.export('tpot_exported_pipeline.py')
 
 finish_time = time.time() - start_time
 print("time     : %.3f" % finish_time)
 
 
-algorithm_pred = algorithm.predict(X_test)
+model_pred = model.predict(X_test)
 
-print("accuracy :", round(accuracy_score(y_test, algorithm_pred),3))
-print("f1 score :", round(f1_score(y_test, algorithm_pred),3))
-print("roc auc  :", round(roc_auc_score(y_test, algorithm_pred),3))
+print("accuracy :", round(accuracy_score(y_test, model_pred),3))
+print("f1 score :", round(f1_score(y_test, model_pred),3))
+print("roc auc  :", round(roc_auc_score(y_test, model_pred),3))
 
 
 print("")
-# print("class name: ", model.__class__.__name__)
-class_name = str(model._optimized_pipeline)
+# print("class name: ", algorithm.__class__.__name__)
+class_name = str(algorithm._optimized_pipeline)
 class_name = class_name.split("(", 1)[0]
 print(class_name)
 
