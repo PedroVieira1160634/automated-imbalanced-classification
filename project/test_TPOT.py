@@ -1,9 +1,5 @@
 #test TOPT
 
-from datetime import datetime
-print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
-
-
 import sys
 import time
 import pandas as pd
@@ -11,11 +7,12 @@ from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 from tpot import TPOTClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from datetime import datetime
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 #glass1.dat
 #page-blocks0.dat
 #car-good.dat
-#kddcup-rootkit-imap_vs_back.dat
 df = pd.read_csv(sys.path[0] + "/input/" + "glass1.dat")
 
 X = df.iloc[:,:-1]

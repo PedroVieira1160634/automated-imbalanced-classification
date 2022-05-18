@@ -1,15 +1,13 @@
-from datetime import datetime
-print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
-
 import sys
 import time
 from ml import execute_ml
+from datetime import datetime
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 start_time = time.time()
 
 #glass1.dat                             - 2.719 sec     - 34.246 sec
 #page-blocks0.dat                       - 12.868 sec    - 146.825 sec
-#kddcup-rootkit-imap_vs_back.dat        - 3.435 sec     - 39.723 sec
 #car-good.dat                                           - 36.940 sec
 dataset_name = "car-good.dat"
 

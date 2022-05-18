@@ -1,9 +1,5 @@
 #example ML
 
-from datetime import datetime
-print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
-
-
 import sys
 import time
 import copy
@@ -16,6 +12,8 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from datetime import datetime
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 
 #glass1.dat
@@ -29,6 +27,8 @@ y = df.iloc[:,-1:]
 
 
 # -- characteristics of datasets
+
+df2 = df.iloc[:,:-1]
 
 n_columns = len(X.columns)
 n_numeric_col = X.select_dtypes(include=np.number).shape[1]
@@ -68,25 +68,56 @@ print("")
 
 # X2 = copy.deepcopy(X)
 # X2['Class'] = y
-c = df.corr().abs() #ignore categorical columns
-sol = (c.where(np.triu(np.ones(c.shape), k=1).astype(bool))
-                  .stack()
-                  .sort_values(ascending=False))
 
-print("max correlation      : %.3f" % (sol.max()))
-print("average correlation  : %.3f" % (sol.mean(skipna = True)))
-print("minimum correlation  : %.3f" % (sol.min()))
+#ignore categorical columns
+
+#all columns
+# corr = df.corr().abs()
+# corr = (corr.where(np.triu(np.ones(corr.shape), k=1).astype(bool))
+#        .stack()
+#        .sort_values(ascending=False))
+
+# corr_max = corr.max()
+# corr_mean = corr.mean()
+# corr_min = corr.min()
+
+#only with last column
+df2['Class'] = y
+
+# i = 0
+# for column in df2:
+#     if df2[column].dtype == object:
+#         df2.drop(df2.columns[i],axis=1,inplace=True)
+#     i+=1
+
+try:
+    corr = abs(np.corrcoef(df2[df2.columns[1:]].T)[-1][:-1])
+    #try
+    #df2[df2.columns[1:]].corr().abs()
+    corr_max = corr.max()
+    corr_mean = corr.mean()
+    corr_min = corr.min()
+except: #TODO: to columns that are not integers, be careful, just one is not integer and it fails
+    corr_max = 0
+    corr_mean = 0
+    corr_min = 0
+    
+print("max correlation      : %.3f" % (corr_max))
+print("average correlation  : %.3f" % (corr_mean))
+print("minimum correlation  : %.3f" % (corr_min))
 print("")
 
 
 print("distinct values in columns:")
 for column in df:
-    print(column, " - ", df[column].nunique())
+    if df[column].dtype == object:
+        print(column, " - ", df[column].nunique())
 print("")
 
 list_unique_values = []
 for column in df:
-    list_unique_values.append(df[column].nunique())
+    if df[column].dtype == object:
+        list_unique_values.append(df[column].nunique())
 print("average of distinct values in columns: %.0f" % (np.mean(list_unique_values)))
 print("")
 
@@ -113,43 +144,45 @@ X, y = smote.fit_resample(X, y)
 
 
 
+
+
 print("\nFinal Results:\n")
 
 #   --- k-Fold Cross-Validation ---
 
-start_time = time.time()
+# start_time = time.time()
 
-algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
-#algorithm = KNeighborsClassifier()
+# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
+# #algorithm = KNeighborsClassifier()
 
-cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+# cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-scoring = {'balanced_accuracy': 'balanced_accuracy',
-           'f1': 'f1', 
-           'roc_auc': 'roc_auc'}
+# scoring = {'balanced_accuracy': 'balanced_accuracy',
+#            'f1': 'f1', 
+#            'roc_auc': 'roc_auc'}
 
-#, return_train_score=True
-scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
-#10.837
+# #, return_train_score=True
+# scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
+# #10.837
 
-finish_time = time.time() - start_time
+# finish_time = time.time() - start_time
 
-#print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
-#print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
+# #print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
+# #print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
 
-# print("train:")
-# print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
-# print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
-# print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
+# # print("train:")
+# # print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
+# # print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
+# # print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
+# # print("")
+
+# # print("test:")
+# print("Mean Accuracy Score  : %.3f" % np.mean(scores['test_balanced_accuracy']))
+# print("Mean F1 Score        : %.3f" % np.mean(scores['test_f1']))
+# print("Mean ROC AUC         : %.3f" % np.mean(scores['test_roc_auc']))
+
 # print("")
-
-# print("test:")
-print("Mean Accuracy Score  : %.3f" % np.mean(scores['test_balanced_accuracy']))
-print("Mean F1 Score        : %.3f" % np.mean(scores['test_f1']))
-print("Mean ROC AUC         : %.3f" % np.mean(scores['test_roc_auc']))
-
-print("")
-print("time                 : %.3f" % finish_time)
+# print("time                 : %.3f" % finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
