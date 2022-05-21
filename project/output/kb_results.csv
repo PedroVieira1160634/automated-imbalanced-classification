@@ -1,0 +1,2 @@
+dataset,pre processing,algorithm,time,accuracy,f1 score,roc auc
+glass1.dat,OVER,RandomForestClassifier,2.894,0.926,0.1,0.969

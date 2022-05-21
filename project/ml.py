@@ -38,7 +38,7 @@ def execute_ml(dataset_location):
     
     print("Best classifier is ", best_result.balancing, " _ ", best_result.algorithm, "\n")
     
-    write(best_result, dataset_name)
+    #write(best_result, dataset_name)
     
 
 def read_file(path):
@@ -162,106 +162,12 @@ def classify_evaluate(X, y, dataset_name, balancing):
     #print("--")
     
     return resultsList
-    
 
-def write(best_result, dataset_name):
-    
-    previous_result, previous_found, found_index = read(dataset_name)
-    
-    print("")
-    print("best_result     :", float(best_result.f1_score))
-    print("previous_result :", float(previous_result))
-    
-    if previous_found and float(best_result.f1_score) <= float(previous_result):
-        print("File NOT written!","\n")
-        return False
-    
-    print("File written!","\n")
-    
-    str_balancing = string_balancing(best_result.balancing)
-    
-    if not previous_found:
-        with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
-           writer = csv.writer(f)
-        
-           writer.writerow([best_result.dataset_name, str_balancing + best_result.algorithm])
-           writer.writerow(["accuracy_score", str(best_result.accuracy)])
-           writer.writerow(["f1_score", str(best_result.f1_score)])
-           writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
-           writer.writerow(["time", str(best_result.time)])
-           writer.writerow(["---"])
-           
-    else:
-        new_file_content = ""
-        with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
-        
-            i = 0
-            j = 5               #4 metrics + 1 seperator
-            
-            for line in reading_file:
-                stripped_line = line.strip()
-                
-                if found_index <= i <= (found_index + j):
-                    if i == found_index:
-                        new_line = stripped_line.replace(stripped_line, best_result.dataset_name + "," + str_balancing + best_result.algorithm)
-                    if i == found_index + 1:
-                        new_line = stripped_line.replace(stripped_line, "accuracy_score" + "," + str(best_result.accuracy))
-                    if i == found_index + 2:
-                        new_line = stripped_line.replace(stripped_line, "f1_score" + "," + str(best_result.f1_score))
-                    if i == found_index + 3:
-                        new_line = stripped_line.replace(stripped_line, "roc_auc_score" + "," + str(best_result.roc_auc_score))
-                    if i == found_index + 4:
-                        new_line = stripped_line.replace(stripped_line, "time" + "," + str(best_result.time))
-                    if i == found_index + 5:
-                        new_line = stripped_line.replace(stripped_line, "---")
-                else:
-                    new_line = stripped_line
-                    
-                new_file_content += new_line +"\n"
-                i+=1
 
-        if new_file_content:
-            with open(sys.path[0] + '/output/results.csv', "w") as writing_file:
-                writing_file.write(new_file_content)
-
-    return True
-    
-
-def read(dataset_name):
-    dataset_name = dataset_name + ","
-    selected_metric = "f1_score" + ","
-    result = 0
-    
-    with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
-
-        i = 0
-        j = 5             #4 metrics + 1 seperator
-        found = False
-        only_once = True
-        found_index = -1
-        found_result = False
-        
-        for line in reading_file:
-            if i % (j+1) == 0:
-                if line.startswith(dataset_name) and only_once == True:
-                    found = True
-                    only_once = False
-                    found_index = i
-                    found_result = True
-                else:
-                    found = False
-            elif found and line.startswith(selected_metric):
-                result = line.partition(selected_metric)[2]
-            i+=1
-        
-        if found_index == -1:
-            found_index = i
-    
-    return result, found_result, found_index
-    
-    
 def find_best_result(resultsList):
     return max(resultsList, key=lambda Results: Results.f1_score)
+
+
 
 
 def string_balancing(balancing):
@@ -269,7 +175,19 @@ def string_balancing(balancing):
     if balancing != "-":
         str_balancing = balancing + " _ "
     return str_balancing
-    
+
+class Characteristics(object):
+    def __init__(self, dataset_name):
+        self.dataset_name = dataset_name
+        self.n_rows = n_rows,
+        self.n_columns = n_columns,
+        self.n_numeric_col = n_numeric_col,
+        self.n_non_numeric_col = n_non_numeric_col,
+        self.corr_max = corr_max,
+        self.corr_mean = corr_mean,
+        self.corr_min = corr_min,
+        self.mean_unique_values = mean_unique_values,
+        self.imbalance_ratio = imbalance_ratio
 
 class Results(object):
     def __init__(self, dataset_name, balancing, algorithm, time, accuracy, f1_score, roc_auc_score):
@@ -280,4 +198,3 @@ class Results(object):
         self.accuracy = accuracy
         self.f1_score = f1_score
         self.roc_auc_score = roc_auc_score
-
