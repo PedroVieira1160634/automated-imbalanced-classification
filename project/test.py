@@ -20,15 +20,16 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #page-blocks0.dat
 #kddcup-rootkit-imap_vs_back.dat
 #car-good.dat
-df = pd.read_csv(sys.path[0] + "/input/" + "car-good.dat")
+dataset_name = "glass1.dat"
+df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
 
-X = df.iloc[:,:-1]
-y = df.iloc[:,-1:]
+X = df.iloc[: , :-1]
+y = df.iloc[: , -1:]
 
 
 # -- characteristics of datasets
 
-df2 = df.iloc[:,:-1]
+df2 = df.iloc[: , :-1]
 
 n_columns = len(X.columns)
 n_numeric_col = X.select_dtypes(include=np.number).shape[1]
@@ -61,15 +62,16 @@ y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
 print("number of rows       :", len(df))
 print("number of columns    :", n_columns)
+print("")
+
 print("numeric columns      :", n_numeric_col)
 print("non-numeric columns  :", n_non_numeric_col)
 print("")
 
 
-# X2 = copy.deepcopy(X)
-# X2['Class'] = y
 
-#ignore categorical columns
+
+# correlation ignoring categorical columns, and only with label (last) column
 
 #all columns
 # corr = df.corr().abs()
@@ -84,23 +86,14 @@ print("")
 #only with last column
 df2['Class'] = y
 
-# i = 0
-# for column in df2:
-#     if df2[column].dtype == object:
-#         df2.drop(df2.columns[i],axis=1,inplace=True)
-#     i+=1
+corr = df2.corr().abs()
+corr = corr.iloc[: , -1].iloc[:-1]
 
-try:
-    corr = abs(np.corrcoef(df2[df2.columns[1:]].T)[-1][:-1])
-    #try
-    #df2[df2.columns[1:]].corr().abs()
+corr_max, corr_mean, corr_min = 0, 0, 0
+if not corr.empty:
     corr_max = corr.max()
     corr_mean = corr.mean()
     corr_min = corr.min()
-except: #TODO: to columns that are not integers, be careful, just one is not integer and it fails
-    corr_max = 0
-    corr_mean = 0
-    corr_min = 0
     
 print("max correlation      : %.3f" % (corr_max))
 print("average correlation  : %.3f" % (corr_mean))
@@ -108,17 +101,25 @@ print("minimum correlation  : %.3f" % (corr_min))
 print("")
 
 
+# distinct with only categorical columns, ignoring the label (last) column
+
 print("distinct values in columns:")
-for column in df:
-    if df[column].dtype == object:
-        print(column, " - ", df[column].nunique())
-print("")
+df2 = df.iloc[: , :-1]
+# for column in df2:
+#     if df2[column].dtype == object:
+#         print(column, " - ", df2[column].nunique())
+# print("")
 
 list_unique_values = []
-for column in df:
-    if df[column].dtype == object:
-        list_unique_values.append(df[column].nunique())
-print("average of distinct values in columns: %.0f" % (np.mean(list_unique_values)))
+for column in df2:
+    if df2[column].dtype == object:
+        list_unique_values.append(df2[column].nunique())
+
+mean_unique_values = 0
+if list_unique_values:
+    mean_unique_values = np.mean(list_unique_values)
+
+print("average of distinct values in columns: %.0f" % (mean_unique_values))
 print("")
 
 
@@ -134,11 +135,33 @@ print("")
 
 
 
+print("read/write kb_characteristics\n")
+
+df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv")
+print(df_kb_c)
+
+df_kb_c.at[0, 'rows_number'] = 1500
+
+df_kb_c.to_csv()
+
+
+# dataset_name = dataset_name + ","
+# selected_metric = "f1_score" + ","
+
+# with open(sys.path[0] + '/output/kb_characteristics.csv', 'r') as reading_file:
+    
+#     i = 0
+    
+#     for line in reading_file:
+#         if i != 0 and line.startswith(dataset_name):
+
+
+
 
 #print(y.value_counts())
 
-smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
-X, y = smote.fit_resample(X, y)
+# smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
+# X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 
@@ -146,7 +169,7 @@ X, y = smote.fit_resample(X, y)
 
 
 
-print("\nFinal Results:\n")
+# print("\nFinal Results:\n")
 
 #   --- k-Fold Cross-Validation ---
 
