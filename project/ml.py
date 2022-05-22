@@ -1,5 +1,6 @@
-import time
 import sys
+import time
+from decimal import Decimal
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
@@ -13,41 +14,49 @@ from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
-import csv
+#from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+#import csv
 #import warnings
 #warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location):
     
-    dataset_name = dataset_location.split('/')[-1]
+    df, dataset_name = read_file(dataset_location)
     
-    df = read_file(dataset_location)
+    X, y, characteristics = features_labels(df, dataset_name)
     
-    #array_balancing = ["-"]
-    array_balancing = ["-","SMOTE","OVER","UNDER"]
+    write_characteristics(characteristics)
     
+    array_balancing = ["-","UNDER","OVER","SMOTE"] #["-"]
     resultsList = []
     
     for balancing in array_balancing:
-        X, y = pre_processing(df, balancing) 
-        resultsList += classify_evaluate(X, y, dataset_name, balancing)
+        X2, y2 = pre_processing(X, y, balancing) 
+        resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
 
     best_result = find_best_result(resultsList)
     
     print("Best classifier is ", best_result.balancing, " _ ", best_result.algorithm, "\n")
     
-    #write(best_result, dataset_name)
+    write_results(best_result)
     
 
+
 def read_file(path):
-    return pd.read_csv(path)
+    return pd.read_csv(path), path.split('/')[-1]
 
 
-def pre_processing(df, balancing):
-    X = df.iloc[:,:-1]
-    y = df.iloc[:,-1:]
+
+def features_labels(df, dataset_name):
+    X = df.iloc[: , :-1]
+    y = df.iloc[: , -1:]
+
+    df2 = df.iloc[: , :-1]
+    n_rows = len(df)
+    n_columns = len(X.columns)
+    n_numeric_col = X.select_dtypes(include=np.number).shape[1]
+    n_non_numeric_col = X.select_dtypes(include=object).shape[1]
 
     encoded_columns = []
     for column_name in X.columns:
@@ -55,7 +64,7 @@ def pre_processing(df, balancing):
             encoded_columns.extend([column_name])
         else:
             pass
-
+    
     X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
     encoded_columns = []
@@ -66,33 +75,64 @@ def pre_processing(df, balancing):
             preserve_name = column_name
         else:
             pass
-
+    
     y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
     if preserve_name:
         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+
+    df2['Class'] = y
+    corr = df2.corr().abs()
+    corr = corr.iloc[: , -1].iloc[:-1]
+
+    corr_max, corr_mean, corr_min = 0, 0, 0
+    if not corr.empty:
+        corr_max = round(corr.max(),3)
+        corr_mean = round(corr.mean(),3)
+        corr_min = round(corr.min(),3)
     
-    if balancing == "SMOTE":
-        minimum_samples = min(y.value_counts())
-        if minimum_samples >= 5:
-            minimum_samples = 5
+    df2 = df.iloc[: , :-1]
+    list_unique_values = []
+    for column in df2:
+        if df2[column].dtype == object:
+            list_unique_values.append(df2[column].nunique())
+
+    mean_unique_values = 0
+    if list_unique_values:
+        mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
+    
+    imbalance_ratio = 0
+    if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+        if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+            imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
         else:
-            minimum_samples -= 1
-        smote = SMOTE(random_state=42, k_neighbors=minimum_samples) #sampling_strategy=0.5
-        X, y = smote.fit_resample(X, y)
+            imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
     
-    if balancing == "OVER":
-        over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
-        X, y = over.fit_resample(X, y)
-     
+    characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_non_numeric_col, corr_max, corr_mean, corr_min, mean_unique_values, imbalance_ratio)
+    
+    return X, y, characteristics
+
+
+
+def pre_processing(X, y, balancing):
+    
     if balancing == "UNDER":
         under = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
         X, y = under.fit_resample(X, y)
     
+    if balancing == "OVER":
+        over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
+        X, y = over.fit_resample(X, y)
+    
+    if balancing == "SMOTE":
+        smote = SMOTE(random_state=42) #sampling_strategy=0.5
+        X, y = smote.fit_resample(X, y)
+    
     return X, y
 
 
-def classify_evaluate(X, y, dataset_name, balancing):
+
+def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [
         #LogisticRegression(random_state=42,max_iter=10000)
@@ -164,9 +204,9 @@ def classify_evaluate(X, y, dataset_name, balancing):
     return resultsList
 
 
+
 def find_best_result(resultsList):
     return max(resultsList, key=lambda Results: Results.f1_score)
-
 
 
 
@@ -176,18 +216,127 @@ def string_balancing(balancing):
         str_balancing = balancing + " _ "
     return str_balancing
 
+
+
+def write_characteristics(characteristics):
+
+    print("Write Characteristics")
+    
+    df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+    #print(df_kb_c, '\n')
+
+    df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == characteristics.dataset_name]
+    
+    if not df_kb_c2.empty:
+
+        index = df_kb_c2.index.values[0]
+        
+        if( df_kb_c2.loc[index, 'rows number'] == characteristics.n_rows and 
+            df_kb_c2.loc[index, 'columns number'] == characteristics.n_columns and
+            df_kb_c2.loc[index, 'numeric columns'] == characteristics.n_numeric_col and 
+            df_kb_c2.loc[index, 'non-numeric columns'] == characteristics.n_non_numeric_col and
+            df_kb_c2.loc[index, 'maximum correlation'] == characteristics.corr_max and 
+            df_kb_c2.loc[index, 'average correlation'] == characteristics.corr_mean and
+            df_kb_c2.loc[index, 'minimum correlation'] == characteristics.corr_min and
+            df_kb_c2.loc[index, 'average of distinct values in columns'] == characteristics.mean_unique_values and
+            df_kb_c2.loc[index, 'imbalance ratio'] == characteristics.imbalance_ratio
+        ):
+            print("File not written!","\n")
+            
+        else:
+            
+            df_kb_c.at[index, 'rows number'] = characteristics.n_rows
+            df_kb_c.at[index, 'columns number'] = characteristics.n_columns
+            df_kb_c.at[index, 'numeric columns'] = characteristics.n_numeric_col
+            df_kb_c.at[index, 'non-numeric columns'] = characteristics.n_non_numeric_col
+            df_kb_c.at[index, 'maximum correlation'] = characteristics.corr_max
+            df_kb_c.at[index, 'average correlation'] = characteristics.corr_mean
+            df_kb_c.at[index, 'minimum correlation'] = characteristics.corr_min
+            df_kb_c.at[index, 'average of distinct values in columns'] = characteristics.mean_unique_values
+            df_kb_c.at[index, 'imbalance ratio'] = characteristics.imbalance_ratio
+
+            print("File written, row updated!","\n")
+            df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+        
+    else:
+
+        df_kb_c.loc[len(df_kb_c.index)] = [
+            characteristics.dataset_name,
+            characteristics.n_rows,
+            characteristics.n_columns,
+            characteristics.n_numeric_col,
+            characteristics.n_non_numeric_col,
+            characteristics.corr_max,
+            characteristics.corr_mean,
+            characteristics.corr_min,
+            characteristics.mean_unique_values,
+            characteristics.imbalance_ratio
+        ]
+
+        print("File written, row added!","\n")
+        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
+
+
+
+def write_results(best_result):
+
+    print("Write Results")
+    print("best_result     :", float(best_result.f1_score))
+
+    df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
+
+    df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == best_result.dataset_name]
+    
+    if not df_kb_r2.empty :
+        
+        if not df_kb_r2[best_result.f1_score > df_kb_r2['f1 score']].empty:
+        
+            index = df_kb_r2.index.values[0]
+            df_kb_r.at[index, 'pre processing'] = best_result.balancing
+            df_kb_r.at[index, 'algorithm'] = best_result.algorithm
+            df_kb_r.at[index, 'time'] = best_result.time
+            df_kb_r.at[index, 'accuracy'] = best_result.accuracy
+            df_kb_r.at[index, 'f1 score'] = best_result.f1_score
+            df_kb_r.at[index, 'roc auc'] = best_result.roc_auc_score
+            
+            print("File written, row updated!","\n")
+            
+            df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+        
+        else:
+            print("File not written!","\n")
+            
+    else:
+
+        df_kb_r.loc[len(df_kb_r.index)] = [
+            best_result.dataset_name,
+            best_result.balancing,
+            best_result.algorithm,
+            best_result.time,
+            best_result.accuracy, 
+            best_result.f1_score, 
+            best_result.roc_auc_score
+        ]
+
+        print("File written, row added!","\n")
+        
+        df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)    
+
+
+
 class Characteristics(object):
-    def __init__(self, dataset_name):
+    def __init__(self, dataset_name, n_rows, n_columns, n_numeric_col, n_non_numeric_col, corr_max, corr_mean, corr_min, mean_unique_values, imbalance_ratio):
         self.dataset_name = dataset_name
-        self.n_rows = n_rows,
-        self.n_columns = n_columns,
-        self.n_numeric_col = n_numeric_col,
-        self.n_non_numeric_col = n_non_numeric_col,
-        self.corr_max = corr_max,
-        self.corr_mean = corr_mean,
-        self.corr_min = corr_min,
-        self.mean_unique_values = mean_unique_values,
+        self.n_rows = n_rows
+        self.n_columns = n_columns
+        self.n_numeric_col = n_numeric_col
+        self.n_non_numeric_col = n_non_numeric_col
+        self.corr_max = corr_max
+        self.corr_mean = corr_mean
+        self.corr_min = corr_min
+        self.mean_unique_values = mean_unique_values
         self.imbalance_ratio = imbalance_ratio
+
 
 class Results(object):
     def __init__(self, dataset_name, balancing, algorithm, time, accuracy, f1_score, roc_auc_score):

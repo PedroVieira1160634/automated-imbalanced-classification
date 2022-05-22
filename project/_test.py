@@ -2,7 +2,8 @@
 
 import sys
 import time
-import copy
+from datetime import datetime
+from decimal import Decimal
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
@@ -12,15 +13,15 @@ from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
-from datetime import datetime
+
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 
 #glass1.dat
 #page-blocks0.dat
-#kddcup-rootkit-imap_vs_back.dat
 #car-good.dat
-dataset_name = "glass1.dat"
+#kddcup-rootkit-imap_vs_back.dat #to be removed, only for tests
+dataset_name = "car-good.dat"
 df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
 
 X = df.iloc[: , :-1]
@@ -107,7 +108,7 @@ for column in df2:
 
 mean_unique_values = 0
 if list_unique_values:
-    mean_unique_values = round(np.mean(list_unique_values),0)
+    mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
 
 print("average of distinct values in columns:", mean_unique_values)
 print("")
@@ -214,11 +215,13 @@ roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),3)
 print("metric_accuracy      :", accuracy_score)
 print("metric_f1_score      :", f1_score)
 print("metric_roc_auc_score :", roc_auc_score)
-
 print("")
+
 print("time                 :", finish_time)
+print("")
 
 #   --- train/test ---
+
 
 
 
@@ -229,9 +232,11 @@ print("time                 :", finish_time)
 #     df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
 #     #print(df_kb_c, '\n')
 
-#     if not df_kb_c.loc[df_kb_c['dataset'] == dataset_name].empty:
+#     df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == dataset_name]
+    
+#     if not df_kb_c2.empty:
 
-#         index = df_kb_c.loc[df_kb_c['dataset'] == dataset_name].index.values[0]
+#         index = df_kb_c2.index.values[0]
 #         df_kb_c.at[index, 'rows number'] = n_rows
 #         df_kb_c.at[index, 'columns number'] = n_columns
 #         df_kb_c.at[index, 'numeric columns'] = n_numeric_col
@@ -269,33 +274,38 @@ print("time                 :", finish_time)
 
 
 
-print("write kb_results:\n")
-
-df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
-# print(df_kb_r.loc[df_kb_r['f1 score'] != 0])
-# print(f1_score)
-print(df_kb_r.loc[df_kb_r['f1 score'] > f1_score]) #don't work
-
-# balancing = 'SMOTE'
-# algorithm_name = algorithm.__class__.__name__
+# print("write kb_results:\n")
 
 # def write_results(dataset_name):
+
+#     balancing = 'SMOTE'
+#     algorithm_name = algorithm.__class__.__name__
 
 #     df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
 #     #print(df_kb_r, '\n')
 
-#     if not df_kb_r.loc[df_kb_r['dataset'] == dataset_name].empty and df_kb_r.loc[df_kb_r['f1 score'] > f1_score]:
-
-#         index = df_kb_r.loc[df_kb_r['dataset'] == dataset_name].index.values[0]
-#         df_kb_r.at[index, 'pre processing'] = balancing
-#         df_kb_r.at[index, 'algorithm'] = algorithm_name
-#         df_kb_r.at[index, 'time'] = finish_time
-#         df_kb_r.at[index, 'accuracy'] = accuracy_score
-#         df_kb_r.at[index, 'f1 score'] = f1_score
-#         df_kb_r.at[index, 'roc auc'] = roc_auc_score
+#     df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
+    
+#     if not df_kb_r2.empty :
         
-#         print("File written, row updated!","\n")
-
+#         if not df_kb_r2[f1_score > df_kb_r2['f1 score']].empty:
+        
+#             index = df_kb_r2.index.values[0]
+#             df_kb_r.at[index, 'pre processing'] = balancing
+#             df_kb_r.at[index, 'algorithm'] = algorithm_name
+#             df_kb_r.at[index, 'time'] = finish_time
+#             df_kb_r.at[index, 'accuracy'] = accuracy_score
+#             df_kb_r.at[index, 'f1 score'] = f1_score
+#             df_kb_r.at[index, 'roc auc'] = roc_auc_score
+            
+#             print("File written, row updated!","\n")
+            
+#             #print(df_kb_r, '\n')
+#             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+        
+#         else:
+#             print("File not written!","\n")
+            
 #     else:
 
 #         df_kb_r.loc[len(df_kb_r.index)] = [
@@ -310,8 +320,9 @@ print(df_kb_r.loc[df_kb_r['f1 score'] > f1_score]) #don't work
 
 #         print("File written, row added!","\n")
         
-#     #print(df_kb_r, '\n')
-#     df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+#         #print(df_kb_r, '\n')
+#         df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+    
 
 
 # write_results(dataset_name)
@@ -333,6 +344,16 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 # corr_max = corr.max()
 # corr_mean = corr.mean()
 # corr_min = corr.min()
+
+
+#SMOTE
+# minimum_samples = min(y.value_counts())
+# if minimum_samples >= 5:
+#     minimum_samples = 5
+# else:
+#     minimum_samples -= 1
+# smote = SMOTE(random_state=42, k_neighbors=minimum_samples) #sampling_strategy=0.5
+# X, y = smote.fit_resample(X, y)
 
 
 # def write(best_result, dataset_name):
