@@ -1,26 +1,16 @@
 import sys
 import pandas as pd
-#from ml import read_file, features_labels
+import numpy as np
+from decimal import Decimal
+from ml import read_file, features_labels, write_characteristics
 
-df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+#glass1.dat
+#page-blocks0.dat
+#car-good.dat
+dataset_name = "glass1.dat"
+df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == "page-blocks0.dat"]
+X, y, characteristics = features_labels(df, dataset_name)
 
-#print(df_kb_c2)
+write_characteristics(characteristics)
 
-#print(df_kb_c2.loc[1, 'rows number'])
-
-if( 
-    df_kb_c2.loc[1, 'rows number'] == 0 and 
-    df_kb_c2.loc[1, 'columns number'] == 0 and
-    df_kb_c2.loc[1, 'numeric columns'] == 0 and 
-    df_kb_c2.loc[1, 'non-numeric columns'] == 0 and
-    df_kb_c2.loc[1, 'maximum correlation'] == 0 and 
-    df_kb_c2.loc[1, 'average correlation'] == 0 and
-    df_kb_c2.loc[1, 'minimum correlation'] == 0 and
-    df_kb_c2.loc[1, 'average of distinct values in columns'] == 0 and
-    df_kb_c2.loc[1, 'imbalance ratio'] == 0
-):
-    print("true")
-else:
-    print("false")

@@ -37,7 +37,7 @@ def execute_ml(dataset_location):
 
     best_result = find_best_result(resultsList)
     
-    print("Best classifier is ", best_result.balancing, " _ ", best_result.algorithm, "\n")
+    print("Best classifier is ", best_result.algorithm, " with ", best_result.balancing, "\n")
     
     write_results(best_result)
     
@@ -56,7 +56,7 @@ def features_labels(df, dataset_name):
     n_rows = len(df)
     n_columns = len(X.columns)
     n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-    n_non_numeric_col = X.select_dtypes(include=object).shape[1]
+    n_categorical_col = X.select_dtypes(include=object).shape[1]
 
     encoded_columns = []
     for column_name in X.columns:
@@ -81,26 +81,7 @@ def features_labels(df, dataset_name):
     if preserve_name:
         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
 
-    df2['Class'] = y
-    corr = df2.corr().abs()
-    corr = corr.iloc[: , -1].iloc[:-1]
 
-    corr_max, corr_mean, corr_min = 0, 0, 0
-    if not corr.empty:
-        corr_max = round(corr.max(),3)
-        corr_mean = round(corr.mean(),3)
-        corr_min = round(corr.min(),3)
-    
-    df2 = df.iloc[: , :-1]
-    list_unique_values = []
-    for column in df2:
-        if df2[column].dtype == object:
-            list_unique_values.append(df2[column].nunique())
-
-    mean_unique_values = 0
-    if list_unique_values:
-        mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
-    
     imbalance_ratio = 0
     if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
         if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
@@ -108,7 +89,30 @@ def features_labels(df, dataset_name):
         else:
             imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
     
-    characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_non_numeric_col, corr_max, corr_mean, corr_min, mean_unique_values, imbalance_ratio)
+    df2['Class'] = y
+    corr = df2.corr().abs()
+    corr = corr.iloc[: , -1].iloc[:-1]
+
+    corr_min, corr_mean, corr_max = 0, 0, 0
+    if not corr.empty:
+        corr_min = round(corr.min(),3)
+        corr_mean = round(corr.mean(),3)
+        corr_max = round(corr.max(),3)
+    
+    df2 = df.iloc[: , :-1]
+    list_unique_values = []
+    for column in df2:
+        if df2[column].dtype == object:
+            list_unique_values.append(df2[column].nunique())
+
+    unique_values_min, unique_values_mean, unique_values_max = 0, 0, 0
+    if list_unique_values:
+        unique_values_min = np.min(list_unique_values)
+        unique_values_mean = Decimal(round(np.mean(list_unique_values),0))
+        unique_values_max = np.max(list_unique_values)
+    
+    
+    characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max)
     
     return X, y, characteristics
 
@@ -146,11 +150,13 @@ def classify_evaluate(X, y, balancing, dataset_name):
         # ,AdaBoostClassifier(random_state=42)
         # ,BaggingClassifier(random_state=42)
         # ,GradientBoostingClassifier(random_state=42)
-        # ,EasyEnsembleClassifier(random_state=42, n_jobs=-1)
-        # ,RUSBoostClassifier(random_state=42)
-        # ,BalancedBaggingClassifier(random_state=42, n_jobs=-1)
-        # ,BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
         ]
+    
+    #if balancing = "-"
+    # ,EasyEnsembleClassifier(random_state=42, n_jobs=-1)
+    # ,RUSBoostClassifier(random_state=42)
+    # ,BalancedBaggingClassifier(random_state=42, n_jobs=-1)
+    # ,BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
     
     resultsList = []
     
@@ -213,7 +219,7 @@ def find_best_result(resultsList):
 def string_balancing(balancing):
     str_balancing = ""
     if balancing != "-":
-        str_balancing = balancing + " _ "
+        str_balancing = balancing + " with "
     return str_balancing
 
 
@@ -231,29 +237,34 @@ def write_characteristics(characteristics):
 
         index = df_kb_c2.index.values[0]
         
-        if( df_kb_c2.loc[index, 'rows number'] == characteristics.n_rows and 
-            df_kb_c2.loc[index, 'columns number'] == characteristics.n_columns and
-            df_kb_c2.loc[index, 'numeric columns'] == characteristics.n_numeric_col and 
-            df_kb_c2.loc[index, 'non-numeric columns'] == characteristics.n_non_numeric_col and
-            df_kb_c2.loc[index, 'maximum correlation'] == characteristics.corr_max and 
-            df_kb_c2.loc[index, 'average correlation'] == characteristics.corr_mean and
-            df_kb_c2.loc[index, 'minimum correlation'] == characteristics.corr_min and
-            df_kb_c2.loc[index, 'average of distinct values in columns'] == characteristics.mean_unique_values and
-            df_kb_c2.loc[index, 'imbalance ratio'] == characteristics.imbalance_ratio
+        if( df_kb_c2.loc[index, 'instances number'] == characteristics.n_rows and 
+            df_kb_c2.loc[index, 'attributes number'] == characteristics.n_columns and
+            df_kb_c2.loc[index, 'numerical attributes'] == characteristics.n_numeric_col and 
+            df_kb_c2.loc[index, 'categorical attributes'] == characteristics.n_categorical_col and
+            df_kb_c2.loc[index, 'imbalance ratio'] == characteristics.imbalance_ratio and
+            df_kb_c2.loc[index, 'minimum numerical correlation'] == characteristics.corr_min and
+            df_kb_c2.loc[index, 'average numerical correlation'] == characteristics.corr_mean and
+            df_kb_c2.loc[index, 'maximum numerical correlation'] == characteristics.corr_max and 
+            df_kb_c2.loc[index, 'minimum distinct instances in categorical attributes'] == characteristics.unique_values_min and
+            df_kb_c2.loc[index, 'average distinct instances in categorical attributes'] == characteristics.unique_values_mean and
+            df_kb_c2.loc[index, 'maximum distinct instances in categorical attributes'] == characteristics.unique_values_max
+            
         ):
             print("File not written!","\n")
             
         else:
             
-            df_kb_c.at[index, 'rows number'] = characteristics.n_rows
-            df_kb_c.at[index, 'columns number'] = characteristics.n_columns
-            df_kb_c.at[index, 'numeric columns'] = characteristics.n_numeric_col
-            df_kb_c.at[index, 'non-numeric columns'] = characteristics.n_non_numeric_col
-            df_kb_c.at[index, 'maximum correlation'] = characteristics.corr_max
-            df_kb_c.at[index, 'average correlation'] = characteristics.corr_mean
-            df_kb_c.at[index, 'minimum correlation'] = characteristics.corr_min
-            df_kb_c.at[index, 'average of distinct values in columns'] = characteristics.mean_unique_values
+            df_kb_c.at[index, 'instances number'] = characteristics.n_rows
+            df_kb_c.at[index, 'attributes number'] = characteristics.n_columns
+            df_kb_c.at[index, 'numerical attributes'] = characteristics.n_numeric_col
+            df_kb_c.at[index, 'categorical attributes'] = characteristics.n_categorical_col
             df_kb_c.at[index, 'imbalance ratio'] = characteristics.imbalance_ratio
+            df_kb_c.at[index, 'minimum numerical correlation'] = characteristics.corr_min
+            df_kb_c.at[index, 'average numerical correlation'] = characteristics.corr_mean
+            df_kb_c.at[index, 'maximum numerical correlation'] = characteristics.corr_max
+            df_kb_c.at[index, 'minimum distinct instances in categorical attributes'] = characteristics.unique_values_min
+            df_kb_c.at[index, 'average distinct instances in categorical attributes'] = characteristics.unique_values_mean
+            df_kb_c.at[index, 'maximum distinct instances in categorical attributes'] = characteristics.unique_values_max
 
             print("File written, row updated!","\n")
             df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
@@ -265,12 +276,14 @@ def write_characteristics(characteristics):
             characteristics.n_rows,
             characteristics.n_columns,
             characteristics.n_numeric_col,
-            characteristics.n_non_numeric_col,
-            characteristics.corr_max,
-            characteristics.corr_mean,
+            characteristics.n_categorical_col,
+            characteristics.imbalance_ratio,
             characteristics.corr_min,
-            characteristics.mean_unique_values,
-            characteristics.imbalance_ratio
+            characteristics.corr_mean,
+            characteristics.corr_max,
+            characteristics.unique_values_min,
+            characteristics.unique_values_mean,
+            characteristics.unique_values_max
         ]
 
         print("File written, row added!","\n")
@@ -280,9 +293,10 @@ def write_characteristics(characteristics):
 
 def write_results(best_result):
 
+    print("Best Result Obtained :", float(best_result.f1_score), "\n")
+    
     print("Write Results")
-    print("best_result     :", float(best_result.f1_score))
-
+    
     df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == best_result.dataset_name]
@@ -325,18 +339,20 @@ def write_results(best_result):
 
 
 class Characteristics(object):
-    def __init__(self, dataset_name, n_rows, n_columns, n_numeric_col, n_non_numeric_col, corr_max, corr_mean, corr_min, mean_unique_values, imbalance_ratio):
+    def __init__(self, dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max):
         self.dataset_name = dataset_name
         self.n_rows = n_rows
         self.n_columns = n_columns
         self.n_numeric_col = n_numeric_col
-        self.n_non_numeric_col = n_non_numeric_col
-        self.corr_max = corr_max
-        self.corr_mean = corr_mean
-        self.corr_min = corr_min
-        self.mean_unique_values = mean_unique_values
+        self.n_categorical_col = n_categorical_col
         self.imbalance_ratio = imbalance_ratio
-
+        self.corr_min = corr_min
+        self.corr_mean = corr_mean
+        self.corr_max = corr_max
+        self.unique_values_min = unique_values_min
+        self.unique_values_mean = unique_values_mean
+        self.unique_values_max = unique_values_max
+        
 
 class Results(object):
     def __init__(self, dataset_name, balancing, algorithm, time, accuracy, f1_score, roc_auc_score):

@@ -1,4 +1,4 @@
-dataset,rows number,columns number,numeric columns,non-numeric columns,maximum correlation,average correlation,minimum correlation,average of distinct values in columns,imbalance ratio
-glass1.dat,214,9,9,0,0.274,0.109,0.027,0,1.816
-page-blocks0.dat,5472,10,10,0,0.42,0.17,0.043,0,8.789
-car-good.dat,1728,6,0,6,0.0,0.0,0.0,4,24.043
+dataset,instances number,attributes number,numerical attributes,categorical attributes,imbalance ratio,minimum numerical correlation,average numerical correlation,maximum numerical correlation,minimum distinct instances in categorical attributes,average distinct instances in categorical attributes,maximum distinct instances in categorical attributes
+glass1.dat,214,9,9,0,1.816,0.027,0.109,0.274,0,0,0
+page-blocks0.dat,5472,10,10,0,8.789,0.043,0.17,0.42,0,0,0
+car-good.dat,1728,6,0,6,24.043,0.0,0.0,0.0,3,4,4
