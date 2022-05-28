@@ -28,7 +28,7 @@ def execute_ml(dataset_location):
     
     write_characteristics(characteristics)
     
-    array_balancing = ["-","UNDER","OVER","SMOTE"] #["-"]
+    array_balancing = ["-","RandomUnderSampler","RandomOverSampler","SMOTE"] #["-"]
     resultsList = []
     
     for balancing in array_balancing:
@@ -116,11 +116,11 @@ def features_labels(df, dataset_name):
 
 def pre_processing(X, y, balancing):
     
-    if balancing == "UNDER":
+    if balancing == "RandomUnderSampler":
         under = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
         X, y = under.fit_resample(X, y)
     
-    if balancing == "OVER":
+    if balancing == "RandomOverSampler":
         over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
         X, y = over.fit_resample(X, y)
     
@@ -154,7 +154,7 @@ def classify_evaluate(X, y, balancing, dataset_name):
     
     resultsList = []
     
-    str_balancing = string_balancing(balancing)
+    #str_balancing = string_balancing(balancing)
     
     for classifier in array_classifiers:
         
