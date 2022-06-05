@@ -3,6 +3,7 @@ import time
 from decimal import Decimal
 import pandas as pd
 import numpy as np
+import openml.datasets
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
@@ -20,9 +21,11 @@ from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, Balanc
 #warnings.filterwarnings("ignore")
 
 
+#dataset_location or id
 def execute_ml(dataset_location):
     
     df, dataset_name = read_file(dataset_location)
+    #df, dataset_name = read_file_openml(id)
     
     X, y, characteristics = features_labels(df, dataset_name)
     
@@ -48,6 +51,23 @@ def read_file(path):
 
 
 
+def read_file_openml(id):
+    dataset = openml.datasets.get_dataset(id)
+
+    X, y, categorical_indicator, attribute_names = dataset.get_data(
+        target=dataset.default_target_attribute, dataset_format="dataframe")
+
+    df = pd.DataFrame(X, columns=attribute_names)
+    df["class"] = y
+    
+    openml.datasets.get_dataset(id, download_data=False)
+    
+    dataset_name = dataset.name
+    
+    return df, dataset_name
+
+
+
 def features_labels(df, dataset_name):
     X = df.iloc[: , :-1]
     y = df.iloc[: , -1:]
@@ -60,23 +80,25 @@ def features_labels(df, dataset_name):
 
     encoded_columns = []
     for column_name in X.columns:
-        if X[column_name].dtype == object:
+        if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
             encoded_columns.extend([column_name])
         else:
             pass
     
-    X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+    if encoded_columns:
+        X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
     encoded_columns = []
     preserve_name = ""
     for column_name in y.columns:
-        if y[column_name].dtype == object:
+        if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
             encoded_columns.extend([column_name])
             preserve_name = column_name
         else:
             pass
     
-    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+    if encoded_columns:
+        y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
     if preserve_name:
         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)

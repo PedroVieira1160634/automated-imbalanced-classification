@@ -2,3 +2,4 @@ dataset,pre processing,algorithm,time,accuracy,f1 score,roc auc
 glass1.dat,RandomOverSampler,RandomForestClassifier,2.275,0.926,0.928,0.969
 page-blocks0.dat,RandomOverSampler,ExtraTreesClassifier,7.592,0.994,0.994,0.999
 car-good.dat,RandomOverSampler,ExtraTreesClassifier,2.791,0.996,0.997,1.0
+analcatdata_lawsuit,RandomOverSampler,RandomForestClassifier,2.287,0.996,0.996,0.998

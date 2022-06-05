@@ -6,6 +6,7 @@ from datetime import datetime
 from decimal import Decimal
 import pandas as pd
 import numpy as np
+from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE
 from lightgbm import LGBMClassifier
@@ -31,12 +32,13 @@ y = df.iloc[: , -1:]
 
 # -- characteristics of datasets
 
-# df2 = df.iloc[: , :-1]
+df2 = df.iloc[: , :-1]
 
-# n_rows = len(df)
-# n_columns = len(X.columns)
-# n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-# n_non_numeric_col = X.select_dtypes(include=object).shape[1]
+n_rows = len(df)
+n_columns = len(X.columns)
+n_numeric_col = X.select_dtypes(include=np.number).shape[1]
+n_non_numeric_col = X.select_dtypes(include=object).shape[1]
+
 
 
 encoded_columns = []
@@ -63,67 +65,80 @@ y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
 # -- characteristics of datasets
 
-# print("number of rows       :", n_rows)
-# print("number of columns    :", n_columns)
-# print("")
+print("number of rows       :", n_rows)
+print("number of columns    :", n_columns)
+print("")
 
-# print("numeric columns      :", n_numeric_col)
-# print("non-numeric columns  :", n_non_numeric_col)
-# print("")
+print("numeric columns      :", n_numeric_col)
+print("non-numeric columns  :", n_non_numeric_col)
+print("")
 
 
 
 
 # correlation ignoring categorical columns, and only with label (last) column
 
-# df2['Class'] = y
+df2['Class'] = y
 
-# corr = df2.corr().abs()
-# corr = corr.iloc[: , -1].iloc[:-1]
+corr = df2.corr().abs()
+corr = corr.iloc[: , -1].iloc[:-1]
 
-# corr_max, corr_mean, corr_min = 0, 0, 0
-# if not corr.empty:
-#     corr_max = round(corr.max(),3)
-#     corr_mean = round(corr.mean(),3)
-#     corr_min = round(corr.min(),3)
+corr_max, corr_mean, corr_min = 0, 0, 0
+if not corr.empty:
+    corr_max = round(corr.max(),3)
+    corr_mean = round(corr.mean(),3)
+    corr_min = round(corr.min(),3)
     
-# print("maximum correlation  :", corr_max)
-# print("average correlation  :", corr_mean)
-# print("minimum correlation  :", corr_min)
-# print("")
+print("maximum correlation  :", corr_max)
+print("average correlation  :", corr_mean)
+print("minimum correlation  :", corr_min)
+print("")
 
 
-# distinct with only categorical columns, ignoring the label (last) column
+#distinct with only categorical columns, ignoring the label (last) column
 
-# print("distinct values in columns:")
-# df2 = df.iloc[: , :-1]
-# # for column in df2:
-# #     if df2[column].dtype == object:
-# #         print(column, " - ", df2[column].nunique())
-# # print("")
-
-# list_unique_values = []
+print("distinct values in columns:")
+df2 = df.iloc[: , :-1]
 # for column in df2:
 #     if df2[column].dtype == object:
-#         list_unique_values.append(df2[column].nunique())
-
-# mean_unique_values = 0
-# if list_unique_values:
-#     mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
-
-# print("average of distinct values in columns:", mean_unique_values)
+#         print(column, " - ", df2[column].nunique())
 # print("")
 
+list_unique_values = []
+for column in df2:
+    if df2[column].dtype == object:
+        list_unique_values.append(df2[column].nunique())
 
-# imbalance_ratio = 0
-# if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
-#     if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
-#         imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
-#     else:
-#         imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+mean_unique_values = 0
+if list_unique_values:
+    mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
 
-# print("imbalance ratio      :", imbalance_ratio)
-# print("")
+print("average of distinct values in columns:", mean_unique_values)
+print("")
+
+
+imbalance_ratio = 0
+if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+    if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+        imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+    else:
+        imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+
+print("imbalance ratio      :", imbalance_ratio)
+print("")
+
+
+
+#normalize
+
+# scaler = preprocessing.MinMaxScaler()
+# names = df.columns
+# d = scaler.fit_transform(df)
+# scaled_df = pd.DataFrame(d, columns=names)
+# df = scaled_df
+
+# X = df.iloc[: , :-1]
+# y = df.iloc[: , -1:]
 
 
 

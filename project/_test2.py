@@ -1,16 +1,23 @@
-import sys
 import pandas as pd
-import numpy as np
-from decimal import Decimal
-from ml import read_file, features_labels, write_characteristics
+import openml.datasets
 
-#glass1.dat
-#page-blocks0.dat
-#car-good.dat
-dataset_name = "glass1.dat"
-df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-X, y, characteristics = features_labels(df, dataset_name)
+def read_file_openml(id):
+    dataset = openml.datasets.get_dataset(id)
 
-write_characteristics(characteristics)
+    X, y, categorical_indicator, attribute_names = dataset.get_data(
+        target=dataset.default_target_attribute, dataset_format="dataframe")
 
+    df = pd.DataFrame(X, columns=attribute_names)
+    df["class"] = y
+    
+    openml.datasets.get_dataset(id, download_data=False)
+    
+    dataset_name = dataset.name
+    
+    return df, dataset_name
+
+df, dataset_name = read_file_openml(450)
+
+print(df)
+print(dataset_name)
