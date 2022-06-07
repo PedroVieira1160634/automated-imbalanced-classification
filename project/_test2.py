@@ -1,23 +1,39 @@
-import pandas as pd
-import openml.datasets
+from ml import *
+
+dataset_name = "glass1.dat"
+dataset_location = sys.path[0] + "/input/" + dataset_name
+
+df, dataset_name = read_file(dataset_location)
+#df, dataset_name = read_file_openml(id)
+
+X, y, characteristics = features_labels(df, dataset_name)
+
+#write_characteristics(characteristics)
+
+array_balancing = ["-","RandomUnderSampler","RandomOverSampler","SMOTE"]
+resultsList = []
+
+for balancing in array_balancing:
+    X2, y2 = pre_processing(X, y, balancing) 
+    resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
 
 
-def read_file_openml(id):
-    dataset = openml.datasets.get_dataset(id)
+#best_result = max(resultsList, key=lambda Results: Results.f1_score)
 
-    X, y, categorical_indicator, attribute_names = dataset.get_data(
-        target=dataset.default_target_attribute, dataset_format="dataframe")
+scores = []
+for result in resultsList:
+    scores.append( (result.balanced_accuracy*1/5) + (result.f1_score*1/5) + (result.roc_auc_score*1/5) + (result.g_mean_score*1/5) + (result.cohen_kappa_score*1/5) )
 
-    df = pd.DataFrame(X, columns=attribute_names)
-    df["class"] = y
-    
-    openml.datasets.get_dataset(id, download_data=False)
-    
-    dataset_name = dataset.name
-    
-    return df, dataset_name
+best_score = max(scores)
+index = scores.index(best_score)
+best_result = resultsList[index]
 
-df, dataset_name = read_file_openml(450)
 
-print(df)
-print(dataset_name)
+print(best_result.algorithm)
+print(best_result.balancing)
+print("time:                ", best_result.time)
+print("balanced_accuracy:   ", best_result.balanced_accuracy)
+print("f1_score:            ", best_result.f1_score)
+print("roc_auc_score:       ", best_result.roc_auc_score)
+print("g_mean_score:        ", best_result.g_mean_score)
+print("cohen_kappa_score:   ", best_result.cohen_kappa_score)

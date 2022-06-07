@@ -13,7 +13,7 @@ from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score, average_precision_score
 from imblearn.metrics import geometric_mean_score
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
@@ -132,13 +132,11 @@ print("")
 #normalize
 
 # scaler = preprocessing.MinMaxScaler()
-# names = df.columns
-# d = scaler.fit_transform(df)
-# scaled_df = pd.DataFrame(d, columns=names)
-# df = scaled_df
+# names = X.columns
+# d = scaler.fit_transform(X)
+# scaled_X = pd.DataFrame(d, columns=names)
+# X = scaled_X
 
-# X = df.iloc[: , :-1]
-# y = df.iloc[: , -1:]
 
 
 
@@ -165,12 +163,12 @@ cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 scoring = {'balanced_accuracy': 'balanced_accuracy',
            'f1': 'f1', 
            'roc_auc': 'roc_auc',
-           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True, average='binary')
+           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+           'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
            }
 
 #, return_train_score=True
 scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
-#10.837
 
 finish_time = round(time.time() - start_time,3)
 
@@ -183,16 +181,18 @@ finish_time = round(time.time() - start_time,3)
 # print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
 # print("")
 
-accuracy_score = round(np.mean(scores['test_balanced_accuracy']),3)
-f1_score = round(np.mean(scores['test_f1']),3)
-roc_auc_score = round(np.mean(scores['test_roc_auc']),3)
-g_mean_score = round(np.mean(scores['test_g_mean']),3)
+balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+f1 = round(np.mean(scores['test_f1']),3)
+roc_auc = round(np.mean(scores['test_roc_auc']),3)
+g_mean = round(np.mean(scores['test_g_mean']),3)
+cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
 
 # print("test:")
-print("Mean Accuracy Score  :", accuracy_score)
-print("Mean F1 Score        :", f1_score)
-print("Mean ROC AUC         :", roc_auc_score)
-print("Mean G-Mean          :", g_mean_score)
+print("Balanced Accuracy    :", balanced_accuracy)
+print("F1 Score             :", f1)
+print("ROC AUC              :", roc_auc)
+print("G-Mean               :", g_mean)
+print("Cohen Kappa          :", cohen_kappa)
 
 print("")
 print("time                 :", finish_time)

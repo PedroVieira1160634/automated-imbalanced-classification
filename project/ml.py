@@ -15,7 +15,8 @@ from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
 from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
-#from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
+from imblearn.metrics import geometric_mean_score
 #import csv
 #import warnings
 #warnings.filterwarnings("ignore")
@@ -43,7 +44,7 @@ def execute_ml(dataset_location):
     print("Best classifier is ", best_result.algorithm, " with ", best_result.balancing, "\n")
     
     write_results(best_result)
-    
+
 
 
 def read_file(path):
@@ -186,18 +187,6 @@ def classify_evaluate(X, y, balancing, dataset_name):
     
     for classifier in array_classifiers:
         
-        #start_time = time.time()
-        
-        #algorithm = classifier.fit(X_train, y_train.values.ravel()) #eval_metric 
-        
-        #finish_time = (round(time.time() - start_time,3))
-
-        #algorithm_pred = algorithm.predict(X_test)
-
-        # metric_accuracy = round(accuracy_score(y_test, algorithm_pred),3)
-        # metric_f1_score = round(f1_score(y_test, algorithm_pred),3)
-        # metric_roc_auc_score = round(roc_auc_score(y_test, algorithm_pred),3)
-        
         start_time = time.time()
         
         cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
@@ -205,24 +194,31 @@ def classify_evaluate(X, y, balancing, dataset_name):
         scoring = {
             'balanced_accuracy': 'balanced_accuracy',
             'f1': 'f1', 
-            'roc_auc': 'roc_auc'}
+            'roc_auc': 'roc_auc',
+            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
+            }
         
         scores = cross_validate(classifier, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1) #, return_train_score=True
         
         finish_time = round(time.time() - start_time,3)
         
-        metric_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
-        metric_f1_score = round(np.mean(scores['test_f1']),3)
-        metric_roc_auc_score = round(np.mean(scores['test_roc_auc']),3)
-        
-        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, metric_accuracy, metric_f1_score, metric_roc_auc_score)
+        balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+        f1_score = round(np.mean(scores['test_f1']),3)
+        roc_auc_score = round(np.mean(scores['test_roc_auc']),3)
+        g_mean = round(np.mean(scores['test_g_mean']),3)
+        cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+
+        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, balanced_accuracy, f1_score, roc_auc_score, g_mean, cohen_kappa)
         resultsList.append(r1)
         
         #print's
         #print("algorithm:", str_balancing + classifier.__class__.__name__)
-        #print("accuracy_score:", metric_accuracy)
-        #print("f1_score:", metric_f1_score)
-        #print("roc_auc_score:", metric_roc_auc_score)
+        # print("Balanced Accuracy    :", balanced_accuracy)
+        # print("F1 Score             :", f1_score)
+        # print("ROC AUC              :", roc_auc_score)
+        # print("G-Mean               :", g_mean)
+        # print("Cohen Kappa          :", cohen_kappa)
         #print("time:", finish_time)
         #print("")
         
@@ -331,9 +327,11 @@ def write_results(best_result):
             df_kb_r.at[index, 'pre processing'] = best_result.balancing
             df_kb_r.at[index, 'algorithm'] = best_result.algorithm
             df_kb_r.at[index, 'time'] = best_result.time
-            df_kb_r.at[index, 'accuracy'] = best_result.accuracy
+            df_kb_r.at[index, 'balanced accuracy'] = best_result.balanced_accuracy
             df_kb_r.at[index, 'f1 score'] = best_result.f1_score
             df_kb_r.at[index, 'roc auc'] = best_result.roc_auc_score
+            df_kb_r.at[index, 'geometric mean'] = best_result.g_mean_score
+            df_kb_r.at[index, 'cohen kappa'] = best_result.cohen_kappa_score
             
             print("File written, row updated!","\n")
             
@@ -349,9 +347,11 @@ def write_results(best_result):
             best_result.balancing,
             best_result.algorithm,
             best_result.time,
-            best_result.accuracy, 
+            best_result.balanced_accuracy, 
             best_result.f1_score, 
-            best_result.roc_auc_score
+            best_result.roc_auc_score,
+            best_result.g_mean_score,
+            best_result.cohen_kappa_score
         ]
 
         print("File written, row added!","\n")
@@ -377,11 +377,13 @@ class Characteristics(object):
         
 
 class Results(object):
-    def __init__(self, dataset_name, balancing, algorithm, time, accuracy, f1_score, roc_auc_score):
+    def __init__(self, dataset_name, balancing, algorithm, time, balanced_accuracy, f1_score, roc_auc_score, g_mean_score, cohen_kappa_score):
         self.dataset_name = dataset_name
         self.balancing = balancing
         self.algorithm = algorithm
         self.time = time
-        self.accuracy = accuracy
+        self.balanced_accuracy = balanced_accuracy
         self.f1_score = f1_score
         self.roc_auc_score = roc_auc_score
+        self.g_mean_score = g_mean_score
+        self.cohen_kappa_score = cohen_kappa_score

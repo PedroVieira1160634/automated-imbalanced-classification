@@ -7,11 +7,11 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 start_time = time.time()
 
-#glass1.dat                             - 2.719 sec     - 23.438 sec
-#page-blocks0.dat                       - 12.868 sec    - 114.874 sec
-#car-good.dat                                           - 37.169 sec
-#analcatdata_lawsuit (450)                              - 28.386 sec
-dataset_name = "car-good.dat"
+#glass1.dat                             - 2.719 sec     - 28.890 sec
+#page-blocks0.dat                       - 12.868 sec    - 147.156 sec
+#car-good.dat                                           - 44.085 sec
+#analcatdata_lawsuit (450)                              - 29.272 sec
+dataset_name = "glass1.dat"
 
 execute_ml(sys.path[0] + "/input/" + dataset_name)
 #execute_ml(450)
