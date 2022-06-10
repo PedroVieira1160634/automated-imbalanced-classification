@@ -15,6 +15,8 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBo
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score, average_precision_score
 from imblearn.metrics import geometric_mean_score
+from pymfe.mfe import MFE
+from sklearn.datasets import load_iris
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
@@ -30,102 +32,138 @@ X = df.iloc[: , :-1]
 y = df.iloc[: , -1:]
 
 
+# pymfe - meta features
+
+# data = load_iris()
+# y = data.target
+# X = data.data
+
+# model_groups = MFE.valid_groups()
+# print(model_groups)
+
+# mtfs_all = MFE.valid_metafeatures()
+# print(mtfs_all)
+
+# mtfs_subset = MFE.valid_metafeatures(groups=["general", "relative"])
+# print(mtfs_subset)
+
+# summaries = MFE.valid_summary()
+# print(summaries)
+
+start_time = time.time()
+
+#groups="all", summary="all"
+mfe = MFE(random_state=42, summary=["max", "min", "median", "mean", "var", "sd", "kurtosis","skewness"])
+mfe.fit(X.values, y.values)
+ft = mfe.extract() #cat_cols='auto', suppress_warnings=True
+
+finish_time = round(time.time() - start_time,3)
+
+# print(ft)
+print("\n".join("{:50} {:30}".format(x, y) for x, y in zip(ft[0], ft[1])))
+
+print("")
+print("number of meta-features  :", len(ft[0]))
+print("time                     :", finish_time)
+
+
+
 # -- characteristics of datasets
 
-df2 = df.iloc[: , :-1]
+# df2 = df.iloc[: , :-1]
 
-n_rows = len(df)
-n_columns = len(X.columns)
-n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-n_non_numeric_col = X.select_dtypes(include=object).shape[1]
-
-
-
-encoded_columns = []
-for column_name in X.columns:
-    if X[column_name].dtype == object:
-        encoded_columns.extend([column_name])
-    else:
-        pass
-
-X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+# n_rows = len(df)
+# n_columns = len(X.columns)
+# n_numeric_col = X.select_dtypes(include=np.number).shape[1]
+# n_non_numeric_col = X.select_dtypes(include=object).shape[1]
 
 
 
-encoded_columns = []
-for column_name in y.columns:
-    if y[column_name].dtype == object:
-        encoded_columns.extend([column_name])
-    else:
-        pass
+# encoded_columns = []
+# for column_name in X.columns:
+#     if X[column_name].dtype == object:
+#         encoded_columns.extend([column_name])
+#     else:
+#         pass
 
-y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+# X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+
+
+
+# encoded_columns = []
+# for column_name in y.columns:
+#     if y[column_name].dtype == object:
+#         encoded_columns.extend([column_name])
+#     else:
+#         pass
+
+# y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
 
 
 # -- characteristics of datasets
 
-print("number of rows       :", n_rows)
-print("number of columns    :", n_columns)
-print("")
+# print("number of rows       :", n_rows)
+# print("number of columns    :", n_columns)
+# print("")
 
-print("numeric columns      :", n_numeric_col)
-print("non-numeric columns  :", n_non_numeric_col)
-print("")
+# print("numeric columns      :", n_numeric_col)
+# print("non-numeric columns  :", n_non_numeric_col)
+# print("")
 
 
 
 
 # correlation ignoring categorical columns, and only with label (last) column
 
-df2['Class'] = y
+# df2['Class'] = y
 
-corr = df2.corr().abs()
-corr = corr.iloc[: , -1].iloc[:-1]
+# corr = df2.corr().abs()
+# corr = corr.iloc[: , -1].iloc[:-1]
 
-corr_max, corr_mean, corr_min = 0, 0, 0
-if not corr.empty:
-    corr_max = round(corr.max(),3)
-    corr_mean = round(corr.mean(),3)
-    corr_min = round(corr.min(),3)
+# corr_max, corr_mean, corr_min = 0, 0, 0
+# if not corr.empty:
+#     corr_max = round(corr.max(),3)
+#     corr_mean = round(corr.mean(),3)
+#     corr_min = round(corr.min(),3)
     
-print("maximum correlation  :", corr_max)
-print("average correlation  :", corr_mean)
-print("minimum correlation  :", corr_min)
-print("")
+# print("maximum correlation  :", corr_max)
+# print("average correlation  :", corr_mean)
+# print("minimum correlation  :", corr_min)
+# print("")
 
 
 #distinct with only categorical columns, ignoring the label (last) column
 
-print("distinct values in columns:")
-df2 = df.iloc[: , :-1]
+# print("distinct values in columns:")
+# df2 = df.iloc[: , :-1]
+# # for column in df2:
+# #     if df2[column].dtype == object:
+# #         print(column, " - ", df2[column].nunique())
+# # print("")
+
+# list_unique_values = []
 # for column in df2:
 #     if df2[column].dtype == object:
-#         print(column, " - ", df2[column].nunique())
+#         list_unique_values.append(df2[column].nunique())
+
+# mean_unique_values = 0
+# if list_unique_values:
+#     mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
+
+# print("average of distinct values in columns:", mean_unique_values)
 # print("")
 
-list_unique_values = []
-for column in df2:
-    if df2[column].dtype == object:
-        list_unique_values.append(df2[column].nunique())
 
-mean_unique_values = 0
-if list_unique_values:
-    mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
+# imbalance_ratio = 0
+# if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+#     if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+#         imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+#     else:
+#         imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
 
-print("average of distinct values in columns:", mean_unique_values)
-print("")
-
-
-imbalance_ratio = 0
-if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
-    if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
-        imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
-    else:
-        imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
-
-print("imbalance ratio      :", imbalance_ratio)
-print("")
+# print("imbalance ratio      :", imbalance_ratio)
+# print("")
 
 
 
@@ -142,8 +180,8 @@ print("")
 
 #print(y.value_counts())
 
-smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
-X, y = smote.fit_resample(X, y)
+# smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
+# X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 
@@ -153,49 +191,49 @@ X, y = smote.fit_resample(X, y)
 
 #   --- k-Fold Cross-Validation ---
 
-start_time = time.time()
+# start_time = time.time()
 
-algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
-#algorithm = KNeighborsClassifier()
+# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
+# #algorithm = KNeighborsClassifier()
 
-cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+# cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-scoring = {'balanced_accuracy': 'balanced_accuracy',
-           'f1': 'f1', 
-           'roc_auc': 'roc_auc',
-           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
-           'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
-           }
+# scoring = {'balanced_accuracy': 'balanced_accuracy',
+#            'f1': 'f1', 
+#            'roc_auc': 'roc_auc',
+#            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+#            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
+#            }
 
-#, return_train_score=True
-scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
+# #, return_train_score=True
+# scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
 
-finish_time = round(time.time() - start_time,3)
+# finish_time = round(time.time() - start_time,3)
 
-#print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
-#print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
+# #print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
+# #print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
 
-# print("train:")
-# print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
-# print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
-# print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
+# # print("train:")
+# # print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
+# # print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
+# # print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
+# # print("")
+
+# balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+# f1 = round(np.mean(scores['test_f1']),3)
+# roc_auc = round(np.mean(scores['test_roc_auc']),3)
+# g_mean = round(np.mean(scores['test_g_mean']),3)
+# cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+
+# # print("test:")
+# print("Balanced Accuracy    :", balanced_accuracy)
+# print("F1 Score             :", f1)
+# print("ROC AUC              :", roc_auc)
+# print("G-Mean               :", g_mean)
+# print("Cohen Kappa          :", cohen_kappa)
+
 # print("")
-
-balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
-f1 = round(np.mean(scores['test_f1']),3)
-roc_auc = round(np.mean(scores['test_roc_auc']),3)
-g_mean = round(np.mean(scores['test_g_mean']),3)
-cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
-
-# print("test:")
-print("Balanced Accuracy    :", balanced_accuracy)
-print("F1 Score             :", f1)
-print("ROC AUC              :", roc_auc)
-print("G-Mean               :", g_mean)
-print("Cohen Kappa          :", cohen_kappa)
-
-print("")
-print("time                 :", finish_time)
+# print("time                 :", finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
