@@ -1,9 +1,7 @@
 from ml import *
 
 dataset_name = "glass1.dat"
-dataset_location = sys.path[0] + "/input/" + dataset_name
-
-df, dataset_name = read_file(dataset_location)
+df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 #df, dataset_name = read_file_openml(id)
 
 X, y, characteristics = features_labels(df, dataset_name)
@@ -22,7 +20,7 @@ for balancing in array_balancing:
 
 scores = []
 for result in resultsList:
-    scores.append( (result.balanced_accuracy*1/5) + (result.f1_score*1/5) + (result.roc_auc_score*1/5) + (result.g_mean_score*1/5) + (result.cohen_kappa_score*1/5) )
+    scores.append(np.mean([result.balanced_accuracy, result.f1_score, result.roc_auc_score, result.g_mean_score, result.cohen_kappa_score]))
 
 best_score = max(scores)
 index = scores.index(best_score)

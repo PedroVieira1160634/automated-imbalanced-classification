@@ -60,7 +60,7 @@ def execute_ml(dataset_location, id_openml):
     
     write_results(best_result)
     
-    return True
+    return dataset_name
 
 
 
@@ -310,7 +310,16 @@ def classify_evaluate(X, y, balancing, dataset_name):
 
 
 def find_best_result(resultsList):
-    return max(resultsList, key=lambda Results: Results.f1_score)
+    #return max(resultsList, key=lambda Results: Results.f1_score)
+    scores = []
+    for result in resultsList:
+        scores.append(np.mean([result.balanced_accuracy, result.f1_score, result.roc_auc_score, result.g_mean_score, result.cohen_kappa_score]))
+
+    best_score = max(scores)
+    index = scores.index(best_score)
+    best_result = resultsList[index]
+    
+    return best_result
 
 
 
@@ -391,7 +400,9 @@ def write_characteristics(characteristics):
 
 def write_results(best_result):
 
-    print("Best Result Obtained :", float(best_result.f1_score), "\n")
+    current_value = round(np.mean([best_result.balanced_accuracy, best_result.f1_score, best_result.roc_auc_score, best_result.g_mean_score, best_result.cohen_kappa_score]), 3)
+    
+    print("Best Result Obtained :", current_value, "\n")
     
     print("Write Results")
     
@@ -401,8 +412,11 @@ def write_results(best_result):
     
     if not df_kb_r2.empty :
         
-        if not df_kb_r2[best_result.f1_score > df_kb_r2['f1 score']].empty:
+        previous_value = round(np.mean([df_kb_r2['balanced accuracy'], df_kb_r2['f1 score'], df_kb_r2['roc auc'], df_kb_r2['geometric mean'], df_kb_r2['cohen kappa']]), 3)
         
+        #if not df_kb_r2[best_result.f1_score > df_kb_r2['f1 score']].empty:
+        if current_value > previous_value:
+            
             index = df_kb_r2.index.values[0]
             df_kb_r.at[index, 'pre processing'] = best_result.balancing
             df_kb_r.at[index, 'algorithm'] = best_result.algorithm
@@ -412,11 +426,12 @@ def write_results(best_result):
             df_kb_r.at[index, 'roc auc'] = best_result.roc_auc_score
             df_kb_r.at[index, 'geometric mean'] = best_result.g_mean_score
             df_kb_r.at[index, 'cohen kappa'] = best_result.cohen_kappa_score
+            df_kb_r.at[index, 'total elapsed time'] = 0
             
             print("File written, row updated!","\n")
             
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
-        
+
         else:
             print("File not written!","\n")
             
@@ -431,12 +446,36 @@ def write_results(best_result):
             best_result.f1_score, 
             best_result.roc_auc_score,
             best_result.g_mean_score,
-            best_result.cohen_kappa_score
+            best_result.cohen_kappa_score,
+            0 #total elapsed time
         ]
 
         print("File written, row added!","\n")
         
         df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)    
+
+
+
+def write_results_elapsed_time(elapsed_time, dataset_name):
+    
+    print("Elapsed Time         :", elapsed_time)
+    
+    print("\nWrite Result (elapsed time)")
+    
+    df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
+
+    df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
+    
+    if not df_kb_r2.empty :
+        index = df_kb_r2.index.values[0]
+        df_kb_r.at[index, 'total elapsed time'] = elapsed_time
+            
+        print("File written, row updated!","\n")
+        
+        df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+    
+    else:
+        print("File not written!","\n")
 
 
 
@@ -454,7 +493,8 @@ class Characteristics(object):
         self.unique_values_min = unique_values_min
         self.unique_values_mean = unique_values_mean
         self.unique_values_max = unique_values_max
-        
+
+
 
 class Results(object):
     def __init__(self, dataset_name, balancing, algorithm, time, balanced_accuracy, f1_score, roc_auc_score, g_mean_score, cohen_kappa_score):

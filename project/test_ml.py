@@ -1,7 +1,7 @@
 import sys
 import time
 from datetime import datetime
-from ml import execute_ml
+from ml import execute_ml, write_results_elapsed_time
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
@@ -14,12 +14,15 @@ start_time = time.time()
 
 
 # dataset_name = "glass1.dat"
-# execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+# dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-execute_ml("", 450)
+dataset_name = execute_ml("", 450)
 
 
 finish_time = (round(time.time() - start_time,3))
-print("elapsed time         :", finish_time)
+
+if dataset_name:
+    write_results_elapsed_time(finish_time, dataset_name)
+
 
 print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
