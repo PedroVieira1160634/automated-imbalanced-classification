@@ -5,8 +5,9 @@ import pandas as pd
 import numpy as np
 import openml.datasets
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
-from imblearn.over_sampling import SMOTE, RandomOverSampler
-from imblearn.under_sampling import RandomUnderSampler
+from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, OneSidedSelection, TomekLinks
+from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
+from imblearn.combine import SMOTEENN, SMOTETomek
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
@@ -22,17 +23,31 @@ from imblearn.metrics import geometric_mean_score
 #warnings.filterwarnings("ignore")
 
 
-#dataset_location or id
-def execute_ml(dataset_location):
+def execute_ml(dataset_location, id_openml):
     
-    df, dataset_name = read_file(dataset_location)
-    #df, dataset_name = read_file_openml(id)
+    if dataset_location:
+        df, dataset_name = read_file(dataset_location)
+    elif id_openml:
+        df, dataset_name = read_file_openml(id_openml)
+    else:
+        return False
+    
+    # initial validations
+    # ...
     
     X, y, characteristics = features_labels(df, dataset_name)
     
     write_characteristics(characteristics)
     
-    array_balancing = ["-","RandomUnderSampler","RandomOverSampler","SMOTE"] #["-"]
+    # array_balancing = ["-"]
+    array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
+    # array_balancing = [
+    #     "-", 
+    #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+    #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+    #     "SMOTEENN", "SMOTETomek"
+    # ]
+    
     resultsList = []
     
     for balancing in array_balancing:
@@ -44,6 +59,8 @@ def execute_ml(dataset_location):
     print("Best classifier is ", best_result.algorithm, " with ", best_result.balancing, "\n")
     
     write_results(best_result)
+    
+    return True
 
 
 
@@ -61,9 +78,7 @@ def read_file_openml(id):
     df = pd.DataFrame(X, columns=attribute_names)
     df["class"] = y
     
-    openml.datasets.get_dataset(id, download_data=False)
-    
-    dataset_name = dataset.name
+    dataset_name = dataset.name + " (id:" + str(id) + ")"
     
     return df, dataset_name
 
@@ -143,17 +158,87 @@ def features_labels(df, dataset_name):
 
 def pre_processing(X, y, balancing):
     
+    # -- Under-sampling methods --
+    if balancing == "ClusterCentroids":
+        cc = ClusterCentroids(random_state=42)
+        X, y = cc.fit_resample(X, y)
+
+    if balancing == "CondensedNearestNeighbour":
+        cnn = CondensedNearestNeighbour(random_state=42, n_jobs=-1) 
+        X, y = cnn.fit_resample(X, y)
+
+    if balancing == "EditedNearestNeighbours":
+        enn = EditedNearestNeighbours(n_jobs=-1)
+        X, y = enn.fit_resample(X, y)
+
+    if balancing == "RepeatedEditedNearestNeighbours":
+        renn = RepeatedEditedNearestNeighbours(n_jobs=-1)
+        X, y = renn.fit_resample(X, y)
+
+    if balancing == "AllKNN":
+        allknn = AllKNN(n_jobs=-1)
+        X, y = allknn.fit_resample(X, y)
+
+    if balancing == "InstanceHardnessThreshold":
+        iht = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
+        X, y = iht.fit_resample(X, y)
+
+    if balancing == "NearMiss":
+        nm = NearMiss(n_jobs=-1)
+        X, y = nm.fit_resample(X, y)
+
+    if balancing == "NeighbourhoodCleaningRule":
+        ncr = NeighbourhoodCleaningRule(n_jobs=-1)
+        X, y = ncr.fit_resample(X, y)
+
+    if balancing == "OneSidedSelection":
+        oss = OneSidedSelection(random_state=42, n_jobs=-1)
+        X, y = oss.fit_resample(X, y)
+
     if balancing == "RandomUnderSampler":
-        under = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
-        X, y = under.fit_resample(X, y)
+        rus = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
+        X, y = rus.fit_resample(X, y)
     
+    if balancing == "TomekLinks":
+        tl = TomekLinks(n_jobs=-1)
+        X, y = tl.fit_resample(X, y)
+    
+    
+    # -- Over-sampling methods --
     if balancing == "RandomOverSampler":
         over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
         X, y = over.fit_resample(X, y)
     
     if balancing == "SMOTE":
-        smote = SMOTE(random_state=42) #sampling_strategy=0.5
+        smote = SMOTE(random_state=42, n_jobs=-1) #sampling_strategy=0.5
         X, y = smote.fit_resample(X, y)
+    
+    if balancing == "ADASYN":
+        ada = ADASYN(random_state=42, n_jobs=-1)
+        X, y = ada.fit_resample(X, y)
+    
+    if balancing == "BorderlineSMOTE":
+        sm = BorderlineSMOTE(random_state=42, n_jobs=-1)
+        X, y = sm.fit_resample(X, y)
+    
+    if balancing == "KMeansSMOTE":
+        #UserWarning: MiniBatchKMeans
+        sm = KMeansSMOTE(random_state=42, n_jobs=-1)
+        X, y = sm.fit_resample(X, y)
+    
+    if balancing == "SVMSMOTE":
+        sm = SVMSMOTE(random_state=42, n_jobs=-1)
+        X, y = sm.fit_resample(X, y)
+    
+    
+    # -- Combination of over- and under-sampling methods --
+    if balancing == "SMOTEENN":
+        sme = SMOTEENN(random_state=42, n_jobs=-1)
+        X, y = sme.fit_resample(X, y)
+        
+    if balancing == "SMOTETomek":
+        smt = SMOTETomek(random_state=42, n_jobs=-1)
+        X, y = smt.fit_resample(X, y)
     
     return X, y
 
@@ -163,23 +248,17 @@ def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [
         #LogisticRegression(random_state=42,max_iter=10000)
-        #,GaussianNB() #(naive bayes) random_state?
+        #,GaussianNB() #no random_state (naive bayes)
         #,SVC(random_state=42) 
-        #,KNeighborsClassifier() #random_state?
-        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced') 
-        ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss') #eval_metric=f1_score ; gpu 
-        ,RandomForestClassifier(random_state=42, class_weight='balanced')
-        ,ExtraTreesClassifier(random_state=42, class_weight='balanced')
-        # ,AdaBoostClassifier(random_state=42)
-        # ,BaggingClassifier(random_state=42)
-        # ,GradientBoostingClassifier(random_state=42)
-        ]
-    
-    #if balancing = "-"
-    # ,EasyEnsembleClassifier(random_state=42, n_jobs=-1)
-    # ,RUSBoostClassifier(random_state=42)
-    # ,BalancedBaggingClassifier(random_state=42, n_jobs=-1)
-    # ,BalancedRandomForestClassifier(random_state=42, n_jobs=-1, class_weight='balanced')
+        #,KNeighborsClassifier() #no random_state
+        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1) 
+        ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
+        ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+        ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+        ,AdaBoostClassifier(random_state=42)
+        ,BaggingClassifier(random_state=42, n_jobs=-1)
+        ,GradientBoostingClassifier(random_state=42)
+    ]
     
     resultsList = []
     

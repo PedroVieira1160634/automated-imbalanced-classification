@@ -15,6 +15,6 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
     
-    execute_ml(values[0])
+    execute_ml(values[0], "")
 
 window.close()

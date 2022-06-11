@@ -8,7 +8,9 @@ import pandas as pd
 import numpy as np
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
+from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, OneSidedSelection, TomekLinks
+from imblearn.combine import SMOTEENN, SMOTETomek
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier
@@ -17,6 +19,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer
 from imblearn.metrics import geometric_mean_score
 from pymfe.mfe import MFE
 from sklearn.datasets import load_iris
+from ml import read_file_openml
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
@@ -25,11 +28,15 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #page-blocks0.dat
 #car-good.dat
 #kddcup-rootkit-imap_vs_back.dat #to be removed, only for tests
-dataset_name = "glass1.dat"
-df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
+# dataset_name = "glass1.dat"
+# df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
+
+#450
+df, dataset_name = read_file_openml(450)
 
 X = df.iloc[: , :-1]
 y = df.iloc[: , -1:]
+
 
 
 # pymfe - meta features
@@ -50,21 +57,21 @@ y = df.iloc[: , -1:]
 # summaries = MFE.valid_summary()
 # print(summaries)
 
-start_time = time.time()
+# start_time = time.time()
 
-#groups="all", summary="all"
-mfe = MFE(random_state=42, summary=["max", "min", "median", "mean", "var", "sd", "kurtosis","skewness"])
-mfe.fit(X.values, y.values)
-ft = mfe.extract() #cat_cols='auto', suppress_warnings=True
+# #groups="all", summary="all"
+# mfe = MFE(random_state=42, summary=["max", "min", "median", "mean", "var", "sd", "kurtosis","skewness"])
+# mfe.fit(X.values, y.values)
+# ft = mfe.extract() #cat_cols='auto', suppress_warnings=True
 
-finish_time = round(time.time() - start_time,3)
+# finish_time = round(time.time() - start_time,3)
 
-# print(ft)
-print("\n".join("{:50} {:30}".format(x, y) for x, y in zip(ft[0], ft[1])))
+# # print(ft)
+# print("\n".join("{:50} {:30}".format(x, y) for x, y in zip(ft[0], ft[1])))
 
-print("")
-print("number of meta-features  :", len(ft[0]))
-print("time                     :", finish_time)
+# print("")
+# print("number of meta-features  :", len(ft[0]))
+# print("time                     :", finish_time)
 
 
 
@@ -79,25 +86,30 @@ print("time                     :", finish_time)
 
 
 
-# encoded_columns = []
-# for column_name in X.columns:
-#     if X[column_name].dtype == object:
-#         encoded_columns.extend([column_name])
-#     else:
-#         pass
+encoded_columns = []
+for column_name in X.columns:
+    if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
+        encoded_columns.extend([column_name])
+    else:
+        pass
 
-# X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+if encoded_columns:
+    X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
 
+encoded_columns = []
+preserve_name = ""
+for column_name in y.columns:
+    if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
+        encoded_columns.extend([column_name])
+        preserve_name = column_name
+    else:
+        pass
 
+if encoded_columns:
+    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
 
-# encoded_columns = []
-# for column_name in y.columns:
-#     if y[column_name].dtype == object:
-#         encoded_columns.extend([column_name])
-#     else:
-#         pass
-
-# y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+if preserve_name:
+    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
 
 
 
@@ -180,10 +192,14 @@ print("time                     :", finish_time)
 
 #print(y.value_counts())
 
-# smote = SMOTE(random_state=42) #, k_neighbors=minimum_samples
-# X, y = smote.fit_resample(X, y)
+# iht = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
+# X, y = iht.fit_resample(X, y)
+
+smote = SMOTE(random_state=42, n_jobs=-1)
+X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
+
 
 
 
@@ -191,49 +207,54 @@ print("time                     :", finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
-# start_time = time.time()
+start_time = time.time()
 
-# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced') #.fit(X_train, y_train.values.ravel())
-# #algorithm = KNeighborsClassifier()
+algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-# cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-# scoring = {'balanced_accuracy': 'balanced_accuracy',
-#            'f1': 'f1', 
-#            'roc_auc': 'roc_auc',
-#            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
-#            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
-#            }
+scoring = {'balanced_accuracy': 'balanced_accuracy',
+           'f1': 'f1', 
+           'roc_auc': 'roc_auc',
+           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+           'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
+           }
 
-# #, return_train_score=True
-# scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1)
+#, return_train_score=True
+scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
 
-# finish_time = round(time.time() - start_time,3)
+finish_time = round(time.time() - start_time,3)
 
-# #print("Mean F1 Score        : %.3f" % np.mean(scores_f1))
-# #print("Mean ROC AUC Score   : %.3f" % np.mean(scores_roc_auc))
 
-# # print("train:")
-# # print("Mean Accuracy Score  : %.3f" % np.mean(scores['train_balanced_accuracy']))
-# # print("Mean F1 Score        : %.3f" % np.mean(scores['train_f1']))
-# # print("Mean ROC AUC         : %.3f" % np.mean(scores['train_roc_auc']))
-# # print("")
+balanced_accuracy = round(np.mean(scores['train_balanced_accuracy']),3)
+f1 = round(np.mean(scores['train_f1']),3)
+roc_auc = round(np.mean(scores['train_roc_auc']),3)
+g_mean = round(np.mean(scores['train_g_mean']),3)
+cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
 
-# balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
-# f1 = round(np.mean(scores['test_f1']),3)
-# roc_auc = round(np.mean(scores['test_roc_auc']),3)
-# g_mean = round(np.mean(scores['test_g_mean']),3)
-# cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+print("train:")
+print("Balanced Accuracy    :", balanced_accuracy)
+print("F1 Score             :", f1)
+print("ROC AUC              :", roc_auc)
+print("G-Mean               :", g_mean)
+print("Cohen Kappa          :", cohen_kappa)
+print("")
 
-# # print("test:")
-# print("Balanced Accuracy    :", balanced_accuracy)
-# print("F1 Score             :", f1)
-# print("ROC AUC              :", roc_auc)
-# print("G-Mean               :", g_mean)
-# print("Cohen Kappa          :", cohen_kappa)
+balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+f1 = round(np.mean(scores['test_f1']),3)
+roc_auc = round(np.mean(scores['test_roc_auc']),3)
+g_mean = round(np.mean(scores['test_g_mean']),3)
+cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
 
-# print("")
-# print("time                 :", finish_time)
+print("test:")
+print("Balanced Accuracy    :", balanced_accuracy)
+print("F1 Score             :", f1)
+print("ROC AUC              :", roc_auc)
+print("G-Mean               :", g_mean)
+print("Cohen Kappa          :", cohen_kappa)
+
+print("")
+print("time                 :", finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
@@ -247,7 +268,7 @@ print("time                     :", finish_time)
 
 # start_time = time.time()
 
-# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced').fit(X_train, y_train.values.ravel())
+# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1).fit(X_train, y_train.values.ravel())
 
 # finish_time = round(time.time() - start_time, 3)
 

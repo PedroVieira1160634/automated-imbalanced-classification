@@ -52,10 +52,10 @@ for id in datalist["did"]:
     # print("")
     
     
-    df_openml = pd.read_csv(sys.path[0] + "/output/" + "datasets_openml.csv", sep=",")
+    df_openml = pd.read_csv(sys.path[0] + "/input/" + "datasets_openml.csv", sep=",")
     
     df_openml.loc[len(df_openml.index)] = [Decimal(id), imbalance_ratio]
     
-    df_openml.to_csv(sys.path[0] + "/output/" + "datasets_openml.csv", sep=",", index=False)
+    df_openml.to_csv(sys.path[0] + "/input/" + "datasets_openml.csv", sep=",", index=False)
 
 
