@@ -19,8 +19,8 @@ from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, Balanc
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
 #import csv
-#import warnings
-#warnings.filterwarnings("ignore")
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -244,6 +244,7 @@ def pre_processing(X, y, balancing):
 
 
 
+# 19 balancing techniques and 7 classification algorithms = 133 combinations
 def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [
@@ -268,7 +269,7 @@ def classify_evaluate(X, y, balancing, dataset_name):
         
         start_time = time.time()
         
-        cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+        cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)
         
         scoring = {
             'balanced_accuracy': 'balanced_accuracy',

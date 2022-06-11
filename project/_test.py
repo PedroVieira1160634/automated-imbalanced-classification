@@ -6,7 +6,8 @@ from datetime import datetime
 from decimal import Decimal
 import pandas as pd
 import numpy as np
-from sklearn import preprocessing
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.cluster import MiniBatchKMeans
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, OneSidedSelection, TomekLinks
@@ -18,164 +19,18 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score, average_precision_score
 from imblearn.metrics import geometric_mean_score
 from pymfe.mfe import MFE
-from sklearn.datasets import load_iris
-from ml import read_file_openml
+from ml import read_file, read_file_openml, features_labels
+# import warnings
+# warnings.filterwarnings("ignore")
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 
-#glass1.dat
-#page-blocks0.dat
-#car-good.dat
-#kddcup-rootkit-imap_vs_back.dat #to be removed, only for tests
 # dataset_name = "glass1.dat"
-# df = pd.read_csv(sys.path[0] + "/input/" + dataset_name)
+# read_file(sys.path[0] + "/input/" + dataset_name, "")
 
 #450
 df, dataset_name = read_file_openml(450)
-
-X = df.iloc[: , :-1]
-y = df.iloc[: , -1:]
-
-
-
-# pymfe - meta features
-
-# data = load_iris()
-# y = data.target
-# X = data.data
-
-# model_groups = MFE.valid_groups()
-# print(model_groups)
-
-# mtfs_all = MFE.valid_metafeatures()
-# print(mtfs_all)
-
-# mtfs_subset = MFE.valid_metafeatures(groups=["general", "relative"])
-# print(mtfs_subset)
-
-# summaries = MFE.valid_summary()
-# print(summaries)
-
-# start_time = time.time()
-
-# #groups="all", summary="all"
-# mfe = MFE(random_state=42, summary=["max", "min", "median", "mean", "var", "sd", "kurtosis","skewness"])
-# mfe.fit(X.values, y.values)
-# ft = mfe.extract() #cat_cols='auto', suppress_warnings=True
-
-# finish_time = round(time.time() - start_time,3)
-
-# # print(ft)
-# print("\n".join("{:50} {:30}".format(x, y) for x, y in zip(ft[0], ft[1])))
-
-# print("")
-# print("number of meta-features  :", len(ft[0]))
-# print("time                     :", finish_time)
-
-
-
-# -- characteristics of datasets
-
-# df2 = df.iloc[: , :-1]
-
-# n_rows = len(df)
-# n_columns = len(X.columns)
-# n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-# n_non_numeric_col = X.select_dtypes(include=object).shape[1]
-
-
-
-encoded_columns = []
-for column_name in X.columns:
-    if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
-        encoded_columns.extend([column_name])
-    else:
-        pass
-
-if encoded_columns:
-    X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
-
-encoded_columns = []
-preserve_name = ""
-for column_name in y.columns:
-    if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
-        encoded_columns.extend([column_name])
-        preserve_name = column_name
-    else:
-        pass
-
-if encoded_columns:
-    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
-
-if preserve_name:
-    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
-
-
-
-# -- characteristics of datasets
-
-# print("number of rows       :", n_rows)
-# print("number of columns    :", n_columns)
-# print("")
-
-# print("numeric columns      :", n_numeric_col)
-# print("non-numeric columns  :", n_non_numeric_col)
-# print("")
-
-
-
-
-# correlation ignoring categorical columns, and only with label (last) column
-
-# df2['Class'] = y
-
-# corr = df2.corr().abs()
-# corr = corr.iloc[: , -1].iloc[:-1]
-
-# corr_max, corr_mean, corr_min = 0, 0, 0
-# if not corr.empty:
-#     corr_max = round(corr.max(),3)
-#     corr_mean = round(corr.mean(),3)
-#     corr_min = round(corr.min(),3)
-    
-# print("maximum correlation  :", corr_max)
-# print("average correlation  :", corr_mean)
-# print("minimum correlation  :", corr_min)
-# print("")
-
-
-#distinct with only categorical columns, ignoring the label (last) column
-
-# print("distinct values in columns:")
-# df2 = df.iloc[: , :-1]
-# # for column in df2:
-# #     if df2[column].dtype == object:
-# #         print(column, " - ", df2[column].nunique())
-# # print("")
-
-# list_unique_values = []
-# for column in df2:
-#     if df2[column].dtype == object:
-#         list_unique_values.append(df2[column].nunique())
-
-# mean_unique_values = 0
-# if list_unique_values:
-#     mean_unique_values = Decimal(round(np.mean(list_unique_values),0))
-
-# print("average of distinct values in columns:", mean_unique_values)
-# print("")
-
-
-# imbalance_ratio = 0
-# if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
-#     if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
-#         imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
-#     else:
-#         imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
-
-# print("imbalance ratio      :", imbalance_ratio)
-# print("")
 
 
 
@@ -187,6 +42,7 @@ if preserve_name:
 # scaled_X = pd.DataFrame(d, columns=names)
 # X = scaled_X
 
+X, y, characteristics = features_labels(df, dataset_name)
 
 
 
@@ -197,6 +53,11 @@ if preserve_name:
 
 smote = SMOTE(random_state=42, n_jobs=-1)
 X, y = smote.fit_resample(X, y)
+
+# kmeans = MiniBatchKMeans(batch_size=2048)
+# , kmeans_estimator=kmeans
+# sm = KMeansSMOTE(random_state=42, n_jobs=-1)
+# X, y = sm.fit_resample(X, y)
 
 #print(y.value_counts())
 
@@ -211,7 +72,7 @@ start_time = time.time()
 
 algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)
 
 scoring = {'balanced_accuracy': 'balanced_accuracy',
            'f1': 'f1', 
@@ -303,112 +164,8 @@ print("time                 :", finish_time)
 
 
 
-
-# print("write kb_characteristics:\n")
-
-# def write_characteristics(dataset_name):
-
-#     df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
-#     #print(df_kb_c, '\n')
-
-#     df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == dataset_name]
-    
-#     if not df_kb_c2.empty:
-
-#         index = df_kb_c2.index.values[0]
-#         df_kb_c.at[index, 'rows number'] = n_rows
-#         df_kb_c.at[index, 'columns number'] = n_columns
-#         df_kb_c.at[index, 'numeric columns'] = n_numeric_col
-#         df_kb_c.at[index, 'non-numeric columns'] = n_non_numeric_col
-#         df_kb_c.at[index, 'maximum correlation'] = corr_max
-#         df_kb_c.at[index, 'average correlation'] = corr_mean
-#         df_kb_c.at[index, 'minimum correlation'] = corr_min
-#         df_kb_c.at[index, 'average of distinct values in columns'] = mean_unique_values
-#         df_kb_c.at[index, 'imbalance ratio'] = imbalance_ratio
-
-#         print("File written, row updated!","\n")
-
-#     else:
-
-#         df_kb_c.loc[len(df_kb_c.index)] = [
-#             dataset_name,
-#             n_rows,
-#             n_columns,
-#             n_numeric_col,
-#             n_non_numeric_col,
-#             corr_max,
-#             corr_mean,
-#             corr_min,
-#             mean_unique_values,
-#             imbalance_ratio
-#         ]
-
-#         print("File written, row added!","\n")
-
-#     #print(df_kb_c, '\n')
-#     df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
-
-
-# write_characteristics(dataset_name)
-
-
-
-# print("write kb_results:\n")
-
-# def write_results(dataset_name):
-
-#     balancing = 'SMOTE'
-#     algorithm_name = algorithm.__class__.__name__
-
-#     df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
-#     #print(df_kb_r, '\n')
-
-#     df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
-    
-#     if not df_kb_r2.empty :
-        
-#         if not df_kb_r2[f1_score > df_kb_r2['f1 score']].empty:
-        
-#             index = df_kb_r2.index.values[0]
-#             df_kb_r.at[index, 'pre processing'] = balancing
-#             df_kb_r.at[index, 'algorithm'] = algorithm_name
-#             df_kb_r.at[index, 'time'] = finish_time
-#             df_kb_r.at[index, 'accuracy'] = accuracy_score
-#             df_kb_r.at[index, 'f1 score'] = f1_score
-#             df_kb_r.at[index, 'roc auc'] = roc_auc_score
-            
-#             print("File written, row updated!","\n")
-            
-#             #print(df_kb_r, '\n')
-#             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
-        
-#         else:
-#             print("File not written!","\n")
-            
-#     else:
-
-#         df_kb_r.loc[len(df_kb_r.index)] = [
-#             dataset_name,
-#             balancing,
-#             algorithm_name,
-#             finish_time,
-#             accuracy_score, 
-#             f1_score, 
-#             roc_auc_score
-#         ]
-
-#         print("File written, row added!","\n")
-        
-#         #print(df_kb_r, '\n')
-#         df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
-    
-
-
-# write_results(dataset_name)
-
-
-
 print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
+
 
 
 # old code
