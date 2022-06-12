@@ -372,9 +372,10 @@ def write_characteristics(characteristics):
             df_kb_c.at[index, 'minimum distinct instances in categorical attributes'] = characteristics.unique_values_min
             df_kb_c.at[index, 'average distinct instances in categorical attributes'] = characteristics.unique_values_mean
             df_kb_c.at[index, 'maximum distinct instances in categorical attributes'] = characteristics.unique_values_max
-
-            print("File written, row updated!","\n")
+            
             df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+            
+            print("File written, row updated!","\n")
         
     else:
 
@@ -393,8 +394,9 @@ def write_characteristics(characteristics):
             characteristics.unique_values_max
         ]
 
+        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+        
         print("File written, row added!","\n")
-        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
 
 
 
@@ -428,9 +430,9 @@ def write_results(best_result):
             df_kb_r.at[index, 'cohen kappa'] = best_result.cohen_kappa_score
             df_kb_r.at[index, 'total elapsed time'] = 0
             
-            print("File written, row updated!","\n")
-            
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+            
+            print("File written, row updated!","\n")
 
         else:
             print("File not written!","\n")
@@ -450,9 +452,9 @@ def write_results(best_result):
             0 #total elapsed time
         ]
 
-        print("File written, row added!","\n")
+        df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
         
-        df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)    
+        print("File written, row added!","\n")  
 
 
 
@@ -469,10 +471,10 @@ def write_results_elapsed_time(elapsed_time, dataset_name):
     if not df_kb_r2.empty :
         index = df_kb_r2.index.values[0]
         df_kb_r.at[index, 'total elapsed time'] = elapsed_time
-            
-        print("File written, row updated!","\n")
         
         df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+        
+        print("File written, row updated!","\n")
     
     else:
         print("File not written!","\n")
