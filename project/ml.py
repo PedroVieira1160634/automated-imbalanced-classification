@@ -40,13 +40,13 @@ def execute_ml(dataset_location, id_openml):
     write_characteristics(characteristics)
     
     # array_balancing = ["-"]
-    array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
-    # array_balancing = [
-    #     "-", 
-    #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
-    #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
-    #     "SMOTEENN", "SMOTETomek"
-    # ]
+    # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
+    array_balancing = [
+        "-", 
+        "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+        "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+        "SMOTEENN", "SMOTETomek"
+    ]
     
     resultsList = []
     
@@ -244,7 +244,7 @@ def pre_processing(X, y, balancing):
 
 
 
-# 19 balancing techniques and 7 classification algorithms = 133 combinations
+# 1 + 19 balancing techniques and 7 classification algorithms = 140 combinations
 def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [

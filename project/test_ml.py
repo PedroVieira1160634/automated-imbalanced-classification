@@ -11,13 +11,17 @@ start_time = time.time()
 #page-blocks0.dat                       - 12.868 sec    - 147.156 sec
 #car-good.dat                                           - 44.085 sec
 #analcatdata_lawsuit (id:450)                           - 29.272 sec    - 196.045 sec
+#arsenic-male-bladder (id:947)
 
 
-# dataset_name = "glass1.dat"
+# dataset_name = "car-good.dat"
 # dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-dataset_name = execute_ml("", 450)
+dataset_name = execute_ml("", 947)
 
+#car-good.dat
+#KMeansSMOTE -> sm.fit_resample
+#RuntimeError: No clusters found with sufficient samples of class 1. Try lowering the cluster_balance_threshold or increasing the number of clusters.
 
 finish_time = (round(time.time() - start_time,3))
 

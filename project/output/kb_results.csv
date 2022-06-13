@@ -1,5 +1,6 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,total elapsed time
-glass1.dat,RandomOverSampler,RandomForestClassifier,3.035,0.926,0.928,0.969,0.924,0.852,39.34
-page-blocks0.dat,RandomOverSampler,ExtraTreesClassifier,10.938,0.994,0.994,0.999,0.994,0.988,161.944
+glass1.dat,SMOTEENN,ExtraTreesClassifier,2.592,0.979,0.979,0.998,0.979,0.959,237.341
+page-blocks0.dat,SMOTEENN,ExtraTreesClassifier,13.61,0.996,0.996,1.0,0.996,0.991,1505.182
 car-good.dat,RandomOverSampler,ExtraTreesClassifier,2.878,0.996,0.997,1.0,0.996,0.993,54.746
 analcatdata_lawsuit (id:450),RandomOverSampler,RandomForestClassifier,2.87,0.996,0.996,0.998,0.996,0.992,37.917
+arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.79,0.993,0.993,1.0,0.993,0.987,241.673
