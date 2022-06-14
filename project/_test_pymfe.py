@@ -57,4 +57,4 @@ df.columns = new_header
 
 print(df)
 
-df.to_csv(sys.path[0] + "/output/" + "kb_characteristics_pymfe.csv", sep=",", index=False)
+# df.to_csv(sys.path[0] + "/output/" + "kb_characteristics_pymfe.csv", sep=",", index=False)

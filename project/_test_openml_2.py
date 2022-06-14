@@ -9,4 +9,7 @@ df_openml = df_openml[rows_to_keep]
 
 print(df_openml)
 
+print("\ncount:")
+print(df_openml.count())
+
 #450, ...
