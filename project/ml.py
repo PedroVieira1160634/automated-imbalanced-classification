@@ -1,5 +1,6 @@
 import sys
 import time
+import datetime
 from decimal import Decimal
 import pandas as pd
 import numpy as np
@@ -31,9 +32,6 @@ def execute_ml(dataset_location, id_openml):
         df, dataset_name = read_file_openml(id_openml)
     else:
         return False
-    
-    # initial validations
-    # ...
     
     X, y, characteristics = features_labels(df, dataset_name)
     
@@ -85,6 +83,9 @@ def read_file_openml(id):
 
 
 def features_labels(df, dataset_name):
+    
+    print("Dataset              :", dataset_name, "\n")
+    
     X = df.iloc[: , :-1]
     y = df.iloc[: , -1:]
 
@@ -223,7 +224,19 @@ def pre_processing(X, y, balancing):
     
     if balancing == "KMeansSMOTE":
         #UserWarning: MiniBatchKMeans
-        sm = KMeansSMOTE(random_state=42, n_jobs=-1)
+        # kmeans = MiniBatchKMeans(batch_size=2048)
+        # , kmeans_estimator=kmeans
+        
+        imbalance_ratio = 0
+        if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+            if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+                imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+            else:
+                imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+        
+        n_clusters = 1/imbalance_ratio
+        
+        sm = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters)
         X, y = sm.fit_resample(X, y)
     
     if balancing == "SVMSMOTE":
@@ -460,8 +473,6 @@ def write_results(best_result):
 
 def write_results_elapsed_time(elapsed_time, dataset_name):
     
-    print("Elapsed Time         :", elapsed_time)
-    
     print("\nWrite Result (elapsed time)")
     
     df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
@@ -470,6 +481,7 @@ def write_results_elapsed_time(elapsed_time, dataset_name):
     
     if not df_kb_r2.empty :
         index = df_kb_r2.index.values[0]
+        elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
         df_kb_r.at[index, 'total elapsed time'] = elapsed_time
         
         df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
