@@ -49,9 +49,12 @@ def execute_ml(dataset_location, id_openml):
     resultsList = []
     
     for balancing in array_balancing:
-        X2, y2 = pre_processing(X, y, balancing) 
-        resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
-
+        try:
+            X2, y2 = pre_processing(X, y, balancing) 
+            resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
+        except Exception as e:
+            print(e)
+    
     best_result = find_best_result(resultsList)
     
     print("Best classifier is ", best_result.algorithm, " with ", best_result.balancing, "\n")
