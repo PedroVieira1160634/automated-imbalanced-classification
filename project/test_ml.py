@@ -11,6 +11,7 @@ start_time = time.time()
 #page-blocks0.dat
 #arsenic-male-bladder (id:947)
 #JapaneseVowels (id:976)
+#pc2 (id:1069)
 
 # dataset_name = "glass1.dat"
 # dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
