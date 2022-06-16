@@ -1,4 +1,4 @@
-#example ML
+#other tests ML
 
 import sys
 import time
@@ -26,11 +26,11 @@ from ml import read_file, read_file_openml, features_labels
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 
-# dataset_name = "glass1.dat"
-# read_file(sys.path[0] + "/input/" + dataset_name, "")
+dataset_name = "glass1.dat"
+df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-#450
-df, dataset_name = read_file_openml(450)
+# openml
+# df, dataset_name = read_file_openml(450)
 
 
 
@@ -48,16 +48,18 @@ X, y, characteristics = features_labels(df, dataset_name)
 
 #print(y.value_counts())
 
-# iht = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
-# X, y = iht.fit_resample(X, y)
+# print(characteristics.imbalance_ratio)
 
-smote = SMOTE(random_state=42, n_jobs=-1)
-X, y = smote.fit_resample(X, y)
+n_clusters = 1/characteristics.imbalance_ratio
 
-# kmeans = MiniBatchKMeans(batch_size=2048)
-# , kmeans_estimator=kmeans
+sm = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters) #0.04 0.0001 k_neighbors=2
+X, y = sm.fit_resample(X, y)
+
 # sm = KMeansSMOTE(random_state=42, n_jobs=-1)
 # X, y = sm.fit_resample(X, y)
+
+# smote = SMOTE(random_state=42, n_jobs=-1)
+# X, y = smote.fit_resample(X, y)
 
 #print(y.value_counts())
 

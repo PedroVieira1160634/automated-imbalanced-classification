@@ -12,7 +12,6 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 #glass1.dat
 #page-blocks0.dat
-#car-good.dat
 df = pd.read_csv(sys.path[0] + "/input/" + "glass1.dat")
 
 X = df.iloc[:,:-1]
