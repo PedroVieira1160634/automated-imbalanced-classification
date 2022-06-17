@@ -27,7 +27,6 @@ warnings.filterwarnings("ignore")
 def execute_ml(dataset_location, id_openml):
     
     try:
-        
         start_time = time.time()
         
         if dataset_location:
@@ -41,10 +40,15 @@ def execute_ml(dataset_location, id_openml):
         
         write_characteristics(characteristics)
         
-        array_balancing = [
-            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
-            "SMOTEENN", "SMOTETomek"
-        ]
+        array_balancing = ["-"]
+        # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
+        # array_balancing = [
+        #     "-", 
+        #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+        #     "SMOTEENN", "SMOTETomek"
+        # ]
+        
         resultsList = []
         
         for balancing in array_balancing:
@@ -266,7 +270,7 @@ def pre_processing(X, y, balancing):
 
 
 # initial: 1 + 19   balancing techniques and 7 classification algorithms    = 140   combinations
-# final:   8        balancing techniques and 4 classification algorithms    = 32    combinations
+# final:   ?        balancing techniques and ? classification algorithms    = ?     combinations
 def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [

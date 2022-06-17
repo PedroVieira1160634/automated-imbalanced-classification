@@ -6,6 +6,7 @@ from datetime import datetime
 from decimal import Decimal
 import pandas as pd
 import numpy as np
+from imblearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
@@ -26,11 +27,10 @@ from ml import read_file, read_file_openml, features_labels
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
 
-dataset_name = "glass1.dat"
-df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
+# dataset_name = "glass1.dat"
+# df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-# openml
-# df, dataset_name = read_file_openml(450)
+df, dataset_name = read_file_openml(40900)
 
 
 
@@ -45,21 +45,12 @@ df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 X, y, characteristics = features_labels(df, dataset_name)
 
 
+# print(characteristics.imbalance_ratio)
 
 #print(y.value_counts())
 
-# print(characteristics.imbalance_ratio)
-
-n_clusters = 1/characteristics.imbalance_ratio
-
-sm = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters) #0.04 0.0001 k_neighbors=2
-X, y = sm.fit_resample(X, y)
-
-# sm = KMeansSMOTE(random_state=42, n_jobs=-1)
-# X, y = sm.fit_resample(X, y)
-
-# smote = SMOTE(random_state=42, n_jobs=-1)
-# X, y = smote.fit_resample(X, y)
+# over = RandomOverSampler(random_state=42)
+# X, y = over.fit_resample(X, y)
 
 #print(y.value_counts())
 
@@ -72,7 +63,12 @@ X, y = sm.fit_resample(X, y)
 
 start_time = time.time()
 
-algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+
+model = make_pipeline(
+    RandomOverSampler(random_state=42),
+    ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+)
 
 cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)
 
@@ -83,8 +79,8 @@ scoring = {'balanced_accuracy': 'balanced_accuracy',
            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
            }
 
-#, return_train_score=True
-scores = cross_validate(algorithm, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
+#, return_train_score=True return_estimator=True
+scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
 
 finish_time = round(time.time() - start_time,3)
 
@@ -95,13 +91,20 @@ roc_auc = round(np.mean(scores['train_roc_auc']),3)
 g_mean = round(np.mean(scores['train_g_mean']),3)
 cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
 
+balanced_accuracy_std = round(np.std(scores['train_balanced_accuracy']),3)
+f1_std = round(np.std(scores['train_f1']),3)
+roc_auc_std = round(np.std(scores['train_roc_auc']),3)
+g_mean_std = round(np.std(scores['train_g_mean']),3)
+cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
+
 print("train:")
-print("Balanced Accuracy    :", balanced_accuracy)
-print("F1 Score             :", f1)
-print("ROC AUC              :", roc_auc)
-print("G-Mean               :", g_mean)
-print("Cohen Kappa          :", cohen_kappa)
+print("Balanced Accuracy    :", balanced_accuracy, " +/- std. dev.:", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- std. dev.:", f1_std)
+print("ROC AUC              :", roc_auc, " +/- std. dev.:", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- std. dev.:", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- std. dev.:", cohen_kappa_std)
 print("")
+
 
 balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
 f1 = round(np.mean(scores['test_f1']),3)
@@ -109,12 +112,19 @@ roc_auc = round(np.mean(scores['test_roc_auc']),3)
 g_mean = round(np.mean(scores['test_g_mean']),3)
 cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
 
+balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
+f1_std = round(np.std(scores['test_f1']),3)
+roc_auc_std = round(np.std(scores['test_roc_auc']),3)
+g_mean_std = round(np.std(scores['test_g_mean']),3)
+cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
+
 print("test:")
-print("Balanced Accuracy    :", balanced_accuracy)
-print("F1 Score             :", f1)
-print("ROC AUC              :", roc_auc)
-print("G-Mean               :", g_mean)
-print("Cohen Kappa          :", cohen_kappa)
+print("Balanced Accuracy    :", balanced_accuracy, " +/- std. dev.:", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- std. dev.:", f1_std)
+print("ROC AUC              :", roc_auc, " +/- std. dev.:", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- std. dev.:", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- std. dev.:", cohen_kappa_std)
+
 
 print("")
 print("time                 :", finish_time)

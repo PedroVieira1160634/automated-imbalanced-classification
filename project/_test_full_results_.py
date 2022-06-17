@@ -95,7 +95,6 @@ def remove_worst_scores_pre_processing(df_kb_r):
     print(df_kb_r)
 
 def print_scores_classifier_algorithm(df_kb_r):
-    #classifier algorithm
     list_classifier = []
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "LGBMClassifier"]
@@ -129,7 +128,6 @@ def print_scores_classifier_algorithm(df_kb_r):
     print(df_classifier)
 
 def remove_worst_scores_classifier_algorithm(df_kb_r):
-
     df_kb_r = df_kb_r.loc[
         (df_kb_r['algorithm'] != "BaggingClassifier") & 
         (df_kb_r['algorithm'] != "AdaBoostClassifier") &
