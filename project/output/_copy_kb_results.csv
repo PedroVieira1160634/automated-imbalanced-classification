@@ -1,5 +1,0 @@
-dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,total elapsed time
-glass1.dat,RandomOverSampler,RandomForestClassifier,3.035,0.926,0.928,0.969,0.924,0.852,39.34
-page-blocks0.dat,RandomOverSampler,ExtraTreesClassifier,10.938,0.994,0.994,0.999,0.994,0.988,161.944
-car-good.dat,RandomOverSampler,ExtraTreesClassifier,2.878,0.996,0.997,1.0,0.996,0.993,54.746
-analcatdata_lawsuit (id:450),RandomOverSampler,RandomForestClassifier,2.87,0.996,0.996,0.998,0.996,0.992,37.917
