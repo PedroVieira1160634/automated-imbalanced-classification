@@ -1,0 +1,65 @@
+dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
+arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.772,0.993,0.993,1.0,0.993,0.987,0.993
+arsenic-male-bladder (id:947),RandomOverSampler,ExtraTreesClassifier,3.178,0.991,0.991,1.0,0.991,0.982,0.991
+arsenic-male-bladder (id:947),RandomOverSampler,XGBClassifier,2.364,0.99,0.99,1.0,0.99,0.98,0.99
+arsenic-male-bladder (id:947),SMOTEENN,RandomForestClassifier,3.344,0.988,0.989,0.999,0.988,0.976,0.988
+arsenic-male-bladder (id:947),RandomOverSampler,RandomForestClassifier,3.642,0.988,0.988,1.0,0.988,0.976,0.988
+arsenic-male-bladder (id:947),KMeansSMOTE,XGBClassifier,1.822,0.989,0.989,0.994,0.989,0.979,0.988
+arsenic-male-bladder (id:947),KMeansSMOTE,RandomForestClassifier,3.202,0.989,0.989,0.994,0.989,0.978,0.988
+arsenic-male-bladder (id:947),KMeansSMOTE,LGBMClassifier,0.628,0.988,0.988,0.993,0.988,0.976,0.987
+arsenic-male-bladder (id:947),SMOTEENN,LGBMClassifier,0.536,0.985,0.986,0.998,0.985,0.97,0.985
+arsenic-male-bladder (id:947),SMOTEENN,ExtraTreesClassifier,2.859,0.984,0.986,0.999,0.984,0.97,0.985
+arsenic-male-bladder (id:947),SMOTEENN,XGBClassifier,1.506,0.984,0.985,0.998,0.984,0.968,0.984
+arsenic-male-bladder (id:947),KMeansSMOTE,ExtraTreesClassifier,4.492,0.984,0.984,0.993,0.984,0.969,0.983
+arsenic-male-bladder (id:947),SVMSMOTE,RandomForestClassifier,3.193,0.983,0.983,0.997,0.983,0.966,0.982
+arsenic-male-bladder (id:947),SMOTETomek,ExtraTreesClassifier,3.66,0.981,0.982,0.998,0.981,0.963,0.981
+glass1.dat,SMOTEENN,ExtraTreesClassifier,2.255,0.979,0.979,0.998,0.979,0.959,0.979
+arsenic-male-bladder (id:947),SMOTETomek,RandomForestClassifier,3.449,0.98,0.979,0.998,0.979,0.959,0.979
+arsenic-male-bladder (id:947),SVMSMOTE,ExtraTreesClassifier,3.168,0.979,0.979,0.996,0.979,0.958,0.978
+arsenic-male-bladder (id:947),ADASYN,ExtraTreesClassifier,3.79,0.977,0.977,0.994,0.977,0.954,0.976
+arsenic-male-bladder (id:947),BorderlineSMOTE,ExtraTreesClassifier,3.629,0.977,0.977,0.996,0.977,0.954,0.976
+arsenic-male-bladder (id:947),BorderlineSMOTE,RandomForestClassifier,3.703,0.977,0.977,0.997,0.977,0.954,0.976
+arsenic-male-bladder (id:947),SMOTETomek,XGBClassifier,2.197,0.977,0.977,0.996,0.977,0.954,0.976
+arsenic-male-bladder (id:947),BorderlineSMOTE,XGBClassifier,3.185,0.977,0.977,0.996,0.977,0.954,0.976
+arsenic-male-bladder (id:947),SVMSMOTE,XGBClassifier,2.892,0.977,0.977,0.995,0.977,0.954,0.976
+arsenic-male-bladder (id:947),SMOTETomek,LGBMClassifier,0.69,0.976,0.975,0.996,0.976,0.951,0.975
+arsenic-male-bladder (id:947),BorderlineSMOTE,LGBMClassifier,0.807,0.975,0.975,0.996,0.975,0.95,0.974
+arsenic-male-bladder (id:947),SMOTE,ExtraTreesClassifier,4.355,0.975,0.975,0.993,0.975,0.95,0.974
+arsenic-male-bladder (id:947),SVMSMOTE,LGBMClassifier,0.796,0.975,0.975,0.996,0.975,0.951,0.974
+arsenic-male-bladder (id:947),ADASYN,RandomForestClassifier,4.084,0.974,0.974,0.996,0.974,0.948,0.973
+arsenic-male-bladder (id:947),SMOTE,XGBClassifier,3.003,0.973,0.973,0.994,0.973,0.947,0.972
+arsenic-male-bladder (id:947),SMOTE,RandomForestClassifier,4.619,0.972,0.972,0.995,0.972,0.944,0.971
+arsenic-male-bladder (id:947),SMOTE,LGBMClassifier,0.841,0.972,0.972,0.995,0.972,0.944,0.971
+arsenic-male-bladder (id:947),ADASYN,XGBClassifier,3.086,0.965,0.965,0.993,0.965,0.931,0.964
+arsenic-male-bladder (id:947),ADASYN,LGBMClassifier,0.907,0.965,0.966,0.993,0.965,0.931,0.964
+glass1.dat,SMOTEENN,RandomForestClassifier,2.476,0.944,0.942,0.992,0.943,0.888,0.942
+glass1.dat,SMOTEENN,XGBClassifier,0.474,0.942,0.942,0.986,0.941,0.884,0.939
+glass1.dat,SMOTEENN,LGBMClassifier,0.277,0.933,0.933,0.988,0.932,0.866,0.93
+glass1.dat,RandomOverSampler,ExtraTreesClassifier,2.237,0.908,0.906,0.973,0.907,0.816,0.902
+glass1.dat,SMOTETomek,ExtraTreesClassifier,3.265,0.902,0.9,0.967,0.901,0.803,0.895
+glass1.dat,RandomOverSampler,RandomForestClassifier,2.525,0.9,0.901,0.958,0.899,0.801,0.892
+glass1.dat,SMOTE,ExtraTreesClassifier,2.305,0.898,0.898,0.962,0.897,0.795,0.89
+glass1.dat,SVMSMOTE,ExtraTreesClassifier,2.235,0.895,0.895,0.962,0.894,0.79,0.887
+glass1.dat,SMOTETomek,RandomForestClassifier,2.706,0.897,0.896,0.949,0.896,0.794,0.886
+glass1.dat,RandomOverSampler,XGBClassifier,0.526,0.89,0.893,0.949,0.889,0.781,0.88
+glass1.dat,KMeansSMOTE,ExtraTreesClassifier,2.207,0.89,0.884,0.958,0.887,0.779,0.88
+glass1.dat,BorderlineSMOTE,ExtraTreesClassifier,2.413,0.884,0.885,0.961,0.882,0.768,0.876
+glass1.dat,ADASYN,ExtraTreesClassifier,3.265,0.884,0.883,0.96,0.882,0.767,0.875
+glass1.dat,SVMSMOTE,RandomForestClassifier,2.624,0.885,0.884,0.949,0.884,0.769,0.874
+glass1.dat,RandomOverSampler,LGBMClassifier,0.316,0.884,0.886,0.943,0.882,0.768,0.873
+glass1.dat,SMOTE,RandomForestClassifier,2.999,0.883,0.882,0.948,0.882,0.766,0.872
+glass1.dat,BorderlineSMOTE,RandomForestClassifier,3.134,0.875,0.877,0.945,0.874,0.751,0.864
+glass1.dat,SMOTE,XGBClassifier,0.559,0.872,0.873,0.94,0.869,0.743,0.859
+glass1.dat,SMOTETomek,LGBMClassifier,0.293,0.869,0.87,0.938,0.868,0.738,0.857
+glass1.dat,KMeansSMOTE,RandomForestClassifier,2.585,0.87,0.865,0.942,0.868,0.74,0.857
+glass1.dat,ADASYN,RandomForestClassifier,3.443,0.868,0.865,0.948,0.866,0.735,0.856
+glass1.dat,SVMSMOTE,XGBClassifier,0.572,0.869,0.869,0.934,0.867,0.737,0.855
+glass1.dat,BorderlineSMOTE,XGBClassifier,0.905,0.867,0.87,0.934,0.865,0.735,0.854
+glass1.dat,KMeansSMOTE,XGBClassifier,0.52,0.867,0.865,0.936,0.865,0.734,0.853
+glass1.dat,SMOTE,LGBMClassifier,0.401,0.863,0.863,0.933,0.861,0.726,0.849
+glass1.dat,SMOTETomek,XGBClassifier,0.518,0.861,0.861,0.932,0.86,0.721,0.847
+glass1.dat,BorderlineSMOTE,LGBMClassifier,0.337,0.859,0.862,0.924,0.856,0.717,0.844
+glass1.dat,SVMSMOTE,LGBMClassifier,0.322,0.857,0.859,0.928,0.855,0.714,0.843
+glass1.dat,ADASYN,XGBClassifier,0.556,0.856,0.855,0.936,0.854,0.712,0.843
+glass1.dat,ADASYN,LGBMClassifier,0.35,0.856,0.855,0.935,0.855,0.71,0.842
+glass1.dat,KMeansSMOTE,LGBMClassifier,0.337,0.852,0.851,0.937,0.85,0.704,0.839
