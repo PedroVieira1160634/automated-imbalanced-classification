@@ -1,30 +1,254 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
+yeast_ml8 (id:316),RandomOverSampler,RandomForestClassifier,15.704,1.0,1.0,1.0,1.0,1.0,1.0
+Satellite (id:40900),RandomOverSampler,ExtraTreesClassifier,7.134,1.0,1.0,1.0,1.0,1.0,1.0
+yeast_ml8 (id:316),RandomOverSampler,ExtraTreesClassifier,9.008,1.0,1.0,1.0,1.0,1.0,1.0
+Satellite (id:40900),RandomOverSampler,RandomForestClassifier,10.313,1.0,1.0,1.0,1.0,1.0,1.0
+pc2 (id:1069),SMOTEENN,ExtraTreesClassifier,8.223,0.999,0.999,1.0,0.999,0.999,0.999
+dis (id:40713),RandomOverSampler,RandomForestClassifier,5.973,0.999,0.999,1.0,0.999,0.997,0.999
+dis (id:40713),RandomOverSampler,ExtraTreesClassifier,6.157,0.999,0.999,1.0,0.999,0.999,0.999
+yeast_ml8 (id:316),KMeansSMOTE,ExtraTreesClassifier,8.294,0.999,0.999,1.0,0.999,0.997,0.999
+yeast_ml8 (id:316),RandomOverSampler,XGBClassifier,28.25,0.999,0.999,1.0,0.999,0.997,0.999
+yeast_ml8 (id:316),SMOTEENN,ExtraTreesClassifier,8.014,0.999,0.999,1.0,0.999,0.998,0.999
+JapaneseVowels (id:976),RandomOverSampler,ExtraTreesClassifier,10.321,0.999,0.999,1.0,0.999,0.998,0.999
+yeast_ml8 (id:316),KMeansSMOTE,RandomForestClassifier,35.764,0.999,0.999,1.0,0.999,0.997,0.999
+yeast_ml8 (id:316),SMOTEENN,RandomForestClassifier,26.772,0.999,0.999,1.0,0.999,0.999,0.999
+JapaneseVowels (id:976),SMOTEENN,ExtraTreesClassifier,8.313,0.999,0.999,1.0,0.999,0.998,0.999
+Satellite (id:40900),RandomOverSampler,LGBMClassifier,4.58,0.999,0.999,1.0,0.999,0.997,0.999
+pc2 (id:1069),SMOTEENN,LGBMClassifier,6.5,0.999,0.999,1.0,0.999,0.998,0.999
+pc2 (id:1069),SMOTEENN,XGBClassifier,20.936,0.999,0.999,1.0,0.999,0.998,0.999
+pc2 (id:1069),SMOTEENN,RandomForestClassifier,16.203,0.999,0.999,1.0,0.999,0.998,0.999
+Satellite (id:40900),RandomOverSampler,XGBClassifier,12.017,0.999,0.999,1.0,0.999,0.997,0.999
+pc2 (id:1069),BorderlineSMOTE,ExtraTreesClassifier,9.731,0.999,0.999,1.0,0.999,0.997,0.999
+yeast_ml8 (id:316),ADASYN,ExtraTreesClassifier,9.498,0.998,0.998,1.0,0.998,0.995,0.998
+dis (id:40713),RandomOverSampler,LGBMClassifier,2.556,0.998,0.998,1.0,0.998,0.996,0.998
+mc1 (id:1056),SMOTEENN,RandomForestClassifier,25.748,0.998,0.998,1.0,0.998,0.997,0.998
+mc1 (id:1056),SMOTEENN,LGBMClassifier,7.094,0.998,0.998,1.0,0.998,0.996,0.998
+yeast_ml8 (id:316),SMOTETomek,ExtraTreesClassifier,8.567,0.998,0.998,1.0,0.998,0.996,0.998
+yeast_ml8 (id:316),RandomOverSampler,LGBMClassifier,19.888,0.998,0.998,1.0,0.998,0.996,0.998
+yeast_ml8 (id:316),SMOTE,ExtraTreesClassifier,9.39,0.998,0.998,1.0,0.998,0.996,0.998
+pc2 (id:1069),KMeansSMOTE,ExtraTreesClassifier,8.891,0.998,0.998,0.999,0.998,0.997,0.998
+yeast_ml8 (id:316),BorderlineSMOTE,ExtraTreesClassifier,8.051,0.998,0.998,0.999,0.998,0.995,0.998
+mc1 (id:1056),KMeansSMOTE,ExtraTreesClassifier,14.998,0.998,0.998,0.999,0.998,0.996,0.998
+JapaneseVowels (id:976),SMOTE,ExtraTreesClassifier,9.999,0.998,0.998,1.0,0.998,0.995,0.998
+yeast_ml8 (id:316),SMOTE,RandomForestClassifier,35.324,0.998,0.998,1.0,0.998,0.995,0.998
+pc2 (id:1069),SMOTETomek,ExtraTreesClassifier,8.671,0.998,0.998,1.0,0.998,0.996,0.998
+mc1 (id:1056),SMOTEENN,ExtraTreesClassifier,14.875,0.998,0.998,1.0,0.998,0.997,0.998
+mc1 (id:1056),KMeansSMOTE,LGBMClassifier,9.132,0.998,0.998,0.999,0.998,0.996,0.998
+mc1 (id:1056),KMeansSMOTE,XGBClassifier,41.717,0.998,0.998,1.0,0.998,0.995,0.998
+mc1 (id:1056),KMeansSMOTE,RandomForestClassifier,30.112,0.998,0.998,0.999,0.998,0.995,0.998
+mc1 (id:1056),SMOTEENN,XGBClassifier,42.536,0.998,0.998,1.0,0.998,0.996,0.998
+yeast_ml8 (id:316),SMOTETomek,RandomForestClassifier,34.153,0.998,0.998,1.0,0.998,0.995,0.998
+JapaneseVowels (id:976),SVMSMOTE,ExtraTreesClassifier,9.906,0.997,0.997,1.0,0.997,0.995,0.997
+mc1 (id:1056),SVMSMOTE,ExtraTreesClassifier,12.766,0.997,0.997,1.0,0.997,0.993,0.997
+yeast_ml8 (id:316),ADASYN,RandomForestClassifier,37.11,0.997,0.997,1.0,0.997,0.995,0.997
+JapaneseVowels (id:976),ADASYN,ExtraTreesClassifier,9.996,0.997,0.997,1.0,0.997,0.994,0.997
+yeast_ml8 (id:316),BorderlineSMOTE,RandomForestClassifier,28.231,0.997,0.997,0.999,0.997,0.995,0.997
+JapaneseVowels (id:976),SMOTEENN,LGBMClassifier,4.091,0.997,0.997,1.0,0.997,0.995,0.997
+pc2 (id:1069),SMOTETomek,RandomForestClassifier,23.656,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),SMOTETomek,XGBClassifier,29.791,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),SMOTETomek,LGBMClassifier,6.821,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),BorderlineSMOTE,LGBMClassifier,8.063,0.997,0.997,0.999,0.997,0.994,0.997
+JapaneseVowels (id:976),SMOTETomek,ExtraTreesClassifier,9.968,0.997,0.997,1.0,0.997,0.995,0.997
+pc2 (id:1069),KMeansSMOTE,XGBClassifier,36.535,0.997,0.997,1.0,0.997,0.994,0.997
+JapaneseVowels (id:976),SMOTEENN,RandomForestClassifier,23.133,0.997,0.997,1.0,0.997,0.995,0.997
+pc2 (id:1069),ADASYN,ExtraTreesClassifier,8.536,0.997,0.997,1.0,0.997,0.995,0.997
+dis (id:40713),SMOTEENN,RandomForestClassifier,8.201,0.997,0.997,1.0,0.997,0.994,0.997
+dis (id:40713),SMOTEENN,XGBClassifier,11.511,0.997,0.997,1.0,0.997,0.993,0.997
+dis (id:40713),SMOTEENN,LGBMClassifier,2.435,0.997,0.997,1.0,0.997,0.995,0.997
+yeast_ml8 (id:316),SMOTEENN,LGBMClassifier,22.428,0.997,0.997,1.0,0.997,0.994,0.997
+dis (id:40713),RandomOverSampler,XGBClassifier,10.93,0.997,0.997,1.0,0.997,0.995,0.997
+JapaneseVowels (id:976),RandomOverSampler,LGBMClassifier,12.986,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),ADASYN,XGBClassifier,30.976,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),SVMSMOTE,ExtraTreesClassifier,8.611,0.997,0.997,0.999,0.997,0.995,0.997
+pc2 (id:1069),SMOTE,RandomForestClassifier,22.968,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),SMOTE,XGBClassifier,32.373,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),SMOTE,LGBMClassifier,6.481,0.997,0.997,1.0,0.997,0.994,0.997
+JapaneseVowels (id:976),SMOTEENN,XGBClassifier,24.925,0.997,0.997,1.0,0.997,0.995,0.997
+Satellite (id:40900),SMOTEENN,ExtraTreesClassifier,9.012,0.997,0.997,1.0,0.997,0.995,0.997
+pc2 (id:1069),ADASYN,LGBMClassifier,6.237,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),BorderlineSMOTE,RandomForestClassifier,23.123,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),SMOTE,ExtraTreesClassifier,8.85,0.997,0.997,1.0,0.997,0.995,0.997
+Satellite (id:40900),SMOTEENN,LGBMClassifier,6.766,0.997,0.997,1.0,0.997,0.993,0.997
+pc2 (id:1069),BorderlineSMOTE,XGBClassifier,36.047,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),KMeansSMOTE,LGBMClassifier,6.992,0.997,0.997,1.0,0.997,0.994,0.997
+pc2 (id:1069),KMeansSMOTE,RandomForestClassifier,26.266,0.997,0.997,0.999,0.997,0.994,0.997
+JapaneseVowels (id:976),RandomOverSampler,XGBClassifier,28.448,0.997,0.997,1.0,0.997,0.994,0.997
+mc1 (id:1056),SMOTE,ExtraTreesClassifier,14.679,0.997,0.997,1.0,0.997,0.993,0.997
+JapaneseVowels (id:976),BorderlineSMOTE,ExtraTreesClassifier,10.246,0.997,0.997,1.0,0.997,0.994,0.997
+Satellite (id:40900),SVMSMOTE,ExtraTreesClassifier,8.835,0.997,0.997,1.0,0.997,0.994,0.997
+Satellite (id:40900),BorderlineSMOTE,ExtraTreesClassifier,9.827,0.997,0.997,1.0,0.997,0.995,0.997
+Satellite (id:40900),BorderlineSMOTE,LGBMClassifier,7.412,0.997,0.997,1.0,0.997,0.993,0.997
+JapaneseVowels (id:976),ADASYN,LGBMClassifier,4.557,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),SVMSMOTE,XGBClassifier,47.807,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),ADASYN,LGBMClassifier,7.682,0.996,0.996,1.0,0.996,0.991,0.996
+mc1 (id:1056),SMOTE,LGBMClassifier,7.875,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),SMOTE,XGBClassifier,49.463,0.996,0.996,1.0,0.996,0.992,0.996
+page-blocks0.dat,SMOTEENN,ExtraTreesClassifier,5.906,0.996,0.996,1.0,0.996,0.991,0.996
+yeast_ml8 (id:316),SVMSMOTE,RandomForestClassifier,20.402,0.996,0.996,0.998,0.996,0.993,0.996
+mc1 (id:1056),BorderlineSMOTE,LGBMClassifier,8.847,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),SMOTETomek,LGBMClassifier,7.557,0.996,0.996,1.0,0.996,0.991,0.996
+pc2 (id:1069),ADASYN,RandomForestClassifier,22.671,0.996,0.996,1.0,0.996,0.993,0.996
+pc2 (id:1069),SVMSMOTE,LGBMClassifier,5.632,0.996,0.995,0.999,0.996,0.992,0.996
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,4.421,0.996,0.996,1.0,0.996,0.992,0.996
+dis (id:40713),BorderlineSMOTE,LGBMClassifier,2.086,0.996,0.996,1.0,0.996,0.991,0.996
+mc1 (id:1056),SMOTE,RandomForestClassifier,31.909,0.996,0.996,1.0,0.996,0.993,0.996
+mc1 (id:1056),SMOTETomek,ExtraTreesClassifier,15.739,0.996,0.996,1.0,0.996,0.993,0.996
+JapaneseVowels (id:976),BorderlineSMOTE,XGBClassifier,37.701,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),RandomOverSampler,ExtraTreesClassifier,13.783,0.996,0.996,0.999,0.996,0.991,0.996
+mc1 (id:1056),ADASYN,XGBClassifier,59.067,0.996,0.996,1.0,0.996,0.991,0.996
+mc1 (id:1056),ADASYN,RandomForestClassifier,40.275,0.996,0.996,1.0,0.996,0.992,0.996
+dis (id:40713),SVMSMOTE,LGBMClassifier,1.999,0.996,0.996,1.0,0.996,0.991,0.996
+mc1 (id:1056),SVMSMOTE,RandomForestClassifier,22.352,0.996,0.996,1.0,0.996,0.992,0.996
+yeast_ml8 (id:316),KMeansSMOTE,LGBMClassifier,19.536,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),ADASYN,ExtraTreesClassifier,16.491,0.996,0.996,1.0,0.996,0.993,0.996
+Satellite (id:40900),KMeansSMOTE,RandomForestClassifier,13.373,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),BorderlineSMOTE,LGBMClassifier,4.616,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),ADASYN,XGBClassifier,37.216,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),KMeansSMOTE,ExtraTreesClassifier,8.816,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),SVMSMOTE,XGBClassifier,37.111,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),SMOTETomek,LGBMClassifier,4.494,0.996,0.996,1.0,0.996,0.993,0.996
+pc2 (id:1069),SVMSMOTE,RandomForestClassifier,14.934,0.996,0.995,0.999,0.996,0.992,0.996
+Satellite (id:40900),SMOTEENN,XGBClassifier,19.064,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),RandomOverSampler,RandomForestClassifier,23.304,0.996,0.996,1.0,0.996,0.993,0.996
+mc1 (id:1056),SVMSMOTE,LGBMClassifier,7.885,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),SMOTE,LGBMClassifier,4.6,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),SVMSMOTE,XGBClassifier,16.363,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),SVMSMOTE,LGBMClassifier,6.663,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),KMeansSMOTE,ExtraTreesClassifier,8.599,0.996,0.996,1.0,0.996,0.993,0.996
+mc1 (id:1056),SMOTETomek,XGBClassifier,51.061,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),KMeansSMOTE,XGBClassifier,14.431,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),BorderlineSMOTE,ExtraTreesClassifier,15.078,0.996,0.996,1.0,0.996,0.993,0.996
+Satellite (id:40900),KMeansSMOTE,LGBMClassifier,6.001,0.996,0.996,1.0,0.996,0.993,0.996
+yeast_ml8 (id:316),SVMSMOTE,ExtraTreesClassifier,7.013,0.996,0.996,0.998,0.996,0.993,0.996
+JapaneseVowels (id:976),SMOTE,XGBClassifier,37.043,0.996,0.996,1.0,0.996,0.992,0.996
+JapaneseVowels (id:976),SMOTETomek,XGBClassifier,36.918,0.996,0.996,1.0,0.996,0.993,0.996
+yeast_ml8 (id:316),BorderlineSMOTE,LGBMClassifier,19.325,0.996,0.996,0.999,0.996,0.991,0.996
+Satellite (id:40900),ADASYN,LGBMClassifier,6.824,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),BorderlineSMOTE,RandomForestClassifier,33.239,0.996,0.996,1.0,0.996,0.992,0.996
+mc1 (id:1056),BorderlineSMOTE,XGBClassifier,60.642,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),ADASYN,ExtraTreesClassifier,10.538,0.996,0.996,1.0,0.996,0.992,0.996
+Satellite (id:40900),BorderlineSMOTE,XGBClassifier,19.729,0.996,0.996,1.0,0.996,0.993,0.996
+mc1 (id:1056),SMOTETomek,RandomForestClassifier,29.291,0.996,0.996,1.0,0.996,0.992,0.996
+dis (id:40713),ADASYN,RandomForestClassifier,7.194,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),SMOTE,LGBMClassifier,2.014,0.995,0.995,1.0,0.995,0.991,0.995
+dis (id:40713),SMOTE,XGBClassifier,10.862,0.995,0.995,1.0,0.995,0.991,0.995
+dis (id:40713),SMOTE,RandomForestClassifier,7.492,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),ADASYN,LGBMClassifier,2.435,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),ADASYN,XGBClassifier,11.699,0.995,0.995,1.0,0.995,0.989,0.995
+dis (id:40713),KMeansSMOTE,LGBMClassifier,1.97,0.995,0.995,0.999,0.995,0.989,0.995
+dis (id:40713),BorderlineSMOTE,XGBClassifier,12.152,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),BorderlineSMOTE,RandomForestClassifier,6.664,0.995,0.995,1.0,0.995,0.991,0.995
+dis (id:40713),BorderlineSMOTE,ExtraTreesClassifier,6.255,0.995,0.995,1.0,0.995,0.989,0.995
+dis (id:40713),SVMSMOTE,XGBClassifier,12.163,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),SVMSMOTE,RandomForestClassifier,7.579,0.995,0.995,1.0,0.995,0.989,0.995
+dis (id:40713),SMOTEENN,ExtraTreesClassifier,7.278,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),SMOTETomek,XGBClassifier,12.066,0.995,0.995,1.0,0.995,0.991,0.995
+dis (id:40713),SMOTETomek,RandomForestClassifier,8.602,0.995,0.995,1.0,0.995,0.99,0.995
+dis (id:40713),SMOTETomek,LGBMClassifier,2.233,0.995,0.995,1.0,0.995,0.991,0.995
+yeast_ml8 (id:316),ADASYN,LGBMClassifier,22.656,0.995,0.995,1.0,0.995,0.991,0.995
+page-blocks0.dat,SMOTEENN,RandomForestClassifier,10.623,0.995,0.995,1.0,0.995,0.989,0.995
+JapaneseVowels (id:976),KMeansSMOTE,XGBClassifier,32.96,0.995,0.995,1.0,0.995,0.989,0.995
+JapaneseVowels (id:976),SVMSMOTE,RandomForestClassifier,26.704,0.995,0.995,1.0,0.995,0.99,0.995
+JapaneseVowels (id:976),KMeansSMOTE,LGBMClassifier,4.19,0.995,0.995,1.0,0.995,0.989,0.995
+page-blocks0.dat,SMOTEENN,XGBClassifier,10.493,0.995,0.995,1.0,0.995,0.989,0.995
+yeast_ml8 (id:316),SMOTETomek,LGBMClassifier,18.412,0.995,0.995,1.0,0.995,0.991,0.995
+JapaneseVowels (id:976),SMOTETomek,RandomForestClassifier,27.454,0.995,0.995,1.0,0.995,0.989,0.995
+JapaneseVowels (id:976),SMOTE,RandomForestClassifier,27.714,0.995,0.995,1.0,0.995,0.989,0.995
+pc2 (id:1069),SVMSMOTE,XGBClassifier,20.166,0.996,0.994,0.999,0.996,0.991,0.995
+yeast_ml8 (id:316),SMOTEENN,XGBClassifier,49.425,0.995,0.995,1.0,0.995,0.989,0.995
+mc1 (id:1056),RandomOverSampler,RandomForestClassifier,14.888,0.995,0.995,0.999,0.995,0.991,0.995
+mc1 (id:1056),RandomOverSampler,XGBClassifier,31.324,0.995,0.995,0.999,0.995,0.99,0.995
+page-blocks0.dat,SMOTEENN,LGBMClassifier,3.29,0.995,0.995,1.0,0.995,0.99,0.995
+mc1 (id:1056),RandomOverSampler,LGBMClassifier,13.808,0.995,0.995,0.999,0.995,0.991,0.995
+Satellite (id:40900),SMOTETomek,ExtraTreesClassifier,10.904,0.995,0.995,1.0,0.995,0.99,0.995
+Satellite (id:40900),SMOTEENN,RandomForestClassifier,19.621,0.995,0.995,1.0,0.995,0.989,0.995
+Satellite (id:40900),SMOTE,LGBMClassifier,6.271,0.995,0.995,1.0,0.995,0.989,0.995
+Satellite (id:40900),SMOTE,XGBClassifier,17.984,0.995,0.995,1.0,0.995,0.99,0.995
+Satellite (id:40900),SMOTE,ExtraTreesClassifier,9.844,0.995,0.995,1.0,0.995,0.989,0.995
+Satellite (id:40900),SMOTETomek,LGBMClassifier,6.868,0.995,0.995,1.0,0.995,0.989,0.995
+Satellite (id:40900),ADASYN,XGBClassifier,17.635,0.995,0.995,1.0,0.995,0.991,0.995
+Satellite (id:40900),SMOTETomek,XGBClassifier,16.788,0.995,0.995,1.0,0.995,0.991,0.995
+yeast_ml8 (id:316),SMOTE,LGBMClassifier,21.014,0.995,0.995,1.0,0.995,0.991,0.995
+Satellite (id:40900),SVMSMOTE,RandomForestClassifier,17.792,0.994,0.994,1.0,0.994,0.988,0.994
+yeast_ml8 (id:316),BorderlineSMOTE,XGBClassifier,51.555,0.994,0.994,0.999,0.994,0.989,0.994
+dis (id:40713),SMOTE,ExtraTreesClassifier,6.736,0.994,0.994,1.0,0.994,0.987,0.994
+dis (id:40713),ADASYN,ExtraTreesClassifier,6.688,0.994,0.994,1.0,0.994,0.987,0.994
+yeast_ml8 (id:316),KMeansSMOTE,XGBClassifier,55.126,0.994,0.994,1.0,0.994,0.988,0.994
+dis (id:40713),KMeansSMOTE,XGBClassifier,10.479,0.994,0.994,0.999,0.994,0.988,0.994
+dis (id:40713),SVMSMOTE,ExtraTreesClassifier,7.729,0.994,0.994,1.0,0.994,0.988,0.994
+JapaneseVowels (id:976),BorderlineSMOTE,RandomForestClassifier,29.155,0.994,0.994,1.0,0.994,0.989,0.994
+dis (id:40713),SMOTETomek,ExtraTreesClassifier,6.508,0.994,0.994,1.0,0.994,0.987,0.994
+JapaneseVowels (id:976),ADASYN,RandomForestClassifier,28.912,0.994,0.994,1.0,0.994,0.989,0.994
+Satellite (id:40900),BorderlineSMOTE,RandomForestClassifier,19.072,0.994,0.994,1.0,0.994,0.987,0.994
+yeast_ml8 (id:316),ADASYN,XGBClassifier,67.668,0.993,0.993,1.0,0.993,0.987,0.993
+page-blocks0.dat,RandomOverSampler,ExtraTreesClassifier,8.12,0.993,0.993,0.999,0.993,0.987,0.993
+JapaneseVowels (id:976),KMeansSMOTE,RandomForestClassifier,20.703,0.993,0.993,1.0,0.993,0.986,0.993
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.772,0.993,0.993,1.0,0.993,0.987,0.993
+yeast_ml8 (id:316),SMOTE,XGBClassifier,62.519,0.993,0.993,1.0,0.993,0.986,0.993
+yeast_ml8 (id:316),SMOTETomek,XGBClassifier,65.619,0.993,0.993,1.0,0.993,0.986,0.993
+yeast_ml8 (id:316),SVMSMOTE,LGBMClassifier,17.66,0.994,0.992,0.999,0.994,0.987,0.993
+dis (id:40713),KMeansSMOTE,ExtraTreesClassifier,5.903,0.993,0.993,0.999,0.993,0.986,0.993
+dis (id:40713),KMeansSMOTE,RandomForestClassifier,6.548,0.993,0.993,0.999,0.993,0.987,0.993
+Satellite (id:40900),SMOTETomek,RandomForestClassifier,22.247,0.992,0.992,1.0,0.992,0.984,0.992
+Satellite (id:40900),SMOTE,RandomForestClassifier,19.646,0.992,0.992,1.0,0.992,0.984,0.992
+Satellite (id:40900),ADASYN,RandomForestClassifier,21.109,0.992,0.992,1.0,0.992,0.985,0.992
+page-blocks0.dat,RandomOverSampler,RandomForestClassifier,11.789,0.992,0.992,0.999,0.992,0.983,0.992
+yeast_ml8 (id:316),SVMSMOTE,XGBClassifier,40.77,0.993,0.991,0.998,0.993,0.986,0.992
+pc2 (id:1069),RandomOverSampler,RandomForestClassifier,9.747,0.991,0.991,1.0,0.991,0.982,0.991
+pc2 (id:1069),RandomOverSampler,ExtraTreesClassifier,7.683,0.991,0.991,1.0,0.991,0.982,0.991
 arsenic-male-bladder (id:947),RandomOverSampler,ExtraTreesClassifier,3.178,0.991,0.991,1.0,0.991,0.982,0.991
+pc2 (id:1069),RandomOverSampler,LGBMClassifier,13.487,0.99,0.99,1.0,0.99,0.981,0.99
 arsenic-male-bladder (id:947),RandomOverSampler,XGBClassifier,2.364,0.99,0.99,1.0,0.99,0.98,0.99
+page-blocks0.dat,RandomOverSampler,XGBClassifier,10.479,0.991,0.991,0.997,0.991,0.982,0.99
+pc2 (id:1069),RandomOverSampler,XGBClassifier,17.131,0.99,0.99,0.999,0.99,0.979,0.99
+page-blocks0.dat,RandomOverSampler,LGBMClassifier,10.903,0.99,0.99,0.998,0.99,0.981,0.99
 arsenic-male-bladder (id:947),SMOTEENN,RandomForestClassifier,3.344,0.988,0.989,0.999,0.988,0.976,0.988
-arsenic-male-bladder (id:947),RandomOverSampler,RandomForestClassifier,3.642,0.988,0.988,1.0,0.988,0.976,0.988
-arsenic-male-bladder (id:947),KMeansSMOTE,XGBClassifier,1.822,0.989,0.989,0.994,0.989,0.979,0.988
 arsenic-male-bladder (id:947),KMeansSMOTE,RandomForestClassifier,3.202,0.989,0.989,0.994,0.989,0.978,0.988
+arsenic-male-bladder (id:947),KMeansSMOTE,XGBClassifier,1.822,0.989,0.989,0.994,0.989,0.979,0.988
+arsenic-male-bladder (id:947),RandomOverSampler,RandomForestClassifier,3.642,0.988,0.988,1.0,0.988,0.976,0.988
 arsenic-male-bladder (id:947),KMeansSMOTE,LGBMClassifier,0.628,0.988,0.988,0.993,0.988,0.976,0.987
-arsenic-male-bladder (id:947),SMOTEENN,LGBMClassifier,0.536,0.985,0.986,0.998,0.985,0.97,0.985
+page-blocks0.dat,SMOTETomek,ExtraTreesClassifier,6.578,0.987,0.987,0.997,0.986,0.973,0.986
+page-blocks0.dat,KMeansSMOTE,ExtraTreesClassifier,6.473,0.987,0.987,0.997,0.987,0.973,0.986
 arsenic-male-bladder (id:947),SMOTEENN,ExtraTreesClassifier,2.859,0.984,0.986,0.999,0.984,0.97,0.985
+page-blocks0.dat,SMOTETomek,LGBMClassifier,2.814,0.985,0.985,0.997,0.985,0.971,0.985
+page-blocks0.dat,SMOTETomek,XGBClassifier,11.957,0.985,0.985,0.997,0.985,0.971,0.985
+page-blocks0.dat,KMeansSMOTE,LGBMClassifier,2.897,0.986,0.986,0.998,0.986,0.971,0.985
+page-blocks0.dat,KMeansSMOTE,RandomForestClassifier,14.573,0.985,0.985,0.998,0.985,0.97,0.985
+arsenic-male-bladder (id:947),SMOTEENN,LGBMClassifier,0.536,0.985,0.986,0.998,0.985,0.97,0.985
+page-blocks0.dat,SMOTETomek,RandomForestClassifier,11.818,0.985,0.985,0.997,0.985,0.97,0.984
+page-blocks0.dat,SVMSMOTE,XGBClassifier,12.724,0.984,0.985,0.996,0.984,0.969,0.984
 arsenic-male-bladder (id:947),SMOTEENN,XGBClassifier,1.506,0.984,0.985,0.998,0.984,0.968,0.984
+page-blocks0.dat,BorderlineSMOTE,LGBMClassifier,2.969,0.985,0.985,0.996,0.985,0.969,0.984
+page-blocks0.dat,BorderlineSMOTE,ExtraTreesClassifier,7.298,0.985,0.985,0.997,0.985,0.969,0.984
+page-blocks0.dat,SVMSMOTE,ExtraTreesClassifier,8.632,0.985,0.985,0.997,0.985,0.97,0.984
+page-blocks0.dat,KMeansSMOTE,XGBClassifier,12.328,0.984,0.985,0.998,0.984,0.969,0.984
+page-blocks0.dat,BorderlineSMOTE,RandomForestClassifier,13.054,0.985,0.985,0.997,0.985,0.97,0.984
+page-blocks0.dat,SMOTE,ExtraTreesClassifier,7.467,0.985,0.985,0.997,0.985,0.969,0.984
+page-blocks0.dat,BorderlineSMOTE,XGBClassifier,13.239,0.985,0.985,0.996,0.985,0.97,0.984
+page-blocks0.dat,SMOTE,LGBMClassifier,3.89,0.984,0.984,0.997,0.984,0.968,0.983
 arsenic-male-bladder (id:947),KMeansSMOTE,ExtraTreesClassifier,4.492,0.984,0.984,0.993,0.984,0.969,0.983
+page-blocks0.dat,ADASYN,XGBClassifier,13.266,0.984,0.984,0.995,0.984,0.968,0.983
+page-blocks0.dat,SMOTE,XGBClassifier,13.754,0.984,0.984,0.997,0.984,0.968,0.983
+page-blocks0.dat,SVMSMOTE,LGBMClassifier,3.182,0.984,0.984,0.996,0.984,0.968,0.983
+page-blocks0.dat,SMOTE,RandomForestClassifier,15.629,0.984,0.984,0.997,0.984,0.968,0.983
+page-blocks0.dat,ADASYN,ExtraTreesClassifier,7.538,0.984,0.984,0.996,0.984,0.968,0.983
+page-blocks0.dat,SVMSMOTE,RandomForestClassifier,13.263,0.984,0.984,0.997,0.984,0.968,0.983
+page-blocks0.dat,ADASYN,LGBMClassifier,2.907,0.984,0.984,0.995,0.984,0.968,0.983
+page-blocks0.dat,ADASYN,RandomForestClassifier,13.304,0.983,0.983,0.996,0.982,0.965,0.982
 arsenic-male-bladder (id:947),SVMSMOTE,RandomForestClassifier,3.193,0.983,0.983,0.997,0.983,0.966,0.982
 arsenic-male-bladder (id:947),SMOTETomek,ExtraTreesClassifier,3.66,0.981,0.982,0.998,0.981,0.963,0.981
 glass1.dat,SMOTEENN,ExtraTreesClassifier,2.255,0.979,0.979,0.998,0.979,0.959,0.979
 arsenic-male-bladder (id:947),SMOTETomek,RandomForestClassifier,3.449,0.98,0.979,0.998,0.979,0.959,0.979
 arsenic-male-bladder (id:947),SVMSMOTE,ExtraTreesClassifier,3.168,0.979,0.979,0.996,0.979,0.958,0.978
-arsenic-male-bladder (id:947),ADASYN,ExtraTreesClassifier,3.79,0.977,0.977,0.994,0.977,0.954,0.976
-arsenic-male-bladder (id:947),BorderlineSMOTE,ExtraTreesClassifier,3.629,0.977,0.977,0.996,0.977,0.954,0.976
-arsenic-male-bladder (id:947),BorderlineSMOTE,RandomForestClassifier,3.703,0.977,0.977,0.997,0.977,0.954,0.976
-arsenic-male-bladder (id:947),SMOTETomek,XGBClassifier,2.197,0.977,0.977,0.996,0.977,0.954,0.976
 arsenic-male-bladder (id:947),BorderlineSMOTE,XGBClassifier,3.185,0.977,0.977,0.996,0.977,0.954,0.976
 arsenic-male-bladder (id:947),SVMSMOTE,XGBClassifier,2.892,0.977,0.977,0.995,0.977,0.954,0.976
+arsenic-male-bladder (id:947),BorderlineSMOTE,ExtraTreesClassifier,3.629,0.977,0.977,0.996,0.977,0.954,0.976
+arsenic-male-bladder (id:947),ADASYN,ExtraTreesClassifier,3.79,0.977,0.977,0.994,0.977,0.954,0.976
+arsenic-male-bladder (id:947),BorderlineSMOTE,RandomForestClassifier,3.703,0.977,0.977,0.997,0.977,0.954,0.976
+arsenic-male-bladder (id:947),SMOTETomek,XGBClassifier,2.197,0.977,0.977,0.996,0.977,0.954,0.976
 arsenic-male-bladder (id:947),SMOTETomek,LGBMClassifier,0.69,0.976,0.975,0.996,0.976,0.951,0.975
-arsenic-male-bladder (id:947),BorderlineSMOTE,LGBMClassifier,0.807,0.975,0.975,0.996,0.975,0.95,0.974
 arsenic-male-bladder (id:947),SMOTE,ExtraTreesClassifier,4.355,0.975,0.975,0.993,0.975,0.95,0.974
+arsenic-male-bladder (id:947),BorderlineSMOTE,LGBMClassifier,0.807,0.975,0.975,0.996,0.975,0.95,0.974
 arsenic-male-bladder (id:947),SVMSMOTE,LGBMClassifier,0.796,0.975,0.975,0.996,0.975,0.951,0.974
 arsenic-male-bladder (id:947),ADASYN,RandomForestClassifier,4.084,0.974,0.974,0.996,0.974,0.948,0.973
 arsenic-male-bladder (id:947),SMOTE,XGBClassifier,3.003,0.973,0.973,0.994,0.973,0.947,0.972
@@ -59,7 +283,7 @@ glass1.dat,KMeansSMOTE,XGBClassifier,0.52,0.867,0.865,0.936,0.865,0.734,0.853
 glass1.dat,SMOTE,LGBMClassifier,0.401,0.863,0.863,0.933,0.861,0.726,0.849
 glass1.dat,SMOTETomek,XGBClassifier,0.518,0.861,0.861,0.932,0.86,0.721,0.847
 glass1.dat,BorderlineSMOTE,LGBMClassifier,0.337,0.859,0.862,0.924,0.856,0.717,0.844
-glass1.dat,SVMSMOTE,LGBMClassifier,0.322,0.857,0.859,0.928,0.855,0.714,0.843
 glass1.dat,ADASYN,XGBClassifier,0.556,0.856,0.855,0.936,0.854,0.712,0.843
+glass1.dat,SVMSMOTE,LGBMClassifier,0.322,0.857,0.859,0.928,0.855,0.714,0.843
 glass1.dat,ADASYN,LGBMClassifier,0.35,0.856,0.855,0.935,0.855,0.71,0.842
 glass1.dat,KMeansSMOTE,LGBMClassifier,0.337,0.852,0.851,0.937,0.85,0.704,0.839

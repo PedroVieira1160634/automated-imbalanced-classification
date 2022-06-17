@@ -1,5 +1,10 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,total elapsed time
-glass1.dat,SMOTEENN,ExtraTreesClassifier,2.592,0.979,0.979,0.998,0.979,0.959,0:03:57
-page-blocks0.dat,SMOTEENN,ExtraTreesClassifier,13.61,0.996,0.996,1.0,0.996,0.991,0:25:05
-arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.79,0.993,0.993,1.0,0.993,0.987,0:04:02
-JapaneseVowels (id:976),InstanceHardnessThreshold,ExtraTreesClassifier,6.102,0.999,1.0,1.0,0.999,0.999,0:46:40
+glass1.dat,SMOTEENN,ExtraTreesClassifier,2.592,0.979,0.979,0.998,0.979,0.959,0:01:05
+page-blocks0.dat,SMOTEENN,ExtraTreesClassifier,13.61,0.996,0.996,1.0,0.996,0.991,0:04:55
+arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.79,0.993,0.993,1.0,0.993,0.987,0:01:37
+JapaneseVowels (id:976),InstanceHardnessThreshold,ExtraTreesClassifier,6.102,0.999,1.0,1.0,0.999,0.999,0:10:04
+pc2 (id:1069),SMOTEENN,ExtraTreesClassifier,8.223,0.999,0.999,1.0,0.999,0.999,0:08:55
+mc1 (id:1056),SMOTEENN,RandomForestClassifier,25.748,0.998,0.998,1.0,0.998,0.997,0:13:58
+yeast_ml8 (id:316),RandomOverSampler,RandomForestClassifier,15.704,1.0,1.0,1.0,1.0,1.0,0:14:46
+Satellite (id:40900),RandomOverSampler,RandomForestClassifier,10.313,1.0,1.0,1.0,1.0,1.0,0:06:52
+dis (id:40713),RandomOverSampler,ExtraTreesClassifier,6.157,0.999,0.999,1.0,0.999,0.999,0:03:46

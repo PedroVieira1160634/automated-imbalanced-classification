@@ -169,7 +169,6 @@ print("time                 :", finish_time)
 print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
 
 
-
 # old code
 
 
@@ -192,6 +191,42 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #     minimum_samples -= 1
 # smote = SMOTE(random_state=42, k_neighbors=minimum_samples) #sampling_strategy=0.5
 # X, y = smote.fit_resample(X, y)
+
+
+# def write_results_elapsed_time(elapsed_time, dataset_name):
+    
+#     if not elapsed_time or not dataset_name:
+#         print("--elapsed_time or dataset_name not valid on write_results_elapsed_time--")
+#         print("elapsed_time:", elapsed_time)
+#         print("dataset_name:", dataset_name)
+#         return False
+    
+#     try:
+        
+#         print("Write Result (elapsed time)")
+        
+#         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
+
+#         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
+        
+#         if not df_kb_r2.empty :
+#             index = df_kb_r2.index.values[0]
+#             elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
+#             df_kb_r.at[index, 'total elapsed time'] = elapsed_time
+            
+#             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+            
+#             print("File written, row updated!","\n")
+        
+#         else:
+#             print("File not written!","\n")
+
+#         return True
+
+#     except Exception as e:
+#         print("--Did NOT Wrote elapsed_time on write_results_elapsed_time--")
+#         print(e)
+#         return False
 
 
 # def write(best_result, dataset_name):

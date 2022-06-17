@@ -82,6 +82,7 @@ def step_2():
 
     df_openml.sort_values(by=['imbalance ratio'], inplace=True)
 
+    pd.set_option('display.max_rows', df_openml.shape[0]+1)
     print(df_openml)
     #976 ... 1069
     
@@ -99,5 +100,5 @@ def step_3():
 
 
 # step_1()
-# step_2()
+step_2()
 # step_3()
