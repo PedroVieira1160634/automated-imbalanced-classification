@@ -6,8 +6,10 @@ from datetime import datetime
 from decimal import Decimal
 import pandas as pd
 import numpy as np
-from imblearn.pipeline import make_pipeline
-from sklearn.preprocessing import OneHotEncoder
+from imblearn.pipeline import make_pipeline, Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer, make_column_selector as selector
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
@@ -26,23 +28,78 @@ from ml import read_file, read_file_openml, features_labels
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
-
+#glass1.dat car-good.dat
 # dataset_name = "glass1.dat"
 # df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-df, dataset_name = read_file_openml(40900)
+df, dataset_name = read_file_openml(61)
+
+# print(df)
 
 
 
-#normalize
+# X, y, characteristics = features_labels(df, dataset_name)
 
-# scaler = preprocessing.MinMaxScaler()
-# names = X.columns
-# d = scaler.fit_transform(X)
-# scaled_X = pd.DataFrame(d, columns=names)
-# X = scaled_X
+X = df.iloc[: , :-1]
+y = df.iloc[: , -1:]
 
-X, y, characteristics = features_labels(df, dataset_name)
+
+
+#TODO ver melhor
+encoded_columns = []
+preserve_name = ""
+for column_name in y.columns:
+    if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
+        encoded_columns.extend([column_name])
+        preserve_name = column_name
+
+if encoded_columns:
+    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+
+if preserve_name:
+    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+
+
+
+#TODO ver parametros
+categorical_transformer = OneHotEncoder(drop="first", handle_unknown="ignore") #drop="first",
+
+# print(df.select_dtypes(include=object)) #["category","object"])
+
+#TODO ver parametros
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("cat", categorical_transformer, selector(dtype_include=["category","object"])) #["category","object"] object
+    ]
+    # ,remainder='passthrough'
+)
+
+# #uncomment ,remainder='passthrough'
+# df_print = pd.DataFrame(preprocessor.fit_transform(df))
+# pd.set_option('display.max_rows', df_print.shape[0]+1)
+# print(df_print)
+
+#TODO ver parametros de Pipeline ou make_pipeline
+model = Pipeline(
+    steps=[
+        ("preprocessor", preprocessor),
+        # ("sampling", RandomOverSampler(random_state=42)),
+        ("classifier", ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1))
+    ]
+)
+
+#TODO ver como adiciona ao Pipeline ou make_pipeline
+
+# model = make_pipeline(
+#     OneHotEncoder(),
+#     RandomOverSampler(random_state=42),
+#     ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+# )
+
+
+
+
+
 
 
 # print(characteristics.imbalance_ratio)
@@ -59,25 +116,26 @@ X, y, characteristics = features_labels(df, dataset_name)
 
 # print("\nFinal Results:\n")
 
+
+
 #   --- k-Fold Cross-Validation ---
 
 start_time = time.time()
 
+#algorithm -> model
 # algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-model = make_pipeline(
-    RandomOverSampler(random_state=42),
-    ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-)
-
-cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)
+cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
 scoring = {'balanced_accuracy': 'balanced_accuracy',
-           'f1': 'f1', 
+           'f1': 'f1',
            'roc_auc': 'roc_auc',
            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
            }
+
+print(X)
+print(y)
 
 #, return_train_score=True return_estimator=True
 scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
@@ -98,11 +156,11 @@ g_mean_std = round(np.std(scores['train_g_mean']),3)
 cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
 
 print("train:")
-print("Balanced Accuracy    :", balanced_accuracy, " +/- std. dev.:", balanced_accuracy_std)
-print("F1 Score             :", f1, " +/- std. dev.:", f1_std)
-print("ROC AUC              :", roc_auc, " +/- std. dev.:", roc_auc_std)
-print("G-Mean               :", g_mean, " +/- std. dev.:", g_mean_std)
-print("Cohen Kappa          :", cohen_kappa, " +/- std. dev.:", cohen_kappa_std)
+print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- ", f1_std)
+print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
 print("")
 
 
@@ -119,11 +177,11 @@ g_mean_std = round(np.std(scores['test_g_mean']),3)
 cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
 
 print("test:")
-print("Balanced Accuracy    :", balanced_accuracy, " +/- std. dev.:", balanced_accuracy_std)
-print("F1 Score             :", f1, " +/- std. dev.:", f1_std)
-print("ROC AUC              :", roc_auc, " +/- std. dev.:", roc_auc_std)
-print("G-Mean               :", g_mean, " +/- std. dev.:", g_mean_std)
-print("Cohen Kappa          :", cohen_kappa, " +/- std. dev.:", cohen_kappa_std)
+print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- ", f1_std)
+print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
 
 
 print("")
@@ -136,18 +194,28 @@ print("time                 :", finish_time)
 
 #   --- train/test ---
 
+# # print(X)
+# # print(y)
+
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# #0.452 sec (23x more fast)
 
 # start_time = time.time()
 
-# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1).fit(X_train, y_train.values.ravel())
+# # print(y_test)
+
+# #comment
+
+# #algorithm -> model
+# algorithm = model.fit(X_train, y_train.values.ravel())
+# # algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1).fit(X_train, y_train.values.ravel())
+
 
 # finish_time = round(time.time() - start_time, 3)
 
-# algorithm_pred = algorithm.predict(X_train)
 
 # #see if overfitting
+# # algorithm_pred = model.predict(X_train)
+
 # # accuracy_score = round(accuracy_score(y_train, algorithm_pred),3)
 # # f1_score = round(f1_score(y_train, algorithm_pred),3)
 # # roc_auc_score = round(roc_auc_score(y_train, algorithm_pred),3)
@@ -157,7 +225,7 @@ print("time                 :", finish_time)
 # # print("metric_f1_score          ", f1_score)
 # # print("metric_roc_auc_score:    ", roc_auc_score)
 
-# algorithm_pred = algorithm.predict(X_test)
+# algorithm_pred = model.predict(X_test)
 
 # accuracy_score = round(accuracy_score(y_test, algorithm_pred),3)
 # f1_score = round(f1_score(y_test, algorithm_pred),3)
@@ -171,6 +239,10 @@ print("time                 :", finish_time)
 
 # print("time                 :", finish_time)
 # print("")
+
+
+# print(y_test)
+# print(y_test.nunique())
 
 #   --- train/test ---
 
@@ -203,31 +275,35 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 # X, y = smote.fit_resample(X, y)
 
 
+# def find_best_result(resultsList):
+#     return max(resultsList, key=lambda Results: Results.f1_score)
+
+
 # def write_results_elapsed_time(elapsed_time, dataset_name):
-    
+
 #     if not elapsed_time or not dataset_name:
 #         print("--elapsed_time or dataset_name not valid on write_results_elapsed_time--")
 #         print("elapsed_time:", elapsed_time)
 #         print("dataset_name:", dataset_name)
 #         return False
-    
+
 #     try:
-        
+
 #         print("Write Result (elapsed time)")
-        
+
 #         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
 
 #         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
-        
+
 #         if not df_kb_r2.empty :
 #             index = df_kb_r2.index.values[0]
 #             elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
 #             df_kb_r.at[index, 'total elapsed time'] = elapsed_time
-            
+
 #             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
-            
+
 #             print("File written, row updated!","\n")
-        
+
 #         else:
 #             print("File not written!","\n")
 
@@ -240,42 +316,42 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 
 
 # def write(best_result, dataset_name):
-    
+
 #     previous_result, previous_found, found_index = read(dataset_name)
-    
+
 #     print("")
 #     print("best_result     :", float(best_result.f1_score))
 #     print("previous_result :", float(previous_result))
-    
+
 #     if previous_found and float(best_result.f1_score) <= float(previous_result):
 #         print("File NOT written!","\n")
 #         return False
-    
+
 #     print("File written!","\n")
-    
+
 #     str_balancing = string_balancing(best_result.balancing)
-    
+
 #     if not previous_found:
 #         with open(sys.path[0] + '/output/results.csv', 'a', newline='') as f:
 #            writer = csv.writer(f)
-        
+
 #            writer.writerow([best_result.dataset_name, str_balancing + best_result.algorithm])
 #            writer.writerow(["accuracy_score", str(best_result.accuracy)])
 #            writer.writerow(["f1_score", str(best_result.f1_score)])
 #            writer.writerow(["roc_auc_score", str(best_result.roc_auc_score)])
 #            writer.writerow(["time", str(best_result.time)])
 #            writer.writerow(["---"])
-           
+
 #     else:
 #         new_file_content = ""
 #         with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
-        
+
 #             i = 0
 #             j = 5               #4 metrics + 1 seperator
-            
+
 #             for line in reading_file:
 #                 stripped_line = line.strip()
-                
+
 #                 if found_index <= i <= (found_index + j):
 #                     if i == found_index:
 #                         new_line = stripped_line.replace(stripped_line, best_result.dataset_name + "," + str_balancing + best_result.algorithm)
@@ -291,7 +367,7 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #                         new_line = stripped_line.replace(stripped_line, "---")
 #                 else:
 #                     new_line = stripped_line
-                    
+
 #                 new_file_content += new_line +"\n"
 #                 i+=1
 
@@ -300,13 +376,13 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #                 writing_file.write(new_file_content)
 
 #     return True
-    
+
 
 # def read(dataset_name):
 #     dataset_name = dataset_name + ","
 #     selected_metric = "f1_score" + ","
 #     result = 0
-    
+
 #     with open(sys.path[0] + '/output/results.csv', 'r') as reading_file:
 
 #         i = 0
@@ -315,7 +391,7 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #         only_once = True
 #         found_index = -1
 #         found_result = False
-        
+
 #         for line in reading_file:
 #             if i % (j+1) == 0:
 #                 if line.startswith(dataset_name) and only_once == True:
@@ -328,9 +404,9 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #             elif found and line.startswith(selected_metric):
 #                 result = line.partition(selected_metric)[2]
 #             i+=1
-        
+
 #         if found_index == -1:
 #             found_index = i
-    
+
 #     return result, found_result, found_index
 

@@ -1,1 +1,12 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
+glass1.dat,-,ExtraTreesClassifier,2.092,0.799,0.739,0.911,0.783,0.625,0.771
+glass1.dat,-,RandomForestClassifier,2.342,0.795,0.733,0.901,0.779,0.619,0.765
+glass1.dat,-,LGBMClassifier,0.357,0.801,0.74,0.885,0.794,0.601,0.764
+glass1.dat,-,XGBClassifier,1.036,0.796,0.734,0.887,0.788,0.598,0.761
+glass1.dat,-,GradientBoostingClassifier,0.921,0.781,0.714,0.867,0.77,0.574,0.741
+glass1.dat,-,KNeighborsClassifier,0.124,0.773,0.706,0.863,0.763,0.56,0.733
+glass1.dat,-,BaggingClassifier,0.504,0.733,0.644,0.834,0.709,0.493,0.683
+glass1.dat,-,AdaBoostClassifier,1.016,0.719,0.628,0.772,0.702,0.448,0.654
+glass1.dat,-,GaussianNB,0.104,0.652,0.603,0.666,0.608,0.255,0.557
+glass1.dat,-,LogisticRegression,3.894,0.521,0.204,0.649,0.328,0.048,0.35
+glass1.dat,-,SVC,0.128,0.5,0.0,0.617,0.0,0.0,0.223

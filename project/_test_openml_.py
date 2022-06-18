@@ -90,7 +90,7 @@ def step_2():
     print(df_openml.count())
 
 def step_3():
-    df, dataset_name = read_file_openml(1069)
+    df, dataset_name = read_file_openml(40910)
 
     print("\ndf:")
     print(df)

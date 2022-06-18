@@ -1,1 +1,2 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,total elapsed time
+glass1.dat,-,ExtraTreesClassifier,2.075,0.799,0.739,0.911,0.783,0.625,0:00:12
