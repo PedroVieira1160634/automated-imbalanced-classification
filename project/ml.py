@@ -5,6 +5,7 @@ from decimal import Decimal
 import pandas as pd
 import numpy as np
 import openml.datasets
+from imblearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, OneSidedSelection, TomekLinks
 from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
@@ -19,9 +20,8 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBo
 from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
-#import csv
-import warnings
-warnings.filterwarnings("ignore")
+# import warnings
+# warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -38,8 +38,6 @@ def execute_ml(dataset_location, id_openml):
         
         X, y, characteristics = features_labels(df, dataset_name)
         
-        write_characteristics(characteristics)
-        
         array_balancing = ["-"]
         # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
         # array_balancing = [
@@ -50,7 +48,6 @@ def execute_ml(dataset_location, id_openml):
         # ]
         
         resultsList = []
-        
         for balancing in array_balancing:
             try:
                 X2, y2 = pre_processing(X, y, balancing) 
@@ -59,9 +56,12 @@ def execute_ml(dataset_location, id_openml):
                 print("--Error on for pre_processing and classify_evaluate--")
                 print(e)
         
+        best_result = find_best_result(resultsList)
+        
+        write_characteristics(characteristics, best_result)
+        
         write_full_results(resultsList, dataset_name)
         
-        best_result = find_best_result(resultsList)
         finish_time = (round(time.time() - start_time,3))
         write_results(best_result, finish_time)
         
@@ -80,6 +80,7 @@ def read_file(path):
 
 
 def read_file_openml(id):
+    
     dataset = openml.datasets.get_dataset(id)
 
     X, y, categorical_indicator, attribute_names = dataset.get_data(
@@ -96,7 +97,7 @@ def read_file_openml(id):
 
 def features_labels(df, dataset_name):
     
-    print("Dataset              :", dataset_name, "\n")
+    print("Dataset                      :", dataset_name, "\n")
     
     X = df.iloc[: , :-1]
     y = df.iloc[: , -1:]
@@ -111,8 +112,6 @@ def features_labels(df, dataset_name):
     for column_name in X.columns:
         if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
             encoded_columns.extend([column_name])
-        else:
-            pass
     
     if encoded_columns:
         X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
@@ -123,8 +122,6 @@ def features_labels(df, dataset_name):
         if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
             encoded_columns.extend([column_name])
             preserve_name = column_name
-        else:
-            pass
     
     if encoded_columns:
         y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
@@ -274,28 +271,25 @@ def pre_processing(X, y, balancing):
 def classify_evaluate(X, y, balancing, dataset_name):
 
     array_classifiers = [
-        # #LogisticRegression(random_state=42,max_iter=10000)
-        # #,GaussianNB() #no random_state (naive bayes)
-        # #,SVC(random_state=42) 
-        # #,KNeighborsClassifier() #no random_state
-        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1) 
+        LogisticRegression(random_state=42,max_iter=10000)
+        ,GaussianNB() #no random_state (naive bayes)
+        ,SVC(random_state=42)
+        ,KNeighborsClassifier() #no random_state
+        ,LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
         ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
         ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-        # ,AdaBoostClassifier(random_state=42)
-        # ,BaggingClassifier(random_state=42, n_jobs=-1)
-        # ,GradientBoostingClassifier(random_state=42)
+        ,AdaBoostClassifier(random_state=42)
+        ,BaggingClassifier(random_state=42, n_jobs=-1)
+        ,GradientBoostingClassifier(random_state=42)
     ]
     
     resultsList = []
     
-    #str_balancing = string_balancing(balancing)
-    
     for classifier in array_classifiers:
-        
         start_time = time.time()
         
-        cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42)
+        cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
         
         scoring = {
             'balanced_accuracy': 'balanced_accuracy',
@@ -318,25 +312,11 @@ def classify_evaluate(X, y, balancing, dataset_name):
         r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, balanced_accuracy, f1_score, roc_auc_score, g_mean, cohen_kappa)
         resultsList.append(r1)
         
-        #print's
-        #print("algorithm:", str_balancing + classifier.__class__.__name__)
-        # print("Balanced Accuracy    :", balanced_accuracy)
-        # print("F1 Score             :", f1_score)
-        # print("ROC AUC              :", roc_auc_score)
-        # print("G-Mean               :", g_mean)
-        # print("Cohen Kappa          :", cohen_kappa)
-        #print("time:", finish_time)
-        #print("")
-        
-    
-    #print("--")
-    
     return resultsList
 
 
 
 def find_best_result(resultsList):
-    #return max(resultsList, key=lambda Results: Results.f1_score)
     scores = []
     for result in resultsList:
         scores.append(np.mean([result.balanced_accuracy, result.f1_score, result.roc_auc_score, result.g_mean_score, result.cohen_kappa_score]))
@@ -345,18 +325,22 @@ def find_best_result(resultsList):
     index = scores.index(best_score)
     best_result = resultsList[index]
     
-    print("Best classifier is", best_result.algorithm, "with", best_result.balancing, "\n")
+    string_balancing = best_result.balancing
+    if string_balancing == "-":
+        string_balancing = "no preprocessing"
+    
+    print("Best classifier is", best_result.algorithm, "with", string_balancing, "\n")
     
     return best_result
 
 
 
-def write_characteristics(characteristics):
+def write_characteristics(characteristics, best_result):
 
-    if characteristics:
-        print("Write Characteristics")
-    else:
-        print("--characteristics not valid on write_characteristics--")
+    if not characteristics or not best_result:
+        print("--characteristics or best_result not valid on write_characteristics--")
+        print("characteristics:", characteristics)
+        print("best_result:", best_result)
         return False
     
     try:
@@ -380,10 +364,11 @@ def write_characteristics(characteristics):
                 df_kb_c2.loc[index, 'maximum numerical correlation'] == characteristics.corr_max and 
                 df_kb_c2.loc[index, 'minimum distinct instances in categorical attributes'] == characteristics.unique_values_min and
                 df_kb_c2.loc[index, 'average distinct instances in categorical attributes'] == characteristics.unique_values_mean and
-                df_kb_c2.loc[index, 'maximum distinct instances in categorical attributes'] == characteristics.unique_values_max
-                
+                df_kb_c2.loc[index, 'maximum distinct instances in categorical attributes'] == characteristics.unique_values_max and
+                df_kb_c2.loc[index, 'pre processing'] == best_result.balancing and
+                df_kb_c2.loc[index, 'algorithm'] == best_result.algorithm
             ):
-                print("File not written!","\n")
+                print("Write Characteristics not written!","\n")
                 
             else:
                 
@@ -398,10 +383,12 @@ def write_characteristics(characteristics):
                 df_kb_c.at[index, 'minimum distinct instances in categorical attributes'] = characteristics.unique_values_min
                 df_kb_c.at[index, 'average distinct instances in categorical attributes'] = characteristics.unique_values_mean
                 df_kb_c.at[index, 'maximum distinct instances in categorical attributes'] = characteristics.unique_values_max
+                df_kb_c.at[index, 'pre processing'] = best_result.balancing
+                df_kb_c.at[index, 'algorithm'] = best_result.algorithm
                 
                 df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
                 
-                print("File written, row updated!","\n")
+                print("Write Characteristics written, row updated!","\n")
             
         else:
             
@@ -417,12 +404,14 @@ def write_characteristics(characteristics):
                 characteristics.corr_max,
                 characteristics.unique_values_min,
                 characteristics.unique_values_mean,
-                characteristics.unique_values_max
+                characteristics.unique_values_max,
+                best_result.balancing,
+                best_result.algorithm
             ]
 
             df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
             
-            print("File written, row added!","\n")
+            print("Write Characteristics written, row added!","\n")
 
         return True
     
@@ -445,9 +434,7 @@ def write_results(best_result, elapsed_time):
         
         current_value = round(np.mean([best_result.balanced_accuracy, best_result.f1_score, best_result.roc_auc_score, best_result.g_mean_score, best_result.cohen_kappa_score]), 3)
         
-        print("Best Result Obtained :", current_value, "\n")
-        
-        print("Write Results")
+        elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
         
         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
         
@@ -457,7 +444,6 @@ def write_results(best_result, elapsed_time):
             
             previous_value = round(np.mean([df_kb_r2['balanced accuracy'], df_kb_r2['f1 score'], df_kb_r2['roc auc'], df_kb_r2['geometric mean'], df_kb_r2['cohen kappa']]), 3)
             
-            #if not df_kb_r2[best_result.f1_score > df_kb_r2['f1 score']].empty:
             if current_value > previous_value:
                 
                 index = df_kb_r2.index.values[0]
@@ -473,10 +459,10 @@ def write_results(best_result, elapsed_time):
                 
                 df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
                 
-                print("File written, row updated!","\n")
+                print("Write Results written, row updated!","\n")
 
             else:
-                print("File not written!","\n")
+                print("Write Results not written!","\n")
                 
         else:
             
@@ -495,8 +481,11 @@ def write_results(best_result, elapsed_time):
 
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
             
-            print("File written, row added!","\n")  
-
+            print("Write Results written, row added!","\n")  
+        
+        print("Best Final Score Obtained    :", current_value)
+        print("Elapsed Time                 :", elapsed_time, "\n")
+        
         return True
         
     except Exception as e:
@@ -515,8 +504,6 @@ def write_full_results(resultsList, dataset_name):
         return False
     
     try:
-        
-        print("Write Full Results")
         
         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
         
@@ -543,10 +530,10 @@ def write_full_results(resultsList, dataset_name):
 
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
             
-            print("File written, rows added!","\n")
+            print("Write Full Results written, rows added!","\n")
         
         else:
-            print("File not written!","\n")
+            print("Write Full Results not written!","\n")
         
         return True
 
@@ -554,14 +541,6 @@ def write_full_results(resultsList, dataset_name):
         print("--Did NOT Wrote resultsList on write_full_results--")
         print(e)
         return False
-
-
-
-def string_balancing(balancing):
-    str_balancing = ""
-    if balancing != "-":
-        str_balancing = balancing + " with "
-    return str_balancing
 
 
 
@@ -579,7 +558,6 @@ class Characteristics(object):
         self.unique_values_min = unique_values_min
         self.unique_values_mean = unique_values_mean
         self.unique_values_max = unique_values_max
-
 
 
 class Results(object):
