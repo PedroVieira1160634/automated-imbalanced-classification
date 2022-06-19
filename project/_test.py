@@ -8,8 +8,8 @@ import pandas as pd
 import numpy as np
 from imblearn.pipeline import make_pipeline, Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.compose import ColumnTransformer, make_column_selector as selector
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer, make_column_transformer, make_column_selector as selector
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler, OrdinalEncoder
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.over_sampling import SMOTE, RandomOverSampler, ADASYN, BorderlineSMOTE, KMeansSMOTE, SVMSMOTE
@@ -28,11 +28,12 @@ from ml import read_file, read_file_openml, features_labels
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
-#glass1.dat car-good.dat
-# dataset_name = "glass1.dat"
-# df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
+#glass1.dat page-blocks0.dat kddcup-rootkit-imap_vs_back.dat car-good.dat
+dataset_name = "car-good.dat"
+df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
-df, dataset_name = read_file_openml(61)
+#1069 1056
+# df, dataset_name = read_file_openml(1056)
 
 # print(df)
 
@@ -44,40 +45,49 @@ X = df.iloc[: , :-1]
 y = df.iloc[: , -1:]
 
 
-
 #TODO ver melhor
-encoded_columns = []
-preserve_name = ""
-for column_name in y.columns:
-    if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
-        encoded_columns.extend([column_name])
-        preserve_name = column_name
+# encoded_columns = []
+# for column_name in X.columns:
+#     if X[column_name].dtype == object or X[column_name].dtype.name == 'category' or X[column_name].dtype == bool or X[column_name].dtype == str:
+#         encoded_columns.extend([column_name])
 
-if encoded_columns:
-    y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+# if encoded_columns:
+#     X = pd.get_dummies(X, columns=X[encoded_columns].columns, drop_first=True)
 
-if preserve_name:
-    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+
+# encoded_columns = []
+# preserve_name = ""
+# for column_name in y.columns:
+#     if y[column_name].dtype == object or y[column_name].dtype.name == 'category' or y[column_name].dtype == bool or y[column_name].dtype == str:
+#         encoded_columns.extend([column_name])
+#         preserve_name = column_name
+
+# if encoded_columns:
+#     y = pd.get_dummies(y, columns=y[encoded_columns].columns, drop_first=True)
+
+# if preserve_name:
+#     y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
 
 
 
 #TODO ver parametros
-categorical_transformer = OneHotEncoder(drop="first", handle_unknown="ignore") #drop="first",
+categorical_transformer = OneHotEncoder(drop="first", handle_unknown="ignore")
 
 # print(df.select_dtypes(include=object)) #["category","object"])
 
 #TODO ver parametros
 preprocessor = ColumnTransformer(
     transformers=[
-        ("cat", categorical_transformer, selector(dtype_include=["category","object"])) #["category","object"] object
-    ]
-    # ,remainder='passthrough'
+        #, selector(dtype_include=["category","object","bool"])
+        ("cat", categorical_transformer, selector(dtype_include=["category","object","bool"])) #, ["Class"]   ["category","object","bool"] ["category","object"] object
+    ],
+    remainder='passthrough'
 )
 
-# #uncomment ,remainder='passthrough'
-# df_print = pd.DataFrame(preprocessor.fit_transform(df))
+df_print = pd.DataFrame(preprocessor.fit_transform(df)) #.toarray()
 # pd.set_option('display.max_rows', df_print.shape[0]+1)
-# print(df_print)
+print(df_print)
+
 
 #TODO ver parametros de Pipeline ou make_pipeline
 model = Pipeline(
@@ -95,7 +105,6 @@ model = Pipeline(
 #     RandomOverSampler(random_state=42),
 #     ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 # )
-
 
 
 
@@ -120,72 +129,70 @@ model = Pipeline(
 
 #   --- k-Fold Cross-Validation ---
 
-start_time = time.time()
+# start_time = time.time()
 
-#algorithm -> model
-# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+# #algorithm -> model
+# # algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+# # algorithm = RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+# cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-scoring = {'balanced_accuracy': 'balanced_accuracy',
-           'f1': 'f1',
-           'roc_auc': 'roc_auc',
-           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
-           'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
-           }
+# scoring = {'balanced_accuracy': 'balanced_accuracy',
+#            'f1': 'f1',
+#            'roc_auc': 'roc_auc',
+#            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+#            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
+#            }
 
-print(X)
-print(y)
+# #, return_train_score=True return_estimator=True
+# scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
 
-#, return_train_score=True return_estimator=True
-scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
-
-finish_time = round(time.time() - start_time,3)
+# finish_time = round(time.time() - start_time,3)
 
 
-balanced_accuracy = round(np.mean(scores['train_balanced_accuracy']),3)
-f1 = round(np.mean(scores['train_f1']),3)
-roc_auc = round(np.mean(scores['train_roc_auc']),3)
-g_mean = round(np.mean(scores['train_g_mean']),3)
-cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
+# balanced_accuracy = round(np.mean(scores['train_balanced_accuracy']),3)
+# f1 = round(np.mean(scores['train_f1']),3)
+# roc_auc = round(np.mean(scores['train_roc_auc']),3)
+# g_mean = round(np.mean(scores['train_g_mean']),3)
+# cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
 
-balanced_accuracy_std = round(np.std(scores['train_balanced_accuracy']),3)
-f1_std = round(np.std(scores['train_f1']),3)
-roc_auc_std = round(np.std(scores['train_roc_auc']),3)
-g_mean_std = round(np.std(scores['train_g_mean']),3)
-cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
+# balanced_accuracy_std = round(np.std(scores['train_balanced_accuracy']),3)
+# f1_std = round(np.std(scores['train_f1']),3)
+# roc_auc_std = round(np.std(scores['train_roc_auc']),3)
+# g_mean_std = round(np.std(scores['train_g_mean']),3)
+# cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
 
-print("train:")
-print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
-print("F1 Score             :", f1, " +/- ", f1_std)
-print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
-print("G-Mean               :", g_mean, " +/- ", g_mean_std)
-print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
-print("")
-
-
-balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
-f1 = round(np.mean(scores['test_f1']),3)
-roc_auc = round(np.mean(scores['test_roc_auc']),3)
-g_mean = round(np.mean(scores['test_g_mean']),3)
-cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
-
-balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
-f1_std = round(np.std(scores['test_f1']),3)
-roc_auc_std = round(np.std(scores['test_roc_auc']),3)
-g_mean_std = round(np.std(scores['test_g_mean']),3)
-cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
-
-print("test:")
-print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
-print("F1 Score             :", f1, " +/- ", f1_std)
-print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
-print("G-Mean               :", g_mean, " +/- ", g_mean_std)
-print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+# print("train:")
+# print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+# print("F1 Score             :", f1, " +/- ", f1_std)
+# print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+# print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+# print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+# print("")
 
 
-print("")
-print("time                 :", finish_time)
+# balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+# f1 = round(np.mean(scores['test_f1']),3)
+# roc_auc = round(np.mean(scores['test_roc_auc']),3)
+# g_mean = round(np.mean(scores['test_g_mean']),3)
+# cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+
+# balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
+# f1_std = round(np.std(scores['test_f1']),3)
+# roc_auc_std = round(np.std(scores['test_roc_auc']),3)
+# g_mean_std = round(np.std(scores['test_g_mean']),3)
+# cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
+
+# print("test:")
+# print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+# print("F1 Score             :", f1, " +/- ", f1_std)
+# print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+# print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+# print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+
+
+# print("")
+# print("time                 :", finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
