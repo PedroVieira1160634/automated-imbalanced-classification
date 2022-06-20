@@ -4,10 +4,8 @@ from sklearn.preprocessing import OneHotEncoder
 from ml import read_file, read_file_openml
 
 
-
-
 #glass1.dat page-blocks0.dat kddcup-rootkit-imap_vs_back.dat car-good.dat
-dataset_name = "car-good.dat"
+dataset_name = "glass1.dat"
 df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
 #1069 1056
@@ -25,14 +23,15 @@ df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
 # print(df[["Class"]])
 
-oe_style = OneHotEncoder(drop="first", handle_unknown="ignore")
-oe_results = oe_style.fit_transform(df)
-#print(pd.DataFrame(oe_results.toarray(), columns=oe_style.categories_).head())
-print(pd.DataFrame(oe_results.toarray()))
+# preprocessor = OneHotEncoder(drop="first", handle_unknown="ignore")
+
+# df_print = pd.DataFrame(preprocessor.fit_transform(df).toarray()) #.toarray()
+# # pd.set_option('display.max_rows', df_print.shape[0]+1)
+# print(df_print)
 
 
-X = df.iloc[: , :-1]
-y = df.iloc[: , -1:]
+# X = df.iloc[: , :-1]
+# y = df.iloc[: , -1:]
 
 # print(X)
 # print(y)
