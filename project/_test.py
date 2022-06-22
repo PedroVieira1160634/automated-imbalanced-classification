@@ -31,7 +31,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #
 
 #glass1.dat page-blocks0.dat kddcup-rootkit-imap_vs_back.dat car-good.dat
-dataset_name = "glass1.dat"
+dataset_name = "car-good.dat"
 df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 
 #1069 1056
@@ -57,18 +57,18 @@ y = df.iloc[: , -1:]
 #     X = pd.get_dummies(X, columns=X[encoded_columns].columns, drop_first=True)
 
 
-# encoded_columns = []
-# preserve_name = ""
-# for column_name in y.columns:
-#     if y[column_name].dtype == object or y[column_name].dtype.name == 'category' or y[column_name].dtype == bool or y[column_name].dtype == str:
-#         encoded_columns.extend([column_name])
-#         preserve_name = column_name
+encoded_columns = []
+preserve_name = ""
+for column_name in y.columns:
+    if y[column_name].dtype == object or y[column_name].dtype.name == 'category' or y[column_name].dtype == bool or y[column_name].dtype == str:
+        encoded_columns.extend([column_name])
+        preserve_name = column_name
 
-# if encoded_columns:
-#     y = pd.get_dummies(y, columns=y[encoded_columns].columns, drop_first=True)
+if encoded_columns:
+    y = pd.get_dummies(y, columns=y[encoded_columns].columns, drop_first=True)
 
-# if preserve_name:
-#     y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+if preserve_name:
+    y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
 
 
 
@@ -78,7 +78,7 @@ categorical_ohe_transformer = OneHotEncoder(drop="first", handle_unknown="ignore
 
 # print(df.select_dtypes(include=object)) #["category","object"])
 
-cat_cols = df.select_dtypes(include=["category","object","bool"]).columns.tolist()
+cat_cols = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
 # cat_cols_X = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
 # cat_cols_y = y.select_dtypes(include=["category","object","bool"]).columns.tolist()
 
@@ -141,70 +141,70 @@ model = Pipeline(
 
 #   --- k-Fold Cross-Validation ---
 
-# start_time = time.time()
+start_time = time.time()
 
-# #algorithm -> model
-# # algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-# # algorithm = RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+#algorithm -> model
+# algorithm = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+# algorithm = RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-# cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
+cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
-# scoring = {'balanced_accuracy': 'balanced_accuracy',
-#            'f1': 'f1',
-#            'roc_auc': 'roc_auc',
-#            'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
-#            'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
-#            }
+scoring = {'balanced_accuracy': 'balanced_accuracy',
+           'f1': 'f1',
+           'roc_auc': 'roc_auc',
+           'g_mean': make_scorer(geometric_mean_score, greater_is_better=True),
+           'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
+           }
 
-# #, return_train_score=True return_estimator=True
-# scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
+#, return_train_score=True return_estimator=True
+scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1, return_train_score=True)
 
-# finish_time = round(time.time() - start_time,3)
-
-
-# balanced_accuracy = round(np.mean(scores['train_balanced_accuracy']),3)
-# f1 = round(np.mean(scores['train_f1']),3)
-# roc_auc = round(np.mean(scores['train_roc_auc']),3)
-# g_mean = round(np.mean(scores['train_g_mean']),3)
-# cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
-
-# balanced_accuracy_std = round(np.std(scores['train_balanced_accuracy']),3)
-# f1_std = round(np.std(scores['train_f1']),3)
-# roc_auc_std = round(np.std(scores['train_roc_auc']),3)
-# g_mean_std = round(np.std(scores['train_g_mean']),3)
-# cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
-
-# print("train:")
-# print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
-# print("F1 Score             :", f1, " +/- ", f1_std)
-# print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
-# print("G-Mean               :", g_mean, " +/- ", g_mean_std)
-# print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
-# print("")
+finish_time = round(time.time() - start_time,3)
 
 
-# balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
-# f1 = round(np.mean(scores['test_f1']),3)
-# roc_auc = round(np.mean(scores['test_roc_auc']),3)
-# g_mean = round(np.mean(scores['test_g_mean']),3)
-# cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+balanced_accuracy = round(np.mean(scores['train_balanced_accuracy']),3)
+f1 = round(np.mean(scores['train_f1']),3)
+roc_auc = round(np.mean(scores['train_roc_auc']),3)
+g_mean = round(np.mean(scores['train_g_mean']),3)
+cohen_kappa = round(np.mean(scores['train_cohen_kappa']),3)
 
-# balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
-# f1_std = round(np.std(scores['test_f1']),3)
-# roc_auc_std = round(np.std(scores['test_roc_auc']),3)
-# g_mean_std = round(np.std(scores['test_g_mean']),3)
-# cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
+balanced_accuracy_std = round(np.std(scores['train_balanced_accuracy']),3)
+f1_std = round(np.std(scores['train_f1']),3)
+roc_auc_std = round(np.std(scores['train_roc_auc']),3)
+g_mean_std = round(np.std(scores['train_g_mean']),3)
+cohen_kappa_std = round(np.std(scores['train_cohen_kappa']),3)
 
-# print("test:")
-# print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
-# print("F1 Score             :", f1, " +/- ", f1_std)
-# print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
-# print("G-Mean               :", g_mean, " +/- ", g_mean_std)
-# print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+print("train:")
+print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- ", f1_std)
+print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+print("")
 
 
-# print("")
-# print("time                 :", finish_time)
+balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
+f1 = round(np.mean(scores['test_f1']),3)
+roc_auc = round(np.mean(scores['test_roc_auc']),3)
+g_mean = round(np.mean(scores['test_g_mean']),3)
+cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+
+balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
+f1_std = round(np.std(scores['test_f1']),3)
+roc_auc_std = round(np.std(scores['test_roc_auc']),3)
+g_mean_std = round(np.std(scores['test_g_mean']),3)
+cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
+
+print("test:")
+print("Balanced Accuracy    :", balanced_accuracy, " +/- ", balanced_accuracy_std)
+print("F1 Score             :", f1, " +/- ", f1_std)
+print("ROC AUC              :", roc_auc, " +/- ", roc_auc_std)
+print("G-Mean               :", g_mean, " +/- ", g_mean_std)
+print("Cohen Kappa          :", cohen_kappa, " +/- ", cohen_kappa_std)
+
+
+print("")
+print("time                 :", finish_time)
 
 #   --- k-Fold Cross-Validation ---
 
