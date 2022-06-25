@@ -83,12 +83,17 @@ def step_2():
     df_openml.sort_values(by=['imbalance ratio'], inplace=True)
 
     pd.set_option('display.max_rows', df_openml.shape[0]+1)
-    print(df_openml)
-    #976 ... 1069
+    # print(df_openml)
+    # #976 ... 1069
     
-    print("\ncount:")
-    print(df_openml.count())
-
+    # print("\ncount:")
+    # print(df_openml.count())
+    
+    #get 4 random datasets whithout 1069 and 1056
+    df_openml = df_openml.loc[(df_openml["id"] != 1069) & (df_openml["id"] != 1056)]
+    print(df_openml.sample(n=4))
+    
+    
 def step_3():
     df, dataset_name = read_file_openml(40910)
 
