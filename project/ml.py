@@ -312,6 +312,7 @@ def find_best_result(resultsList):
 
 
 
+#always writes
 def write_characteristics(df_characteristics, best_result):
 
     if df_characteristics.empty or not best_result:
@@ -344,6 +345,7 @@ def write_characteristics(df_characteristics, best_result):
 
 
 
+#writes if best
 def write_results(best_result, elapsed_time):
 
     if not best_result:
@@ -416,6 +418,7 @@ def write_results(best_result, elapsed_time):
 
 
 
+#only writes at first time 
 def write_full_results(resultsList, dataset_name):
 
     if not resultsList or not dataset_name:
@@ -462,22 +465,6 @@ def write_full_results(resultsList, dataset_name):
     
     return True
 
-
-
-class Characteristics(object):
-    def __init__(self, dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max):
-        self.dataset_name = dataset_name
-        self.n_rows = n_rows
-        self.n_columns = n_columns
-        self.n_numeric_col = n_numeric_col
-        self.n_categorical_col = n_categorical_col
-        self.imbalance_ratio = imbalance_ratio
-        self.corr_min = corr_min
-        self.corr_mean = corr_mean
-        self.corr_max = corr_max
-        self.unique_values_min = unique_values_min
-        self.unique_values_mean = unique_values_mean
-        self.unique_values_max = unique_values_max
 
 
 class Results(object):

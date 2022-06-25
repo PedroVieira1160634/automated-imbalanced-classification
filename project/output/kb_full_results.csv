@@ -1,6 +1,15 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
 car-good.dat,-,LGBMClassifier,0.778,0.991,0.863,0.999,0.991,0.856,0.94
+page-blocks0.dat,-,LGBMClassifier,2.183,0.944,0.877,0.991,0.943,0.862,0.923
+page-blocks0.dat,-,RandomForestClassifier,9.692,0.929,0.886,0.991,0.927,0.873,0.921
+page-blocks0.dat,-,XGBClassifier,8.341,0.93,0.876,0.99,0.928,0.862,0.917
+page-blocks0.dat,-,ExtraTreesClassifier,5.328,0.924,0.876,0.984,0.922,0.863,0.914
+page-blocks0.dat,-,GradientBoostingClassifier,11.388,0.922,0.872,0.991,0.919,0.858,0.912
+page-blocks0.dat,-,BaggingClassifier,3.227,0.919,0.87,0.979,0.916,0.856,0.908
+page-blocks0.dat,-,AdaBoostClassifier,3.783,0.898,0.831,0.983,0.893,0.813,0.884
+page-blocks0.dat,-,KNeighborsClassifier,0.596,0.856,0.786,0.945,0.845,0.763,0.839
 car-good.dat,-,GradientBoostingClassifier,1.79,0.862,0.741,0.992,0.842,0.731,0.834
+page-blocks0.dat,-,LogisticRegression,16.975,0.795,0.71,0.942,0.769,0.684,0.78
 glass1.dat,-,ExtraTreesClassifier,2.092,0.799,0.739,0.911,0.783,0.625,0.771
 car-good.dat,-,XGBClassifier,2.268,0.811,0.645,0.989,0.769,0.632,0.769
 glass1.dat,-,RandomForestClassifier,2.342,0.795,0.733,0.901,0.779,0.619,0.765
@@ -11,11 +20,13 @@ glass1.dat,-,KNeighborsClassifier,0.124,0.773,0.706,0.863,0.763,0.56,0.733
 glass1.dat,-,BaggingClassifier,0.504,0.733,0.644,0.834,0.709,0.493,0.683
 glass1.dat,-,AdaBoostClassifier,1.016,0.719,0.628,0.772,0.702,0.448,0.654
 car-good.dat,-,BaggingClassifier,0.705,0.711,0.466,0.952,0.627,0.448,0.641
+page-blocks0.dat,-,GaussianNB,0.195,0.691,0.469,0.922,0.634,0.416,0.626
 car-good.dat,-,GaussianNB,0.14,0.825,0.194,0.947,0.806,0.131,0.581
 car-good.dat,-,AdaBoostClassifier,1.676,0.648,0.368,0.975,0.532,0.348,0.574
 glass1.dat,-,GaussianNB,0.104,0.652,0.603,0.666,0.608,0.255,0.557
 car-good.dat,-,LogisticRegression,3.718,0.562,0.194,0.975,0.288,0.183,0.44
 car-good.dat,-,ExtraTreesClassifier,3.149,0.565,0.2,0.901,0.286,0.188,0.428
+page-blocks0.dat,-,SVC,5.063,0.535,0.13,0.91,0.255,0.117,0.389
 glass1.dat,-,LogisticRegression,3.894,0.521,0.204,0.649,0.328,0.048,0.35
 car-good.dat,-,RandomForestClassifier,3.52,0.508,0.032,0.958,0.05,0.026,0.315
 car-good.dat,-,SVC,0.474,0.5,0.0,0.977,0.0,-0.0,0.295

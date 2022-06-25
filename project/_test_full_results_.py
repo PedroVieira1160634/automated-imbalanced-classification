@@ -68,7 +68,7 @@ def print_scores_pre_processing(df_kb_r):
     # print(list_pre_processing)
     df_pre_processing = pd.DataFrame(list_pre_processing, columns=['pre processing', 'score'])
 
-    df_pre_processing.sort_values(by=['score'], inplace=True)
+    df_pre_processing = df_pre_processing.sort_values(by=['score'])
 
     # print(df_pre_processing.iloc[-15:])
     
@@ -122,7 +122,7 @@ def print_scores_classifier_algorithm(df_kb_r):
     # print(list_classifier)
     df_classifier = pd.DataFrame(list_classifier, columns=['algorithm', 'score'])
 
-    df_classifier.sort_values(by=['score'], inplace=True)
+    df_classifier = df_classifier.sort_values(by=['score'])
 
     # print(df_classifier.iloc[-5:])
     print(df_classifier)

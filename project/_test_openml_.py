@@ -80,7 +80,7 @@ def step_2():
 
     df_openml = df_openml[rows_to_keep]
 
-    df_openml.sort_values(by=['imbalance ratio'], inplace=True)
+    df_openml = df_openml.sort_values(by=['imbalance ratio'])
 
     pd.set_option('display.max_rows', df_openml.shape[0]+1)
     # print(df_openml)

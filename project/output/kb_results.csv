@@ -1,3 +1,4 @@
 dataset,pre processing,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,total elapsed time
 glass1.dat,-,ExtraTreesClassifier,2.575,0.803,0.741,0.922,0.785,0.629,0:00:16
 car-good.dat,-,LGBMClassifier,0.778,0.991,0.863,0.999,0.991,0.856,0:00:24
+page-blocks0.dat,-,LGBMClassifier,2.183,0.944,0.877,0.991,0.943,0.862,0:02:07

@@ -298,6 +298,22 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #     return max(resultsList, key=lambda Results: Results.f1_score)
 
 
+# class Characteristics(object):
+#     def __init__(self, dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max):
+#         self.dataset_name = dataset_name
+#         self.n_rows = n_rows
+#         self.n_columns = n_columns
+#         self.n_numeric_col = n_numeric_col
+#         self.n_categorical_col = n_categorical_col
+#         self.imbalance_ratio = imbalance_ratio
+#         self.corr_min = corr_min
+#         self.corr_mean = corr_mean
+#         self.corr_max = corr_max
+#         self.unique_values_min = unique_values_min
+#         self.unique_values_mean = unique_values_mean
+#         self.unique_values_max = unique_values_max
+
+
 # def features_labels(df, dataset_name):
     
 #     print("Dataset                      :", dataset_name, "\n")
