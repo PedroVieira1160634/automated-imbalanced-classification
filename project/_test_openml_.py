@@ -93,7 +93,6 @@ def step_2():
     df_openml = df_openml.loc[(df_openml["id"] != 1069) & (df_openml["id"] != 1056)]
     print(df_openml.sample(n=4))
     
-    
 def step_3():
     df, dataset_name = read_file_openml(40910)
 

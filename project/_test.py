@@ -298,6 +298,162 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #     return max(resultsList, key=lambda Results: Results.f1_score)
 
 
+# def features_labels(df, dataset_name):
+    
+#     print("Dataset                      :", dataset_name, "\n")
+    
+#     X = df.iloc[: , :-1]
+#     y = df.iloc[: , -1:]
+
+#     df2 = df.iloc[: , :-1]
+#     n_rows = len(df)
+#     n_columns = len(X.columns)
+#     n_numeric_col = X.select_dtypes(include=np.number).shape[1]
+#     n_categorical_col = X.select_dtypes(include=object).shape[1]
+
+#     encoded_columns = []
+#     for column_name in X.columns:
+#         if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
+#             encoded_columns.extend([column_name])
+    
+#     if encoded_columns:
+#         X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+
+#     encoded_columns = []
+#     preserve_name = ""
+#     for column_name in y.columns:
+#         if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
+#             encoded_columns.extend([column_name])
+#             preserve_name = column_name
+    
+#     if encoded_columns:
+#         y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+
+#     if preserve_name:
+#         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
+
+
+#     imbalance_ratio = 0
+#     if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+#         if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+#             imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+#         else:
+#             imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+    
+#     df2['Class'] = y
+#     corr = df2.corr().abs()
+#     corr = corr.iloc[: , -1].iloc[:-1]
+
+#     corr_min, corr_mean, corr_max = 0, 0, 0
+#     if not corr.empty:
+#         corr_min = round(corr.min(),3)
+#         corr_mean = round(corr.mean(),3)
+#         corr_max = round(corr.max(),3)
+    
+#     df2 = df.iloc[: , :-1]
+#     list_unique_values = []
+#     for column in df2:
+#         if df2[column].dtype == object:
+#             list_unique_values.append(df2[column].nunique())
+
+#     unique_values_min, unique_values_mean, unique_values_max = 0, 0, 0
+#     if list_unique_values:
+#         unique_values_min = np.min(list_unique_values)
+#         unique_values_mean = Decimal(round(np.mean(list_unique_values),0))
+#         unique_values_max = np.max(list_unique_values)
+    
+    
+#     characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max)
+    
+#     return X, y, characteristics
+
+
+# def write_characteristics(characteristics, best_result):
+
+#     if not characteristics or not best_result:
+#         print("--characteristics or best_result not valid on write_characteristics--")
+#         print("characteristics:", characteristics)
+#         print("best_result:", best_result)
+#         return False
+    
+#     try:
+        
+#         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+#         #print(df_kb_c, '\n')
+
+#         df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == characteristics.dataset_name]
+        
+#         if not df_kb_c2.empty:
+            
+#             index = df_kb_c2.index.values[0]
+            
+#             if( df_kb_c2.loc[index, 'instances number'] == characteristics.n_rows and 
+#                 df_kb_c2.loc[index, 'attributes number'] == characteristics.n_columns and
+#                 df_kb_c2.loc[index, 'numerical attributes'] == characteristics.n_numeric_col and 
+#                 df_kb_c2.loc[index, 'categorical attributes'] == characteristics.n_categorical_col and
+#                 df_kb_c2.loc[index, 'imbalance ratio'] == characteristics.imbalance_ratio and
+#                 df_kb_c2.loc[index, 'minimum numerical correlation'] == characteristics.corr_min and
+#                 df_kb_c2.loc[index, 'average numerical correlation'] == characteristics.corr_mean and
+#                 df_kb_c2.loc[index, 'maximum numerical correlation'] == characteristics.corr_max and 
+#                 df_kb_c2.loc[index, 'minimum distinct instances in categorical attributes'] == characteristics.unique_values_min and
+#                 df_kb_c2.loc[index, 'average distinct instances in categorical attributes'] == characteristics.unique_values_mean and
+#                 df_kb_c2.loc[index, 'maximum distinct instances in categorical attributes'] == characteristics.unique_values_max and
+#                 df_kb_c2.loc[index, 'pre processing'] == best_result.balancing and
+#                 df_kb_c2.loc[index, 'algorithm'] == best_result.algorithm
+#             ):
+#                 print("Write Characteristics not written!","\n")
+                
+#             else:
+                
+#                 df_kb_c.at[index, 'instances number'] = characteristics.n_rows
+#                 df_kb_c.at[index, 'attributes number'] = characteristics.n_columns
+#                 df_kb_c.at[index, 'numerical attributes'] = characteristics.n_numeric_col
+#                 df_kb_c.at[index, 'categorical attributes'] = characteristics.n_categorical_col
+#                 df_kb_c.at[index, 'imbalance ratio'] = characteristics.imbalance_ratio
+#                 df_kb_c.at[index, 'minimum numerical correlation'] = characteristics.corr_min
+#                 df_kb_c.at[index, 'average numerical correlation'] = characteristics.corr_mean
+#                 df_kb_c.at[index, 'maximum numerical correlation'] = characteristics.corr_max
+#                 df_kb_c.at[index, 'minimum distinct instances in categorical attributes'] = characteristics.unique_values_min
+#                 df_kb_c.at[index, 'average distinct instances in categorical attributes'] = characteristics.unique_values_mean
+#                 df_kb_c.at[index, 'maximum distinct instances in categorical attributes'] = characteristics.unique_values_max
+#                 df_kb_c.at[index, 'pre processing'] = best_result.balancing
+#                 df_kb_c.at[index, 'algorithm'] = best_result.algorithm
+                
+#                 df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+                
+#                 print("Write Characteristics written, row updated!","\n")
+            
+#         else:
+            
+#             df_kb_c.loc[len(df_kb_c.index)] = [
+#                 characteristics.dataset_name,
+#                 characteristics.n_rows,
+#                 characteristics.n_columns,
+#                 characteristics.n_numeric_col,
+#                 characteristics.n_categorical_col,
+#                 characteristics.imbalance_ratio,
+#                 characteristics.corr_min,
+#                 characteristics.corr_mean,
+#                 characteristics.corr_max,
+#                 characteristics.unique_values_min,
+#                 characteristics.unique_values_mean,
+#                 characteristics.unique_values_max,
+#                 best_result.balancing,
+#                 best_result.algorithm
+#             ]
+
+#             df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+            
+#             print("Write Characteristics written, row added!","\n")
+
+#         return True
+    
+#     except Exception as e:
+#         print("--Did NOT Wrote characteristics on write_characteristics--")
+#         print(e)
+#         return False
+
+
 # def write_results_elapsed_time(elapsed_time, dataset_name):
 
 #     if not elapsed_time or not dataset_name:

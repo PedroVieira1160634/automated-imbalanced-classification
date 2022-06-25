@@ -5,6 +5,7 @@ from decimal import Decimal
 import pandas as pd
 import numpy as np
 import openml.datasets
+from pymfe.mfe import MFE
 from imblearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, cross_val_score, cross_validate
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, CondensedNearestNeighbour, EditedNearestNeighbours, RepeatedEditedNearestNeighbours, AllKNN, InstanceHardnessThreshold, NearMiss, NeighbourhoodCleaningRule, OneSidedSelection, TomekLinks
@@ -20,8 +21,9 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBo
 from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, BalancedBaggingClassifier, BalancedRandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
-# import warnings
-# warnings.filterwarnings("ignore")
+import traceback
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -36,7 +38,7 @@ def execute_ml(dataset_location, id_openml):
         else:
             return False
         
-        X, y, characteristics = features_labels(df, dataset_name)
+        X, y, df_characteristics = features_labels(df, dataset_name)
         
         array_balancing = ["-"]
         # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
@@ -52,13 +54,12 @@ def execute_ml(dataset_location, id_openml):
             try:
                 X2, y2 = pre_processing(X, y, balancing) 
                 resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
-            except Exception as e:
-                print("--Error on for pre_processing and classify_evaluate--")
-                print(e)
+            except Exception:
+                traceback.print_exc()
         
         best_result = find_best_result(resultsList)
         
-        write_characteristics(characteristics, best_result)
+        write_characteristics(df_characteristics, best_result)
         
         write_full_results(resultsList, dataset_name)
         
@@ -67,9 +68,8 @@ def execute_ml(dataset_location, id_openml):
         
         return dataset_name
     
-    except Exception as e:
-        print("--error on execute_ml--")
-        print(e)
+    except Exception:
+        traceback.print_exc()
         return False
 
 
@@ -102,12 +102,22 @@ def features_labels(df, dataset_name):
     X = df.iloc[: , :-1]
     y = df.iloc[: , -1:]
 
-    df2 = df.iloc[: , :-1]
-    n_rows = len(df)
-    n_columns = len(X.columns)
-    n_numeric_col = X.select_dtypes(include=np.number).shape[1]
-    n_categorical_col = X.select_dtypes(include=object).shape[1]
+    mfe = MFE(random_state=42, 
+          groups=["complexity", "concept", "general", "itemset", "landmarking", "model-based", "statistical"], 
+          summary=["mean", "sd", "kurtosis","skewness"])
 
+    mfe.fit(X.values, y.values)
+    ft = mfe.extract(suppress_warnings=True)
+    
+    df_characteristics = pd.DataFrame.from_records(ft)
+    
+    new_header = df_characteristics.iloc[0]
+    df_characteristics = df_characteristics[1:]
+    df_characteristics.columns = new_header
+    
+    df_characteristics.insert(loc=0, column="dataset", value=[dataset_name])
+    
+    
     encoded_columns = []
     for column_name in X.columns:
         if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
@@ -129,40 +139,7 @@ def features_labels(df, dataset_name):
     if preserve_name:
         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
 
-
-    imbalance_ratio = 0
-    if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
-        if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
-            imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
-        else:
-            imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
-    
-    df2['Class'] = y
-    corr = df2.corr().abs()
-    corr = corr.iloc[: , -1].iloc[:-1]
-
-    corr_min, corr_mean, corr_max = 0, 0, 0
-    if not corr.empty:
-        corr_min = round(corr.min(),3)
-        corr_mean = round(corr.mean(),3)
-        corr_max = round(corr.max(),3)
-    
-    df2 = df.iloc[: , :-1]
-    list_unique_values = []
-    for column in df2:
-        if df2[column].dtype == object:
-            list_unique_values.append(df2[column].nunique())
-
-    unique_values_min, unique_values_mean, unique_values_max = 0, 0, 0
-    if list_unique_values:
-        unique_values_min = np.min(list_unique_values)
-        unique_values_mean = Decimal(round(np.mean(list_unique_values),0))
-        unique_values_max = np.max(list_unique_values)
-    
-    
-    characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max)
-    
-    return X, y, characteristics
+    return X, y, df_characteristics
 
 
 
@@ -335,90 +312,35 @@ def find_best_result(resultsList):
 
 
 
-def write_characteristics(characteristics, best_result):
+def write_characteristics(df_characteristics, best_result):
 
-    if not characteristics or not best_result:
-        print("--characteristics or best_result not valid on write_characteristics--")
-        print("characteristics:", characteristics)
+    if df_characteristics.empty or not best_result:
+        print("--df_characteristics or best_result not valid on write_characteristics--")
+        print("df_characteristics:", df_characteristics)
         print("best_result:", best_result)
         return False
     
     try:
-        
+    
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         #print(df_kb_c, '\n')
-
-        df_kb_c2 = df_kb_c.loc[df_kb_c['dataset'] == characteristics.dataset_name]
         
-        if not df_kb_c2.empty:
-            
-            index = df_kb_c2.index.values[0]
-            
-            if( df_kb_c2.loc[index, 'instances number'] == characteristics.n_rows and 
-                df_kb_c2.loc[index, 'attributes number'] == characteristics.n_columns and
-                df_kb_c2.loc[index, 'numerical attributes'] == characteristics.n_numeric_col and 
-                df_kb_c2.loc[index, 'categorical attributes'] == characteristics.n_categorical_col and
-                df_kb_c2.loc[index, 'imbalance ratio'] == characteristics.imbalance_ratio and
-                df_kb_c2.loc[index, 'minimum numerical correlation'] == characteristics.corr_min and
-                df_kb_c2.loc[index, 'average numerical correlation'] == characteristics.corr_mean and
-                df_kb_c2.loc[index, 'maximum numerical correlation'] == characteristics.corr_max and 
-                df_kb_c2.loc[index, 'minimum distinct instances in categorical attributes'] == characteristics.unique_values_min and
-                df_kb_c2.loc[index, 'average distinct instances in categorical attributes'] == characteristics.unique_values_mean and
-                df_kb_c2.loc[index, 'maximum distinct instances in categorical attributes'] == characteristics.unique_values_max and
-                df_kb_c2.loc[index, 'pre processing'] == best_result.balancing and
-                df_kb_c2.loc[index, 'algorithm'] == best_result.algorithm
-            ):
-                print("Write Characteristics not written!","\n")
-                
-            else:
-                
-                df_kb_c.at[index, 'instances number'] = characteristics.n_rows
-                df_kb_c.at[index, 'attributes number'] = characteristics.n_columns
-                df_kb_c.at[index, 'numerical attributes'] = characteristics.n_numeric_col
-                df_kb_c.at[index, 'categorical attributes'] = characteristics.n_categorical_col
-                df_kb_c.at[index, 'imbalance ratio'] = characteristics.imbalance_ratio
-                df_kb_c.at[index, 'minimum numerical correlation'] = characteristics.corr_min
-                df_kb_c.at[index, 'average numerical correlation'] = characteristics.corr_mean
-                df_kb_c.at[index, 'maximum numerical correlation'] = characteristics.corr_max
-                df_kb_c.at[index, 'minimum distinct instances in categorical attributes'] = characteristics.unique_values_min
-                df_kb_c.at[index, 'average distinct instances in categorical attributes'] = characteristics.unique_values_mean
-                df_kb_c.at[index, 'maximum distinct instances in categorical attributes'] = characteristics.unique_values_max
-                df_kb_c.at[index, 'pre processing'] = best_result.balancing
-                df_kb_c.at[index, 'algorithm'] = best_result.algorithm
-                
-                df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
-                
-                print("Write Characteristics written, row updated!","\n")
-            
-        else:
-            
-            df_kb_c.loc[len(df_kb_c.index)] = [
-                characteristics.dataset_name,
-                characteristics.n_rows,
-                characteristics.n_columns,
-                characteristics.n_numeric_col,
-                characteristics.n_categorical_col,
-                characteristics.imbalance_ratio,
-                characteristics.corr_min,
-                characteristics.corr_mean,
-                characteristics.corr_max,
-                characteristics.unique_values_min,
-                characteristics.unique_values_mean,
-                characteristics.unique_values_max,
-                best_result.balancing,
-                best_result.algorithm
-            ]
-
-            df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
-            
-            print("Write Characteristics written, row added!","\n")
-
-        return True
-    
-    except Exception as e:
-        print("--Did NOT Wrote characteristics on write_characteristics--")
-        print(e)
+        df_kb_c = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
+        
+        df_characteristics = df_characteristics.append(df_kb_c, ignore_index=True)
+        
+        df_characteristics.at[0, 'pre processing'] = best_result.balancing
+        df_characteristics.at[0, 'algorithm'] = best_result.algorithm
+        
+        df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+        
+        print("Write Characteristics written, row added or updated!","\n")
+        
+    except Exception:
+        traceback.print_exc()
         return False
+
+    return True   
 
 
 
@@ -431,7 +353,7 @@ def write_results(best_result, elapsed_time):
         return False
     
     try:
-        
+    
         current_value = round(np.mean([best_result.balanced_accuracy, best_result.f1_score, best_result.roc_auc_score, best_result.g_mean_score, best_result.cohen_kappa_score]), 3)
         
         elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
@@ -486,12 +408,11 @@ def write_results(best_result, elapsed_time):
         print("Best Final Score Obtained    :", current_value)
         print("Elapsed Time                 :", elapsed_time, "\n")
         
-        return True
-        
-    except Exception as e:
-        print("--Did NOT Wrote best_result on write_results--")
-        print(e)
+    except Exception:
+        traceback.print_exc()
         return False
+    
+    return True
 
 
 
@@ -504,7 +425,7 @@ def write_full_results(resultsList, dataset_name):
         return False
     
     try:
-        
+    
         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
         
         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
@@ -535,12 +456,11 @@ def write_full_results(resultsList, dataset_name):
         else:
             print("Write Full Results not written!","\n")
         
-        return True
-
-    except Exception as e:
-        print("--Did NOT Wrote resultsList on write_full_results--")
-        print(e)
+    except Exception:
+        traceback.print_exc()
         return False
+    
+    return True
 
 
 
