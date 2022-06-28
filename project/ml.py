@@ -200,16 +200,16 @@ def pre_processing(balancing):
         # kmeans = MiniBatchKMeans(batch_size=2048)
         # , kmeans_estimator=kmeans
         
-        imbalance_ratio = 0
-        if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
-            if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
-                imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
-            else:
-                imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+        # imbalance_ratio = 0
+        # if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+        #     if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+        #         imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+        #     else:
+        #         imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
         
-        n_clusters = 1/imbalance_ratio
+        # n_clusters = 1/imbalance_ratio
         
-        balancing_technique = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters)
+        balancing_technique = KMeansSMOTE(random_state=42, n_jobs=-1) #cluster_balance_threshold=n_clusters
     
     if balancing == "SVMSMOTE":
         balancing_technique = SVMSMOTE(random_state=42, n_jobs=-1)
