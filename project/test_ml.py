@@ -15,7 +15,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #get 4 random datasets
 
 
-dataset_name = "page-blocks0.dat"
+dataset_name = "car-good.dat"
 dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
 # list_openml = [1056,316,40900,40713]

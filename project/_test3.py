@@ -1,13 +1,14 @@
-from cmath import nan
 import sys
 import pandas as pd
 import numpy as np
 
 def get_best_results_by_characteristics(dataset_name):
-    #do with validations
-    #do with validations
-    #do with validations
-
+    
+    if not dataset_name:
+        print("--dataset_name not valid on get_best_results_by_characteristics--")
+        print("best_result:", dataset_name)
+        return False
+    
     df_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
 
     # a = (1, 2, 3)
@@ -43,13 +44,14 @@ def get_best_results_by_characteristics(dataset_name):
     
     # print(df_dist)
     
-    #get first 3 elements
+    #get first 3 distinct elements
     df_dist = df_dist.head(3)
     
     return df_dist
 
 
 dataset_name = "glass1.dat"
+print("\ndataset selected:", dataset_name, "\n")
 df_dist = get_best_results_by_characteristics(dataset_name)
 
 print(df_dist)

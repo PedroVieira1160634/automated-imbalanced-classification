@@ -48,13 +48,13 @@ y = df.iloc[: , -1:]
 
 
 #TODO ver melhor
-# encoded_columns = []
-# for column_name in X.columns:
-#     if X[column_name].dtype == object or X[column_name].dtype.name == 'category' or X[column_name].dtype == bool or X[column_name].dtype == str:
-#         encoded_columns.extend([column_name])
+encoded_columns = []
+for column_name in X.columns:
+    if X[column_name].dtype == object or X[column_name].dtype.name == 'category' or X[column_name].dtype == bool or X[column_name].dtype == str:
+        encoded_columns.extend([column_name])
 
-# if encoded_columns:
-#     X = pd.get_dummies(X, columns=X[encoded_columns].columns, drop_first=True)
+if encoded_columns:
+    X = pd.get_dummies(X, columns=X[encoded_columns].columns, drop_first=True)
 
 
 encoded_columns = []
@@ -72,41 +72,41 @@ if preserve_name:
 
 
 
-#TODO ver parametros
-categorical_ohe_transformer = OneHotEncoder(drop="first", handle_unknown="ignore", sparse=False) #sparse=False
-# categorical_le_transformer = LabelEncoder() #LabelBinarizer
+# #TODO ver parametros
+# categorical_ohe_transformer = OneHotEncoder(drop="first", handle_unknown="ignore", sparse=False) #sparse=False
+# # categorical_le_transformer = LabelEncoder() #LabelBinarizer
 
-# print(df.select_dtypes(include=object)) #["category","object"])
+# # print(df.select_dtypes(include=object)) #["category","object"])
 
-cat_cols = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
-# cat_cols_X = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
-# cat_cols_y = y.select_dtypes(include=["category","object","bool"]).columns.tolist()
+# cat_cols = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
+# # cat_cols_X = X.select_dtypes(include=["category","object","bool"]).columns.tolist()
+# # cat_cols_y = y.select_dtypes(include=["category","object","bool"]).columns.tolist()
 
-# print(type(cat_cols))
-# print(cat_cols_X)
-# print(cat_cols_y)
+# # print(type(cat_cols))
+# # print(cat_cols_X)
+# # print(cat_cols_y)
 
-#TODO ver parametros
-preprocessor = ColumnTransformer(
-    transformers=[
-        ("cat_ohe", categorical_ohe_transformer, cat_cols) #selector(dtype_include=["category","object","bool"])
-        # ,("cat_le", categorical_le_transformer, cat_cols_y)
-    ],
-    remainder='passthrough'
-)
+# #TODO ver parametros
+# preprocessor = ColumnTransformer(
+#     transformers=[
+#         ("cat_ohe", categorical_ohe_transformer, cat_cols) #selector(dtype_include=["category","object","bool"])
+#         # ,("cat_le", categorical_le_transformer, cat_cols_y)
+#     ],
+#     remainder='passthrough'
+# )
 
-df_print = pd.DataFrame(preprocessor.fit_transform(df)) #.toarray()
-# pd.set_option('display.max_rows', df_print.shape[0]+1)
-print(df_print)
+# df_print = pd.DataFrame(preprocessor.fit_transform(df)) #.toarray()
+# # pd.set_option('display.max_rows', df_print.shape[0]+1)
+# print(df_print)
 
+#balancing_technique = None
+balancing_technique = RandomUnderSampler(random_state=42)
+classifier = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
 #TODO ver parametros de Pipeline ou make_pipeline
-model = Pipeline(
-    steps=[
-        ("preprocessor", preprocessor),
-        # ("sampling", RandomOverSampler(random_state=42)),
-        ("classifier", ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1))
-    ]
+model = make_pipeline(
+    balancing_technique,
+    classifier
 )
 
 
@@ -382,6 +382,105 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 #     characteristics = Characteristics(dataset_name, n_rows, n_columns, n_numeric_col, n_categorical_col, imbalance_ratio, corr_min, corr_mean, corr_max, unique_values_min, unique_values_mean, unique_values_max)
     
 #     return X, y, characteristics
+
+
+# def pre_processing(X, y, balancing):
+    
+#     # -- Under-sampling methods --
+#     if balancing == "ClusterCentroids":
+#         cc = ClusterCentroids(random_state=42)
+#         X, y = cc.fit_resample(X, y)
+
+#     if balancing == "CondensedNearestNeighbour":
+#         cnn = CondensedNearestNeighbour(random_state=42, n_jobs=-1) 
+#         X, y = cnn.fit_resample(X, y)
+
+#     if balancing == "EditedNearestNeighbours":
+#         enn = EditedNearestNeighbours(n_jobs=-1)
+#         X, y = enn.fit_resample(X, y)
+
+#     if balancing == "RepeatedEditedNearestNeighbours":
+#         renn = RepeatedEditedNearestNeighbours(n_jobs=-1)
+#         X, y = renn.fit_resample(X, y)
+
+#     if balancing == "AllKNN":
+#         allknn = AllKNN(n_jobs=-1)
+#         X, y = allknn.fit_resample(X, y)
+
+#     if balancing == "InstanceHardnessThreshold":
+#         iht = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
+#         X, y = iht.fit_resample(X, y)
+
+#     if balancing == "NearMiss":
+#         nm = NearMiss(n_jobs=-1)
+#         X, y = nm.fit_resample(X, y)
+
+#     if balancing == "NeighbourhoodCleaningRule":
+#         ncr = NeighbourhoodCleaningRule(n_jobs=-1)
+#         X, y = ncr.fit_resample(X, y)
+
+#     if balancing == "OneSidedSelection":
+#         oss = OneSidedSelection(random_state=42, n_jobs=-1)
+#         X, y = oss.fit_resample(X, y)
+
+#     if balancing == "RandomUnderSampler":
+#         rus = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
+#         X, y = rus.fit_resample(X, y)
+    
+#     if balancing == "TomekLinks":
+#         tl = TomekLinks(n_jobs=-1)
+#         X, y = tl.fit_resample(X, y)
+    
+    
+#     # -- Over-sampling methods --
+#     if balancing == "RandomOverSampler":
+#         over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
+#         X, y = over.fit_resample(X, y)
+    
+#     if balancing == "SMOTE":
+#         smote = SMOTE(random_state=42, n_jobs=-1) #sampling_strategy=0.5
+#         X, y = smote.fit_resample(X, y)
+    
+#     if balancing == "ADASYN":
+#         ada = ADASYN(random_state=42, n_jobs=-1)
+#         X, y = ada.fit_resample(X, y)
+    
+#     if balancing == "BorderlineSMOTE":
+#         sm = BorderlineSMOTE(random_state=42, n_jobs=-1)
+#         X, y = sm.fit_resample(X, y)
+    
+#     if balancing == "KMeansSMOTE":
+#         #UserWarning: MiniBatchKMeans
+#         # kmeans = MiniBatchKMeans(batch_size=2048)
+#         # , kmeans_estimator=kmeans
+        
+#         imbalance_ratio = 0
+#         if y.values.tolist().count([0]) > 0 and y.values.tolist().count([1]) > 0:
+#             if y.values.tolist().count([0]) >= y.values.tolist().count([1]):
+#                 imbalance_ratio = round(y.values.tolist().count([0])/y.values.tolist().count([1]),3)
+#             else:
+#                 imbalance_ratio = round(y.values.tolist().count([1])/y.values.tolist().count([0]),3)
+        
+#         n_clusters = 1/imbalance_ratio
+        
+#         sm = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters)
+#         X, y = sm.fit_resample(X, y)
+    
+#     if balancing == "SVMSMOTE":
+#         sm = SVMSMOTE(random_state=42, n_jobs=-1)
+#         X, y = sm.fit_resample(X, y)
+    
+    
+#     # -- Combination of over- and under-sampling methods --
+#     if balancing == "SMOTEENN":
+#         sme = SMOTEENN(random_state=42, n_jobs=-1)
+#         X, y = sme.fit_resample(X, y)
+        
+#     if balancing == "SMOTETomek":
+#         smt = SMOTETomek(random_state=42, n_jobs=-1)
+#         X, y = smt.fit_resample(X, y)
+    
+#     return X, y
 
 
 # def write_characteristics(characteristics, best_result):

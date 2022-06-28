@@ -40,20 +40,20 @@ def execute_ml(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        array_balancing = ["-"]
+        # array_balancing = ["-"]
         # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
-        # array_balancing = [
-        #     "-", 
-        #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
-        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
-        #     "SMOTEENN", "SMOTETomek"
-        # ]
+        array_balancing = [
+            "-", 
+            "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+            "SMOTEENN", "SMOTETomek"
+        ]
         
         resultsList = []
         for balancing in array_balancing:
             try:
-                X2, y2 = pre_processing(X, y, balancing) 
-                resultsList += classify_evaluate(X2, y2, balancing, dataset_name)
+                balancing_technique = pre_processing(balancing) 
+                resultsList += classify_evaluate(X, y, balancing, balancing_technique, dataset_name)
             except Exception:
                 traceback.print_exc()
         
@@ -143,70 +143,57 @@ def features_labels(df, dataset_name):
 
 
 
-def pre_processing(X, y, balancing):
+def pre_processing(balancing):
+    
+    balancing_technique = None
     
     # -- Under-sampling methods --
     if balancing == "ClusterCentroids":
-        cc = ClusterCentroids(random_state=42)
-        X, y = cc.fit_resample(X, y)
+        balancing_technique = ClusterCentroids(random_state=42)
 
     if balancing == "CondensedNearestNeighbour":
-        cnn = CondensedNearestNeighbour(random_state=42, n_jobs=-1) 
-        X, y = cnn.fit_resample(X, y)
+        balancing_technique = CondensedNearestNeighbour(random_state=42, n_jobs=-1)
 
     if balancing == "EditedNearestNeighbours":
-        enn = EditedNearestNeighbours(n_jobs=-1)
-        X, y = enn.fit_resample(X, y)
+        balancing_technique = EditedNearestNeighbours(n_jobs=-1)
 
     if balancing == "RepeatedEditedNearestNeighbours":
-        renn = RepeatedEditedNearestNeighbours(n_jobs=-1)
-        X, y = renn.fit_resample(X, y)
+        balancing_technique = RepeatedEditedNearestNeighbours(n_jobs=-1)
 
     if balancing == "AllKNN":
-        allknn = AllKNN(n_jobs=-1)
-        X, y = allknn.fit_resample(X, y)
+        balancing_technique = AllKNN(n_jobs=-1)
 
     if balancing == "InstanceHardnessThreshold":
-        iht = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
-        X, y = iht.fit_resample(X, y)
+        balancing_technique = InstanceHardnessThreshold(random_state=42, n_jobs=-1)
 
     if balancing == "NearMiss":
-        nm = NearMiss(n_jobs=-1)
-        X, y = nm.fit_resample(X, y)
+        balancing_technique = NearMiss(n_jobs=-1)
 
     if balancing == "NeighbourhoodCleaningRule":
-        ncr = NeighbourhoodCleaningRule(n_jobs=-1)
-        X, y = ncr.fit_resample(X, y)
+        balancing_technique = NeighbourhoodCleaningRule(n_jobs=-1)
 
     if balancing == "OneSidedSelection":
-        oss = OneSidedSelection(random_state=42, n_jobs=-1)
-        X, y = oss.fit_resample(X, y)
+        balancing_technique = OneSidedSelection(random_state=42, n_jobs=-1)
 
     if balancing == "RandomUnderSampler":
-        rus = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
-        X, y = rus.fit_resample(X, y)
+        balancing_technique = RandomUnderSampler(random_state=42) #sampling_strategy=0.5
     
     if balancing == "TomekLinks":
-        tl = TomekLinks(n_jobs=-1)
-        X, y = tl.fit_resample(X, y)
+        balancing_technique = TomekLinks(n_jobs=-1)
     
     
     # -- Over-sampling methods --
     if balancing == "RandomOverSampler":
-        over = RandomOverSampler(random_state=42) #sampling_strategy=0.5
-        X, y = over.fit_resample(X, y)
+        balancing_technique = RandomOverSampler(random_state=42) #sampling_strategy=0.5
     
     if balancing == "SMOTE":
-        smote = SMOTE(random_state=42, n_jobs=-1) #sampling_strategy=0.5
-        X, y = smote.fit_resample(X, y)
+        balancing_technique = SMOTE(random_state=42, n_jobs=-1) #sampling_strategy=0.5
     
     if balancing == "ADASYN":
-        ada = ADASYN(random_state=42, n_jobs=-1)
-        X, y = ada.fit_resample(X, y)
+        balancing_technique = ADASYN(random_state=42, n_jobs=-1)
     
     if balancing == "BorderlineSMOTE":
-        sm = BorderlineSMOTE(random_state=42, n_jobs=-1)
-        X, y = sm.fit_resample(X, y)
+        balancing_technique = BorderlineSMOTE(random_state=42, n_jobs=-1)
     
     if balancing == "KMeansSMOTE":
         #UserWarning: MiniBatchKMeans
@@ -222,49 +209,50 @@ def pre_processing(X, y, balancing):
         
         n_clusters = 1/imbalance_ratio
         
-        sm = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters)
-        X, y = sm.fit_resample(X, y)
+        balancing_technique = KMeansSMOTE(random_state=42, n_jobs=-1, cluster_balance_threshold=n_clusters)
     
     if balancing == "SVMSMOTE":
-        sm = SVMSMOTE(random_state=42, n_jobs=-1)
-        X, y = sm.fit_resample(X, y)
+        balancing_technique = SVMSMOTE(random_state=42, n_jobs=-1)
     
     
     # -- Combination of over- and under-sampling methods --
     if balancing == "SMOTEENN":
-        sme = SMOTEENN(random_state=42, n_jobs=-1)
-        X, y = sme.fit_resample(X, y)
+        balancing_technique = SMOTEENN(random_state=42, n_jobs=-1)
         
     if balancing == "SMOTETomek":
-        smt = SMOTETomek(random_state=42, n_jobs=-1)
-        X, y = smt.fit_resample(X, y)
+        balancing_technique = SMOTETomek(random_state=42, n_jobs=-1)
     
-    return X, y
+    return balancing_technique
 
 
 
 # initial: 1 + 19   balancing techniques and 7 classification algorithms    = 140   combinations
 # final:   ?        balancing techniques and ? classification algorithms    = ?     combinations
-def classify_evaluate(X, y, balancing, dataset_name):
+def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
-        LogisticRegression(random_state=42,max_iter=10000)
-        ,GaussianNB() #no random_state (naive bayes)
-        ,SVC(random_state=42)
-        ,KNeighborsClassifier() #no random_state
-        ,LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
+        # LogisticRegression(random_state=42,max_iter=10000)
+        # ,GaussianNB() #no random_state (naive bayes)
+        # ,SVC(random_state=42)
+        # ,KNeighborsClassifier() #no random_state
+        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
         ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
         ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-        ,AdaBoostClassifier(random_state=42)
-        ,BaggingClassifier(random_state=42, n_jobs=-1)
-        ,GradientBoostingClassifier(random_state=42)
+        # ,AdaBoostClassifier(random_state=42)
+        # ,BaggingClassifier(random_state=42, n_jobs=-1)
+        # ,GradientBoostingClassifier(random_state=42)
     ]
     
     resultsList = []
     
     for classifier in array_classifiers:
         start_time = time.time()
+        
+        model = make_pipeline(
+            balancing_technique,
+            classifier
+        )
         
         cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
         
@@ -276,7 +264,7 @@ def classify_evaluate(X, y, balancing, dataset_name):
             'cohen_kappa': make_scorer(cohen_kappa_score, greater_is_better=True)
             }
         
-        scores = cross_validate(classifier, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1) #, return_train_score=True
+        scores = cross_validate(model, X, y.values.ravel(), scoring=scoring,cv=cv, n_jobs=-1) #, return_train_score=True
         
         finish_time = round(time.time() - start_time,3)
         
