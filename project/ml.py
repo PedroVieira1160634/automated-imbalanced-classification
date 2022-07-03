@@ -74,6 +74,31 @@ def execute_ml(dataset_location, id_openml):
 
 
 
+def execute_byCharacteristics(dataset_location, id_openml):
+    try:
+        if dataset_location:
+            df, dataset_name = read_file(dataset_location)
+        elif id_openml:
+            df, dataset_name = read_file_openml(id_openml)
+        else:
+            return False
+        
+        X, y, df_characteristics = features_labels(df, dataset_name)
+        
+        write_characteristics(df_characteristics, None)
+        
+        df_dist = get_best_results_by_characteristics(dataset_name)
+        
+        write_characteristics_remove_current_dataset()
+        
+        return df_dist
+        
+    except Exception:
+        traceback.print_exc()
+        return False
+
+
+
 def read_file(path):
     return pd.read_csv(path), path.split('/')[-1]
 
@@ -120,21 +145,21 @@ def features_labels(df, dataset_name):
     
     encoded_columns = []
     for column_name in X.columns:
-        if X[column_name].dtype == object or X[column_name].dtype.name == 'category':
+        if X[column_name].dtype == object or X[column_name].dtype.name == 'category' or X[column_name].dtype == bool or X[column_name].dtype == str:
             encoded_columns.extend([column_name])
     
     if encoded_columns:
-        X = pd.get_dummies(X, X[encoded_columns].columns, drop_first=True)
+        X = pd.get_dummies(X, columns=X[encoded_columns].columns, drop_first=True)
 
     encoded_columns = []
     preserve_name = ""
     for column_name in y.columns:
-        if y[column_name].dtype == object or y[column_name].dtype.name == 'category':
+        if y[column_name].dtype == object or y[column_name].dtype.name == 'category' or y[column_name].dtype == bool or y[column_name].dtype == str:
             encoded_columns.extend([column_name])
             preserve_name = column_name
     
     if encoded_columns:
-        y = pd.get_dummies(y, y[encoded_columns].columns, drop_first=True)
+        y = pd.get_dummies(y, columns=y[encoded_columns].columns, drop_first=True)
 
     if preserve_name:
         y.rename(columns={y.columns[0]: preserve_name}, inplace = True)
@@ -303,10 +328,9 @@ def find_best_result(resultsList):
 #always writes
 def write_characteristics(df_characteristics, best_result):
 
-    if df_characteristics.empty or not best_result:
-        print("--df_characteristics or best_result not valid on write_characteristics--")
+    if df_characteristics.empty:
+        print("--df_characteristics not valid on write_characteristics--")
         print("df_characteristics:", df_characteristics)
-        print("best_result:", best_result)
         return False
     
     try:
@@ -318,8 +342,12 @@ def write_characteristics(df_characteristics, best_result):
         
         df_characteristics = df_characteristics.append(df_kb_c, ignore_index=True)
         
-        df_characteristics.at[0, 'pre processing'] = best_result.balancing
-        df_characteristics.at[0, 'algorithm'] = best_result.algorithm
+        if best_result and best_result.balancing and best_result.algorithm:
+            df_characteristics.at[0, 'pre processing'] = best_result.balancing
+            df_characteristics.at[0, 'algorithm'] = best_result.algorithm
+        else:
+            df_characteristics.at[0, 'pre processing'] = "?"
+            df_characteristics.at[0, 'algorithm'] = "?"
         
         df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
         
@@ -452,6 +480,55 @@ def write_full_results(resultsList, dataset_name):
         return False
     
     return True
+
+
+
+def get_best_results_by_characteristics(dataset_name):
+    
+    if not dataset_name:
+        print("--dataset_name not valid on get_best_results_by_characteristics--")
+        print("best_result:", dataset_name)
+        return False
+    
+    df_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+    df_c = df_c.dropna(axis=1)
+    df_c = df_c.replace([np.inf, -np.inf], np.nan).dropna(axis=1)
+    
+    df_c_a = df_c.loc[df_c['dataset'] == dataset_name]
+    df_c_a = df_c_a.drop(['dataset', 'pre processing','algorithm'], axis=1)
+    list_a = df_c_a.values.tolist()[0]
+    list_a = [(float(i)-min(list_a))/(max(list_a)-min(list_a)) for i in list_a]
+
+    df_c = df_c.loc[df_c['dataset'] != dataset_name]
+    list_dist = []
+    for index, row in df_c.iterrows():
+        df_c_b = row.to_frame()
+        df_c_b = df_c_b.drop(['dataset', 'pre processing','algorithm'])
+        list_b = df_c_b.values.tolist()
+        list_b = [x for xs in list_b for x in xs]
+        list_b = [(float(i)-min(list_b))/(max(list_b)-min(list_b)) for i in list_b]
+        list_dist.append((row['dataset'], row['pre processing'], row['algorithm'], np.linalg.norm(np.array(list_a) - np.array(list_b))))
+        
+    df_dist = pd.DataFrame(list_dist, columns=["dataset", "pre processing", "algorithm","result"])
+    df_dist = df_dist.sort_values(by=['result'])
+    df_dist = df_dist.drop_duplicates(subset=['pre processing', 'algorithm'], keep='first')
+    df_dist = df_dist.head(3)
+    df_dist = df_dist[['pre processing', 'algorithm']]
+    
+    return df_dist
+
+
+def write_characteristics_remove_current_dataset():
+    
+    try:
+        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+        df_kb_c = df_kb_c.iloc[1: , :]
+        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
+        print("Removed Current Dataset Characteristics!","\n")
+    
+    except Exception:
+        traceback.print_exc()
+        return False
 
 
 

@@ -28,8 +28,6 @@ from ml import read_file, read_file_openml, features_labels
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
-#
-
 #glass1.dat page-blocks0.dat kddcup-rootkit-imap_vs_back.dat car-good.dat
 dataset_name = "car-good.dat"
 df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
@@ -103,7 +101,7 @@ if preserve_name:
 balancing_technique = RandomUnderSampler(random_state=42)
 classifier = ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
 
-#TODO ver parametros de Pipeline ou make_pipeline
+#verbose=True
 model = make_pipeline(
     balancing_technique,
     classifier
