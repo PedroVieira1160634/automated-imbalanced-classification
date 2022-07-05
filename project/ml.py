@@ -327,7 +327,6 @@ def find_best_result(resultsList):
 
 #always writes
 def write_characteristics(df_characteristics, best_result):
-
     if df_characteristics.empty:
         print("--df_characteristics not valid on write_characteristics--")
         print("df_characteristics:", df_characteristics)
@@ -363,7 +362,6 @@ def write_characteristics(df_characteristics, best_result):
 
 #writes if best
 def write_results(best_result, elapsed_time):
-
     if not best_result:
         print("--best_result or elapsed_time not valid on write_results--")
         print("best_result:", best_result)
@@ -436,7 +434,6 @@ def write_results(best_result, elapsed_time):
 
 #only writes at first time 
 def write_full_results(resultsList, dataset_name):
-
     if not resultsList or not dataset_name:
         print("--resultsList not valid on write_full_results--")
         print("resultsList:", resultsList)
@@ -484,7 +481,6 @@ def write_full_results(resultsList, dataset_name):
 
 
 def get_best_results_by_characteristics(dataset_name):
-    
     if not dataset_name:
         print("--dataset_name not valid on get_best_results_by_characteristics--")
         print("best_result:", dataset_name)
@@ -518,8 +514,9 @@ def get_best_results_by_characteristics(dataset_name):
     return df_dist
 
 
+
+#always writes
 def write_characteristics_remove_current_dataset():
-    
     try:
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         df_kb_c = df_kb_c.iloc[1: , :]
