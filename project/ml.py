@@ -480,6 +480,7 @@ def write_full_results(resultsList, dataset_name):
 
 
 
+#by Euclidean Distance
 def get_best_results_by_characteristics(dataset_name):
     if not dataset_name:
         print("--dataset_name not valid on get_best_results_by_characteristics--")
