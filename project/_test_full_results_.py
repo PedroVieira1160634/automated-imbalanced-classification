@@ -4,8 +4,8 @@ import pandas as pd
 def print_scores_pre_processing(df_kb_r):
     list_pre_processing = []
 
-    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "-"]
-    # list_pre_processing.append(("-", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "(no pre processing)"]
+    # list_pre_processing.append(("(no pre processing)", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ClusterCentroids"]
     # list_pre_processing.append(("ClusterCentroids", sum(df_kb_r2.index)))
@@ -85,7 +85,7 @@ def remove_worst_scores_pre_processing(df_kb_r):
         (df_kb_r['pre processing'] != "AllKNN") &
         (df_kb_r['pre processing'] != "RandomUnderSampler") &
         (df_kb_r['pre processing'] != "OneSidedSelection") &
-        (df_kb_r['pre processing'] != "-") &
+        (df_kb_r['pre processing'] != "(no pre processing)") &
         (df_kb_r['pre processing'] != "TomekLinks") &
         (df_kb_r['pre processing'] != "CondensedNearestNeighbour")
         ]

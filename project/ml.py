@@ -22,8 +22,8 @@ from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, Balanc
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
 import traceback
-import warnings
-warnings.filterwarnings("ignore")
+# import warnings
+# warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -40,10 +40,10 @@ def execute_ml(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        # array_balancing = ["-"]
-        # array_balancing = ["-", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
+        # array_balancing = ["(no pre processing)"]
+        # array_balancing = ["(no pre processing)", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
         array_balancing = [
-            "-", 
+            "(no pre processing)", 
             "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
             "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
             "SMOTEENN", "SMOTETomek"
@@ -91,7 +91,9 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         write_characteristics_remove_current_dataset()
         
-        return df_dist
+        str_output = display_final_results(df_dist)
+        
+        return str_output
         
     except Exception:
         traceback.print_exc()
@@ -256,17 +258,17 @@ def pre_processing(balancing):
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
-        # LogisticRegression(random_state=42,max_iter=10000)
-        # ,GaussianNB() #no random_state (naive bayes)
-        # ,SVC(random_state=42)
-        # ,KNeighborsClassifier() #no random_state
-        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
+        LogisticRegression(random_state=42,max_iter=10000)
+        ,GaussianNB() #no random_state (naive bayes)
+        ,SVC(random_state=42)
+        ,KNeighborsClassifier() #no random_state
+        ,LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
         ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
         ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-        # ,AdaBoostClassifier(random_state=42)
-        # ,BaggingClassifier(random_state=42, n_jobs=-1)
-        # ,GradientBoostingClassifier(random_state=42)
+        ,AdaBoostClassifier(random_state=42)
+        ,BaggingClassifier(random_state=42, n_jobs=-1)
+        ,GradientBoostingClassifier(random_state=42)
     ]
     
     resultsList = []
@@ -296,10 +298,16 @@ def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
         balanced_accuracy = round(np.mean(scores['test_balanced_accuracy']),3)
         f1_score = round(np.mean(scores['test_f1']),3)
         roc_auc_score = round(np.mean(scores['test_roc_auc']),3)
-        g_mean = round(np.mean(scores['test_g_mean']),3)
+        g_mean_score = round(np.mean(scores['test_g_mean']),3)
         cohen_kappa = round(np.mean(scores['test_cohen_kappa']),3)
+        
+        balanced_accuracy_std = round(np.std(scores['test_balanced_accuracy']),3)
+        f1_score_std = round(np.std(scores['test_f1']),3)
+        roc_auc_score_std = round(np.std(scores['test_roc_auc']),3)
+        g_mean_score_std = round(np.std(scores['test_g_mean']),3)
+        cohen_kappa_std = round(np.std(scores['test_cohen_kappa']),3)
 
-        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, balanced_accuracy, f1_score, roc_auc_score, g_mean, cohen_kappa)
+        r1 = Results(dataset_name, balancing, classifier.__class__.__name__, finish_time, balanced_accuracy, balanced_accuracy_std, f1_score, f1_score_std, roc_auc_score, roc_auc_score_std, g_mean_score, g_mean_score_std, cohen_kappa, cohen_kappa_std)
         resultsList.append(r1)
         
     return resultsList
@@ -316,8 +324,6 @@ def find_best_result(resultsList):
     best_result = resultsList[index]
     
     string_balancing = best_result.balancing
-    if string_balancing == "-":
-        string_balancing = "no preprocessing"
     
     print("Best classifier is", best_result.algorithm, "with", string_balancing, "\n")
     
@@ -339,7 +345,8 @@ def write_characteristics(df_characteristics, best_result):
         
         df_kb_c = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
         
-        df_characteristics = df_characteristics.append(df_kb_c, ignore_index=True)
+        # df_characteristics = df_characteristics.append(df_kb_c, ignore_index=True)
+        df_characteristics = pd.concat([df_characteristics, pd.DataFrame.from_records(df_kb_c)])
         
         if best_result and best_result.balancing and best_result.algorithm:
             df_characteristics.at[0, 'pre processing'] = best_result.balancing
@@ -389,10 +396,15 @@ def write_results(best_result, elapsed_time):
                 df_kb_r.at[index, 'algorithm'] = best_result.algorithm
                 df_kb_r.at[index, 'time'] = best_result.time
                 df_kb_r.at[index, 'balanced accuracy'] = best_result.balanced_accuracy
+                df_kb_r.at[index, 'balanced accuracy std'] = best_result.balanced_accuracy_std
                 df_kb_r.at[index, 'f1 score'] = best_result.f1_score
+                df_kb_r.at[index, 'f1 score std'] = best_result.f1_score_std
                 df_kb_r.at[index, 'roc auc'] = best_result.roc_auc_score
+                df_kb_r.at[index, 'roc auc std'] = best_result.roc_auc_score_std
                 df_kb_r.at[index, 'geometric mean'] = best_result.g_mean_score
+                df_kb_r.at[index, 'geometric mean std'] = best_result.g_mean_score_std
                 df_kb_r.at[index, 'cohen kappa'] = best_result.cohen_kappa_score
+                df_kb_r.at[index, 'cohen kappa std'] = best_result.cohen_kappa_score_std
                 df_kb_r.at[index, 'total elapsed time'] = elapsed_time
                 
                 df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
@@ -409,11 +421,16 @@ def write_results(best_result, elapsed_time):
                 best_result.balancing,
                 best_result.algorithm,
                 best_result.time,
-                best_result.balanced_accuracy, 
-                best_result.f1_score, 
+                best_result.balanced_accuracy,
+                best_result.balanced_accuracy_std,
+                best_result.f1_score,
+                best_result.f1_score_std,
                 best_result.roc_auc_score,
+                best_result.roc_auc_score_std,
                 best_result.g_mean_score,
+                best_result.g_mean_score_std,
                 best_result.cohen_kappa_score,
+                best_result.cohen_kappa_score_std,
                 elapsed_time
             ]
 
@@ -455,11 +472,16 @@ def write_full_results(resultsList, dataset_name):
                         result.balancing,
                         result.algorithm,
                         result.time,
-                        result.balanced_accuracy, 
-                        result.f1_score, 
+                        result.balanced_accuracy,
+                        result.balanced_accuracy_std,
+                        result.f1_score,
+                        result.f1_score_std,
                         result.roc_auc_score,
+                        result.roc_auc_score_std,
                         result.g_mean_score,
+                        result.g_mean_score_std,
                         result.cohen_kappa_score,
+                        result.cohen_kappa_score_std,
                         round(np.mean([result.balanced_accuracy, result.f1_score, result.roc_auc_score, result.g_mean_score, result.cohen_kappa_score]), 3)
                     ]
 
@@ -530,14 +552,32 @@ def write_characteristics_remove_current_dataset():
 
 
 
+def display_final_results(df_dist):
+    df_dist.loc[-1] = ['Pre Processing', 'Algorithm']
+    df_dist.index = df_dist.index + 1
+    df_dist = df_dist.sort_index()
+    df_dist.insert(loc=0, column='rank', value=['Rank',1,2,3])
+    
+    str_output = "Top performing combinations of Pre Processing Technique with a Classifier Algorithm\n\n"
+    str_output += "\n".join("{:7} {:25} {:25}".format(x, y, z) for x, y, z in zip(df_dist['rank'], df_dist['pre processing'], df_dist['algorithm']))
+    str_output += "\n"
+    return str_output
+
+
+
 class Results(object):
-    def __init__(self, dataset_name, balancing, algorithm, time, balanced_accuracy, f1_score, roc_auc_score, g_mean_score, cohen_kappa_score):
+    def __init__(self, dataset_name, balancing, algorithm, time, balanced_accuracy, balanced_accuracy_std, f1_score, f1_score_std, roc_auc_score, roc_auc_score_std, g_mean_score, g_mean_score_std, cohen_kappa_score, cohen_kappa_score_std):
         self.dataset_name = dataset_name
         self.balancing = balancing
         self.algorithm = algorithm
         self.time = time
         self.balanced_accuracy = balanced_accuracy
+        self.balanced_accuracy_std = balanced_accuracy_std
         self.f1_score = f1_score
+        self.f1_score_std = f1_score_std
         self.roc_auc_score = roc_auc_score
+        self.roc_auc_score_std = roc_auc_score_std
         self.g_mean_score = g_mean_score
+        self.g_mean_score_std = g_mean_score_std
         self.cohen_kappa_score = cohen_kappa_score
+        self.cohen_kappa_score_std = cohen_kappa_score_std
