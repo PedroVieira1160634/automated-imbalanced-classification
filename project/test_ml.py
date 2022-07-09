@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 from ml import execute_ml
 
-print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n')
 
 #glass1.dat
 #page-blocks0.dat
@@ -15,7 +15,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #get 4 random datasets
 
 
-dataset_name = "page-blocks0.dat"
+dataset_name = "kddcup-rootkit-imap_vs_back.dat"
 dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
 # list_openml = [1056,316,40900,40713]
@@ -24,4 +24,4 @@ dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 #     print("\n----------------------------------\n")
 
 
-print('\n\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
+print('\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')

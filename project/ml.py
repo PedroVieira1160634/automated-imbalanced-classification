@@ -22,8 +22,8 @@ from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, Balanc
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
 import traceback
-# import warnings
-# warnings.filterwarnings("ignore")
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -41,22 +41,31 @@ def execute_ml(dataset_location, id_openml):
         X, y, df_characteristics = features_labels(df, dataset_name)
         
         # array_balancing = ["(no pre processing)"]
-        # array_balancing = ["(no pre processing)", "RandomUnderSampler", "RandomOverSampler", "SMOTE"]
+        # array_balancing = [
+        #     "(no pre processing)", 
+        #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+        #     "SMOTEENN", "SMOTETomek"
+        # ]
         array_balancing = [
             "(no pre processing)", 
-            "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+            "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
             "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
-            "SMOTEENN", "SMOTETomek"
+            "SMOTETomek"
         ]
         
         resultsList = []
+        i = 1
         for balancing in array_balancing:
             try:
+                print("loading: ", i, " of ", len(array_balancing))
+                i += 1
                 balancing_technique = pre_processing(balancing) 
                 resultsList += classify_evaluate(X, y, balancing, balancing_technique, dataset_name)
             except Exception:
                 traceback.print_exc()
         
+        print("")
         finish_time = (round(time.time() - start_time,3))
         
         best_result = find_best_result(resultsList)
@@ -86,13 +95,15 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        write_characteristics(df_characteristics, None, False)
+        first_row_to_remove = write_characteristics(df_characteristics, None, False)
         
         df_dist = get_best_results_by_characteristics(dataset_name)
         
-        write_characteristics_remove_current_dataset()
-        
-        str_output = display_final_results(df_dist)
+        if first_row_to_remove:
+            write_characteristics_remove_current_dataset()
+            str_output = display_final_results(df_dist)
+        else:
+            str_output = "Attention: this dataset was already trained before!"
         
         return str_output
         
@@ -254,15 +265,16 @@ def pre_processing(balancing):
 
 
 
-# initial: 1 + 19   balancing techniques and 7 classification algorithms    = 140   combinations
-# final:   ?        balancing techniques and ? classification algorithms    = ?     combinations
+# initial:  1 + 19   balancing techniques and 11 classification algorithms  = 220   combinations
+# second:   1 + 14   balancing techniques and 8 classification algorithms   = 120   combinations
+# final:    ?        balancing techniques and ? classification algorithms   = ?     combinations
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
-        LogisticRegression(random_state=42,max_iter=10000)
-        ,GaussianNB() #no random_state (naive bayes)
-        ,SVC(random_state=42)
-        ,KNeighborsClassifier() #no random_state
+        # # LogisticRegression(random_state=42,max_iter=10000)
+        # # ,GaussianNB() #no random_state (naive bayes)
+        # # ,SVC(random_state=42)
+        KNeighborsClassifier() #no random_state
         ,LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
         ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
@@ -339,6 +351,9 @@ def write_characteristics(df_characteristics, best_result, result_updated):
         print("df_characteristics:", df_characteristics)
         return False
     
+    #execute_byCharacteristics
+    first_row_to_remove = True
+    
     try:
     
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
@@ -350,30 +365,40 @@ def write_characteristics(df_characteristics, best_result, result_updated):
         df_characteristics = pd.concat([df_characteristics, pd.DataFrame.from_records(df_kb_c_without)])
         df_characteristics = df_characteristics.reset_index(drop=True)
         
-        
-        
+        #execute_ml
         if best_result and best_result.balancing and best_result.algorithm:
-            if result_updated:
+            #row updated or new line
+            if result_updated or df_kb_c_selected.empty:
                 df_characteristics.at[0, 'pre processing'] = best_result.balancing
                 df_characteristics.at[0, 'algorithm'] = best_result.algorithm
                 
+                print("Characteristics written, row updated!","\n")
+            
+            #it was worse
             else:
                 df_characteristics.at[0, 'pre processing'] = df_kb_c_selected["pre processing"].values[0]
                 df_characteristics.at[0, 'algorithm'] = df_kb_c_selected["algorithm"].values[0]
                 
+                print("Characteristics not written!","\n")
+        
+        #execute_byCharacteristics
         else:
-            df_characteristics.at[0, 'pre processing'] = "?"
-            df_characteristics.at[0, 'algorithm'] = "?"
+            #new row
+            if df_kb_c_selected.empty:
+                df_characteristics.at[0, 'pre processing'] = "?"
+                df_characteristics.at[0, 'algorithm'] = "?"
+            #remains value
+            else:
+                df_characteristics = df_kb_c
+                first_row_to_remove = False
         
         df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
-        
-        print("Characteristics written, row added or updated!","\n")
         
     except Exception:
         traceback.print_exc()
         return False
 
-    return True   
+    return first_row_to_remove   
 
 
 
