@@ -57,14 +57,15 @@ def execute_ml(dataset_location, id_openml):
             except Exception:
                 traceback.print_exc()
         
+        finish_time = (round(time.time() - start_time,3))
+        
         best_result = find_best_result(resultsList)
         
-        write_characteristics(df_characteristics, best_result)
+        result_updated = write_results(best_result, finish_time)
         
         write_full_results(resultsList, dataset_name)
         
-        finish_time = (round(time.time() - start_time,3))
-        write_results(best_result, finish_time)
+        write_characteristics(df_characteristics, best_result, result_updated)
         
         return dataset_name
     
@@ -85,7 +86,7 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        write_characteristics(df_characteristics, None)
+        write_characteristics(df_characteristics, None, False)
         
         df_dist = get_best_results_by_characteristics(dataset_name)
         
@@ -332,7 +333,7 @@ def find_best_result(resultsList):
 
 
 #always writes
-def write_characteristics(df_characteristics, best_result):
+def write_characteristics(df_characteristics, best_result, result_updated):
     if df_characteristics.empty:
         print("--df_characteristics not valid on write_characteristics--")
         print("df_characteristics:", df_characteristics)
@@ -343,21 +344,30 @@ def write_characteristics(df_characteristics, best_result):
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         #print(df_kb_c, '\n')
         
-        df_kb_c = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
+        df_kb_c_without = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
+        df_kb_c_selected = df_kb_c.loc[(df_kb_c["dataset"].values == df_characteristics["dataset"].values)]
         
-        # df_characteristics = df_characteristics.append(df_kb_c, ignore_index=True)
-        df_characteristics = pd.concat([df_characteristics, pd.DataFrame.from_records(df_kb_c)])
+        df_characteristics = pd.concat([df_characteristics, pd.DataFrame.from_records(df_kb_c_without)])
+        df_characteristics = df_characteristics.reset_index(drop=True)
+        
+        
         
         if best_result and best_result.balancing and best_result.algorithm:
-            df_characteristics.at[0, 'pre processing'] = best_result.balancing
-            df_characteristics.at[0, 'algorithm'] = best_result.algorithm
+            if result_updated:
+                df_characteristics.at[0, 'pre processing'] = best_result.balancing
+                df_characteristics.at[0, 'algorithm'] = best_result.algorithm
+                
+            else:
+                df_characteristics.at[0, 'pre processing'] = df_kb_c_selected["pre processing"].values[0]
+                df_characteristics.at[0, 'algorithm'] = df_kb_c_selected["algorithm"].values[0]
+                
         else:
             df_characteristics.at[0, 'pre processing'] = "?"
             df_characteristics.at[0, 'algorithm'] = "?"
         
         df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
         
-        print("Write Characteristics written, row added or updated!","\n")
+        print("Characteristics written, row added or updated!","\n")
         
     except Exception:
         traceback.print_exc()
@@ -375,11 +385,16 @@ def write_results(best_result, elapsed_time):
         print("elapsed_time:", elapsed_time)
         return False
     
-    try:
+    result_updated = False
     
+    try:
+        
         current_value = round(np.mean([best_result.balanced_accuracy, best_result.f1_score, best_result.roc_auc_score, best_result.g_mean_score, best_result.cohen_kappa_score]), 3)
         
         elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
+        
+        print("Best Final Score Obtained    :", current_value)
+        print("Elapsed Time                 :", elapsed_time, "\n")
         
         df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
         
@@ -409,10 +424,12 @@ def write_results(best_result, elapsed_time):
                 
                 df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
                 
-                print("Write Results written, row updated!","\n")
+                result_updated = True
+                
+                print("Results written, row updated!","\n")
 
             else:
-                print("Write Results not written!","\n")
+                print("Results not written!","\n")
                 
         else:
             
@@ -436,16 +453,13 @@ def write_results(best_result, elapsed_time):
 
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
             
-            print("Write Results written, row added!","\n")  
-        
-        print("Best Final Score Obtained    :", current_value)
-        print("Elapsed Time                 :", elapsed_time, "\n")
+            print("Results written, row added!","\n")  
         
     except Exception:
         traceback.print_exc()
         return False
     
-    return True
+    return result_updated
 
 
 
@@ -489,10 +503,10 @@ def write_full_results(resultsList, dataset_name):
 
             df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
             
-            print("Write Full Results written, rows added!","\n")
+            print("Full Results written, rows added!","\n")
         
         else:
-            print("Write Full Results not written!","\n")
+            print("Full Results not written!","\n")
         
     except Exception:
         traceback.print_exc()
