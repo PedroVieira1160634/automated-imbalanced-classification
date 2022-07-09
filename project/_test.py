@@ -28,7 +28,7 @@ from ml import read_file, read_file_openml, features_labels
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n\n')
 
-#glass1.dat page-blocks0.dat kddcup-rootkit-imap_vs_back.dat car-good.dat
+#glass1.dat page-blocks0.dat car-good.dat
 dataset_name = "car-good.dat"
 df, dataset_name = read_file(sys.path[0] + "/input/" + dataset_name)
 

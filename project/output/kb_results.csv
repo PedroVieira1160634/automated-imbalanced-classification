@@ -1,3 +1,5 @@
 dataset,pre processing,algorithm,time,balanced accuracy,balanced accuracy std,f1 score,f1 score std,roc auc,roc auc std,geometric mean,geometric mean std,cohen kappa,cohen kappa std,total elapsed time
 glass1.dat,ADASYN,RandomForestClassifier,3.123,0.837,0.07,0.788,0.086,0.91,0.054,0.83,0.077,0.675,0.129,0:07:40
 page-blocks0.dat,EditedNearestNeighbours,XGBClassifier,6.72,0.957,0.016,0.881,0.025,0.991,0.005,0.957,0.017,0.866,0.029,2:20:02
+car-good.dat,OneSidedSelection,LGBMClassifier,1.834,0.994,0.004,0.88,0.079,0.998,0.002,0.994,0.005,0.874,0.083,0:04:58
+pc2 (id:1069),SMOTETomek,KNeighborsClassifier,126.395,0.816,0.141,0.057,0.02,0.885,0.095,0.785,0.203,0.049,0.019,1:05:23

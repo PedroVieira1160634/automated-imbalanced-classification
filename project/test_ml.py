@@ -6,21 +6,22 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 #glass1.dat
 #page-blocks0.dat
-#kddcup-rootkit-imap_vs_back.dat
 #car-good.dat
 
 #pc2 (id:1069)
 #mc1 (id:1056)
 
-#get 4 random datasets
+#get 5 random datasets
 
 
-dataset_name = "kddcup-rootkit-imap_vs_back.dat"
-dataset_name = execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+# dataset_name = "car-good.dat"
+# execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+
+execute_ml("", 1069)
 
 # list_openml = [1056,316,40900,40713]
 # for id in list_openml:
-#     dataset_name = execute_ml("", id)
+#     execute_ml("", id)
 #     print("\n----------------------------------\n")
 
 

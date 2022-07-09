@@ -157,6 +157,14 @@ print("Number of datasets on kb_full_results:", df_kb_r.dataset.value_counts().c
 # remove_worst_scores_classifier_algorithm(df_kb_r)
 
 
+df_kb_r = df_kb_r.loc[(df_kb_r["dataset"].values == "pc2 (id:1069)")]
+# print(df_kb_r)
+
+# df_kb_r = df_kb_r[df_kb_r['f1 score']==df_kb_r['f1 score'].max()]
+# print(df_kb_r["f1 score"])
+
+df_kb_r = df_kb_r[df_kb_r['cohen kappa']==df_kb_r['cohen kappa'].max()]
+print(df_kb_r["cohen kappa"])
 
 
 #pre_processing - to remove

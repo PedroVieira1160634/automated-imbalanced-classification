@@ -344,7 +344,6 @@ def find_best_result(resultsList):
 
 
 
-#always writes
 def write_characteristics(df_characteristics, best_result, result_updated):
     if df_characteristics.empty:
         print("--df_characteristics not valid on write_characteristics--")
@@ -372,7 +371,7 @@ def write_characteristics(df_characteristics, best_result, result_updated):
                 df_characteristics.at[0, 'pre processing'] = best_result.balancing
                 df_characteristics.at[0, 'algorithm'] = best_result.algorithm
                 
-                print("Characteristics written, row updated!","\n")
+                print("Characteristics written, row added or updated!","\n")
             
             #it was worse
             else:
