@@ -29,3 +29,6 @@ PizzaCutter3 (id:1444),SMOTETomek,GradientBoostingClassifier,12.704,0.702,0.066,
 spectrometer (id:954),SVMSMOTE,XGBClassifier,6.976,0.945,0.061,0.98,0.014,0.993,0.01,0.942,0.066,0.83,0.106,0:05:16
 pc3 (id:1050),RandomOverSampler,GradientBoostingClassifier,12.183,0.721,0.057,0.415,0.071,0.821,0.053,0.703,0.071,0.327,0.081,0:05:17
 CostaMadre1 (id:1446),SMOTE,GradientBoostingClassifier,3.811,0.649,0.128,0.373,0.212,0.793,0.144,0.547,0.249,0.281,0.237,0:01:13
+analcatdata_apnea1 (id:767),ADASYN,XGBClassifier,1.129,0.882,0.093,0.777,0.13,0.964,0.037,0.871,0.107,0.745,0.146,0:00:52
+pc4 (id:1049),RandomOverSampler,GradientBoostingClassifier,10.594,0.874,0.048,0.662,0.071,0.942,0.021,0.872,0.05,0.603,0.082,0:04:14
+optdigits (id:980),TomekLinks,LGBMClassifier,20.167,0.98,0.013,0.997,0.002,0.999,0.001,0.98,0.013,0.969,0.017,0:19:16
