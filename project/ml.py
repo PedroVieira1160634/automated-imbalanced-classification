@@ -64,7 +64,6 @@ def execute_ml(dataset_location, id_openml):
             except Exception:
                 traceback.print_exc()
         
-        print("")
         finish_time = (round(time.time() - start_time,3))
         
         best_result = find_best_result(resultsList)
@@ -417,6 +416,7 @@ def write_results(best_result, elapsed_time):
         
         elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
         
+        print("")
         print("Best Final Score Obtained    :", current_value)
         print("Elapsed Time                 :", elapsed_time, "\n")
         
