@@ -7,3 +7,5 @@ climate-model-simulation-crashes (id:40994),BorderlineSMOTE,XGBClassifier,2.555,
 analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,0.468,0.97,0.074,0.916,0.125,0.993,0.019,0.965,0.087,0.909,0.135,0:01:40
 Sick_numeric (id:41946),RandomOverSampler,LGBMClassifier,2.032,0.946,0.034,0.892,0.042,0.996,0.003,0.944,0.036,0.885,0.045,0:17:16
 mfeat-karhunen (id:1020),SVMSMOTE,GradientBoostingClassifier,66.424,0.988,0.013,0.996,0.003,0.998,0.003,0.988,0.013,0.965,0.032,0:13:34
+thoracic-surgery (id:1506),SVMSMOTE,XGBClassifier,1.838,0.544,0.067,0.882,0.032,0.56,0.119,0.369,0.181,0.103,0.145,0:01:02
+analcatdata_apnea2 (id:765),ADASYN,XGBClassifier,1.166,0.935,0.058,0.854,0.083,0.985,0.027,0.932,0.062,0.831,0.097,0:00:49
