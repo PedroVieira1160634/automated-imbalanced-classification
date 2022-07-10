@@ -94,7 +94,9 @@ def step_2():
                               (df_openml["id"] != 1506) & 
                               (df_openml["id"] != 1452) & 
                               (df_openml["id"] != 43905) & 
+                              
                               (df_openml["id"] != 1056) & 
+                              
                               (df_openml["id"] != 43897) & 
                               (df_openml["id"] != 43895) & 
                               (df_openml["id"] != 40666)]
