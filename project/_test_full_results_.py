@@ -4,14 +4,14 @@ import pandas as pd
 def print_scores_pre_processing(df_kb_r):
     list_pre_processing = []
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "(no pre processing)"]
-    list_pre_processing.append(("(no pre processing)", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "(no pre processing)"]
+    # list_pre_processing.append(("(no pre processing)", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ClusterCentroids"]
-    list_pre_processing.append(("ClusterCentroids", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ClusterCentroids"]
+    # list_pre_processing.append(("ClusterCentroids", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "CondensedNearestNeighbour"]
-    list_pre_processing.append(("CondensedNearestNeighbour", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "CondensedNearestNeighbour"]
+    # list_pre_processing.append(("CondensedNearestNeighbour", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "EditedNearestNeighbours"]
     list_pre_processing.append(("EditedNearestNeighbours", sum(df_kb_r2.index)))
@@ -22,17 +22,17 @@ def print_scores_pre_processing(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "AllKNN"]
     list_pre_processing.append(("AllKNN", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "InstanceHardnessThreshold"]
-    list_pre_processing.append(("InstanceHardnessThreshold", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "InstanceHardnessThreshold"]
+    # list_pre_processing.append(("InstanceHardnessThreshold", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NearMiss"]
-    list_pre_processing.append(("NearMiss", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NearMiss"]
+    # list_pre_processing.append(("NearMiss", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NeighbourhoodCleaningRule"]
     list_pre_processing.append(("NeighbourhoodCleaningRule", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "OneSidedSelection"]
-    list_pre_processing.append(("OneSidedSelection", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "OneSidedSelection"]
+    # list_pre_processing.append(("OneSidedSelection", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RandomUnderSampler"]
     list_pre_processing.append(("RandomUnderSampler", sum(df_kb_r2.index)))
@@ -52,14 +52,14 @@ def print_scores_pre_processing(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "BorderlineSMOTE"]
     list_pre_processing.append(("BorderlineSMOTE", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "KMeansSMOTE"]
-    list_pre_processing.append(("KMeansSMOTE", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "KMeansSMOTE"]
+    # list_pre_processing.append(("KMeansSMOTE", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "SVMSMOTE"]
     list_pre_processing.append(("SVMSMOTE", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "SMOTEENN"]
-    list_pre_processing.append(("SMOTEENN", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "SMOTEENN"]
+    # list_pre_processing.append(("SMOTEENN", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "SMOTETomek"]
     list_pre_processing.append(("SMOTETomek", sum(df_kb_r2.index)))
@@ -79,7 +79,11 @@ def remove_worst_scores_pre_processing(df_kb_r):
         (df_kb_r['pre processing'] != "CondensedNearestNeighbour") & 
         (df_kb_r['pre processing'] != "InstanceHardnessThreshold") &
         (df_kb_r['pre processing'] != "ClusterCentroids") &
-        (df_kb_r['pre processing'] != "NearMiss")
+        (df_kb_r['pre processing'] != "NearMiss") &
+        
+        (df_kb_r['pre processing'] != "OneSidedSelection") &
+        (df_kb_r['pre processing'] != "(no pre processing)") &
+        (df_kb_r['pre processing'] != "KMeansSMOTE")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -89,17 +93,17 @@ def remove_worst_scores_pre_processing(df_kb_r):
 def print_scores_classifier_algorithm(df_kb_r):
     list_classifier = []
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "LogisticRegression"]
-    list_classifier.append(("LogisticRegression", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "LogisticRegression"]
+    # list_classifier.append(("LogisticRegression", sum(df_kb_r2.index)))
     
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "GaussianNB"]
-    list_classifier.append(("GaussianNB", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "GaussianNB"]
+    # list_classifier.append(("GaussianNB", sum(df_kb_r2.index)))
     
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "SVC"]
-    list_classifier.append(("SVC", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "SVC"]
+    # list_classifier.append(("SVC", sum(df_kb_r2.index)))
     
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "KNeighborsClassifier"]
-    list_classifier.append(("KNeighborsClassifier", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "KNeighborsClassifier"]
+    # list_classifier.append(("KNeighborsClassifier", sum(df_kb_r2.index)))
     
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "LGBMClassifier"]
     list_classifier.append(("LGBMClassifier", sum(df_kb_r2.index)))
@@ -113,8 +117,8 @@ def print_scores_classifier_algorithm(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "ExtraTreesClassifier"]
     list_classifier.append(("ExtraTreesClassifier", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "AdaBoostClassifier"]
-    list_classifier.append(("AdaBoostClassifier", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "AdaBoostClassifier"]
+    # list_classifier.append(("AdaBoostClassifier", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "BaggingClassifier"]
     list_classifier.append(("BaggingClassifier", sum(df_kb_r2.index)))
@@ -136,7 +140,10 @@ def remove_worst_scores_classifier_algorithm(df_kb_r):
     df_kb_r = df_kb_r.loc[
         (df_kb_r['algorithm'] != "LogisticRegression") & 
         (df_kb_r['algorithm'] != "GaussianNB") &
-        (df_kb_r['algorithm'] != "SVC")
+        (df_kb_r['algorithm'] != "SVC") &
+        
+        (df_kb_r['algorithm'] != "AdaBoostClassifier") &
+        (df_kb_r['algorithm'] != "KNeighborsClassifier")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -157,17 +164,26 @@ print("Number of datasets on kb_full_results:", df_kb_r.dataset.value_counts().c
 # remove_worst_scores_classifier_algorithm(df_kb_r)
 
 
-df_kb_r = df_kb_r.loc[(df_kb_r["dataset"].values == "pc2 (id:1069)")]
-# print(df_kb_r)
 
-# df_kb_r = df_kb_r[df_kb_r['f1 score']==df_kb_r['f1 score'].max()]
-# print(df_kb_r["f1 score"])
 
-df_kb_r = df_kb_r[df_kb_r['cohen kappa']==df_kb_r['cohen kappa'].max()]
-print(df_kb_r["cohen kappa"])
+
+# df_kb_r = df_kb_r.loc[(df_kb_r["dataset"].values == "pc2 (id:1069)")]
+# # print(df_kb_r)
+
+# # df_kb_r = df_kb_r[df_kb_r['f1 score']==df_kb_r['f1 score'].max()]
+# # print(df_kb_r["f1 score"])
+
+# df_kb_r = df_kb_r[df_kb_r['cohen kappa']==df_kb_r['cohen kappa'].max()]
+# print(df_kb_r["cohen kappa"])
+
+
+
+
 
 
 #pre_processing - to remove
+#then, remove on ml.py
+
 
 #1st
 #SMOTEENN
@@ -177,7 +193,9 @@ print(df_kb_r["cohen kappa"])
 #NearMiss
 
 #2nd
-#.
+#OneSidedSelection
+#(no pre processing)
+#KMeansSMOTE
 
 
 #classifier_algorithm - to remove
@@ -188,4 +206,5 @@ print(df_kb_r["cohen kappa"])
 #SVC
 
 #2nd
-#.
+#AdaBoostClassifier
+#KNeighborsClassifier
