@@ -40,18 +40,18 @@ def execute_ml(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        # array_balancing = ["(no pre processing)"]
+        array_balancing = ["(no pre processing)"]
         # array_balancing = [
         #     "(no pre processing)", 
         #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
         #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
         #     "SMOTEENN", "SMOTETomek"
         # ]
-        array_balancing = [
-            "TomekLinks",
-            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "SVMSMOTE",
-            "SMOTETomek"
-        ]
+        # array_balancing = [
+        #     "TomekLinks",
+        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "SVMSMOTE",
+        #     "SMOTETomek"
+        # ]
         
         resultsList = []
         i = 1

@@ -6,3 +6,4 @@ pc2 (id:1069),SMOTETomek,KNeighborsClassifier,126.395,0.816,0.141,0.057,0.02,0.8
 climate-model-simulation-crashes (id:40994),BorderlineSMOTE,XGBClassifier,2.555,0.831,0.091,0.972,0.016,0.954,0.046,0.812,0.107,0.669,0.163,0:03:26
 analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,0.468,0.97,0.074,0.916,0.125,0.993,0.019,0.965,0.087,0.909,0.135,0:01:40
 Sick_numeric (id:41946),RandomOverSampler,LGBMClassifier,2.032,0.946,0.034,0.892,0.042,0.996,0.003,0.944,0.036,0.885,0.045,0:17:16
+mfeat-karhunen (id:1020),SVMSMOTE,GradientBoostingClassifier,66.424,0.988,0.013,0.996,0.003,0.998,0.003,0.988,0.013,0.965,0.032,0:13:34
