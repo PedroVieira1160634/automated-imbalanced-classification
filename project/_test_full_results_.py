@@ -13,14 +13,14 @@ def print_scores_pre_processing(df_kb_r):
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "CondensedNearestNeighbour"]
     # list_pre_processing.append(("CondensedNearestNeighbour", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "EditedNearestNeighbours"]
-    list_pre_processing.append(("EditedNearestNeighbours", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "EditedNearestNeighbours"]
+    # list_pre_processing.append(("EditedNearestNeighbours", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RepeatedEditedNearestNeighbours"]
-    list_pre_processing.append(("RepeatedEditedNearestNeighbours", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RepeatedEditedNearestNeighbours"]
+    # list_pre_processing.append(("RepeatedEditedNearestNeighbours", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "AllKNN"]
-    list_pre_processing.append(("AllKNN", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "AllKNN"]
+    # list_pre_processing.append(("AllKNN", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "InstanceHardnessThreshold"]
     # list_pre_processing.append(("InstanceHardnessThreshold", sum(df_kb_r2.index)))
@@ -28,14 +28,14 @@ def print_scores_pre_processing(df_kb_r):
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NearMiss"]
     # list_pre_processing.append(("NearMiss", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NeighbourhoodCleaningRule"]
-    list_pre_processing.append(("NeighbourhoodCleaningRule", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "NeighbourhoodCleaningRule"]
+    # list_pre_processing.append(("NeighbourhoodCleaningRule", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "OneSidedSelection"]
     # list_pre_processing.append(("OneSidedSelection", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RandomUnderSampler"]
-    list_pre_processing.append(("RandomUnderSampler", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RandomUnderSampler"]
+    # list_pre_processing.append(("RandomUnderSampler", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "TomekLinks"]
     list_pre_processing.append(("TomekLinks", sum(df_kb_r2.index)))
@@ -83,7 +83,14 @@ def remove_worst_scores_pre_processing(df_kb_r):
         
         (df_kb_r['pre processing'] != "OneSidedSelection") &
         (df_kb_r['pre processing'] != "(no pre processing)") &
-        (df_kb_r['pre processing'] != "KMeansSMOTE")
+        (df_kb_r['pre processing'] != "KMeansSMOTE") &
+        
+        (df_kb_r['pre processing'] != "EditedNearestNeighbours") &
+        (df_kb_r['pre processing'] != "AllKNN") &
+        (df_kb_r['pre processing'] != "RepeatedEditedNearestNeighbours") &
+        (df_kb_r['pre processing'] != "NeighbourhoodCleaningRule") &
+        (df_kb_r['pre processing'] != "RandomUnderSampler")
+        
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -114,14 +121,14 @@ def print_scores_classifier_algorithm(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "RandomForestClassifier"]
     list_classifier.append(("RandomForestClassifier", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "ExtraTreesClassifier"]
-    list_classifier.append(("ExtraTreesClassifier", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "ExtraTreesClassifier"]
+    # list_classifier.append(("ExtraTreesClassifier", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "AdaBoostClassifier"]
     # list_classifier.append(("AdaBoostClassifier", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "BaggingClassifier"]
-    list_classifier.append(("BaggingClassifier", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "BaggingClassifier"]
+    # list_classifier.append(("BaggingClassifier", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "GradientBoostingClassifier"]
     list_classifier.append(("GradientBoostingClassifier", sum(df_kb_r2.index)))
@@ -143,7 +150,10 @@ def remove_worst_scores_classifier_algorithm(df_kb_r):
         (df_kb_r['algorithm'] != "SVC") &
         
         (df_kb_r['algorithm'] != "AdaBoostClassifier") &
-        (df_kb_r['algorithm'] != "KNeighborsClassifier")
+        (df_kb_r['algorithm'] != "KNeighborsClassifier") &
+        
+        (df_kb_r['algorithm'] != "BaggingClassifier") &
+        (df_kb_r['algorithm'] != "ExtraTreesClassifier")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -160,7 +170,7 @@ print("Number of datasets on kb_full_results:", df_kb_r.dataset.value_counts().c
 # print_scores_pre_processing(df_kb_r)
 # remove_worst_scores_pre_processing(df_kb_r)
 
-# print_scores_classifier_algorithm(df_kb_r)
+print_scores_classifier_algorithm(df_kb_r)
 # remove_worst_scores_classifier_algorithm(df_kb_r)
 
 
@@ -197,6 +207,13 @@ print("Number of datasets on kb_full_results:", df_kb_r.dataset.value_counts().c
 #(no pre processing)
 #KMeansSMOTE
 
+#3rd
+#EditedNearestNeighbours
+#AllKNN
+#RepeatedEditedNearestNeighbours
+#NeighbourhoodCleaningRule
+#RandomUnderSampler
+
 
 #classifier_algorithm - to remove
 
@@ -208,3 +225,7 @@ print("Number of datasets on kb_full_results:", df_kb_r.dataset.value_counts().c
 #2nd
 #AdaBoostClassifier
 #KNeighborsClassifier
+
+#3rd
+#BaggingClassifier
+#ExtraTreesClassifier

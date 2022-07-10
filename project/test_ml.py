@@ -6,12 +6,14 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 #glass1.dat
 #page-blocks0.dat
+
 #car-good.dat
 #pc2 (id:1069)
 
 #40994  -0:24
 #450    -0:08
 #41946  -0:47
+
 #1020   -01:31
 
 
@@ -25,12 +27,12 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 # dataset_name = "car-good.dat"
 # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-# execute_ml("", 1056)
+execute_ml("", 1020)
 
-list_openml = [40994,450,41946] #1020
-for id in list_openml:
-    execute_ml("", id)
-    print("\n----------------------------------\n")
+# list_openml = [40994,450,41946] #1020
+# for id in list_openml:
+#     execute_ml("", id)
+#     print("\n----------------------------------\n")
 
 
 print('\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
