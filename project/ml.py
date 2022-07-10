@@ -22,8 +22,8 @@ from imblearn.ensemble import EasyEnsembleClassifier, RUSBoostClassifier, Balanc
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
 import traceback
-# import warnings
-# warnings.filterwarnings("ignore")
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def execute_ml(dataset_location, id_openml):
@@ -40,18 +40,18 @@ def execute_ml(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        array_balancing = ["(no pre processing)"]
+        # array_balancing = ["(no pre processing)"]
         # array_balancing = [
         #     "(no pre processing)", 
         #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
         #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
         #     "SMOTEENN", "SMOTETomek"
         # ]
-        # array_balancing = [
-        #     "TomekLinks",
-        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "SVMSMOTE",
-        #     "SMOTETomek"
-        # ]
+        array_balancing = [
+            "TomekLinks",
+            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "SVMSMOTE",
+            "SMOTETomek"
+        ]
         
         resultsList = []
         i = 1
@@ -73,6 +73,54 @@ def execute_ml(dataset_location, id_openml):
         write_full_results(resultsList, dataset_name)
         
         write_characteristics(df_characteristics, best_result, result_updated)
+        
+        return dataset_name
+    
+    except Exception:
+        traceback.print_exc()
+        return False
+
+
+
+#  TEST VERSION
+def execute_ml_test(dataset_location, id_openml):
+    
+    try:
+        start_time = time.time()
+        
+        if dataset_location:
+            df, dataset_name = read_file(dataset_location)
+        elif id_openml:
+            df, dataset_name = read_file_openml(id_openml)
+        else:
+            return False
+        
+        X, y, df_characteristics = features_labels(df, dataset_name)
+        
+        #  TEST VERSION
+        
+        array_balancing = ["(no pre processing)"]
+        resultsList = []
+        for balancing in array_balancing:
+            try:
+                balancing_technique = pre_processing(balancing) 
+                resultsList += classify_evaluate(X, y, balancing, balancing_technique, dataset_name)
+            except Exception:
+                traceback.print_exc()
+        
+        #  TEST VERSION
+        
+        finish_time = (round(time.time() - start_time,3))
+        
+        best_result = find_best_result(resultsList)
+
+        current_value = round(np.mean([best_result.balanced_accuracy, best_result.f1_score, best_result.roc_auc_score, best_result.g_mean_score, best_result.cohen_kappa_score]), 3)
+        elapsed_time = str(datetime.timedelta(seconds=round(finish_time,0)))
+        
+        print("Best Final Score Obtained    :", current_value)
+        print("Elapsed Time                 :", elapsed_time, "\n")
+        
+        #  TEST VERSION
         
         return dataset_name
     
@@ -338,7 +386,7 @@ def find_best_result(resultsList):
     
     string_balancing = best_result.balancing
     
-    print("Best classifier is", best_result.algorithm, "with", string_balancing, "\n")
+    print("\nBest classifier is", best_result.algorithm, "with", string_balancing, "\n")
     
     return best_result
 
@@ -417,7 +465,6 @@ def write_results(best_result, elapsed_time):
         
         elapsed_time = str(datetime.timedelta(seconds=round(elapsed_time,0)))
         
-        print("")
         print("Best Final Score Obtained    :", current_value)
         print("Elapsed Time                 :", elapsed_time, "\n")
         

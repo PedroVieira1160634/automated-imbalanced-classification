@@ -91,7 +91,7 @@ def step_2():
     
     #get X random datasets whithout 1069 and 1056
     df_openml = df_openml.loc[(df_openml["id"] != 1069) & (df_openml["id"] != 1056)]
-    print(df_openml.sample(n=2))
+    print(df_openml.sample(n=10))
     
 def step_3():
     df, dataset_name = read_file_openml(40910)

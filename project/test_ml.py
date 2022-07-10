@@ -1,18 +1,18 @@
 import sys
 from datetime import datetime
-from ml import execute_ml
+from ml import execute_ml, execute_ml_test
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n')
 
 # dataset_name = "car-good.dat"
 # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-# execute_ml("", 1020)
+execute_ml("", 1506)
 
-list_openml = [40666,1506]
-for id in list_openml:
-    execute_ml("", id)
-    print("\n----------------------------------\n")
+# list_openml = [765,43894,40900,1452,1558,1467,995,43905]
+# for id in list_openml:
+#     execute_ml_test("", id)     #  TEST VERSION
+#     print("\n----------------------------------\n")
 
 print('\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
 
@@ -29,5 +29,13 @@ print('\n----------------------------------finish -', datetime.now(), '---------
 #41946  0:47
 
 #1020   01:31
-#40666  
-#1506   
+
+#1506   0:08
+#765    0:10
+#43894  0:22
+#40900  1:32
+#1452   0:12 bad metric
+#1558   1:08
+#1467   0:11
+#995    0:55
+#43905  0:21 bad metric
