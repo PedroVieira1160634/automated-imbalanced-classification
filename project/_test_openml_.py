@@ -89,8 +89,16 @@ def step_2():
     # print("\ncount:")
     # print(df_openml.count())
     
-    #get X random datasets whithout 1069 and 1056
-    df_openml = df_openml.loc[(df_openml["id"] != 1069) & (df_openml["id"] != 1056)]
+    #get X random datasets whithout ...
+    df_openml = df_openml.loc[(df_openml["id"] != 1069) & 
+                              (df_openml["id"] != 1506) & 
+                              (df_openml["id"] != 1452) & 
+                              (df_openml["id"] != 43905) & 
+                              (df_openml["id"] != 1056) & 
+                              (df_openml["id"] != 43897) & 
+                              (df_openml["id"] != 43895) & 
+                              (df_openml["id"] != 40666)]
+    
     print(df_openml.sample(n=10))
     
 def step_3():

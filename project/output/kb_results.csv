@@ -9,3 +9,10 @@ Sick_numeric (id:41946),RandomOverSampler,LGBMClassifier,2.032,0.946,0.034,0.892
 mfeat-karhunen (id:1020),SVMSMOTE,GradientBoostingClassifier,66.424,0.988,0.013,0.996,0.003,0.998,0.003,0.988,0.013,0.965,0.032,0:13:34
 thoracic-surgery (id:1506),SVMSMOTE,XGBClassifier,1.838,0.544,0.067,0.882,0.032,0.56,0.119,0.369,0.181,0.103,0.145,0:01:02
 analcatdata_apnea2 (id:765),ADASYN,XGBClassifier,1.166,0.935,0.058,0.854,0.083,0.985,0.027,0.932,0.062,0.831,0.097,0:00:49
+ibm-employee-attrition (id:43894),RandomOverSampler,GradientBoostingClassifier,8.288,0.73,0.044,0.529,0.066,0.791,0.05,0.713,0.052,0.429,0.082,0:03:25
+Satellite (id:40900),ADASYN,XGBClassifier,21.926,0.891,0.089,0.74,0.138,0.99,0.015,0.878,0.108,0.736,0.14,0:18:07
+PieChart2 (id:1452),SMOTETomek,GradientBoostingClassifier,9.808,0.669,0.203,0.208,0.21,0.778,0.206,0.436,0.422,0.185,0.214,0:02:25
+bank-marketing (id:1558),TomekLinks,LGBMClassifier,12.646,0.803,0.031,0.576,0.041,0.909,0.018,0.796,0.035,0.509,0.047,0:11:03
+climate-model-simulation-crashes (id:1467),SMOTETomek,GradientBoostingClassifier,5.785,0.743,0.104,0.929,0.021,0.833,0.101,0.712,0.133,0.375,0.145,0:01:50
+mfeat-zernike (id:995),SVMSMOTE,RandomForestClassifier,14.459,0.98,0.02,0.996,0.003,0.998,0.004,0.98,0.02,0.958,0.032,0:09:49
+ibm-employee-performance (id:43905),RandomOverSampler,GradientBoostingClassifier,8.574,0.476,0.043,0.135,0.065,0.466,0.061,0.335,0.104,-0.044,0.076,0:03:21
