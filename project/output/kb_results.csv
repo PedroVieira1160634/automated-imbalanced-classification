@@ -25,3 +25,7 @@ pc1 (id:1068),SMOTETomek,LGBMClassifier,4.829,0.699,0.089,0.408,0.137,0.858,0.08
 ibm-employee-attrition (id:43893),RandomOverSampler,GradientBoostingClassifier,8.619,0.73,0.044,0.529,0.066,0.791,0.05,0.713,0.052,0.429,0.082,0:03:25
 mfeat-pixel (id:1022),RandomOverSampler,LGBMClassifier,16.03,0.98,0.021,0.997,0.003,0.999,0.002,0.98,0.022,0.967,0.035,0:39:10
 JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,23.324,0.989,0.005,0.995,0.002,1.0,0.0,0.989,0.005,0.972,0.009,0:23:41
+PizzaCutter3 (id:1444),SMOTETomek,GradientBoostingClassifier,12.704,0.702,0.066,0.42,0.081,0.817,0.054,0.677,0.089,0.321,0.093,0:03:44
+spectrometer (id:954),SVMSMOTE,XGBClassifier,6.976,0.945,0.061,0.98,0.014,0.993,0.01,0.942,0.066,0.83,0.106,0:05:16
+pc3 (id:1050),RandomOverSampler,GradientBoostingClassifier,12.183,0.721,0.057,0.415,0.071,0.821,0.053,0.703,0.071,0.327,0.081,0:05:17
+CostaMadre1 (id:1446),SMOTE,GradientBoostingClassifier,3.811,0.649,0.128,0.373,0.212,0.793,0.144,0.547,0.249,0.281,0.237,0:01:13
