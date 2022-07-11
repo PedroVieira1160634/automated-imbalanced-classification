@@ -2,19 +2,19 @@ import sys
 from datetime import datetime
 from ml import execute_ml, execute_ml_test
 
-print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------\n')
+print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------')
 
 # dataset_name = "car-good.dat"
 # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-# execute_ml("", 1506)
+# execute_ml("", 1069)
 
 # list_openml = [767,1049,980]
 # for id in list_openml:
 #     execute_ml("", id)
 #     print("\n----------------------------------\n")
 
-print('\n----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
+print('----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
 
 
 #runned:
@@ -23,22 +23,22 @@ print('\n----------------------------------finish -', datetime.now(), '---------
 #page-blocks0.dat
 
 #car-good.dat
-#pc2 (id:1069) bad metric
+#1069   2:02    bad metrics
 
 #40994  0:24
 #450    0:08
 #41946  0:47
 
-#1020   01:31
-#1506   0:08 bad metric
+#1020   1:31
+#1506   0:08    bad metrics
 #765    0:10
 #43894  0:22
 #40900  1:32
-#1452   0:12 bad metric
+#1452   0:12    bad metrics
 #1558   1:08
 #1467   0:11
 #995    0:55
-#43905  0:21 bad metric
+#43905  0:21    bad metrics
 #958    0:30
 #1065   0:09
 #1067   0:24

@@ -14,12 +14,17 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 # df_dist = get_best_results_by_characteristics(dataset_name)
 # print(df_dist)
 
-df_dist = pd.read_csv(sys.path[0] + "/input/" + "test_ui.csv", sep=",")
-str_output = display_final_results(df_dist)
-print(str_output)
+# df_dist = pd.read_csv(sys.path[0] + "/input/" + "test_ui.csv", sep=",")
+# str_output = display_final_results(df_dist)
+# print(str_output)
+
 
 # dataset_name = ""
 # str_output = execute_byCharacteristics(sys.path[0] + "/input/" + dataset_name, "")
 # print(str_output)
 
+#951,43051,1451,40713,1487,1116,41538,4329,1447,949
+
+str_output = execute_byCharacteristics("", 951)
+print("\nFinal UI Table:\n", str_output)
 

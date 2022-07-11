@@ -143,9 +143,8 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         first_row_to_remove = write_characteristics(df_characteristics, None, False)
         
-        df_dist = get_best_results_by_characteristics(dataset_name)
-        
         if first_row_to_remove:
+            df_dist = get_best_results_by_characteristics(dataset_name)
             write_characteristics_remove_current_dataset()
             str_output = display_final_results(df_dist)
         else:
@@ -182,7 +181,7 @@ def read_file_openml(id):
 
 def features_labels(df, dataset_name):
     
-    print("Dataset                      :", dataset_name, "\n")
+    print("\nDataset                      :", dataset_name, "\n")
     
     X = df.iloc[: , :-1]
     y = df.iloc[: , -1:]
@@ -314,7 +313,7 @@ def pre_processing(balancing):
 # initial:  1 + 19  balancing techniques and    11  classification algorithms   = 220   combinations
 # second:   1 + 14  balancing techniques and    8   classification algorithms   = 120   combinations
 # third:    12      balancing techniques and    6   classification algorithms   = 72    combinations
-# fourth:   7      balancing techniques and     4   classification algorithms   = 28    combinations
+# fourth:   7       balancing techniques and    4   classification algorithms   = 28    combinations
 # final:    ?       balancing techniques and    ?   classification algorithms   = ?     combinations
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
@@ -617,7 +616,11 @@ def get_best_results_by_characteristics(dataset_name):
     df_dist = pd.DataFrame(list_dist, columns=["dataset", "pre processing", "algorithm","result"])
     df_dist = df_dist.sort_values(by=['result'])
     df_dist = df_dist.drop_duplicates(subset=['pre processing', 'algorithm'], keep='first')
+    df_dist = df_dist.reset_index(drop=True)
     df_dist = df_dist.head(3)
+    
+    print("Results:\n", df_dist)
+    
     df_dist = df_dist[['pre processing', 'algorithm']]
     
     return df_dist
@@ -630,7 +633,7 @@ def write_characteristics_remove_current_dataset():
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         df_kb_c = df_kb_c.iloc[1: , :]
         df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
-        print("Removed Current Dataset Characteristics!","\n")
+        # print("Removed Current Dataset Characteristics!","\n")
     
     except Exception:
         traceback.print_exc()

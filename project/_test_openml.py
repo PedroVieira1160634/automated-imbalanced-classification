@@ -90,16 +90,28 @@ def step_2():
     # print(df_openml.count())
     
     #get X random datasets whithout ...
-    df_openml = df_openml.loc[(df_openml["id"] != 1069) & 
+    df_openml = df_openml.loc[(df_openml["id"] != 1069) &   #bad metrics
                               (df_openml["id"] != 1506) & 
                               (df_openml["id"] != 1452) & 
                               (df_openml["id"] != 43905) & 
                               
-                              (df_openml["id"] != 1056) & 
+                              (df_openml["id"] != 1056) &   #too long
                               
-                              (df_openml["id"] != 43897) & 
+                              (df_openml["id"] != 43897) &  #perfect metrics
                               (df_openml["id"] != 43895) & 
-                              (df_openml["id"] != 40666)]
+                              (df_openml["id"] != 40666) &
+                              
+                              (df_openml["id"] != 951) &    #testing UI
+                              (df_openml["id"] != 43051) &
+                              (df_openml["id"] != 1451) &
+                              (df_openml["id"] != 40713) &
+                              (df_openml["id"] != 1487) &
+                              (df_openml["id"] != 1116) &
+                              (df_openml["id"] != 41538) &
+                              (df_openml["id"] != 4329) &
+                              (df_openml["id"] != 1447) &
+                              (df_openml["id"] != 949)
+                              ]
     
     print(df_openml.sample(n=10))
     

@@ -1,4 +1,4 @@
-rank,pre processing,algorithm
-1,(no pre processing),LGBMClassifier
-2,(no pre processing),ExtraTreesClassifier
-3,OneSidedSelection,LGBMClassifier
+pre processing,algorithm
+(no pre processing),LGBMClassifier
+(no pre processing),ExtraTreesClassifier
+OneSidedSelection,LGBMClassifier
