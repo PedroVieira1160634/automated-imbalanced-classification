@@ -7,7 +7,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 # dataset_name = "car-good.dat"
 # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-# execute_ml("", 1069)
+execute_ml("", 767)
 
 # list_openml = [767,1049,980]
 # for id in list_openml:

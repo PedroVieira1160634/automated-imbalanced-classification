@@ -110,10 +110,42 @@ def step_2():
                               (df_openml["id"] != 41538) &
                               (df_openml["id"] != 4329) &
                               (df_openml["id"] != 1447) &
-                              (df_openml["id"] != 949)
+                              (df_openml["id"] != 949) &
+                              
+                              (df_openml["id"] != 1069) &   #already trainned
+                              (df_openml["id"] != 40994) &
+                              (df_openml["id"] != 450) &
+                              (df_openml["id"] != 41946) &
+                              (df_openml["id"] != 1020) &
+                              (df_openml["id"] != 1506) &
+                              (df_openml["id"] != 765) &
+                              (df_openml["id"] != 43894) &
+                              (df_openml["id"] != 40900) &
+                              (df_openml["id"] != 1452) &
+                              (df_openml["id"] != 1558) &
+                              (df_openml["id"] != 1467) &
+                              (df_openml["id"] != 995) &
+                              (df_openml["id"] != 43905) &
+                              (df_openml["id"] != 958) &
+                              (df_openml["id"] != 1065) &
+                              (df_openml["id"] != 1067) &
+                              (df_openml["id"] != 764) &
+                              (df_openml["id"] != 311) &
+                              (df_openml["id"] != 1068) &
+                              (df_openml["id"] != 43893) &
+                              (df_openml["id"] != 1022) &
+                              (df_openml["id"] != 976) &
+                              (df_openml["id"] != 1444) &
+                              (df_openml["id"] != 954) &
+                              (df_openml["id"] != 1050) &
+                              (df_openml["id"] != 1446) &
+                              (df_openml["id"] != 767) &
+                              (df_openml["id"] != 1049) &
+                              (df_openml["id"] != 980)
                               ]
     
-    print(df_openml.sample(n=10))
+    # print(df_openml.sample(n=10))
+    print(df_openml)
     
 def step_3():
     df, dataset_name = read_file_openml(40910)
