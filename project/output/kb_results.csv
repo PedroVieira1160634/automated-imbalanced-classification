@@ -44,3 +44,6 @@ mw1 (id:1071),ADASYN,LGBMClassifier,2.277,0.638,0.11,0.309,0.183,0.795,0.109,0.4
 wilt (id:40983),SMOTETomek,XGBClassifier,13.753,0.952,0.028,0.866,0.052,0.991,0.008,0.951,0.029,0.858,0.055,0:03:21
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.868,0.795,0.164,0.636,0.287,0.836,0.191,0.716,0.287,0.625,0.293,0:00:36
 arsenic-female-lung (id:950),ADASYN,LGBMClassifier,1.187,0.871,0.14,0.74,0.233,0.931,0.12,0.836,0.211,0.733,0.238,0:00:34
+mfeat-fourier (id:971),SMOTE,GradientBoostingClassifier,76.966,0.995,0.01,0.999,0.001,1.0,0.001,0.995,0.01,0.993,0.012,0:08:12
+mfeat-factors (id:978),SVMSMOTE,GradientBoostingClassifier,131.264,0.988,0.017,0.998,0.002,1.0,0.0,0.988,0.017,0.981,0.024,0:15:25
+churn (id:40701),RandomOverSampler,LGBMClassifier,4.187,0.89,0.027,0.831,0.038,0.917,0.022,0.885,0.03,0.804,0.044,0:09:43
