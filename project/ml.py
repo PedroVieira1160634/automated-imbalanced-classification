@@ -48,8 +48,7 @@ def execute_ml(dataset_location, id_openml):
         #     "SMOTEENN", "SMOTETomek"
         # ]
         array_balancing = [
-            "TomekLinks",
-            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "SVMSMOTE",
+            "RandomOverSampler", "SMOTE", "ADASYN", "SVMSMOTE",
             "SMOTETomek"
         ]
         
@@ -314,7 +313,7 @@ def pre_processing(balancing):
 # second:   1 + 14  balancing techniques and    8   classification algorithms   = 120   combinations
 # third:    12      balancing techniques and    6   classification algorithms   = 72    combinations
 # fourth:   7       balancing techniques and    4   classification algorithms   = 28    combinations
-# final:    ?       balancing techniques and    ?   classification algorithms   = ?     combinations
+# final:    5       balancing techniques and    3   classification algorithms   = 15    combinations
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
@@ -324,7 +323,7 @@ def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
         # # ,KNeighborsClassifier() #no random_state
         LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
-        ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+        # # ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
         # # ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
         # # ,AdaBoostClassifier(random_state=42)
         # # ,BaggingClassifier(random_state=42, n_jobs=-1)

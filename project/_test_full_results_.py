@@ -37,8 +37,8 @@ def print_scores_pre_processing(df_kb_r):
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RandomUnderSampler"]
     # list_pre_processing.append(("RandomUnderSampler", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "TomekLinks"]
-    list_pre_processing.append(("TomekLinks", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "TomekLinks"]
+    # list_pre_processing.append(("TomekLinks", sum(df_kb_r2.index)))
 
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "RandomOverSampler"]
     list_pre_processing.append(("RandomOverSampler", sum(df_kb_r2.index)))
@@ -49,8 +49,8 @@ def print_scores_pre_processing(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ADASYN"]
     list_pre_processing.append(("ADASYN", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "BorderlineSMOTE"]
-    list_pre_processing.append(("BorderlineSMOTE", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "BorderlineSMOTE"]
+    # list_pre_processing.append(("BorderlineSMOTE", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "KMeansSMOTE"]
     # list_pre_processing.append(("KMeansSMOTE", sum(df_kb_r2.index)))
@@ -89,8 +89,10 @@ def remove_worst_scores_pre_processing(df_kb_r):
         (df_kb_r['pre processing'] != "AllKNN") &
         (df_kb_r['pre processing'] != "RepeatedEditedNearestNeighbours") &
         (df_kb_r['pre processing'] != "NeighbourhoodCleaningRule") &
-        (df_kb_r['pre processing'] != "RandomUnderSampler")
+        (df_kb_r['pre processing'] != "RandomUnderSampler") &
         
+        (df_kb_r['pre processing'] != "BorderlineSMOTE") &
+        (df_kb_r['pre processing'] != "TomekLinks")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -118,8 +120,8 @@ def print_scores_classifier_algorithm(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "XGBClassifier"]
     list_classifier.append(("XGBClassifier", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "RandomForestClassifier"]
-    list_classifier.append(("RandomForestClassifier", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "RandomForestClassifier"]
+    # list_classifier.append(("RandomForestClassifier", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['algorithm'] == "ExtraTreesClassifier"]
     # list_classifier.append(("ExtraTreesClassifier", sum(df_kb_r2.index)))
@@ -153,7 +155,9 @@ def remove_worst_scores_classifier_algorithm(df_kb_r):
         (df_kb_r['algorithm'] != "KNeighborsClassifier") &
         
         (df_kb_r['algorithm'] != "BaggingClassifier") &
-        (df_kb_r['algorithm'] != "ExtraTreesClassifier")
+        (df_kb_r['algorithm'] != "ExtraTreesClassifier") &
+        
+        (df_kb_r['algorithm'] != "RandomForestClassifier")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -214,6 +218,10 @@ print_scores_classifier_algorithm(df_kb_r)
 #NeighbourhoodCleaningRule
 #RandomUnderSampler
 
+#4th
+#BorderlineSMOTE
+#TomekLinks
+
 
 #classifier_algorithm - to remove
 
@@ -229,3 +237,6 @@ print_scores_classifier_algorithm(df_kb_r)
 #3rd
 #BaggingClassifier
 #ExtraTreesClassifier
+
+#4th
+#RandomForestClassifier
