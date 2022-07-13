@@ -32,3 +32,15 @@ CostaMadre1 (id:1446),SMOTE,GradientBoostingClassifier,3.811,0.649,0.128,0.373,0
 analcatdata_apnea1 (id:767),ADASYN,XGBClassifier,1.129,0.882,0.093,0.777,0.13,0.964,0.037,0.871,0.107,0.745,0.146,0:00:52
 pc4 (id:1049),RandomOverSampler,GradientBoostingClassifier,10.594,0.874,0.048,0.662,0.071,0.942,0.021,0.872,0.05,0.603,0.082,0:04:14
 optdigits (id:980),TomekLinks,LGBMClassifier,20.167,0.98,0.013,0.997,0.002,0.999,0.001,0.98,0.013,0.969,0.017,0:19:16
+ibm-employee-attrition (id:43896),RandomOverSampler,GradientBoostingClassifier,8.383,0.73,0.044,0.529,0.066,0.791,0.05,0.713,0.052,0.429,0.082,0:02:04
+lungcancer_GSE31210 (id:1412),ADASYN,GradientBoostingClassifier,2.951,0.73,0.135,0.508,0.208,0.798,0.147,0.673,0.226,0.418,0.236,0:00:27
+PieChart3 (id:1453),SMOTETomek,XGBClassifier,11.312,0.681,0.052,0.426,0.084,0.809,0.051,0.64,0.075,0.338,0.097,0:02:18
+MeanWhile1 (id:1449),SMOTETomek,LGBMClassifier,1.126,0.662,0.149,0.341,0.242,0.709,0.208,0.514,0.33,0.27,0.248,0:00:32
+MegaWatt1 (id:1442),SMOTETomek,LGBMClassifier,1.085,0.662,0.149,0.341,0.242,0.709,0.208,0.514,0.33,0.27,0.248,0:00:32
+mfeat-morphological (id:962),SMOTETomek,GradientBoostingClassifier,5.078,0.992,0.015,0.999,0.002,0.998,0.009,0.992,0.015,0.99,0.017,0:00:48
+vowel (id:1016),SVMSMOTE,XGBClassifier,3.152,0.992,0.018,0.997,0.005,1.0,0.001,0.992,0.018,0.971,0.05,0:01:04
+PizzaCutter1 (id:1443),ADASYN,LGBMClassifier,3.436,0.701,0.103,0.447,0.201,0.881,0.056,0.612,0.228,0.404,0.212,0:01:18
+mw1 (id:1071),ADASYN,LGBMClassifier,2.277,0.638,0.11,0.309,0.183,0.795,0.109,0.498,0.267,0.253,0.193,0:00:50
+wilt (id:40983),SMOTETomek,XGBClassifier,13.753,0.952,0.028,0.866,0.052,0.991,0.008,0.951,0.029,0.858,0.055,0:03:21
+arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.868,0.795,0.164,0.636,0.287,0.836,0.191,0.716,0.287,0.625,0.293,0:00:36
+arsenic-female-lung (id:950),ADASYN,LGBMClassifier,1.187,0.871,0.14,0.74,0.233,0.931,0.12,0.836,0.211,0.733,0.238,0:00:34
