@@ -7,12 +7,12 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 # dataset_name = "car-good.dat"
 # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
-execute_ml_test("", 43051)  #TEST
+# execute_ml("", 43896)
 
-# list_openml = [43896,1412,1453,1449,1442,962,1016,1443,1071,40983,947,950] #971,978,40701,316,40910
-# for id in list_openml:
-#     execute_ml("", id)
-#     print("\n----------------------------------\n")
+list_openml = [43896,1412,1453,1449,1442,962,1016,1443,1071,40983,947,950] #971,978,40701,316,40910
+for id in list_openml:
+    execute_ml("", id)
+    print("\n----------------------------------\n")
 
 
 print('----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
