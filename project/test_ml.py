@@ -9,10 +9,10 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 # execute_ml("", 43896)
 
-list_openml = [316,40910]
-for id in list_openml:
-    execute_ml("", id)
-    print("\n----------------------------------\n")
+# list_openml = [316,40910]
+# for id in list_openml:
+#     execute_ml("", id)
+#     print("\n----------------------------------\n")
 
 
 print('----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
@@ -72,6 +72,5 @@ print('----------------------------------finish -', datetime.now(), '-----------
 #971    1:15
 #978    2:36
 #40701  1:52
-#
 #316    2:28    bad metric?
-#40910  19:31   too long! bad metric!
+#40910  19:31   bad metric?
