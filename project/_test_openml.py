@@ -73,18 +73,24 @@ def step_1():
 def step_2():
     df_openml = pd.read_csv(sys.path[0] + "/input/" + "datasets_openml.csv", sep=",")
 
-    rows_to_keep = df_openml["imbalance ratio"] > 5
+    # imbalance ratio > 10              -> 22 datasets
+    # imbalance ratio > 5               -> 63 datasets
+    # imbalance ratio < 2.5 and > 5     -> 21 datasets
 
-    # imbalance ratio > 10 -> 22 datasets
-    # imbalance ratio > 5  -> 63 datasets
-
+    # rows_to_keep = df_openml["imbalance ratio"] > 5
+    # df_openml = df_openml[rows_to_keep]
+    
+    rows_to_keep = df_openml["imbalance ratio"] <= 5
     df_openml = df_openml[rows_to_keep]
+    rows_to_keep = df_openml["imbalance ratio"] > 2.5
+    df_openml = df_openml[rows_to_keep]
+    
 
     df_openml = df_openml.sort_values(by=['imbalance ratio'])
 
     pd.set_option('display.max_rows', df_openml.shape[0]+1)
-    # print(df_openml)
-    # #976 ... 1069
+    print(df_openml)
+    print(df_openml.count())
     
     # print("\ncount:")
     # print(df_openml.count())
@@ -145,18 +151,18 @@ def step_2():
     #                           ]
     
     # print(df_openml)
-    print(df_openml.sample(n=10))
+    # print(df_openml.sample(n=10))
     
 def step_3():
     df, dataset_name = read_file_openml(951)
 
-    # print("\ndf:")
-    # print(df)
+    print("\ndf:")
+    print(df)
 
     print("\ndataset_name:")
     print(dataset_name)
 
 
 # step_1()
-# step_2()
-step_3()
+step_2()
+# step_3()

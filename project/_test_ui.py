@@ -26,17 +26,15 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 # print(str_output)
 
 
-#41538   0:01       conference_attendance
-#4329    0:01       thoracic_surgery
-#1447    0:01       CastMetal1
-#949     0:01       arsenic-female-bladder
-#951     0:02       arsenic-male-lung
-#1451    0:02       PieChart1 
-#1487    0:18       ozone-level-8hr
-#40713   0:24       dis
-#1116    4:13       musk
-
-#see also results
+#41538   6.935      0:01       conference_attendance
+#4329    5.714      0:01       thoracic_surgery
+#1447    6.786      0:01       CastMetal1
+#949     5.987      0:01       arsenic-female-bladder
+#951     42.0       0:02       arsenic-male-lung
+#1451    10.557     0:02       PieChart1 
+#1487    14.838     0:18       ozone-level-8hr
+#40713   64.034     0:24       dis
+#1116    5.488      4:13       musk
 
 start_time = time.time()
 
