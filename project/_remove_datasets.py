@@ -32,7 +32,19 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "PizzaCutter1 (id:1443)") &
     #     (df_kb_r['dataset'] != "mw1 (id:1071)") &
     #     (df_kb_r['dataset'] != "yeast_ml8 (id:316)") &
-    #     (df_kb_r['dataset'] != "Speech (id:40910)")
+    #     (df_kb_r['dataset'] != "Speech (id:40910)") &
+        
+    #     #low metrics after part 2
+    #     (df_kb_r['dataset'] != "haberman (id:43)") &
+    #     (df_kb_r['dataset'] != "autoUniv-au1-1000 (id:1547)") &
+    #     (df_kb_r['dataset'] != "balloon (id:914)") &
+    #     (df_kb_r['dataset'] != "blood-transfusion-service-center (id:1464)") &
+    #     (df_kb_r['dataset'] != "SPECT (id:336)") &
+    #     (df_kb_r['dataset'] != "SPECTF (id:1600)") &
+    #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
+    #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
+    #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
@@ -68,7 +80,19 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "PizzaCutter1 (id:1443)") &
     #     (df_kb_r['dataset'] != "mw1 (id:1071)") &
     #     (df_kb_r['dataset'] != "yeast_ml8 (id:316)") &
-    #     (df_kb_r['dataset'] != "Speech (id:40910)")
+    #     (df_kb_r['dataset'] != "Speech (id:40910)") &
+        
+    #     #low metrics after part 2
+    #     (df_kb_r['dataset'] != "haberman (id:43)") &
+    #     (df_kb_r['dataset'] != "autoUniv-au1-1000 (id:1547)") &
+    #     (df_kb_r['dataset'] != "balloon (id:914)") &
+    #     (df_kb_r['dataset'] != "blood-transfusion-service-center (id:1464)") &
+    #     (df_kb_r['dataset'] != "SPECT (id:336)") &
+    #     (df_kb_r['dataset'] != "SPECTF (id:1600)") &
+    #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
+    #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
+    #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
     # ]
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
     # print(df_kb_r)
@@ -104,7 +128,19 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "PizzaCutter1 (id:1443)") &
     #     (df_kb_r['dataset'] != "mw1 (id:1071)") &
     #     (df_kb_r['dataset'] != "yeast_ml8 (id:316)") &
-    #     (df_kb_r['dataset'] != "Speech (id:40910)")
+    #     (df_kb_r['dataset'] != "Speech (id:40910)") &
+        
+    #     #low metrics after part 2
+    #     (df_kb_r['dataset'] != "haberman (id:43)") &
+    #     (df_kb_r['dataset'] != "autoUniv-au1-1000 (id:1547)") &
+    #     (df_kb_r['dataset'] != "balloon (id:914)") &
+    #     (df_kb_r['dataset'] != "blood-transfusion-service-center (id:1464)") &
+    #     (df_kb_r['dataset'] != "SPECT (id:336)") &
+    #     (df_kb_r['dataset'] != "SPECTF (id:1600)") &
+    #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
+    #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
+    #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
@@ -148,7 +184,7 @@ def remove_by_bad_metrics():
     print("end")
 
 
-# remove_all_worst_datasets()
+remove_all_worst_datasets()
 
 # remove_by_bad_metrics()
 
