@@ -165,7 +165,6 @@ def remove_worst_scores_classifier_algorithm(df_kb_r):
     print(df_kb_r)
 
 
-
 df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
 
 print("\nDatasets on kb_full_results:\n", df_kb_r.dataset.value_counts(), "\n")
@@ -180,7 +179,6 @@ print_scores_classifier_algorithm(df_kb_r)
 
 
 
-
 # df_kb_r = df_kb_r.loc[(df_kb_r["dataset"].values == "pc2 (id:1069)")]
 # # print(df_kb_r)
 
@@ -189,8 +187,6 @@ print_scores_classifier_algorithm(df_kb_r)
 
 # df_kb_r = df_kb_r[df_kb_r['cohen kappa']==df_kb_r['cohen kappa'].max()]
 # print(df_kb_r["cohen kappa"])
-
-
 
 
 

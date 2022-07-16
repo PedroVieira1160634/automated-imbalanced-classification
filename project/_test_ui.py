@@ -35,7 +35,6 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 #1487    0:18       ozone-level-8hr
 #40713   0:24       dis
 #1116    4:13       musk
-#43051   too long!  art_daily_nojump4
 
 #see also results
 
