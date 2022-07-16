@@ -46,8 +46,8 @@ def print_scores_pre_processing(df_kb_r):
     df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "SMOTE"]
     list_pre_processing.append(("SMOTE", sum(df_kb_r2.index)))
 
-    df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ADASYN"]
-    list_pre_processing.append(("ADASYN", sum(df_kb_r2.index)))
+    # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "ADASYN"]
+    # list_pre_processing.append(("ADASYN", sum(df_kb_r2.index)))
 
     # df_kb_r2 = df_kb_r.loc[df_kb_r['pre processing'] == "BorderlineSMOTE"]
     # list_pre_processing.append(("BorderlineSMOTE", sum(df_kb_r2.index)))
@@ -92,7 +92,9 @@ def remove_worst_scores_pre_processing(df_kb_r):
         (df_kb_r['pre processing'] != "RandomUnderSampler") &
         
         (df_kb_r['pre processing'] != "BorderlineSMOTE") &
-        (df_kb_r['pre processing'] != "TomekLinks")
+        (df_kb_r['pre processing'] != "TomekLinks") &
+        
+        (df_kb_r['pre processing'] != "ADASYN")
         ]
 
     # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
@@ -174,7 +176,7 @@ print_scores_pre_processing(df_kb_r)
 # remove_worst_scores_pre_processing(df_kb_r)
 
 print_scores_classifier_algorithm(df_kb_r)
-# remove_worst_scores_classifier_algorithm(df_kb_r)
+# # remove_worst_scores_classifier_algorithm(df_kb_r)
 
 
 
@@ -218,6 +220,9 @@ print_scores_classifier_algorithm(df_kb_r)
 #BorderlineSMOTE
 #TomekLinks
 
+#5th
+#ADASYN
+
 
 #classifier_algorithm - to remove
 
@@ -236,3 +241,6 @@ print_scores_classifier_algorithm(df_kb_r)
 
 #4th
 #RandomForestClassifier
+
+#5th
+#(nothing)

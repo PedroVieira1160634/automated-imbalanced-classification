@@ -48,7 +48,7 @@ def execute_ml(dataset_location, id_openml):
         #     "SMOTEENN", "SMOTETomek"
         # ]
         array_balancing = [
-            "RandomOverSampler", "SMOTE", "ADASYN", "SVMSMOTE",
+            "RandomOverSampler", "SMOTE", "SVMSMOTE",
             "SMOTETomek"
         ]
         
@@ -313,7 +313,8 @@ def pre_processing(balancing):
 # second:   1 + 14  balancing techniques and    8   classification algorithms   = 120   combinations
 # third:    12      balancing techniques and    6   classification algorithms   = 72    combinations
 # fourth:   7       balancing techniques and    4   classification algorithms   = 28    combinations
-# final:    5       balancing techniques and    3   classification algorithms   = 15    combinations
+# fifth:    5       balancing techniques and    3   classification algorithms   = 15    combinations
+# final:    4       balancing techniques and    3   classification algorithms   = 12    combinations
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
