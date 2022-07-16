@@ -9,9 +9,9 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 
 # execute_ml("", 1056)
 
-list_openml = [40693,40704,1511,1524,833,735,761,31,991,1489,23499,1480,41945,1121   ]
+list_openml = [40704,1511,1524,833,735,761,31,1489,23499,1480,41945]
 for id in list_openml:
-    execute_ml_test("", id) #test
+    execute_ml("", id)
     print("\n----------------------------------\n")
 
 
@@ -78,17 +78,14 @@ print('----------------------------------finish -', datetime.now(), '-----------
 #1004   0:16
 #312    8:11
 #
-#40693  
-#40704  
-#1511   
-#1524   
-#833    
-#735    
-#761    
-#31     
-#991    
-#1489   
-#23499  
-#1480   
-#41945  
-#1121   
+#40704  0:11        Titanic
+#1511   0:04        wholesale-customers
+#1524   0:03        vertebra-column
+#833    7:01        bank32nh
+#735    3:55        cpu_small
+#761    4:17        cpu_act
+#31     0:06        credit-g
+#1489   1:17        phoneme
+#23499  0:03        breast-cancer-dropped-missing-attributes-values
+#1480   0:04        ilpd
+#41945  0:05        ilpd-numeric
