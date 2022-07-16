@@ -77,7 +77,6 @@ print('----------------------------------finish -', datetime.now(), '-----------
 #934    0:09
 #1004   0:16
 #312    8:11
-#
 #40704  0:11        Titanic
 #1511   0:04        wholesale-customers
 #1524   0:03        vertebra-column
@@ -89,3 +88,4 @@ print('----------------------------------finish -', datetime.now(), '-----------
 #735    3:55        cpu_small
 #761    4:17        cpu_act
 #833    7:01        bank32nh
+#remove bad ones
