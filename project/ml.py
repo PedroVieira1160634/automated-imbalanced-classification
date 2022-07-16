@@ -96,6 +96,8 @@ def execute_ml_test(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
+        print("features_labels done!")
+        
         #  TEST VERSION
         
         array_balancing = ["(no pre processing)"]
