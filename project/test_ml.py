@@ -4,8 +4,8 @@ from ml import execute_ml, execute_ml_test
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------')
 
-# dataset_name = "car-good.dat"
-# execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+dataset_name = "glass1.dat"
+execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
 # execute_ml("", 42882)
 
