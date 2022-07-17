@@ -51,7 +51,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "credit-g (id:31)") &
     #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
     #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
-    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)") &
+        
+    #     #low metrics after part 4
+    #     (df_kb_r['dataset'] != "SpeedDating (id:40536)") &
+    #     (df_kb_r['dataset'] != "water-treatment (id:940)") &
+    #     (df_kb_r['dataset'] != "ipums_la_98-small (id:1002)") &
+    #     (df_kb_r['dataset'] != "meta (id:757)") &
+    #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
@@ -106,7 +113,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "credit-g (id:31)") &
     #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
     #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
-    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)") &
+        
+    #     #low metrics after part 4
+    #     (df_kb_r['dataset'] != "SpeedDating (id:40536)") &
+    #     (df_kb_r['dataset'] != "water-treatment (id:940)") &
+    #     (df_kb_r['dataset'] != "ipums_la_98-small (id:1002)") &
+    #     (df_kb_r['dataset'] != "meta (id:757)") &
+    #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)")
     # ]
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
     # print(df_kb_r)
@@ -161,7 +175,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "credit-g (id:31)") &
     #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
     #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
-    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)") &
+        
+    #     #low metrics after part 4
+    #     (df_kb_r['dataset'] != "SpeedDating (id:40536)") &
+    #     (df_kb_r['dataset'] != "water-treatment (id:940)") &
+    #     (df_kb_r['dataset'] != "ipums_la_98-small (id:1002)") &
+    #     (df_kb_r['dataset'] != "meta (id:757)") &
+    #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
