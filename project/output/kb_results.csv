@@ -47,3 +47,6 @@ dgf_test (id:42883),RandomOverSampler,XGBClassifier,41.113,0.987,0.009,0.971,0.0
 analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,1.901,0.86,0.089,0.932,0.029,0.936,0.036,0.851,0.098,0.619,0.147,0:00:17
 soybean (id:1023),RandomOverSampler,GradientBoostingClassifier,2.487,0.964,0.041,0.986,0.012,0.997,0.006,0.963,0.043,0.917,0.075,0:00:30
 analcatdata_halloffame (id:966),SVMSMOTE,XGBClassifier,6.55,0.86,0.048,0.718,0.076,0.965,0.018,0.852,0.054,0.687,0.085,0:01:19
+ada_prior (id:1037),RandomOverSampler,LGBMClassifier,5.688,0.807,0.019,0.689,0.026,0.9,0.011,0.806,0.02,0.572,0.036,0:06:46
+primary-tumor (id:1003),SMOTE,GradientBoostingClassifier,0.934,0.802,0.124,0.925,0.045,0.872,0.125,0.767,0.192,0.611,0.237,0:00:09
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,0.847,0.949,0.054,0.899,0.087,0.973,0.058,0.947,0.057,0.869,0.113,0:00:16
