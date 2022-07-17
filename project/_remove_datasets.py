@@ -44,7 +44,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
     #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
     #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
-    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)") &
+        
+    #     #low metrics after part 3
+    #     (df_kb_r['dataset'] != "Titanic (id:40704)") &
+    #     (df_kb_r['dataset'] != "credit-g (id:31)") &
+    #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
+    #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
@@ -92,7 +99,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
     #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
     #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
-    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)") &
+        
+    #     #low metrics after part 3
+    #     (df_kb_r['dataset'] != "Titanic (id:40704)") &
+    #     (df_kb_r['dataset'] != "credit-g (id:31)") &
+    #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
+    #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
     # ]
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
     # print(df_kb_r)
@@ -140,7 +154,14 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "kc2 (id:1063)") &
     #     (df_kb_r['dataset'] != "analcatdata_dmft (id:1014)") &
     #     (df_kb_r['dataset'] != "solar-flare (id:40702)") &
-    #     (df_kb_r['dataset'] != "mc1 (id:1056)")
+    #     (df_kb_r['dataset'] != "mc1 (id:1056)") &
+        
+    #     #low metrics after part 3
+    #     (df_kb_r['dataset'] != "Titanic (id:40704)") &
+    #     (df_kb_r['dataset'] != "credit-g (id:31)") &
+    #     (df_kb_r['dataset'] != "breast-cancer-dropped-missing-attributes-values (id:23499)") &
+    #     (df_kb_r['dataset'] != "ilpd (id:1480)") &
+    #     (df_kb_r['dataset'] != "ilpd-numeric (id:41945)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
@@ -164,27 +185,11 @@ def remove_by_bad_metrics():
     
     print(df_kb_r2)
     # TAKE NOTES TO REMOVE
-    
-    # df_kb_r = df_kb_r.drop(df_kb_r[
-    #     (df_kb_r['balanced accuracy'] < 0.5) |
-    #     (df_kb_r['f1 score'] < 0.5) |
-    #     (df_kb_r['roc auc'] < 0.5) |
-    #     (df_kb_r['geometric mean'] < 0.5) |
-    #     (df_kb_r['cohen kappa'] < 0.5)
-    #     ].index)
-    
-    # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
-    # print(df_kb_r)
-    
-    
-    #  REMOVE ALSO FROM THESE TWO KB'S
-    #kb_full_results
-    #kb_characteristics
 
     print("end")
 
 
-remove_all_worst_datasets()
+# remove_all_worst_datasets()
 
 # remove_by_bad_metrics()
 

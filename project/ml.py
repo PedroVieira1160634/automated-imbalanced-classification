@@ -160,7 +160,9 @@ def execute_byCharacteristics(dataset_location, id_openml):
 
 
 def read_file(path):
-    return pd.read_csv(path), path.split('/')[-1]
+    df = pd.read_csv(path)
+    df = df.dropna()
+    return df, path.split('/')[-1]
 
 
 
@@ -175,6 +177,8 @@ def read_file_openml(id):
     df["class"] = y
     
     dataset_name = dataset.name + " (id:" + str(id) + ")"
+    
+    df = df.dropna()
     
     return df, dataset_name
 
