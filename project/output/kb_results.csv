@@ -37,3 +37,15 @@ analcatdata_halloffame (id:966),SVMSMOTE,XGBClassifier,6.55,0.86,0.048,0.718,0.0
 ada_prior (id:1037),RandomOverSampler,LGBMClassifier,5.688,0.807,0.019,0.689,0.026,0.9,0.011,0.806,0.02,0.572,0.036,0:06:46
 primary-tumor (id:1003),SMOTE,GradientBoostingClassifier,0.934,0.802,0.124,0.925,0.045,0.872,0.125,0.767,0.192,0.611,0.237,0:00:09
 regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,0.847,0.949,0.054,0.899,0.087,0.973,0.058,0.947,0.057,0.869,0.113,0:00:16
+glass1.dat,SMOTE,XGBClassifier,0.744,0.812,0.073,0.758,0.097,0.892,0.073,0.806,0.076,0.628,0.147,0:00:15
+page-blocks0.dat,RandomOverSampler,XGBClassifier,11.663,0.946,0.022,0.883,0.026,0.99,0.007,0.945,0.023,0.87,0.029,0:03:49
+car-good.dat,RandomOverSampler,LGBMClassifier,4.17,0.972,0.041,0.843,0.085,0.997,0.003,0.971,0.043,0.835,0.09,0:00:43
+climate-model-simulation-crashes (id:40994),SVMSMOTE,XGBClassifier,2.318,0.816,0.095,0.97,0.015,0.954,0.051,0.791,0.12,0.642,0.151,0:00:45
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,1.147,0.936,0.059,0.833,0.098,0.972,0.035,0.934,0.062,0.804,0.116,0:00:17
+Satellite (id:40900),SMOTETomek,LGBMClassifier,101.465,0.875,0.089,0.752,0.132,0.993,0.008,0.86,0.108,0.749,0.134,0:10:30
+mfeat-zernike (id:995),SMOTE,XGBClassifier,15.72,0.979,0.024,0.996,0.003,0.996,0.008,0.978,0.024,0.957,0.032,0:05:03
+segment (id:958),SVMSMOTE,GradientBoostingClassifier,18.06,0.995,0.007,0.998,0.002,1.0,0.001,0.995,0.007,0.989,0.016,0:02:12
+oil_spill (id:311),SMOTETomek,GradientBoostingClassifier,18.665,0.812,0.116,0.58,0.186,0.938,0.059,0.782,0.147,0.559,0.195,0:02:03
+analcatdata_apnea1 (id:767),RandomOverSampler,GradientBoostingClassifier,1.18,0.899,0.071,0.749,0.105,0.96,0.049,0.895,0.077,0.706,0.123,0:00:17
+optdigits (id:980),SVMSMOTE,XGBClassifier,35.457,0.979,0.014,0.997,0.002,0.999,0.001,0.979,0.014,0.971,0.016,0:11:49
+arsenic-female-lung (id:950),RandomOverSampler,LGBMClassifier,4.354,0.871,0.14,0.734,0.229,0.903,0.157,0.836,0.21,0.727,0.233,0:00:30
