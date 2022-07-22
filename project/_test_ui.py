@@ -25,16 +25,7 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 # str_output = execute_byCharacteristics(sys.path[0] + "/input/" + dataset_name, "")
 # print(str_output)
 
-
-#41538   6.935      0:01       conference_attendance
-#4329    5.714      0:01       thoracic_surgery
-#1447    6.786      0:01       CastMetal1
-#949     5.987      0:01       arsenic-female-bladder
-#951     42.0       0:02       arsenic-male-lung
-#1451    10.557     0:02       PieChart1 
-#1487    14.838     0:18       ozone-level-8hr
-#40713   64.034     0:24       dis
-#1116    5.488      4:13       musk
+#40713, 1116
 
 start_time = time.time()
 

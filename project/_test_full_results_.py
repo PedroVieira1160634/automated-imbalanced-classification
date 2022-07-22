@@ -182,7 +182,6 @@ print_scores_classifier_algorithm(df_kb_r)
 
 
 
-
 # df_kb_r = df_kb_r.loc[(df_kb_r["dataset"].values == "pc2 (id:1069)")]
 # # print(df_kb_r)
 
@@ -194,55 +193,4 @@ print_scores_classifier_algorithm(df_kb_r)
 
 
 
-
-#pre_processing - to remove
-#then, remove on ml.py
-
-
-#1st
-#SMOTEENN
-#CondensedNearestNeighbour
-#InstanceHardnessThreshold
-#ClusterCentroids
-#NearMiss
-
-#2nd
-#OneSidedSelection
-#(no pre processing)
-#KMeansSMOTE
-
-#3rd
-#EditedNearestNeighbours
-#AllKNN
-#RepeatedEditedNearestNeighbours
-#NeighbourhoodCleaningRule
-#RandomUnderSampler
-
-#4th
-#BorderlineSMOTE
-#TomekLinks
-
-#5th
-#ADASYN
-
-
-#classifier_algorithm - to remove
-
-#1st
-#LogisticRegression
-#GaussianNB
-#SVC
-
-#2nd
-#AdaBoostClassifier
-#KNeighborsClassifier
-
-#3rd
-#BaggingClassifier
-#ExtraTreesClassifier
-
-#4th
-#RandomForestClassifier
-
-#5th
-#(nothing)
+#exel results - remove by full results

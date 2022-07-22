@@ -60,7 +60,17 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "meta (id:757)") &
     #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)") &
     #     (df_kb_r['dataset'] != "braziltourism (id:957)") &
-    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)")
+    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)") &
+        
+    #     #testing
+    #     (df_kb_r['dataset'] != "conference_attendance (id:41538)") &
+    #     (df_kb_r['dataset'] != "thoracic_surgery (id:4329)") &
+    #     (df_kb_r['dataset'] != "CastMetal1 (id:1447)") &
+    #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
+    #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
+    #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
+        
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
@@ -124,7 +134,16 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "meta (id:757)") &
     #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)") &
     #     (df_kb_r['dataset'] != "braziltourism (id:957)") &
-    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)")
+    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)") &
+        
+    #     #testing
+    #     (df_kb_r['dataset'] != "conference_attendance (id:41538)") &
+    #     (df_kb_r['dataset'] != "thoracic_surgery (id:4329)") &
+    #     (df_kb_r['dataset'] != "CastMetal1 (id:1447)") &
+    #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
+    #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
+    #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
     # ]
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
     # print(df_kb_r)
@@ -188,7 +207,16 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "meta (id:757)") &
     #     (df_kb_r['dataset'] != "analcatdata_draft (id:984)") &
     #     (df_kb_r['dataset'] != "braziltourism (id:957)") &
-    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)")
+    #     (df_kb_r['dataset'] != "bank-marketing (id:1558)") &
+        
+    #     #testing
+    #     (df_kb_r['dataset'] != "conference_attendance (id:41538)") &
+    #     (df_kb_r['dataset'] != "thoracic_surgery (id:4329)") &
+    #     (df_kb_r['dataset'] != "CastMetal1 (id:1447)") &
+    #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
+    #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
+    #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
