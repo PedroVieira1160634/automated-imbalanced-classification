@@ -69,7 +69,10 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
     #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
     #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
-    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)") &
+    #     (df_kb_r['dataset'] != "analcatdata_marketing (id:986)") &
+    #     (df_kb_r['dataset'] != "Loan-Predication (id:43595)") &
+    #     (df_kb_r['dataset'] != "breast-cancer (id:13)")
         
     # ]
     
@@ -143,7 +146,10 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
     #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
     #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
-    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)") &
+    #     (df_kb_r['dataset'] != "analcatdata_marketing (id:986)") &
+    #     (df_kb_r['dataset'] != "Loan-Predication (id:43595)") &
+    #     (df_kb_r['dataset'] != "breast-cancer (id:13)")
     # ]
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
     # print(df_kb_r)
@@ -216,7 +222,11 @@ def remove_all_worst_datasets():
     #     (df_kb_r['dataset'] != "arsenic-female-bladder (id:949)") &
     #     (df_kb_r['dataset'] != "arsenic-male-lung (id:951)") &
     #     (df_kb_r['dataset'] != "PieChart1 (id:1451)") &
-    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)")
+    #     (df_kb_r['dataset'] != "ozone-level-8hr (id:1487)") &
+        
+    #     (df_kb_r['dataset'] != "analcatdata_marketing (id:986)") &
+    #     (df_kb_r['dataset'] != "Loan-Predication (id:43595)") &
+    #     (df_kb_r['dataset'] != "breast-cancer (id:13)")
     # ]
     
     # # df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
