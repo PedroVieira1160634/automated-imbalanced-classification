@@ -92,9 +92,9 @@ def step_2():
     # rows_to_keep = df_openml["imbalance ratio"] > 5
     # df_openml = df_openml[rows_to_keep]
     
-    rows_to_keep = df_openml["imbalance ratio"] <= 5
+    rows_to_keep = df_openml["imbalance ratio"] <= 2.5
     df_openml = df_openml[rows_to_keep]
-    rows_to_keep = df_openml["imbalance ratio"] > 2.5
+    rows_to_keep = df_openml["imbalance ratio"] > 2
     df_openml = df_openml[rows_to_keep]
     
 
