@@ -61,3 +61,4 @@ dermatology-6.dat,RandomOverSampler,XGBClassifier,1.396,0.999,0.004,0.98,0.06,0.
 kr-vs-k-three_vs_eleven.dat,RandomOverSampler,GradientBoostingClassifier,4.87,1.0,0.001,0.986,0.025,1.0,0.0,1.0,0.001,0.986,0.026,0:02:06
 kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,2.685,0.999,0.001,0.97,0.062,1.0,0.0,0.999,0.001,0.969,0.063,0:00:48
 kr-vs-k-zero-one_vs_draw.dat,SMOTETomek,LGBMClassifier,18.285,0.986,0.024,0.947,0.042,0.999,0.001,0.985,0.025,0.945,0.043,0:02:01
+poker-8-9_vs_6.dat,SMOTE,XGBClassifier,2.268,0.922,0.114,0.89,0.154,0.993,0.018,0.909,0.135,0.889,0.156,0:00:36
