@@ -8,7 +8,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #, "testing_kb_results", "testing_kb_full_results", "testing_kb_characteristics"
 
 #FILE
-dataset_name = "poker-8_vs_6.dat"
+dataset_name = "kddcup-land_vs_satan.dat"
 
 # execute_ml_test(sys.path[0] + "/input/" + dataset_name, "")
 execute_ml(sys.path[0] + "/input/" + dataset_name, "", "kb_results", "kb_full_results", "kb_characteristics")
