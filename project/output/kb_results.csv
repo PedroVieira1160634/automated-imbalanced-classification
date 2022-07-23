@@ -59,3 +59,4 @@ abalone-21_vs_8.dat,SVMSMOTE,GradientBoostingClassifier,2.497,0.845,0.201,0.647,
 car-vgood.dat,RandomOverSampler,XGBClassifier,3.459,1.0,0.001,0.993,0.029,1.0,0.0,1.0,0.001,0.992,0.03,0:00:41
 dermatology-6.dat,RandomOverSampler,XGBClassifier,1.396,0.999,0.004,0.98,0.06,0.999,0.004,0.999,0.004,0.979,0.064,0:00:17
 kr-vs-k-three_vs_eleven.dat,RandomOverSampler,GradientBoostingClassifier,4.87,1.0,0.001,0.986,0.025,1.0,0.0,1.0,0.001,0.986,0.026,0:02:06
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,2.685,0.999,0.001,0.97,0.062,1.0,0.0,0.999,0.001,0.969,0.063,0:00:48
