@@ -1,7 +1,8 @@
 dataset,pre processing,algorithm,time,balanced accuracy,balanced accuracy std,f1 score,f1 score std,roc auc, roc auc std,geometric mean,geometric mean std,cohen kappa, cohen kappa std,final score
 kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,XGBClassifier,3.051,1.0,0.0,0.995,0.026,1.0,0.0,1.0,0.0,0.995,0.026,0.998
-kr-vs-k-zero_vs_fifteen.dat,SMOTE,XGBClassifier,2.392,1.0,0.001,0.992,0.045,1.0,0.0,1.0,0.001,0.992,0.046,0.997
 kr-vs-k-zero_vs_fifteen.dat,SMOTETomek,XGBClassifier,14.098,1.0,0.001,0.992,0.045,1.0,0.0,1.0,0.001,0.992,0.046,0.997
+car-vgood.dat,RandomOverSampler,XGBClassifier,3.459,1.0,0.001,0.993,0.029,1.0,0.0,1.0,0.001,0.992,0.03,0.997
+kr-vs-k-zero_vs_fifteen.dat,SMOTE,XGBClassifier,2.392,1.0,0.001,0.992,0.045,1.0,0.0,1.0,0.001,0.992,0.046,0.997
 mfeat-fourier (id:971),SMOTETomek,GradientBoostingClassifier,82.469,0.995,0.01,0.999,0.001,1.0,0.001,0.995,0.01,0.993,0.012,0.996
 synthetic_control (id:1004),SMOTE,XGBClassifier,2.845,0.995,0.016,0.999,0.004,1.0,0.0,0.995,0.016,0.992,0.026,0.996
 cpu (id:796),SMOTE,LGBMClassifier,0.526,0.998,0.008,0.994,0.023,1.0,0.0,0.998,0.008,0.992,0.031,0.996
@@ -9,53 +10,56 @@ synthetic_control (id:1004),SMOTETomek,XGBClassifier,3.402,0.995,0.016,0.999,0.0
 cpu (id:796),SMOTETomek,LGBMClassifier,0.646,0.998,0.008,0.994,0.023,1.0,0.0,0.998,0.008,0.992,0.031,0.996
 dermatology (id:1010),RandomOverSampler,LGBMClassifier,0.88,0.996,0.016,0.997,0.012,1.0,0.001,0.996,0.016,0.989,0.037,0.996
 mfeat-fourier (id:971),SMOTE,GradientBoostingClassifier,76.966,0.995,0.01,0.999,0.001,1.0,0.001,0.995,0.01,0.993,0.012,0.996
-segment (id:958),SVMSMOTE,GradientBoostingClassifier,18.581,0.995,0.007,0.998,0.002,1.0,0.001,0.995,0.007,0.989,0.016,0.995
-mfeat-fourier (id:971),RandomOverSampler,GradientBoostingClassifier,57.215,0.993,0.011,0.999,0.002,1.0,0.001,0.993,0.012,0.989,0.019,0.995
-segment (id:958),SVMSMOTE,LGBMClassifier,5.06,0.995,0.008,0.998,0.002,0.999,0.006,0.995,0.008,0.987,0.014,0.995
-kr-vs-k-zero_vs_fifteen.dat,SMOTETomek,LGBMClassifier,14.461,0.994,0.03,0.993,0.036,1.0,0.0,0.994,0.033,0.993,0.036,0.995
-synthetic_control (id:1004),RandomOverSampler,XGBClassifier,2.556,0.994,0.016,0.998,0.005,1.0,0.0,0.994,0.016,0.99,0.027,0.995
 synthetic_control (id:1004),SVMSMOTE,XGBClassifier,3.048,0.996,0.01,0.997,0.006,1.0,0.0,0.996,0.01,0.985,0.032,0.995
+car-vgood.dat,SMOTE,XGBClassifier,3.141,0.999,0.001,0.988,0.027,1.0,0.0,0.999,0.001,0.987,0.028,0.995
+car-vgood.dat,SMOTETomek,XGBClassifier,4.265,0.999,0.001,0.988,0.027,1.0,0.0,0.999,0.001,0.987,0.028,0.995
 kr-vs-k-zero_vs_fifteen.dat,SMOTE,LGBMClassifier,1.055,0.994,0.03,0.993,0.036,1.0,0.0,0.994,0.033,0.993,0.036,0.995
-cpu (id:796),SVMSMOTE,LGBMClassifier,0.764,0.995,0.018,0.991,0.034,1.0,0.002,0.995,0.019,0.988,0.046,0.994
-segment (id:958),SVMSMOTE,XGBClassifier,7.053,0.994,0.008,0.998,0.002,0.999,0.002,0.994,0.008,0.984,0.016,0.994
-mfeat-morphological (id:962),SMOTETomek,GradientBoostingClassifier,5.078,0.992,0.015,0.999,0.002,0.998,0.009,0.992,0.015,0.99,0.017,0.994
-segment (id:958),SMOTE,LGBMClassifier,3.344,0.993,0.01,0.998,0.002,0.998,0.006,0.993,0.01,0.986,0.016,0.994
-segment (id:958),SMOTETomek,LGBMClassifier,11.137,0.993,0.01,0.998,0.002,0.998,0.006,0.993,0.01,0.986,0.016,0.994
-mfeat-morphological (id:962),SVMSMOTE,XGBClassifier,2.347,0.992,0.015,0.999,0.002,0.997,0.008,0.992,0.015,0.988,0.019,0.994
-mfeat-fourier (id:971),RandomOverSampler,XGBClassifier,11.393,0.991,0.012,0.999,0.002,0.999,0.002,0.991,0.012,0.989,0.016,0.994
-segment (id:958),RandomOverSampler,GradientBoostingClassifier,12.205,0.994,0.008,0.998,0.002,0.998,0.005,0.994,0.008,0.986,0.015,0.994
-segment (id:958),SMOTE,GradientBoostingClassifier,16.822,0.994,0.009,0.998,0.003,0.999,0.004,0.994,0.009,0.984,0.019,0.994
+segment (id:958),SVMSMOTE,LGBMClassifier,5.06,0.995,0.008,0.998,0.002,0.999,0.006,0.995,0.008,0.987,0.014,0.995
+synthetic_control (id:1004),RandomOverSampler,XGBClassifier,2.556,0.994,0.016,0.998,0.005,1.0,0.0,0.994,0.016,0.99,0.027,0.995
+kr-vs-k-zero_vs_fifteen.dat,SMOTETomek,LGBMClassifier,14.461,0.994,0.03,0.993,0.036,1.0,0.0,0.994,0.033,0.993,0.036,0.995
+mfeat-fourier (id:971),RandomOverSampler,GradientBoostingClassifier,57.215,0.993,0.011,0.999,0.002,1.0,0.001,0.993,0.012,0.989,0.019,0.995
+segment (id:958),SVMSMOTE,GradientBoostingClassifier,18.581,0.995,0.007,0.998,0.002,1.0,0.001,0.995,0.007,0.989,0.016,0.995
 mfeat-morphological (id:962),SVMSMOTE,GradientBoostingClassifier,6.315,0.992,0.015,0.999,0.002,0.996,0.013,0.992,0.015,0.991,0.017,0.994
-segment (id:958),SMOTETomek,GradientBoostingClassifier,24.3,0.994,0.009,0.998,0.003,0.999,0.004,0.994,0.009,0.984,0.019,0.994
-kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,LGBMClassifier,1.482,1.0,0.001,0.984,0.049,1.0,0.0,1.0,0.001,0.984,0.05,0.994
+car-vgood.dat,SVMSMOTE,XGBClassifier,2.991,0.997,0.016,0.988,0.044,1.0,0.001,0.997,0.017,0.987,0.046,0.994
 kr-vs-k-zero_vs_fifteen.dat,RandomOverSampler,XGBClassifier,3.632,1.0,0.001,0.984,0.049,1.0,0.0,1.0,0.001,0.984,0.05,0.994
-synthetic_control (id:1004),SVMSMOTE,LGBMClassifier,6.781,0.993,0.015,0.997,0.006,1.0,0.001,0.993,0.016,0.984,0.033,0.993
-segment (id:958),RandomOverSampler,XGBClassifier,3.638,0.993,0.009,0.998,0.002,0.999,0.003,0.993,0.009,0.984,0.017,0.993
-mfeat-morphological (id:962),SVMSMOTE,LGBMClassifier,1.682,0.992,0.014,0.998,0.002,0.997,0.012,0.992,0.015,0.984,0.02,0.993
-mfeat-fourier (id:971),SVMSMOTE,GradientBoostingClassifier,56.603,0.99,0.014,0.999,0.002,0.999,0.004,0.99,0.014,0.986,0.017,0.993
-segment (id:958),SMOTE,XGBClassifier,5.227,0.993,0.009,0.998,0.003,0.999,0.004,0.993,0.009,0.983,0.019,0.993
-segment (id:958),RandomOverSampler,LGBMClassifier,2.881,0.992,0.009,0.998,0.002,0.998,0.007,0.992,0.01,0.984,0.015,0.993
-segment (id:958),SMOTETomek,XGBClassifier,12.9,0.993,0.009,0.998,0.003,0.999,0.004,0.993,0.009,0.983,0.019,0.993
+kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,LGBMClassifier,1.482,1.0,0.001,0.984,0.049,1.0,0.0,1.0,0.001,0.984,0.05,0.994
+segment (id:958),SMOTETomek,GradientBoostingClassifier,24.3,0.994,0.009,0.998,0.003,0.999,0.004,0.994,0.009,0.984,0.019,0.994
+segment (id:958),SVMSMOTE,XGBClassifier,7.053,0.994,0.008,0.998,0.002,0.999,0.002,0.994,0.008,0.984,0.016,0.994
+segment (id:958),SMOTE,GradientBoostingClassifier,16.822,0.994,0.009,0.998,0.003,0.999,0.004,0.994,0.009,0.984,0.019,0.994
+segment (id:958),RandomOverSampler,GradientBoostingClassifier,12.205,0.994,0.008,0.998,0.002,0.998,0.005,0.994,0.008,0.986,0.015,0.994
+mfeat-fourier (id:971),RandomOverSampler,XGBClassifier,11.393,0.991,0.012,0.999,0.002,0.999,0.002,0.991,0.012,0.989,0.016,0.994
+mfeat-morphological (id:962),SVMSMOTE,XGBClassifier,2.347,0.992,0.015,0.999,0.002,0.997,0.008,0.992,0.015,0.988,0.019,0.994
+segment (id:958),SMOTETomek,LGBMClassifier,11.137,0.993,0.01,0.998,0.002,0.998,0.006,0.993,0.01,0.986,0.016,0.994
+segment (id:958),SMOTE,LGBMClassifier,3.344,0.993,0.01,0.998,0.002,0.998,0.006,0.993,0.01,0.986,0.016,0.994
+mfeat-morphological (id:962),SMOTETomek,GradientBoostingClassifier,5.078,0.992,0.015,0.999,0.002,0.998,0.009,0.992,0.015,0.99,0.017,0.994
+cpu (id:796),SVMSMOTE,LGBMClassifier,0.764,0.995,0.018,0.991,0.034,1.0,0.002,0.995,0.019,0.988,0.046,0.994
 cpu (id:796),RandomOverSampler,LGBMClassifier,0.517,0.995,0.019,0.99,0.029,1.0,0.0,0.994,0.02,0.987,0.039,0.993
 dermatology (id:1010),SVMSMOTE,GradientBoostingClassifier,2.819,0.993,0.016,0.995,0.01,1.0,0.001,0.993,0.017,0.985,0.032,0.993
-mfeat-morphological (id:962),RandomOverSampler,LGBMClassifier,1.215,0.992,0.015,0.998,0.002,0.998,0.009,0.991,0.015,0.982,0.021,0.992
-mfeat-fourier (id:971),SMOTETomek,XGBClassifier,20.97,0.99,0.014,0.999,0.002,0.999,0.002,0.989,0.014,0.985,0.019,0.992
-mfeat-fourier (id:971),SMOTE,XGBClassifier,14.984,0.99,0.014,0.999,0.002,0.999,0.002,0.989,0.014,0.985,0.019,0.992
-mfeat-morphological (id:962),RandomOverSampler,XGBClassifier,1.829,0.991,0.014,0.998,0.002,0.999,0.005,0.991,0.015,0.982,0.021,0.992
+segment (id:958),SMOTETomek,XGBClassifier,12.9,0.993,0.009,0.998,0.003,0.999,0.004,0.993,0.009,0.983,0.019,0.993
+synthetic_control (id:1004),SVMSMOTE,LGBMClassifier,6.781,0.993,0.015,0.997,0.006,1.0,0.001,0.993,0.016,0.984,0.033,0.993
+segment (id:958),RandomOverSampler,XGBClassifier,3.638,0.993,0.009,0.998,0.002,0.999,0.003,0.993,0.009,0.984,0.017,0.993
+segment (id:958),SMOTE,XGBClassifier,5.227,0.993,0.009,0.998,0.003,0.999,0.004,0.993,0.009,0.983,0.019,0.993
+mfeat-fourier (id:971),SVMSMOTE,GradientBoostingClassifier,56.603,0.99,0.014,0.999,0.002,0.999,0.004,0.99,0.014,0.986,0.017,0.993
+mfeat-morphological (id:962),SVMSMOTE,LGBMClassifier,1.682,0.992,0.014,0.998,0.002,0.997,0.012,0.992,0.015,0.984,0.02,0.993
+segment (id:958),RandomOverSampler,LGBMClassifier,2.881,0.992,0.009,0.998,0.002,0.998,0.007,0.992,0.01,0.984,0.015,0.993
 mfeat-morphological (id:962),SMOTE,GradientBoostingClassifier,5.269,0.992,0.014,0.998,0.002,0.998,0.009,0.991,0.015,0.982,0.02,0.992
 mfeat-morphological (id:962),SMOTE,XGBClassifier,2.228,0.991,0.014,0.998,0.002,0.999,0.002,0.991,0.015,0.982,0.021,0.992
 mfeat-morphological (id:962),SMOTETomek,XGBClassifier,2.15,0.992,0.014,0.998,0.002,0.999,0.003,0.991,0.015,0.982,0.02,0.992
-mfeat-morphological (id:962),RandomOverSampler,GradientBoostingClassifier,3.707,0.99,0.015,0.999,0.002,0.996,0.013,0.99,0.015,0.985,0.019,0.992
 mfeat-morphological (id:962),SMOTETomek,LGBMClassifier,1.458,0.991,0.014,0.998,0.002,0.998,0.008,0.991,0.015,0.98,0.021,0.992
 mfeat-fourier (id:971),SVMSMOTE,XGBClassifier,12.676,0.99,0.012,0.998,0.002,1.0,0.0,0.99,0.013,0.983,0.022,0.992
 analcatdata_supreme (id:728),RandomOverSampler,GradientBoostingClassifier,3.128,0.991,0.006,0.996,0.002,1.0,0.001,0.991,0.006,0.982,0.01,0.992
-dermatology (id:1010),SMOTETomek,GradientBoostingClassifier,2.487,0.991,0.022,0.993,0.014,0.999,0.003,0.991,0.022,0.979,0.045,0.991
-mfeat-factors (id:978),SVMSMOTE,GradientBoostingClassifier,131.264,0.988,0.017,0.998,0.002,1.0,0.0,0.988,0.017,0.981,0.024,0.991
-analcatdata_supreme (id:728),SMOTE,GradientBoostingClassifier,4.233,0.99,0.006,0.995,0.002,1.0,0.0,0.989,0.006,0.981,0.01,0.991
-analcatdata_supreme (id:728),SMOTE,XGBClassifier,3.261,0.989,0.006,0.995,0.003,1.0,0.0,0.989,0.007,0.98,0.011,0.991
+mfeat-morphological (id:962),RandomOverSampler,XGBClassifier,1.829,0.991,0.014,0.998,0.002,0.999,0.005,0.991,0.015,0.982,0.021,0.992
+mfeat-fourier (id:971),SMOTE,XGBClassifier,14.984,0.99,0.014,0.999,0.002,0.999,0.002,0.989,0.014,0.985,0.019,0.992
+mfeat-fourier (id:971),SMOTETomek,XGBClassifier,20.97,0.99,0.014,0.999,0.002,0.999,0.002,0.989,0.014,0.985,0.019,0.992
+mfeat-morphological (id:962),RandomOverSampler,LGBMClassifier,1.215,0.992,0.015,0.998,0.002,0.998,0.009,0.991,0.015,0.982,0.021,0.992
+mfeat-morphological (id:962),RandomOverSampler,GradientBoostingClassifier,3.707,0.99,0.015,0.999,0.002,0.996,0.013,0.99,0.015,0.985,0.019,0.992
+mfeat-morphological (id:962),SMOTE,LGBMClassifier,1.114,0.991,0.014,0.998,0.002,0.998,0.008,0.991,0.015,0.977,0.022,0.991
 analcatdata_supreme (id:728),SMOTETomek,GradientBoostingClassifier,4.436,0.99,0.006,0.995,0.002,0.999,0.001,0.989,0.006,0.981,0.01,0.991
 mfeat-fourier (id:971),SVMSMOTE,LGBMClassifier,12.944,0.989,0.012,0.998,0.002,0.999,0.004,0.989,0.012,0.981,0.02,0.991
-mfeat-morphological (id:962),SMOTE,LGBMClassifier,1.114,0.991,0.014,0.998,0.002,0.998,0.008,0.991,0.015,0.977,0.022,0.991
+analcatdata_supreme (id:728),SMOTE,GradientBoostingClassifier,4.233,0.99,0.006,0.995,0.002,1.0,0.0,0.989,0.006,0.981,0.01,0.991
+mfeat-factors (id:978),SVMSMOTE,GradientBoostingClassifier,131.264,0.988,0.017,0.998,0.002,1.0,0.0,0.988,0.017,0.981,0.024,0.991
+dermatology (id:1010),SMOTETomek,GradientBoostingClassifier,2.487,0.991,0.022,0.993,0.014,0.999,0.003,0.991,0.022,0.979,0.045,0.991
+analcatdata_supreme (id:728),SMOTE,XGBClassifier,3.261,0.989,0.006,0.995,0.003,1.0,0.0,0.989,0.007,0.98,0.011,0.991
 vowel (id:1016),SVMSMOTE,XGBClassifier,3.152,0.992,0.018,0.997,0.005,1.0,0.001,0.992,0.018,0.971,0.05,0.99
 analcatdata_supreme (id:728),RandomOverSampler,LGBMClassifier,1.025,0.989,0.005,0.995,0.002,0.999,0.0,0.989,0.005,0.979,0.008,0.99
 mfeat-factors (id:978),SVMSMOTE,LGBMClassifier,25.381,0.989,0.015,0.997,0.002,1.0,0.001,0.989,0.016,0.975,0.024,0.99
@@ -64,153 +68,157 @@ analcatdata_supreme (id:728),SMOTETomek,XGBClassifier,4.401,0.989,0.006,0.995,0.
 analcatdata_supreme (id:728),SMOTE,LGBMClassifier,1.033,0.989,0.006,0.995,0.002,0.999,0.0,0.989,0.006,0.979,0.01,0.99
 analcatdata_supreme (id:728),RandomOverSampler,XGBClassifier,3.332,0.989,0.006,0.995,0.002,1.0,0.0,0.989,0.006,0.978,0.008,0.99
 kr-vs-k-zero_vs_fifteen.dat,RandomOverSampler,GradientBoostingClassifier,4.309,0.989,0.042,0.987,0.05,1.0,0.0,0.988,0.046,0.987,0.05,0.99
-mfeat-factors (id:978),SMOTETomek,XGBClassifier,35.411,0.984,0.023,0.998,0.003,1.0,0.001,0.984,0.024,0.977,0.03,0.989
-JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,23.324,0.989,0.005,0.995,0.002,1.0,0.0,0.989,0.005,0.972,0.009,0.989
-dermatology (id:1010),SMOTE,GradientBoostingClassifier,2.326,0.99,0.023,0.992,0.014,0.999,0.003,0.99,0.023,0.976,0.046,0.989
-mfeat-factors (id:978),SVMSMOTE,XGBClassifier,32.789,0.988,0.019,0.997,0.004,1.0,0.001,0.988,0.02,0.973,0.037,0.989
-dermatology (id:1010),RandomOverSampler,XGBClassifier,2.218,0.988,0.022,0.993,0.013,1.0,0.001,0.988,0.022,0.978,0.042,0.989
-mfeat-factors (id:978),SMOTE,GradientBoostingClassifier,125.716,0.985,0.02,0.998,0.003,1.0,0.001,0.985,0.021,0.977,0.028,0.989
-vowel (id:1016),SVMSMOTE,LGBMClassifier,2.936,0.988,0.022,0.998,0.003,0.996,0.018,0.988,0.023,0.977,0.034,0.989
-mfeat-factors (id:978),SMOTETomek,LGBMClassifier,29.493,0.985,0.02,0.998,0.002,0.999,0.001,0.985,0.02,0.98,0.024,0.989
-JapaneseVowels (id:976),SVMSMOTE,XGBClassifier,65.541,0.988,0.005,0.995,0.002,1.0,0.0,0.988,0.005,0.972,0.009,0.989
-mfeat-factors (id:978),SMOTE,XGBClassifier,28.03,0.984,0.023,0.998,0.003,1.0,0.001,0.984,0.024,0.977,0.03,0.989
-mfeat-factors (id:978),SMOTE,LGBMClassifier,22.015,0.985,0.02,0.998,0.002,0.999,0.001,0.985,0.02,0.98,0.024,0.989
 mfeat-factors (id:978),SMOTETomek,GradientBoostingClassifier,132.375,0.985,0.02,0.998,0.003,1.0,0.001,0.985,0.021,0.977,0.028,0.989
+JapaneseVowels (id:976),SVMSMOTE,XGBClassifier,65.541,0.988,0.005,0.995,0.002,1.0,0.0,0.988,0.005,0.972,0.009,0.989
+mfeat-factors (id:978),SMOTE,LGBMClassifier,22.015,0.985,0.02,0.998,0.002,0.999,0.001,0.985,0.02,0.98,0.024,0.989
+mfeat-factors (id:978),SMOTE,XGBClassifier,28.03,0.984,0.023,0.998,0.003,1.0,0.001,0.984,0.024,0.977,0.03,0.989
+mfeat-factors (id:978),SMOTETomek,LGBMClassifier,29.493,0.985,0.02,0.998,0.002,0.999,0.001,0.985,0.02,0.98,0.024,0.989
+vowel (id:1016),SVMSMOTE,LGBMClassifier,2.936,0.988,0.022,0.998,0.003,0.996,0.018,0.988,0.023,0.977,0.034,0.989
+mfeat-factors (id:978),SMOTE,GradientBoostingClassifier,125.716,0.985,0.02,0.998,0.003,1.0,0.001,0.985,0.021,0.977,0.028,0.989
+dermatology (id:1010),RandomOverSampler,XGBClassifier,2.218,0.988,0.022,0.993,0.013,1.0,0.001,0.988,0.022,0.978,0.042,0.989
+mfeat-factors (id:978),SVMSMOTE,XGBClassifier,32.789,0.988,0.019,0.997,0.004,1.0,0.001,0.988,0.02,0.973,0.037,0.989
+dermatology (id:1010),SMOTE,GradientBoostingClassifier,2.326,0.99,0.023,0.992,0.014,0.999,0.003,0.99,0.023,0.976,0.046,0.989
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,23.324,0.989,0.005,0.995,0.002,1.0,0.0,0.989,0.005,0.972,0.009,0.989
+mfeat-factors (id:978),SMOTETomek,XGBClassifier,35.411,0.984,0.023,0.998,0.003,1.0,0.001,0.984,0.024,0.977,0.03,0.989
+vowel (id:1016),SMOTETomek,LGBMClassifier,3.464,0.987,0.026,0.997,0.003,0.999,0.004,0.987,0.027,0.969,0.039,0.988
+car-vgood.dat,SVMSMOTE,LGBMClassifier,1.527,0.995,0.026,0.977,0.041,1.0,0.001,0.994,0.028,0.976,0.043,0.988
+synthetic_control (id:1004),SMOTETomek,LGBMClassifier,8.508,0.987,0.02,0.995,0.007,1.0,0.0,0.987,0.021,0.972,0.039,0.988
+JapaneseVowels (id:976),SMOTETomek,LGBMClassifier,7.412,0.988,0.005,0.995,0.001,0.999,0.0,0.988,0.005,0.972,0.009,0.988
+synthetic_control (id:1004),SMOTETomek,GradientBoostingClassifier,12.695,0.989,0.02,0.996,0.007,0.992,0.017,0.989,0.021,0.976,0.041,0.988
+kr-vs-k-zero_vs_fifteen.dat,RandomOverSampler,LGBMClassifier,4.921,0.994,0.03,0.977,0.059,1.0,0.0,0.994,0.033,0.977,0.06,0.988
+JapaneseVowels (id:976),SMOTE,XGBClassifier,48.322,0.988,0.005,0.995,0.002,1.0,0.0,0.988,0.005,0.971,0.01,0.988
+JapaneseVowels (id:976),SMOTETomek,XGBClassifier,50.584,0.987,0.006,0.995,0.002,1.0,0.0,0.987,0.006,0.97,0.01,0.988
+mfeat-fourier (id:971),SMOTETomek,LGBMClassifier,18.133,0.984,0.017,0.998,0.002,0.999,0.003,0.984,0.017,0.976,0.022,0.988
+JapaneseVowels (id:976),RandomOverSampler,XGBClassifier,35.1,0.987,0.006,0.995,0.002,1.0,0.0,0.987,0.006,0.971,0.01,0.988
+dermatology (id:1010),SVMSMOTE,LGBMClassifier,1.197,0.988,0.02,0.991,0.015,1.0,0.001,0.988,0.02,0.972,0.045,0.988
 vowel (id:1016),SMOTE,LGBMClassifier,2.115,0.987,0.026,0.997,0.003,0.999,0.004,0.987,0.027,0.969,0.039,0.988
 synthetic_control (id:1004),SMOTE,GradientBoostingClassifier,12.015,0.989,0.02,0.996,0.007,0.992,0.017,0.989,0.021,0.976,0.041,0.988
 synthetic_control (id:1004),SMOTE,LGBMClassifier,7.86,0.987,0.02,0.995,0.007,1.0,0.0,0.987,0.021,0.972,0.039,0.988
 JapaneseVowels (id:976),SMOTE,LGBMClassifier,5.253,0.988,0.005,0.995,0.002,1.0,0.0,0.988,0.005,0.971,0.009,0.988
 JapaneseVowels (id:976),RandomOverSampler,LGBMClassifier,5.064,0.988,0.006,0.995,0.002,0.999,0.0,0.988,0.006,0.972,0.01,0.988
 synthetic_control (id:1004),RandomOverSampler,GradientBoostingClassifier,9.361,0.987,0.032,0.996,0.008,0.995,0.016,0.986,0.034,0.975,0.053,0.988
-dermatology (id:1010),SVMSMOTE,LGBMClassifier,1.197,0.988,0.02,0.991,0.015,1.0,0.001,0.988,0.02,0.972,0.045,0.988
-JapaneseVowels (id:976),RandomOverSampler,XGBClassifier,35.1,0.987,0.006,0.995,0.002,1.0,0.0,0.987,0.006,0.971,0.01,0.988
-mfeat-fourier (id:971),SMOTETomek,LGBMClassifier,18.133,0.984,0.017,0.998,0.002,0.999,0.003,0.984,0.017,0.976,0.022,0.988
 mfeat-fourier (id:971),SMOTE,LGBMClassifier,11.819,0.984,0.017,0.998,0.002,0.999,0.003,0.984,0.017,0.976,0.022,0.988
-JapaneseVowels (id:976),SMOTETomek,XGBClassifier,50.584,0.987,0.006,0.995,0.002,1.0,0.0,0.987,0.006,0.97,0.01,0.988
-vowel (id:1016),SMOTETomek,LGBMClassifier,3.464,0.987,0.026,0.997,0.003,0.999,0.004,0.987,0.027,0.969,0.039,0.988
-kr-vs-k-zero_vs_fifteen.dat,RandomOverSampler,LGBMClassifier,4.921,0.994,0.03,0.977,0.059,1.0,0.0,0.994,0.033,0.977,0.06,0.988
-synthetic_control (id:1004),SMOTETomek,GradientBoostingClassifier,12.695,0.989,0.02,0.996,0.007,0.992,0.017,0.989,0.021,0.976,0.041,0.988
-JapaneseVowels (id:976),SMOTETomek,LGBMClassifier,7.412,0.988,0.005,0.995,0.001,0.999,0.0,0.988,0.005,0.972,0.009,0.988
-synthetic_control (id:1004),SMOTETomek,LGBMClassifier,8.508,0.987,0.02,0.995,0.007,1.0,0.0,0.987,0.021,0.972,0.039,0.988
-JapaneseVowels (id:976),SMOTE,XGBClassifier,48.322,0.988,0.005,0.995,0.002,1.0,0.0,0.988,0.005,0.971,0.01,0.988
 mfeat-karhunen (id:1020),SVMSMOTE,GradientBoostingClassifier,66.424,0.988,0.013,0.996,0.003,0.998,0.003,0.988,0.013,0.965,0.032,0.987
-synthetic_control (id:1004),SVMSMOTE,GradientBoostingClassifier,11.467,0.989,0.016,0.993,0.008,0.998,0.006,0.989,0.017,0.962,0.047,0.986
-mfeat-factors (id:978),RandomOverSampler,XGBClassifier,19.03,0.982,0.022,0.997,0.003,0.999,0.001,0.982,0.023,0.971,0.034,0.986
-mfeat-karhunen (id:1020),SVMSMOTE,XGBClassifier,26.042,0.984,0.018,0.997,0.003,0.999,0.002,0.984,0.018,0.968,0.031,0.986
-dermatology (id:1010),RandomOverSampler,GradientBoostingClassifier,2.333,0.986,0.023,0.991,0.015,1.0,0.002,0.985,0.023,0.97,0.046,0.986
-mfeat-factors (id:978),RandomOverSampler,LGBMClassifier,20.978,0.981,0.022,0.997,0.004,1.0,0.001,0.981,0.022,0.969,0.038,0.986
-mfeat-karhunen (id:1020),SVMSMOTE,LGBMClassifier,13.199,0.983,0.019,0.997,0.003,0.998,0.003,0.983,0.02,0.97,0.03,0.986
 vowel (id:1016),SVMSMOTE,GradientBoostingClassifier,6.679,0.989,0.024,0.996,0.005,0.999,0.002,0.989,0.026,0.959,0.053,0.986
+mfeat-karhunen (id:1020),SVMSMOTE,LGBMClassifier,13.199,0.983,0.019,0.997,0.003,0.998,0.003,0.983,0.02,0.97,0.03,0.986
+mfeat-factors (id:978),RandomOverSampler,LGBMClassifier,20.978,0.981,0.022,0.997,0.004,1.0,0.001,0.981,0.022,0.969,0.038,0.986
+dermatology (id:1010),RandomOverSampler,GradientBoostingClassifier,2.333,0.986,0.023,0.991,0.015,1.0,0.002,0.985,0.023,0.97,0.046,0.986
+mfeat-karhunen (id:1020),SVMSMOTE,XGBClassifier,26.042,0.984,0.018,0.997,0.003,0.999,0.002,0.984,0.018,0.968,0.031,0.986
+mfeat-factors (id:978),RandomOverSampler,XGBClassifier,19.03,0.982,0.022,0.997,0.003,0.999,0.001,0.982,0.023,0.971,0.034,0.986
+synthetic_control (id:1004),SVMSMOTE,GradientBoostingClassifier,11.467,0.989,0.016,0.993,0.008,0.998,0.006,0.989,0.017,0.962,0.047,0.986
 optdigits (id:980),SVMSMOTE,XGBClassifier,34.268,0.979,0.014,0.997,0.002,0.999,0.001,0.979,0.014,0.971,0.016,0.985
 mfeat-pixel (id:1022),RandomOverSampler,LGBMClassifier,16.03,0.98,0.021,0.997,0.003,0.999,0.002,0.98,0.022,0.967,0.035,0.985
 vehicle (id:994),RandomOverSampler,LGBMClassifier,1.223,0.984,0.019,0.992,0.01,0.999,0.002,0.984,0.019,0.968,0.036,0.985
 mfeat-factors (id:978),RandomOverSampler,GradientBoostingClassifier,92.199,0.979,0.021,0.997,0.003,0.999,0.001,0.978,0.022,0.971,0.034,0.985
-mfeat-pixel (id:1022),SMOTE,LGBMClassifier,28.287,0.98,0.021,0.997,0.003,0.999,0.002,0.979,0.021,0.966,0.034,0.984
-cpu (id:796),RandomOverSampler,XGBClassifier,0.841,0.987,0.031,0.979,0.044,0.997,0.009,0.986,0.032,0.971,0.06,0.984
-optdigits (id:980),RandomOverSampler,LGBMClassifier,4.016,0.978,0.013,0.997,0.002,0.999,0.001,0.978,0.014,0.968,0.017,0.984
-synthetic_control (id:1004),RandomOverSampler,LGBMClassifier,7.335,0.981,0.029,0.994,0.008,1.0,0.001,0.98,0.03,0.964,0.051,0.984
-optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,38.159,0.982,0.011,0.996,0.002,0.999,0.001,0.982,0.012,0.96,0.016,0.984
-mfeat-pixel (id:1022),SMOTETomek,LGBMClassifier,47.837,0.979,0.021,0.997,0.003,0.999,0.003,0.979,0.022,0.967,0.032,0.984
-mfeat-pixel (id:1022),RandomOverSampler,XGBClassifier,146.591,0.98,0.021,0.997,0.003,0.997,0.007,0.979,0.022,0.967,0.032,0.984
-dermatology (id:1010),SMOTETomek,LGBMClassifier,1.079,0.984,0.024,0.989,0.017,0.998,0.005,0.984,0.025,0.966,0.052,0.984
 mfeat-fourier (id:971),RandomOverSampler,LGBMClassifier,14.932,0.979,0.023,0.997,0.003,0.998,0.008,0.978,0.024,0.97,0.031,0.984
 optdigits (id:980),RandomOverSampler,XGBClassifier,25.331,0.978,0.014,0.997,0.002,0.999,0.002,0.978,0.014,0.966,0.017,0.984
-mfeat-pixel (id:1022),SVMSMOTE,GradientBoostingClassifier,149.964,0.982,0.016,0.996,0.003,0.997,0.006,0.982,0.016,0.959,0.03,0.983
-optdigits (id:980),SVMSMOTE,LGBMClassifier,10.933,0.976,0.015,0.997,0.002,0.999,0.001,0.976,0.015,0.968,0.017,0.983
-vehicle (id:994),SMOTE,LGBMClassifier,1.549,0.981,0.018,0.99,0.01,0.999,0.002,0.981,0.019,0.963,0.036,0.983
-vehicle (id:994),RandomOverSampler,XGBClassifier,1.551,0.981,0.02,0.99,0.01,0.998,0.003,0.981,0.02,0.963,0.038,0.983
-vehicle (id:994),SVMSMOTE,LGBMClassifier,2.124,0.982,0.018,0.99,0.009,0.998,0.002,0.982,0.018,0.963,0.036,0.983
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,38.159,0.982,0.011,0.996,0.002,0.999,0.001,0.982,0.012,0.96,0.016,0.984
+dermatology (id:1010),SMOTETomek,LGBMClassifier,1.079,0.984,0.024,0.989,0.017,0.998,0.005,0.984,0.025,0.966,0.052,0.984
+mfeat-pixel (id:1022),SMOTE,LGBMClassifier,28.287,0.98,0.021,0.997,0.003,0.999,0.002,0.979,0.021,0.966,0.034,0.984
+mfeat-pixel (id:1022),RandomOverSampler,XGBClassifier,146.591,0.98,0.021,0.997,0.003,0.997,0.007,0.979,0.022,0.967,0.032,0.984
+mfeat-pixel (id:1022),SMOTETomek,LGBMClassifier,47.837,0.979,0.021,0.997,0.003,0.999,0.003,0.979,0.022,0.967,0.032,0.984
+synthetic_control (id:1004),RandomOverSampler,LGBMClassifier,7.335,0.981,0.029,0.994,0.008,1.0,0.001,0.98,0.03,0.964,0.051,0.984
+optdigits (id:980),RandomOverSampler,LGBMClassifier,4.016,0.978,0.013,0.997,0.002,0.999,0.001,0.978,0.014,0.968,0.017,0.984
+cpu (id:796),RandomOverSampler,XGBClassifier,0.841,0.987,0.031,0.979,0.044,0.997,0.009,0.986,0.032,0.971,0.06,0.984
 mfeat-pixel (id:1022),SVMSMOTE,LGBMClassifier,45.606,0.981,0.019,0.996,0.004,0.996,0.01,0.98,0.02,0.963,0.036,0.983
 dermatology (id:1010),SMOTE,LGBMClassifier,0.875,0.983,0.027,0.988,0.019,0.998,0.004,0.983,0.027,0.964,0.058,0.983
-dgf_test (id:42883),RandomOverSampler,XGBClassifier,41.113,0.987,0.009,0.971,0.016,0.999,0.001,0.987,0.009,0.966,0.02,0.982
-vehicle (id:994),SMOTETomek,XGBClassifier,2.401,0.981,0.018,0.99,0.008,0.998,0.003,0.981,0.019,0.961,0.033,0.982
-vehicle (id:994),SMOTETomek,LGBMClassifier,2.175,0.979,0.022,0.99,0.01,0.999,0.002,0.979,0.022,0.961,0.04,0.982
-dermatology (id:1010),SMOTE,XGBClassifier,2.761,0.982,0.029,0.988,0.019,0.998,0.004,0.982,0.03,0.961,0.061,0.982
-cpu (id:796),SVMSMOTE,GradientBoostingClassifier,1.47,0.986,0.033,0.974,0.057,0.999,0.003,0.986,0.034,0.964,0.078,0.982
-mfeat-karhunen (id:1020),SMOTETomek,XGBClassifier,28.37,0.978,0.023,0.996,0.003,0.995,0.009,0.977,0.024,0.962,0.031,0.982
-vehicle (id:994),SMOTE,XGBClassifier,1.701,0.981,0.019,0.99,0.01,0.998,0.003,0.981,0.02,0.96,0.036,0.982
-vehicle (id:994),RandomOverSampler,GradientBoostingClassifier,3.592,0.982,0.019,0.989,0.01,0.998,0.003,0.981,0.019,0.958,0.038,0.982
-mfeat-karhunen (id:1020),SMOTE,GradientBoostingClassifier,66.207,0.98,0.02,0.996,0.003,0.997,0.005,0.98,0.021,0.957,0.031,0.982
-dermatology (id:1010),SMOTETomek,XGBClassifier,3.472,0.982,0.029,0.988,0.019,0.999,0.003,0.982,0.03,0.961,0.061,0.982
-vehicle (id:994),SVMSMOTE,GradientBoostingClassifier,4.554,0.982,0.019,0.989,0.01,0.998,0.004,0.982,0.019,0.958,0.037,0.982
+vehicle (id:994),SVMSMOTE,LGBMClassifier,2.124,0.982,0.018,0.99,0.009,0.998,0.002,0.982,0.018,0.963,0.036,0.983
+vehicle (id:994),RandomOverSampler,XGBClassifier,1.551,0.981,0.02,0.99,0.01,0.998,0.003,0.981,0.02,0.963,0.038,0.983
+vehicle (id:994),SMOTE,LGBMClassifier,1.549,0.981,0.018,0.99,0.01,0.999,0.002,0.981,0.019,0.963,0.036,0.983
+optdigits (id:980),SVMSMOTE,LGBMClassifier,10.933,0.976,0.015,0.997,0.002,0.999,0.001,0.976,0.015,0.968,0.017,0.983
+mfeat-pixel (id:1022),SVMSMOTE,GradientBoostingClassifier,149.964,0.982,0.016,0.996,0.003,0.997,0.006,0.982,0.016,0.959,0.03,0.983
 optdigits (id:980),SMOTETomek,XGBClassifier,111.998,0.975,0.014,0.996,0.002,0.999,0.002,0.975,0.014,0.964,0.019,0.982
-mfeat-karhunen (id:1020),SMOTETomek,GradientBoostingClassifier,72.806,0.98,0.02,0.996,0.003,0.997,0.005,0.98,0.021,0.957,0.031,0.982
-dermatology (id:1010),SVMSMOTE,XGBClassifier,3.207,0.98,0.035,0.988,0.022,0.999,0.004,0.98,0.035,0.961,0.07,0.982
-dgf_test (id:42883),SVMSMOTE,LGBMClassifier,14.419,0.987,0.008,0.971,0.014,0.999,0.001,0.987,0.008,0.965,0.017,0.982
-mfeat-karhunen (id:1020),SMOTE,XGBClassifier,22.494,0.978,0.023,0.996,0.003,0.995,0.009,0.977,0.024,0.962,0.031,0.982
 mfeat-pixel (id:1022),SMOTETomek,XGBClassifier,162.182,0.977,0.019,0.996,0.003,0.997,0.006,0.977,0.02,0.963,0.031,0.982
-vehicle (id:994),SVMSMOTE,XGBClassifier,2.341,0.981,0.016,0.989,0.009,0.998,0.003,0.98,0.017,0.956,0.034,0.981
-mfeat-pixel (id:1022),SVMSMOTE,XGBClassifier,157.406,0.977,0.021,0.996,0.003,0.997,0.006,0.977,0.021,0.959,0.032,0.981
-dgf_test (id:42883),RandomOverSampler,LGBMClassifier,5.919,0.985,0.009,0.971,0.014,0.999,0.001,0.985,0.009,0.965,0.016,0.981
-mfeat-zernike (id:995),SMOTETomek,XGBClassifier,21.223,0.979,0.024,0.996,0.003,0.996,0.008,0.978,0.024,0.957,0.032,0.981
-vehicle (id:994),SMOTE,GradientBoostingClassifier,3.939,0.981,0.018,0.989,0.01,0.998,0.003,0.98,0.018,0.956,0.037,0.981
-cpu (id:796),RandomOverSampler,GradientBoostingClassifier,1.201,0.983,0.04,0.975,0.057,0.996,0.01,0.983,0.041,0.967,0.078,0.981
+mfeat-karhunen (id:1020),SMOTE,XGBClassifier,22.494,0.978,0.023,0.996,0.003,0.995,0.009,0.977,0.024,0.962,0.031,0.982
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,14.419,0.987,0.008,0.971,0.014,0.999,0.001,0.987,0.008,0.965,0.017,0.982
+dermatology (id:1010),SVMSMOTE,XGBClassifier,3.207,0.98,0.035,0.988,0.022,0.999,0.004,0.98,0.035,0.961,0.07,0.982
+mfeat-karhunen (id:1020),SMOTETomek,GradientBoostingClassifier,72.806,0.98,0.02,0.996,0.003,0.997,0.005,0.98,0.021,0.957,0.031,0.982
+mfeat-karhunen (id:1020),SMOTE,GradientBoostingClassifier,66.207,0.98,0.02,0.996,0.003,0.997,0.005,0.98,0.021,0.957,0.031,0.982
+vehicle (id:994),SVMSMOTE,GradientBoostingClassifier,4.554,0.982,0.019,0.989,0.01,0.998,0.004,0.982,0.019,0.958,0.037,0.982
+dermatology (id:1010),SMOTETomek,XGBClassifier,3.472,0.982,0.029,0.988,0.019,0.999,0.003,0.982,0.03,0.961,0.061,0.982
+vehicle (id:994),RandomOverSampler,GradientBoostingClassifier,3.592,0.982,0.019,0.989,0.01,0.998,0.003,0.981,0.019,0.958,0.038,0.982
+vehicle (id:994),SMOTE,XGBClassifier,1.701,0.981,0.019,0.99,0.01,0.998,0.003,0.981,0.02,0.96,0.036,0.982
+mfeat-karhunen (id:1020),SMOTETomek,XGBClassifier,28.37,0.978,0.023,0.996,0.003,0.995,0.009,0.977,0.024,0.962,0.031,0.982
+cpu (id:796),SVMSMOTE,GradientBoostingClassifier,1.47,0.986,0.033,0.974,0.057,0.999,0.003,0.986,0.034,0.964,0.078,0.982
+dermatology (id:1010),SMOTE,XGBClassifier,2.761,0.982,0.029,0.988,0.019,0.998,0.004,0.982,0.03,0.961,0.061,0.982
+vehicle (id:994),SMOTETomek,LGBMClassifier,2.175,0.979,0.022,0.99,0.01,0.999,0.002,0.979,0.022,0.961,0.04,0.982
+vehicle (id:994),SMOTETomek,XGBClassifier,2.401,0.981,0.018,0.99,0.008,0.998,0.003,0.981,0.019,0.961,0.033,0.982
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,41.113,0.987,0.009,0.971,0.016,0.999,0.001,0.987,0.009,0.966,0.02,0.982
+mfeat-zernike (id:995),SVMSMOTE,XGBClassifier,18.121,0.981,0.021,0.995,0.004,0.996,0.008,0.981,0.022,0.95,0.037,0.981
+mfeat-pixel (id:1022),SMOTE,XGBClassifier,146.901,0.975,0.02,0.996,0.003,0.997,0.007,0.974,0.021,0.961,0.033,0.981
+mfeat-pixel (id:1022),RandomOverSampler,GradientBoostingClassifier,112.892,0.98,0.021,0.995,0.004,0.996,0.006,0.98,0.021,0.955,0.037,0.981
 mfeat-zernike (id:995),SMOTE,XGBClassifier,15.446,0.979,0.024,0.996,0.003,0.996,0.008,0.978,0.024,0.957,0.032,0.981
 vowel (id:1016),RandomOverSampler,XGBClassifier,2.086,0.979,0.03,0.996,0.005,0.999,0.004,0.978,0.031,0.954,0.054,0.981
-mfeat-zernike (id:995),SVMSMOTE,XGBClassifier,18.121,0.981,0.021,0.995,0.004,0.996,0.008,0.981,0.022,0.95,0.037,0.981
-mfeat-pixel (id:1022),RandomOverSampler,GradientBoostingClassifier,112.892,0.98,0.021,0.995,0.004,0.996,0.006,0.98,0.021,0.955,0.037,0.981
-mfeat-pixel (id:1022),SMOTE,XGBClassifier,146.901,0.975,0.02,0.996,0.003,0.997,0.007,0.974,0.021,0.961,0.033,0.981
-mfeat-zernike (id:995),SVMSMOTE,LGBMClassifier,9.262,0.978,0.024,0.995,0.004,0.996,0.008,0.978,0.025,0.952,0.037,0.98
-vowel (id:1016),SMOTE,GradientBoostingClassifier,6.429,0.984,0.028,0.994,0.006,0.999,0.004,0.984,0.029,0.94,0.062,0.98
-mfeat-karhunen (id:1020),RandomOverSampler,GradientBoostingClassifier,49.143,0.976,0.023,0.996,0.003,0.998,0.004,0.975,0.024,0.956,0.034,0.98
-dgf_test (id:42883),SMOTE,XGBClassifier,41.635,0.986,0.007,0.969,0.014,0.998,0.002,0.986,0.007,0.963,0.017,0.98
-vowel (id:1016),SMOTETomek,GradientBoostingClassifier,7.844,0.984,0.028,0.994,0.006,0.999,0.004,0.984,0.029,0.94,0.062,0.98
+cpu (id:796),RandomOverSampler,GradientBoostingClassifier,1.201,0.983,0.04,0.975,0.057,0.996,0.01,0.983,0.041,0.967,0.078,0.981
+mfeat-zernike (id:995),SMOTETomek,XGBClassifier,21.223,0.979,0.024,0.996,0.003,0.996,0.008,0.978,0.024,0.957,0.032,0.981
+dgf_test (id:42883),RandomOverSampler,LGBMClassifier,5.919,0.985,0.009,0.971,0.014,0.999,0.001,0.985,0.009,0.965,0.016,0.981
+mfeat-pixel (id:1022),SVMSMOTE,XGBClassifier,157.406,0.977,0.021,0.996,0.003,0.997,0.006,0.977,0.021,0.959,0.032,0.981
+vehicle (id:994),SVMSMOTE,XGBClassifier,2.341,0.981,0.016,0.989,0.009,0.998,0.003,0.98,0.017,0.956,0.034,0.981
+vehicle (id:994),SMOTE,GradientBoostingClassifier,3.939,0.981,0.018,0.989,0.01,0.998,0.003,0.98,0.018,0.956,0.037,0.981
 dgf_test (id:42883),SVMSMOTE,XGBClassifier,52.057,0.985,0.008,0.969,0.017,0.999,0.001,0.985,0.008,0.962,0.021,0.98
 optdigits (id:980),SMOTETomek,LGBMClassifier,96.051,0.971,0.015,0.996,0.002,0.999,0.001,0.97,0.016,0.963,0.02,0.98
+dgf_test (id:42883),SMOTE,XGBClassifier,41.635,0.986,0.007,0.969,0.014,0.998,0.002,0.986,0.007,0.963,0.017,0.98
+mfeat-karhunen (id:1020),RandomOverSampler,GradientBoostingClassifier,49.143,0.976,0.023,0.996,0.003,0.998,0.004,0.975,0.024,0.956,0.034,0.98
+vowel (id:1016),SMOTE,GradientBoostingClassifier,6.429,0.984,0.028,0.994,0.006,0.999,0.004,0.984,0.029,0.94,0.062,0.98
+mfeat-zernike (id:995),SVMSMOTE,LGBMClassifier,9.262,0.978,0.024,0.995,0.004,0.996,0.008,0.978,0.025,0.952,0.037,0.98
+vowel (id:1016),SMOTETomek,GradientBoostingClassifier,7.844,0.984,0.028,0.994,0.006,0.999,0.004,0.984,0.029,0.94,0.062,0.98
 vowel (id:1016),SMOTE,XGBClassifier,2.636,0.981,0.032,0.995,0.006,0.999,0.004,0.981,0.034,0.945,0.062,0.98
 vowel (id:1016),RandomOverSampler,GradientBoostingClassifier,5.938,0.981,0.03,0.995,0.007,0.999,0.003,0.981,0.031,0.944,0.067,0.98
 vehicle (id:994),SMOTETomek,GradientBoostingClassifier,4.749,0.98,0.019,0.989,0.01,0.998,0.003,0.979,0.019,0.956,0.038,0.98
 vowel (id:1016),SMOTETomek,XGBClassifier,3.98,0.981,0.032,0.995,0.006,0.999,0.004,0.981,0.034,0.945,0.062,0.98
-optdigits (id:980),SMOTE,XGBClassifier,31.472,0.971,0.015,0.996,0.002,0.999,0.002,0.971,0.016,0.959,0.02,0.979
 mfeat-karhunen (id:1020),SMOTE,LGBMClassifier,12.31,0.973,0.023,0.996,0.003,0.997,0.005,0.972,0.023,0.958,0.031,0.979
+cpu (id:796),SMOTE,XGBClassifier,0.863,0.981,0.036,0.972,0.048,0.998,0.006,0.98,0.038,0.963,0.065,0.979
 mfeat-pixel (id:1022),SMOTE,GradientBoostingClassifier,132.514,0.977,0.023,0.995,0.004,0.995,0.008,0.976,0.024,0.952,0.038,0.979
-mfeat-karhunen (id:1020),SMOTETomek,LGBMClassifier,18.689,0.973,0.023,0.996,0.003,0.997,0.005,0.972,0.023,0.958,0.031,0.979
-dgf_test (id:42883),SMOTE,GradientBoostingClassifier,21.099,0.985,0.009,0.966,0.017,0.998,0.002,0.985,0.009,0.96,0.02,0.979
-dgf_test (id:42883),SVMSMOTE,GradientBoostingClassifier,32.196,0.985,0.009,0.966,0.018,0.998,0.001,0.985,0.009,0.959,0.021,0.979
-optdigits (id:980),SMOTE,LGBMClassifier,8.334,0.971,0.016,0.996,0.002,0.999,0.001,0.97,0.016,0.961,0.021,0.979
-analcatdata_supreme (id:728),SVMSMOTE,LGBMClassifier,5.524,0.982,0.006,0.987,0.004,0.999,0.002,0.982,0.006,0.947,0.015,0.979
+mfeat-zernike (id:995),SMOTE,GradientBoostingClassifier,48.511,0.979,0.025,0.995,0.004,0.996,0.008,0.979,0.026,0.948,0.039,0.979
 mfeat-zernike (id:995),SMOTETomek,GradientBoostingClassifier,55.656,0.979,0.025,0.995,0.004,0.996,0.008,0.979,0.026,0.948,0.039,0.979
 analcatdata_supreme (id:728),SVMSMOTE,XGBClassifier,7.518,0.981,0.006,0.987,0.004,0.999,0.0,0.981,0.006,0.946,0.015,0.979
-cpu (id:796),SMOTE,XGBClassifier,0.863,0.981,0.036,0.972,0.048,0.998,0.006,0.98,0.038,0.963,0.065,0.979
-mfeat-zernike (id:995),SMOTE,GradientBoostingClassifier,48.511,0.979,0.025,0.995,0.004,0.996,0.008,0.979,0.026,0.948,0.039,0.979
-colleges_aaup (id:897),SVMSMOTE,XGBClassifier,5.025,0.981,0.014,0.972,0.019,0.999,0.001,0.981,0.014,0.958,0.028,0.978
+optdigits (id:980),SMOTE,XGBClassifier,31.472,0.971,0.015,0.996,0.002,0.999,0.002,0.971,0.016,0.959,0.02,0.979
+analcatdata_supreme (id:728),SVMSMOTE,LGBMClassifier,5.524,0.982,0.006,0.987,0.004,0.999,0.002,0.982,0.006,0.947,0.015,0.979
+optdigits (id:980),SMOTE,LGBMClassifier,8.334,0.971,0.016,0.996,0.002,0.999,0.001,0.97,0.016,0.961,0.021,0.979
+dgf_test (id:42883),SVMSMOTE,GradientBoostingClassifier,32.196,0.985,0.009,0.966,0.018,0.998,0.001,0.985,0.009,0.959,0.021,0.979
+dgf_test (id:42883),SMOTE,GradientBoostingClassifier,21.099,0.985,0.009,0.966,0.017,0.998,0.002,0.985,0.009,0.96,0.02,0.979
+mfeat-karhunen (id:1020),SMOTETomek,LGBMClassifier,18.689,0.973,0.023,0.996,0.003,0.997,0.005,0.972,0.023,0.958,0.031,0.979
 colleges_aaup (id:897),SMOTE,GradientBoostingClassifier,6.726,0.979,0.012,0.972,0.014,0.999,0.001,0.979,0.012,0.959,0.021,0.978
 colleges_aaup (id:897),SVMSMOTE,LGBMClassifier,3.127,0.98,0.016,0.973,0.02,0.999,0.001,0.98,0.016,0.96,0.029,0.978
 colleges_aaup (id:897),RandomOverSampler,LGBMClassifier,1.976,0.979,0.014,0.973,0.016,0.999,0.001,0.979,0.014,0.961,0.024,0.978
 mfeat-pixel (id:1022),SMOTETomek,GradientBoostingClassifier,159.856,0.975,0.022,0.995,0.004,0.995,0.008,0.975,0.023,0.951,0.037,0.978
 mfeat-zernike (id:995),SVMSMOTE,GradientBoostingClassifier,48.98,0.981,0.02,0.994,0.004,0.996,0.008,0.981,0.021,0.939,0.038,0.978
+colleges_aaup (id:897),SVMSMOTE,XGBClassifier,5.025,0.981,0.014,0.972,0.019,0.999,0.001,0.981,0.014,0.958,0.028,0.978
+colleges_aaup (id:897),SMOTE,LGBMClassifier,2.296,0.978,0.013,0.971,0.018,0.999,0.001,0.978,0.014,0.957,0.026,0.977
 cpu (id:796),SMOTETomek,XGBClassifier,0.984,0.98,0.04,0.97,0.055,0.997,0.008,0.979,0.041,0.959,0.076,0.977
 mfeat-karhunen (id:1020),RandomOverSampler,XGBClassifier,15.457,0.968,0.03,0.996,0.003,0.997,0.007,0.967,0.031,0.957,0.037,0.977
 colleges_aaup (id:897),SMOTETomek,LGBMClassifier,3.302,0.978,0.013,0.971,0.017,0.999,0.001,0.978,0.013,0.957,0.025,0.977
 colleges_aaup (id:897),SVMSMOTE,GradientBoostingClassifier,7.608,0.979,0.013,0.97,0.016,0.999,0.001,0.979,0.013,0.956,0.024,0.977
-colleges_aaup (id:897),SMOTE,LGBMClassifier,2.296,0.978,0.013,0.971,0.018,0.999,0.001,0.978,0.014,0.957,0.026,0.977
-analcatdata_supreme (id:728),SVMSMOTE,GradientBoostingClassifier,7.532,0.98,0.006,0.984,0.004,0.999,0.003,0.98,0.006,0.937,0.016,0.976
 mfeat-zernike (id:995),RandomOverSampler,XGBClassifier,10.623,0.97,0.022,0.995,0.003,0.996,0.009,0.969,0.023,0.951,0.032,0.976
+analcatdata_supreme (id:728),SVMSMOTE,GradientBoostingClassifier,7.532,0.98,0.006,0.984,0.004,0.999,0.003,0.98,0.006,0.937,0.016,0.976
+car-vgood.dat,SMOTE,LGBMClassifier,1.16,0.979,0.045,0.962,0.062,1.0,0.001,0.977,0.048,0.961,0.064,0.976
 dgf_test (id:42883),SMOTETomek,GradientBoostingClassifier,38.823,0.983,0.008,0.962,0.015,0.997,0.002,0.983,0.008,0.955,0.018,0.976
+mfeat-zernike (id:995),RandomOverSampler,GradientBoostingClassifier,36.276,0.971,0.025,0.994,0.004,0.996,0.008,0.971,0.026,0.943,0.039,0.975
+colleges_aaup (id:897),RandomOverSampler,XGBClassifier,3.494,0.977,0.015,0.969,0.018,0.999,0.001,0.977,0.015,0.954,0.027,0.975
 mfeat-zernike (id:995),SMOTETomek,LGBMClassifier,14.116,0.97,0.03,0.995,0.004,0.994,0.013,0.969,0.031,0.949,0.037,0.975
 dgf_test (id:42883),SMOTE,LGBMClassifier,3.226,0.981,0.01,0.961,0.016,0.998,0.001,0.981,0.01,0.953,0.02,0.975
+mfeat-zernike (id:995),SMOTE,LGBMClassifier,7.609,0.97,0.03,0.995,0.004,0.994,0.013,0.969,0.031,0.949,0.037,0.975
 colleges_aaup (id:897),SMOTE,XGBClassifier,4.031,0.978,0.013,0.968,0.017,0.999,0.001,0.977,0.014,0.952,0.026,0.975
 colleges_aaup (id:897),SMOTETomek,GradientBoostingClassifier,7.588,0.977,0.014,0.968,0.018,0.999,0.001,0.976,0.015,0.953,0.026,0.975
 colleges_aaup (id:897),SMOTETomek,XGBClassifier,4.834,0.977,0.014,0.968,0.018,0.999,0.001,0.977,0.014,0.952,0.026,0.975
-mfeat-zernike (id:995),SMOTE,LGBMClassifier,7.609,0.97,0.03,0.995,0.004,0.994,0.013,0.969,0.031,0.949,0.037,0.975
-mfeat-zernike (id:995),RandomOverSampler,GradientBoostingClassifier,36.276,0.971,0.025,0.994,0.004,0.996,0.008,0.971,0.026,0.943,0.039,0.975
-colleges_aaup (id:897),RandomOverSampler,XGBClassifier,3.494,0.977,0.015,0.969,0.018,0.999,0.001,0.977,0.015,0.954,0.027,0.975
 dgf_test (id:42883),SMOTETomek,XGBClassifier,57.268,0.983,0.008,0.957,0.016,0.998,0.002,0.983,0.008,0.949,0.019,0.974
 colleges_aaup (id:897),RandomOverSampler,GradientBoostingClassifier,6.203,0.976,0.015,0.968,0.018,0.999,0.001,0.976,0.015,0.953,0.027,0.974
 cpu (id:796),SVMSMOTE,XGBClassifier,1.076,0.977,0.038,0.965,0.06,0.997,0.007,0.977,0.04,0.952,0.083,0.974
-JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,59.716,0.978,0.006,0.987,0.002,0.998,0.001,0.978,0.006,0.925,0.014,0.973
-kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,GradientBoostingClassifier,5.307,0.975,0.065,0.959,0.086,1.0,0.0,0.972,0.074,0.959,0.087,0.973
-JapaneseVowels (id:976),SMOTE,GradientBoostingClassifier,71.84,0.976,0.007,0.988,0.002,0.998,0.001,0.976,0.007,0.927,0.014,0.973
+car-vgood.dat,SMOTETomek,LGBMClassifier,2.473,0.976,0.051,0.958,0.068,1.0,0.001,0.974,0.055,0.957,0.07,0.973
 vowel (id:1016),RandomOverSampler,LGBMClassifier,1.867,0.968,0.04,0.994,0.006,0.998,0.005,0.966,0.042,0.938,0.062,0.973
-JapaneseVowels (id:976),SMOTETomek,GradientBoostingClassifier,73.838,0.977,0.007,0.988,0.003,0.998,0.001,0.976,0.007,0.928,0.015,0.973
 mfeat-zernike (id:995),RandomOverSampler,LGBMClassifier,7.575,0.965,0.028,0.995,0.004,0.994,0.013,0.964,0.029,0.945,0.037,0.973
-optdigits (id:980),SMOTETomek,GradientBoostingClassifier,129.33,0.962,0.016,0.994,0.002,0.997,0.002,0.962,0.017,0.943,0.022,0.972
-dgf_test (id:42883),SMOTETomek,LGBMClassifier,22.682,0.979,0.01,0.956,0.017,0.997,0.002,0.979,0.011,0.947,0.02,0.972
+JapaneseVowels (id:976),SMOTETomek,GradientBoostingClassifier,73.838,0.977,0.007,0.988,0.003,0.998,0.001,0.976,0.007,0.928,0.015,0.973
+JapaneseVowels (id:976),SMOTE,GradientBoostingClassifier,71.84,0.976,0.007,0.988,0.002,0.998,0.001,0.976,0.007,0.927,0.014,0.973
+kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,GradientBoostingClassifier,5.307,0.975,0.065,0.959,0.086,1.0,0.0,0.972,0.074,0.959,0.087,0.973
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,59.716,0.978,0.006,0.987,0.002,0.998,0.001,0.978,0.006,0.925,0.014,0.973
 JapaneseVowels (id:976),SVMSMOTE,GradientBoostingClassifier,89.21,0.975,0.007,0.987,0.003,0.998,0.001,0.975,0.007,0.924,0.015,0.972
 optdigits (id:980),SMOTE,GradientBoostingClassifier,49.803,0.963,0.015,0.994,0.002,0.997,0.002,0.963,0.016,0.942,0.022,0.972
+optdigits (id:980),SMOTETomek,GradientBoostingClassifier,129.33,0.962,0.016,0.994,0.002,0.997,0.002,0.962,0.017,0.943,0.022,0.972
+dgf_test (id:42883),SMOTETomek,LGBMClassifier,22.682,0.979,0.01,0.956,0.017,0.997,0.002,0.979,0.011,0.947,0.02,0.972
 scene (id:312),SMOTETomek,GradientBoostingClassifier,358.692,0.97,0.017,0.966,0.018,0.989,0.011,0.969,0.018,0.959,0.022,0.971
 scene (id:312),SMOTE,GradientBoostingClassifier,328.058,0.97,0.017,0.966,0.018,0.989,0.011,0.969,0.018,0.959,0.022,0.971
 scene (id:312),RandomOverSampler,GradientBoostingClassifier,274.933,0.97,0.018,0.966,0.019,0.989,0.011,0.969,0.018,0.958,0.023,0.97
+car-vgood.dat,RandomOverSampler,LGBMClassifier,4.194,0.981,0.053,0.943,0.087,1.0,0.001,0.979,0.06,0.941,0.09,0.969
 scene (id:312),SVMSMOTE,LGBMClassifier,59.53,0.967,0.017,0.965,0.02,0.991,0.008,0.967,0.018,0.957,0.024,0.969
 mfeat-karhunen (id:1020),RandomOverSampler,LGBMClassifier,12.308,0.959,0.033,0.994,0.004,0.995,0.01,0.958,0.035,0.94,0.04,0.969
 scene (id:312),SVMSMOTE,GradientBoostingClassifier,335.692,0.968,0.018,0.961,0.02,0.989,0.009,0.968,0.018,0.953,0.024,0.968
@@ -223,172 +231,176 @@ cpu (id:796),SMOTE,GradientBoostingClassifier,1.271,0.972,0.041,0.951,0.065,0.99
 scene (id:312),SMOTETomek,LGBMClassifier,59.877,0.96,0.017,0.956,0.02,0.99,0.009,0.959,0.018,0.947,0.023,0.962
 scene (id:312),SMOTE,LGBMClassifier,49.789,0.96,0.017,0.956,0.02,0.99,0.009,0.959,0.018,0.947,0.023,0.962
 scene (id:312),RandomOverSampler,LGBMClassifier,49.281,0.957,0.019,0.954,0.021,0.99,0.009,0.956,0.02,0.944,0.025,0.96
-soybean (id:1023),SVMSMOTE,GradientBoostingClassifier,2.961,0.958,0.043,0.984,0.013,0.995,0.007,0.957,0.045,0.902,0.078,0.959
 cpu (id:796),SMOTETomek,GradientBoostingClassifier,1.395,0.968,0.044,0.946,0.067,0.99,0.028,0.967,0.045,0.926,0.092,0.959
+soybean (id:1023),SVMSMOTE,GradientBoostingClassifier,2.961,0.958,0.043,0.984,0.013,0.995,0.007,0.957,0.045,0.902,0.078,0.959
 scene (id:312),RandomOverSampler,XGBClassifier,122.723,0.955,0.021,0.951,0.024,0.987,0.01,0.954,0.022,0.941,0.029,0.958
 soybean (id:1023),SVMSMOTE,XGBClassifier,3.462,0.949,0.051,0.985,0.011,0.996,0.005,0.947,0.057,0.906,0.077,0.957
 soybean (id:1023),RandomOverSampler,XGBClassifier,3.064,0.951,0.048,0.984,0.013,0.997,0.006,0.949,0.052,0.904,0.082,0.957
-scene (id:312),SMOTETomek,XGBClassifier,179.407,0.955,0.02,0.949,0.023,0.987,0.012,0.953,0.021,0.938,0.028,0.956
 scene (id:312),SMOTE,XGBClassifier,170.276,0.955,0.02,0.949,0.023,0.987,0.012,0.953,0.021,0.938,0.028,0.956
+scene (id:312),SMOTETomek,XGBClassifier,179.407,0.955,0.02,0.949,0.023,0.987,0.012,0.953,0.021,0.938,0.028,0.956
 soybean (id:1023),RandomOverSampler,LGBMClassifier,0.904,0.947,0.041,0.984,0.01,0.996,0.006,0.945,0.044,0.903,0.061,0.955
 dgf_test (id:42883),RandomOverSampler,GradientBoostingClassifier,21.204,0.978,0.008,0.92,0.026,0.995,0.007,0.978,0.008,0.903,0.031,0.955
 soybean (id:1023),SVMSMOTE,LGBMClassifier,1.297,0.949,0.047,0.984,0.011,0.996,0.006,0.946,0.052,0.902,0.072,0.955
+poker-8_vs_6.dat,SMOTE,GradientBoostingClassifier,3.138,0.974,0.102,0.921,0.235,0.997,0.012,0.956,0.186,0.92,0.239,0.954
 soybean (id:1023),SMOTE,XGBClassifier,3.099,0.947,0.046,0.983,0.013,0.996,0.006,0.945,0.049,0.897,0.076,0.954
 poker-8_vs_6.dat,SMOTETomek,GradientBoostingClassifier,3.775,0.974,0.102,0.921,0.235,0.997,0.012,0.956,0.186,0.92,0.239,0.954
-poker-8_vs_6.dat,SMOTE,GradientBoostingClassifier,3.138,0.974,0.102,0.921,0.235,0.997,0.012,0.956,0.186,0.92,0.239,0.954
 soybean (id:1023),SMOTETomek,GradientBoostingClassifier,3.074,0.947,0.055,0.983,0.013,0.995,0.007,0.944,0.061,0.894,0.085,0.953
-soybean (id:1023),SMOTE,LGBMClassifier,1.004,0.943,0.043,0.983,0.011,0.997,0.005,0.941,0.046,0.896,0.066,0.952
 soybean (id:1023),SMOTETomek,XGBClassifier,3.527,0.945,0.049,0.983,0.013,0.995,0.007,0.942,0.054,0.896,0.079,0.952
+soybean (id:1023),SMOTE,LGBMClassifier,1.004,0.943,0.043,0.983,0.011,0.997,0.005,0.941,0.046,0.896,0.066,0.952
 soybean (id:1023),SMOTE,GradientBoostingClassifier,2.616,0.945,0.057,0.983,0.012,0.995,0.006,0.941,0.064,0.894,0.085,0.952
 analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,0.468,0.97,0.074,0.916,0.125,0.993,0.019,0.965,0.087,0.909,0.135,0.951
 soybean (id:1023),SMOTETomek,LGBMClassifier,1.463,0.943,0.05,0.983,0.011,0.996,0.005,0.94,0.055,0.893,0.076,0.951
 analcatdata_lawsuit (id:450),RandomOverSampler,GradientBoostingClassifier,0.934,0.97,0.074,0.916,0.125,0.992,0.014,0.965,0.087,0.909,0.135,0.95
 analcatdata_lawsuit (id:450),RandomOverSampler,XGBClassifier,0.501,0.968,0.074,0.9,0.137,0.996,0.011,0.964,0.086,0.892,0.148,0.944
+car-vgood.dat,RandomOverSampler,GradientBoostingClassifier,2.727,0.994,0.004,0.869,0.07,1.0,0.001,0.994,0.004,0.863,0.074,0.944
 analcatdata_lawsuit (id:450),SMOTETomek,GradientBoostingClassifier,1.191,0.968,0.074,0.902,0.126,0.98,0.081,0.964,0.086,0.894,0.136,0.942
 analcatdata_lawsuit (id:450),SVMSMOTE,XGBClassifier,0.729,0.968,0.073,0.891,0.132,0.993,0.013,0.964,0.086,0.883,0.14,0.94
 analcatdata_lawsuit (id:450),SMOTE,GradientBoostingClassifier,1.092,0.967,0.073,0.896,0.126,0.98,0.081,0.963,0.086,0.887,0.136,0.939
 spectrometer (id:954),SVMSMOTE,XGBClassifier,6.976,0.945,0.061,0.98,0.014,0.993,0.01,0.942,0.066,0.83,0.106,0.938
 Sick_numeric (id:41946),RandomOverSampler,LGBMClassifier,2.032,0.946,0.034,0.892,0.042,0.996,0.003,0.944,0.036,0.885,0.045,0.933
-cpu_act (id:761),SVMSMOTE,LGBMClassifier,52.339,0.931,0.008,0.956,0.005,0.985,0.002,0.93,0.008,0.856,0.014,0.932
 cpu_act (id:761),RandomOverSampler,XGBClassifier,30.606,0.929,0.009,0.957,0.005,0.985,0.003,0.929,0.009,0.858,0.015,0.932
+cpu_act (id:761),SVMSMOTE,LGBMClassifier,52.339,0.931,0.008,0.956,0.005,0.985,0.002,0.93,0.008,0.856,0.014,0.932
+car-vgood.dat,SVMSMOTE,GradientBoostingClassifier,3.199,0.992,0.004,0.84,0.073,0.997,0.003,0.992,0.004,0.832,0.077,0.931
+cpu_act (id:761),SMOTETomek,LGBMClassifier,154.307,0.93,0.008,0.956,0.004,0.985,0.003,0.929,0.008,0.855,0.014,0.931
 analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,1.277,0.966,0.073,0.873,0.135,0.991,0.02,0.962,0.086,0.863,0.145,0.931
 cpu_act (id:761),RandomOverSampler,LGBMClassifier,5.676,0.93,0.007,0.956,0.004,0.985,0.003,0.929,0.007,0.855,0.013,0.931
 cpu_act (id:761),SMOTE,LGBMClassifier,7.733,0.93,0.009,0.956,0.005,0.985,0.003,0.93,0.009,0.856,0.016,0.931
 cpu_act (id:761),SVMSMOTE,XGBClassifier,87.577,0.929,0.008,0.956,0.005,0.985,0.002,0.929,0.008,0.854,0.015,0.931
-cpu_act (id:761),SMOTETomek,LGBMClassifier,154.307,0.93,0.008,0.956,0.004,0.985,0.003,0.929,0.008,0.855,0.014,0.931
+spectrometer (id:954),RandomOverSampler,LGBMClassifier,11.794,0.92,0.081,0.984,0.012,0.992,0.008,0.912,0.094,0.84,0.118,0.93
 spectrometer (id:954),SVMSMOTE,GradientBoostingClassifier,24.048,0.937,0.064,0.978,0.015,0.992,0.009,0.934,0.069,0.807,0.125,0.93
 Sick_numeric (id:41946),SVMSMOTE,LGBMClassifier,4.626,0.946,0.034,0.885,0.044,0.996,0.002,0.944,0.037,0.877,0.047,0.93
 cpu_act (id:761),SMOTETomek,XGBClassifier,175.316,0.928,0.007,0.956,0.004,0.985,0.003,0.928,0.008,0.854,0.014,0.93
-spectrometer (id:954),RandomOverSampler,LGBMClassifier,11.794,0.92,0.081,0.984,0.012,0.992,0.008,0.912,0.094,0.84,0.118,0.93
-Sick_numeric (id:41946),RandomOverSampler,XGBClassifier,10.73,0.945,0.04,0.885,0.057,0.995,0.005,0.942,0.042,0.878,0.061,0.929
 cpu_act (id:761),SMOTE,XGBClassifier,45.803,0.927,0.009,0.955,0.005,0.984,0.003,0.927,0.009,0.852,0.016,0.929
+Sick_numeric (id:41946),RandomOverSampler,XGBClassifier,10.73,0.945,0.04,0.885,0.057,0.995,0.005,0.942,0.042,0.878,0.061,0.929
 spectrometer (id:954),RandomOverSampler,XGBClassifier,4.526,0.919,0.079,0.983,0.012,0.995,0.006,0.911,0.092,0.835,0.112,0.929
-spectrometer (id:954),SMOTETomek,LGBMClassifier,13.092,0.926,0.081,0.981,0.011,0.992,0.009,0.919,0.094,0.822,0.112,0.928
 spectrometer (id:954),SMOTE,LGBMClassifier,12.774,0.926,0.081,0.981,0.011,0.992,0.009,0.919,0.094,0.822,0.112,0.928
+spectrometer (id:954),SMOTETomek,LGBMClassifier,13.092,0.926,0.081,0.981,0.011,0.992,0.009,0.919,0.094,0.822,0.112,0.928
 Sick_numeric (id:41946),SMOTE,LGBMClassifier,2.101,0.944,0.034,0.883,0.041,0.996,0.003,0.942,0.036,0.875,0.043,0.928
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,0.847,0.949,0.054,0.899,0.087,0.973,0.058,0.947,0.057,0.869,0.113,0.927
 page-blocks0.dat,RandomOverSampler,XGBClassifier,11.053,0.946,0.022,0.883,0.026,0.99,0.007,0.945,0.023,0.87,0.029,0.927
 cpu_act (id:761),SMOTE,GradientBoostingClassifier,54.907,0.928,0.008,0.952,0.005,0.983,0.003,0.927,0.008,0.844,0.016,0.927
 Sick_numeric (id:41946),SMOTETomek,LGBMClassifier,33.923,0.945,0.034,0.879,0.044,0.995,0.008,0.944,0.036,0.871,0.046,0.927
 autos (id:975),SMOTETomek,LGBMClassifier,0.747,0.93,0.07,0.955,0.048,0.968,0.054,0.926,0.075,0.858,0.136,0.927
-regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,0.847,0.949,0.054,0.899,0.087,0.973,0.058,0.947,0.057,0.869,0.113,0.927
+cpu_act (id:761),RandomOverSampler,GradientBoostingClassifier,43.165,0.929,0.008,0.95,0.006,0.983,0.003,0.929,0.008,0.841,0.018,0.926
 spectrometer (id:954),SVMSMOTE,LGBMClassifier,12.488,0.931,0.067,0.978,0.014,0.992,0.009,0.926,0.074,0.803,0.109,0.926
 cpu_act (id:761),SVMSMOTE,GradientBoostingClassifier,97.73,0.927,0.008,0.951,0.006,0.982,0.003,0.927,0.008,0.841,0.017,0.926
-cpu_act (id:761),RandomOverSampler,GradientBoostingClassifier,43.165,0.929,0.008,0.95,0.006,0.983,0.003,0.929,0.008,0.841,0.018,0.926
 cpu_act (id:761),SMOTETomek,GradientBoostingClassifier,195.893,0.926,0.008,0.95,0.006,0.982,0.003,0.926,0.008,0.84,0.017,0.925
 autos (id:975),RandomOverSampler,GradientBoostingClassifier,1.557,0.931,0.077,0.958,0.041,0.949,0.064,0.926,0.086,0.859,0.143,0.925
-wilt (id:40983),SMOTETomek,XGBClassifier,13.753,0.952,0.028,0.866,0.052,0.991,0.008,0.951,0.029,0.858,0.055,0.924
 car-good.dat,RandomOverSampler,LGBMClassifier,1.211,0.972,0.041,0.843,0.085,0.997,0.003,0.971,0.043,0.835,0.09,0.924
-autos (id:975),SVMSMOTE,LGBMClassifier,1.016,0.927,0.077,0.952,0.049,0.968,0.053,0.922,0.087,0.847,0.146,0.923
-spectrometer (id:954),SMOTE,XGBClassifier,6.276,0.919,0.076,0.98,0.012,0.993,0.007,0.912,0.085,0.81,0.11,0.923
+wilt (id:40983),SMOTETomek,XGBClassifier,13.753,0.952,0.028,0.866,0.052,0.991,0.008,0.951,0.029,0.858,0.055,0.924
 spectrometer (id:954),SMOTETomek,XGBClassifier,6.749,0.919,0.076,0.98,0.012,0.993,0.007,0.912,0.085,0.81,0.11,0.923
-autos (id:975),SMOTE,LGBMClassifier,0.632,0.927,0.072,0.951,0.044,0.968,0.054,0.922,0.082,0.843,0.136,0.922
-analcatdata_lawsuit (id:450),SMOTETomek,XGBClassifier,0.654,0.951,0.092,0.866,0.156,0.995,0.012,0.944,0.108,0.855,0.166,0.922
-page-blocks0.dat,SMOTE,LGBMClassifier,3.421,0.95,0.018,0.868,0.025,0.992,0.004,0.949,0.018,0.852,0.028,0.922
-socmob (id:934),RandomOverSampler,GradientBoostingClassifier,2.77,0.939,0.028,0.89,0.043,0.987,0.007,0.939,0.028,0.857,0.056,0.922
-page-blocks0.dat,SMOTETomek,LGBMClassifier,4.201,0.95,0.02,0.867,0.027,0.992,0.005,0.949,0.021,0.851,0.03,0.922
+spectrometer (id:954),SMOTE,XGBClassifier,6.276,0.919,0.076,0.98,0.012,0.993,0.007,0.912,0.085,0.81,0.11,0.923
+autos (id:975),SVMSMOTE,LGBMClassifier,1.016,0.927,0.077,0.952,0.049,0.968,0.053,0.922,0.087,0.847,0.146,0.923
+car-vgood.dat,SMOTETomek,GradientBoostingClassifier,4.425,0.991,0.005,0.82,0.081,0.997,0.002,0.991,0.005,0.811,0.085,0.922
 page-blocks0.dat,SVMSMOTE,LGBMClassifier,8.179,0.95,0.019,0.868,0.025,0.992,0.005,0.949,0.019,0.852,0.028,0.922
-autos (id:975),SMOTETomek,GradientBoostingClassifier,1.961,0.924,0.064,0.952,0.036,0.966,0.057,0.92,0.069,0.841,0.115,0.921
-spectrometer (id:954),SMOTE,GradientBoostingClassifier,23.798,0.927,0.084,0.977,0.015,0.989,0.01,0.921,0.097,0.793,0.139,0.921
-spectrometer (id:954),SMOTETomek,GradientBoostingClassifier,24.184,0.927,0.084,0.977,0.015,0.989,0.01,0.921,0.097,0.793,0.139,0.921
-wilt (id:40983),SVMSMOTE,XGBClassifier,14.47,0.948,0.029,0.864,0.047,0.992,0.009,0.947,0.03,0.856,0.05,0.921
-page-blocks0.dat,SMOTETomek,GradientBoostingClassifier,22.654,0.959,0.014,0.857,0.026,0.991,0.004,0.958,0.014,0.838,0.03,0.921
+page-blocks0.dat,SMOTETomek,LGBMClassifier,4.201,0.95,0.02,0.867,0.027,0.992,0.005,0.949,0.021,0.851,0.03,0.922
+socmob (id:934),RandomOverSampler,GradientBoostingClassifier,2.77,0.939,0.028,0.89,0.043,0.987,0.007,0.939,0.028,0.857,0.056,0.922
+page-blocks0.dat,SMOTE,LGBMClassifier,3.421,0.95,0.018,0.868,0.025,0.992,0.004,0.949,0.018,0.852,0.028,0.922
+analcatdata_lawsuit (id:450),SMOTETomek,XGBClassifier,0.654,0.951,0.092,0.866,0.156,0.995,0.012,0.944,0.108,0.855,0.166,0.922
+autos (id:975),SMOTE,LGBMClassifier,0.632,0.927,0.072,0.951,0.044,0.968,0.054,0.922,0.082,0.843,0.136,0.922
 page-blocks0.dat,SMOTE,GradientBoostingClassifier,22.745,0.96,0.015,0.857,0.032,0.991,0.004,0.96,0.016,0.839,0.036,0.921
 page-blocks0.dat,SMOTETomek,XGBClassifier,16.886,0.948,0.02,0.867,0.028,0.991,0.006,0.947,0.02,0.851,0.031,0.921
-spectrometer (id:954),RandomOverSampler,GradientBoostingClassifier,17.153,0.919,0.078,0.979,0.012,0.989,0.01,0.913,0.089,0.805,0.121,0.921
-wilt (id:40983),SVMSMOTE,LGBMClassifier,3.662,0.947,0.026,0.865,0.043,0.992,0.011,0.946,0.028,0.857,0.045,0.921
-page-blocks0.dat,RandomOverSampler,LGBMClassifier,2.834,0.941,0.02,0.875,0.026,0.991,0.006,0.94,0.021,0.86,0.029,0.921
+spectrometer (id:954),SMOTETomek,GradientBoostingClassifier,24.184,0.927,0.084,0.977,0.015,0.989,0.01,0.921,0.097,0.793,0.139,0.921
+spectrometer (id:954),SMOTE,GradientBoostingClassifier,23.798,0.927,0.084,0.977,0.015,0.989,0.01,0.921,0.097,0.793,0.139,0.921
+autos (id:975),SMOTETomek,GradientBoostingClassifier,1.961,0.924,0.064,0.952,0.036,0.966,0.057,0.92,0.069,0.841,0.115,0.921
+car-vgood.dat,SMOTE,GradientBoostingClassifier,3.106,0.991,0.005,0.818,0.083,0.997,0.002,0.991,0.005,0.81,0.087,0.921
+page-blocks0.dat,SMOTETomek,GradientBoostingClassifier,22.654,0.959,0.014,0.857,0.026,0.991,0.004,0.958,0.014,0.838,0.03,0.921
+wilt (id:40983),SVMSMOTE,XGBClassifier,14.47,0.948,0.029,0.864,0.047,0.992,0.009,0.947,0.03,0.856,0.05,0.921
 analcatdata_lawsuit (id:450),SMOTE,XGBClassifier,0.54,0.951,0.092,0.863,0.15,0.995,0.012,0.944,0.108,0.853,0.16,0.921
-autos (id:975),RandomOverSampler,XGBClassifier,1.819,0.919,0.084,0.952,0.043,0.979,0.044,0.914,0.094,0.837,0.152,0.92
-regime_alimentaire (id:42172),SMOTE,LGBMClassifier,0.626,0.941,0.061,0.889,0.095,0.975,0.051,0.938,0.064,0.857,0.124,0.92
-socmob (id:934),RandomOverSampler,XGBClassifier,3.63,0.932,0.036,0.89,0.048,0.988,0.007,0.931,0.037,0.859,0.061,0.92
-wilt (id:40983),SMOTE,LGBMClassifier,2.018,0.948,0.028,0.86,0.04,0.991,0.01,0.947,0.029,0.852,0.043,0.92
-page-blocks0.dat,SMOTE,XGBClassifier,16.876,0.948,0.017,0.866,0.023,0.991,0.006,0.947,0.018,0.85,0.025,0.92
+page-blocks0.dat,RandomOverSampler,LGBMClassifier,2.834,0.941,0.02,0.875,0.026,0.991,0.006,0.94,0.021,0.86,0.029,0.921
+wilt (id:40983),SVMSMOTE,LGBMClassifier,3.662,0.947,0.026,0.865,0.043,0.992,0.011,0.946,0.028,0.857,0.045,0.921
+spectrometer (id:954),RandomOverSampler,GradientBoostingClassifier,17.153,0.919,0.078,0.979,0.012,0.989,0.01,0.913,0.089,0.805,0.121,0.921
 page-blocks0.dat,SVMSMOTE,GradientBoostingClassifier,26.448,0.963,0.014,0.852,0.03,0.991,0.005,0.963,0.014,0.833,0.034,0.92
 wilt (id:40983),SMOTE,XGBClassifier,13.176,0.948,0.029,0.86,0.049,0.992,0.007,0.947,0.03,0.851,0.053,0.92
+page-blocks0.dat,SMOTE,XGBClassifier,16.876,0.948,0.017,0.866,0.023,0.991,0.006,0.947,0.018,0.85,0.025,0.92
+wilt (id:40983),SMOTE,LGBMClassifier,2.018,0.948,0.028,0.86,0.04,0.991,0.01,0.947,0.029,0.852,0.043,0.92
+socmob (id:934),RandomOverSampler,XGBClassifier,3.63,0.932,0.036,0.89,0.048,0.988,0.007,0.931,0.037,0.859,0.061,0.92
+regime_alimentaire (id:42172),SMOTE,LGBMClassifier,0.626,0.941,0.061,0.889,0.095,0.975,0.051,0.938,0.064,0.857,0.124,0.92
+autos (id:975),RandomOverSampler,XGBClassifier,1.819,0.919,0.084,0.952,0.043,0.979,0.044,0.914,0.094,0.837,0.152,0.92
 page-blocks0.dat,RandomOverSampler,GradientBoostingClassifier,17.308,0.957,0.015,0.856,0.026,0.99,0.005,0.957,0.015,0.838,0.03,0.92
-wilt (id:40983),SMOTE,GradientBoostingClassifier,17.723,0.963,0.023,0.843,0.047,0.993,0.008,0.963,0.024,0.833,0.051,0.919
 autos (id:975),RandomOverSampler,LGBMClassifier,4.114,0.924,0.074,0.951,0.044,0.961,0.064,0.919,0.081,0.841,0.138,0.919
+wilt (id:40983),SMOTE,GradientBoostingClassifier,17.723,0.963,0.023,0.843,0.047,0.993,0.008,0.963,0.024,0.833,0.051,0.919
 autos (id:975),SVMSMOTE,XGBClassifier,1.531,0.92,0.077,0.95,0.046,0.973,0.052,0.915,0.084,0.835,0.143,0.919
 page-blocks0.dat,SVMSMOTE,XGBClassifier,21.034,0.947,0.018,0.864,0.025,0.99,0.007,0.946,0.019,0.848,0.028,0.919
 wilt (id:40983),SMOTETomek,LGBMClassifier,2.832,0.949,0.031,0.857,0.047,0.991,0.011,0.947,0.033,0.849,0.049,0.919
+Sick_numeric (id:41946),SMOTE,XGBClassifier,11.478,0.94,0.038,0.863,0.053,0.995,0.004,0.938,0.04,0.854,0.056,0.918
+regime_alimentaire (id:42172),SMOTE,XGBClassifier,1.363,0.945,0.053,0.884,0.09,0.968,0.062,0.943,0.056,0.85,0.117,0.918
 Sick_numeric (id:41946),SMOTETomek,XGBClassifier,41.034,0.94,0.033,0.863,0.049,0.995,0.005,0.938,0.035,0.854,0.052,0.918
 Sick_numeric (id:41946),SVMSMOTE,XGBClassifier,13.514,0.937,0.037,0.865,0.051,0.995,0.003,0.935,0.04,0.856,0.055,0.918
-socmob (id:934),RandomOverSampler,LGBMClassifier,0.994,0.93,0.037,0.888,0.049,0.989,0.007,0.928,0.038,0.856,0.062,0.918
-regime_alimentaire (id:42172),SMOTE,XGBClassifier,1.363,0.945,0.053,0.884,0.09,0.968,0.062,0.943,0.056,0.85,0.117,0.918
-Sick_numeric (id:41946),SMOTE,XGBClassifier,11.478,0.94,0.038,0.863,0.053,0.995,0.004,0.938,0.04,0.854,0.056,0.918
 autos (id:975),SVMSMOTE,GradientBoostingClassifier,2.133,0.924,0.069,0.951,0.043,0.955,0.063,0.92,0.073,0.841,0.128,0.918
+socmob (id:934),RandomOverSampler,LGBMClassifier,0.994,0.93,0.037,0.888,0.049,0.989,0.007,0.928,0.038,0.856,0.062,0.918
+cpu_small (id:735),SMOTETomek,LGBMClassifier,5.296,0.916,0.009,0.947,0.006,0.979,0.004,0.916,0.009,0.827,0.018,0.917
+wilt (id:40983),SMOTETomek,GradientBoostingClassifier,17.2,0.962,0.022,0.838,0.046,0.993,0.007,0.962,0.022,0.828,0.049,0.917
 autos (id:975),SMOTE,GradientBoostingClassifier,1.931,0.924,0.069,0.951,0.043,0.948,0.068,0.92,0.073,0.841,0.128,0.917
 autos (id:975),SMOTETomek,XGBClassifier,1.411,0.921,0.084,0.948,0.052,0.966,0.058,0.916,0.092,0.832,0.166,0.917
-wilt (id:40983),SMOTETomek,GradientBoostingClassifier,17.2,0.962,0.022,0.838,0.046,0.993,0.007,0.962,0.022,0.828,0.049,0.917
-cpu_small (id:735),SMOTETomek,LGBMClassifier,5.296,0.916,0.009,0.947,0.006,0.979,0.004,0.916,0.009,0.827,0.018,0.917
-cpu_small (id:735),SMOTE,LGBMClassifier,4.101,0.914,0.008,0.947,0.006,0.979,0.003,0.914,0.008,0.825,0.017,0.916
-cpu_small (id:735),RandomOverSampler,LGBMClassifier,3.69,0.915,0.008,0.947,0.005,0.979,0.003,0.914,0.008,0.825,0.016,0.916
-wilt (id:40983),SVMSMOTE,GradientBoostingClassifier,19.327,0.959,0.025,0.84,0.049,0.992,0.008,0.958,0.026,0.83,0.052,0.916
 cpu_small (id:735),SVMSMOTE,XGBClassifier,55.559,0.914,0.009,0.947,0.007,0.978,0.003,0.914,0.009,0.826,0.02,0.916
+wilt (id:40983),SVMSMOTE,GradientBoostingClassifier,19.327,0.959,0.025,0.84,0.049,0.992,0.008,0.958,0.026,0.83,0.052,0.916
+cpu_small (id:735),RandomOverSampler,LGBMClassifier,3.69,0.915,0.008,0.947,0.005,0.979,0.003,0.914,0.008,0.825,0.016,0.916
+cpu_small (id:735),SMOTE,LGBMClassifier,4.101,0.914,0.008,0.947,0.006,0.979,0.003,0.914,0.008,0.825,0.017,0.916
 cpu_small (id:735),SMOTE,XGBClassifier,29.91,0.912,0.009,0.947,0.005,0.979,0.003,0.912,0.009,0.824,0.017,0.915
 cpu_small (id:735),SVMSMOTE,LGBMClassifier,30.063,0.914,0.007,0.946,0.005,0.979,0.003,0.914,0.007,0.824,0.016,0.915
+wilt (id:40983),RandomOverSampler,XGBClassifier,8.694,0.932,0.036,0.865,0.054,0.988,0.012,0.929,0.039,0.858,0.057,0.914
 cpu_small (id:735),SMOTETomek,XGBClassifier,29.399,0.912,0.009,0.946,0.005,0.978,0.003,0.911,0.009,0.822,0.017,0.914
 regime_alimentaire (id:42172),SMOTE,GradientBoostingClassifier,1.687,0.939,0.069,0.88,0.109,0.971,0.058,0.935,0.074,0.846,0.14,0.914
 regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,1.586,0.94,0.062,0.876,0.102,0.977,0.054,0.938,0.064,0.84,0.131,0.914
 socmob (id:934),SVMSMOTE,LGBMClassifier,1.565,0.933,0.029,0.879,0.042,0.985,0.009,0.932,0.03,0.843,0.055,0.914
 Sick_numeric (id:41946),RandomOverSampler,GradientBoostingClassifier,10.256,0.959,0.023,0.834,0.049,0.994,0.003,0.959,0.024,0.822,0.053,0.914
-wilt (id:40983),RandomOverSampler,XGBClassifier,8.694,0.932,0.036,0.865,0.054,0.988,0.012,0.929,0.039,0.858,0.057,0.914
 cpu_small (id:735),RandomOverSampler,GradientBoostingClassifier,28.734,0.918,0.008,0.942,0.006,0.976,0.004,0.918,0.008,0.815,0.017,0.914
-cpu_small (id:735),RandomOverSampler,XGBClassifier,21.557,0.91,0.007,0.946,0.005,0.978,0.003,0.91,0.007,0.821,0.014,0.913
 regime_alimentaire (id:42172),RandomOverSampler,LGBMClassifier,0.586,0.932,0.077,0.881,0.11,0.975,0.053,0.927,0.085,0.85,0.137,0.913
-socmob (id:934),SMOTE,GradientBoostingClassifier,2.777,0.933,0.032,0.877,0.047,0.985,0.008,0.932,0.032,0.84,0.062,0.913
-cpu_small (id:735),SMOTE,GradientBoostingClassifier,34.952,0.914,0.009,0.944,0.005,0.976,0.003,0.914,0.009,0.818,0.017,0.913
+cpu_small (id:735),RandomOverSampler,XGBClassifier,21.557,0.91,0.007,0.946,0.005,0.978,0.003,0.91,0.007,0.821,0.014,0.913
 socmob (id:934),SMOTE,LGBMClassifier,1.035,0.928,0.031,0.879,0.046,0.985,0.01,0.927,0.032,0.844,0.059,0.913
+cpu_small (id:735),SMOTE,GradientBoostingClassifier,34.952,0.914,0.009,0.944,0.005,0.976,0.003,0.914,0.009,0.818,0.017,0.913
+socmob (id:934),SMOTE,GradientBoostingClassifier,2.777,0.933,0.032,0.877,0.047,0.985,0.008,0.932,0.032,0.84,0.062,0.913
 cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,34.428,0.914,0.009,0.943,0.006,0.976,0.003,0.913,0.01,0.816,0.018,0.912
-socmob (id:934),SMOTETomek,GradientBoostingClassifier,4.218,0.931,0.031,0.875,0.047,0.985,0.008,0.93,0.032,0.838,0.061,0.912
-wilt (id:40983),RandomOverSampler,LGBMClassifier,1.943,0.929,0.039,0.862,0.054,0.99,0.012,0.926,0.043,0.855,0.057,0.912
 socmob (id:934),SMOTETomek,LGBMClassifier,2.455,0.927,0.029,0.879,0.045,0.985,0.01,0.927,0.03,0.843,0.058,0.912
-cpu_small (id:735),SVMSMOTE,GradientBoostingClassifier,60.435,0.912,0.008,0.942,0.005,0.976,0.004,0.912,0.008,0.814,0.016,0.911
+wilt (id:40983),RandomOverSampler,LGBMClassifier,1.943,0.929,0.039,0.862,0.054,0.99,0.012,0.926,0.043,0.855,0.057,0.912
+socmob (id:934),SMOTETomek,GradientBoostingClassifier,4.218,0.931,0.031,0.875,0.047,0.985,0.008,0.93,0.032,0.838,0.061,0.912
 socmob (id:934),SMOTE,XGBClassifier,3.848,0.93,0.032,0.875,0.05,0.984,0.01,0.929,0.032,0.839,0.065,0.911
-socmob (id:934),SMOTETomek,XGBClassifier,5.304,0.928,0.032,0.874,0.049,0.984,0.01,0.927,0.032,0.837,0.064,0.91
+cpu_small (id:735),SVMSMOTE,GradientBoostingClassifier,60.435,0.912,0.008,0.942,0.005,0.976,0.004,0.912,0.008,0.814,0.016,0.911
 wilt (id:40983),RandomOverSampler,GradientBoostingClassifier,12.443,0.951,0.027,0.832,0.045,0.993,0.007,0.95,0.028,0.822,0.048,0.91
+socmob (id:934),SMOTETomek,XGBClassifier,5.304,0.928,0.032,0.874,0.049,0.984,0.01,0.927,0.032,0.837,0.064,0.91
 regime_alimentaire (id:42172),RandomOverSampler,GradientBoostingClassifier,1.475,0.927,0.071,0.875,0.101,0.979,0.04,0.922,0.076,0.841,0.127,0.909
-socmob (id:934),SVMSMOTE,XGBClassifier,4.345,0.929,0.032,0.87,0.046,0.984,0.01,0.928,0.032,0.831,0.06,0.908
 autos (id:975),SMOTE,XGBClassifier,1.366,0.912,0.089,0.944,0.052,0.965,0.054,0.906,0.098,0.815,0.17,0.908
+socmob (id:934),SVMSMOTE,XGBClassifier,4.345,0.929,0.032,0.87,0.046,0.984,0.01,0.928,0.032,0.831,0.06,0.908
 Sick_numeric (id:41946),SMOTE,GradientBoostingClassifier,10.67,0.944,0.026,0.832,0.041,0.994,0.003,0.942,0.027,0.82,0.044,0.906
-regime_alimentaire (id:42172),SVMSMOTE,GradientBoostingClassifier,1.902,0.927,0.071,0.87,0.099,0.972,0.059,0.923,0.077,0.835,0.124,0.905
 regime_alimentaire (id:42172),RandomOverSampler,XGBClassifier,1.209,0.922,0.079,0.876,0.116,0.969,0.062,0.916,0.087,0.844,0.144,0.905
+regime_alimentaire (id:42172),SVMSMOTE,GradientBoostingClassifier,1.902,0.927,0.071,0.87,0.099,0.972,0.059,0.923,0.077,0.835,0.124,0.905
 Sick_numeric (id:41946),SMOTETomek,GradientBoostingClassifier,45.517,0.942,0.025,0.828,0.037,0.994,0.003,0.941,0.026,0.816,0.04,0.904
-regime_alimentaire (id:42172),SMOTETomek,XGBClassifier,1.464,0.939,0.055,0.863,0.1,0.956,0.056,0.936,0.057,0.819,0.135,0.903
-regime_alimentaire (id:42172),SMOTETomek,LGBMClassifier,0.72,0.932,0.066,0.862,0.102,0.969,0.046,0.93,0.068,0.82,0.136,0.903
 Sick_numeric (id:41946),SVMSMOTE,GradientBoostingClassifier,13.035,0.943,0.03,0.827,0.04,0.991,0.006,0.941,0.032,0.815,0.043,0.903
+regime_alimentaire (id:42172),SMOTETomek,LGBMClassifier,0.72,0.932,0.066,0.862,0.102,0.969,0.046,0.93,0.068,0.82,0.136,0.903
+regime_alimentaire (id:42172),SMOTETomek,XGBClassifier,1.464,0.939,0.055,0.863,0.1,0.956,0.056,0.936,0.057,0.819,0.135,0.903
 machine_cpu (id:733),SMOTE,LGBMClassifier,0.423,0.915,0.068,0.876,0.097,0.977,0.035,0.911,0.073,0.83,0.131,0.902
 regime_alimentaire (id:42172),SMOTETomek,GradientBoostingClassifier,1.802,0.934,0.063,0.861,0.106,0.957,0.06,0.931,0.065,0.819,0.142,0.9
 analcatdata_lawsuit (id:450),SVMSMOTE,LGBMClassifier,0.756,0.933,0.105,0.829,0.159,0.994,0.013,0.923,0.122,0.816,0.17,0.899
-socmob (id:934),SVMSMOTE,GradientBoostingClassifier,3.287,0.927,0.028,0.851,0.045,0.983,0.009,0.927,0.028,0.804,0.06,0.898
 analcatdata_lawsuit (id:450),SMOTE,LGBMClassifier,0.579,0.934,0.124,0.834,0.212,0.991,0.016,0.91,0.2,0.822,0.224,0.898
-machine_cpu (id:733),SMOTE,GradientBoostingClassifier,1.035,0.911,0.073,0.871,0.103,0.976,0.042,0.905,0.08,0.825,0.138,0.898
+socmob (id:934),SVMSMOTE,GradientBoostingClassifier,3.287,0.927,0.028,0.851,0.045,0.983,0.009,0.927,0.028,0.804,0.06,0.898
 analcatdata_lawsuit (id:450),SMOTETomek,LGBMClassifier,0.626,0.934,0.124,0.834,0.212,0.99,0.017,0.91,0.2,0.822,0.224,0.898
-car-good.dat,SVMSMOTE,LGBMClassifier,1.522,0.933,0.096,0.821,0.162,0.996,0.005,0.923,0.127,0.813,0.167,0.897
-wholesale-customers (id:1511),SMOTETomek,GradientBoostingClassifier,1.898,0.917,0.046,0.878,0.06,0.959,0.034,0.916,0.047,0.817,0.089,0.897
+machine_cpu (id:733),SMOTE,GradientBoostingClassifier,1.035,0.911,0.073,0.871,0.103,0.976,0.042,0.905,0.08,0.825,0.138,0.898
 machine_cpu (id:733),RandomOverSampler,LGBMClassifier,0.428,0.909,0.064,0.871,0.09,0.976,0.039,0.904,0.068,0.824,0.121,0.897
-analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,1.252,0.936,0.059,0.833,0.098,0.972,0.035,0.934,0.062,0.804,0.116,0.896
+wholesale-customers (id:1511),SMOTETomek,GradientBoostingClassifier,1.898,0.917,0.046,0.878,0.06,0.959,0.034,0.916,0.047,0.817,0.089,0.897
+car-good.dat,SVMSMOTE,LGBMClassifier,1.522,0.933,0.096,0.821,0.162,0.996,0.005,0.923,0.127,0.813,0.167,0.897
 analcatdata_apnea2 (id:765),SVMSMOTE,XGBClassifier,1.206,0.918,0.066,0.842,0.088,0.988,0.02,0.913,0.071,0.817,0.101,0.896
-car-good.dat,RandomOverSampler,XGBClassifier,3.428,0.955,0.062,0.792,0.111,0.994,0.005,0.952,0.072,0.782,0.116,0.895
-machine_cpu (id:733),SVMSMOTE,XGBClassifier,0.757,0.912,0.065,0.866,0.095,0.975,0.029,0.908,0.07,0.816,0.129,0.895
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,1.252,0.936,0.059,0.833,0.098,0.972,0.035,0.934,0.062,0.804,0.116,0.896
 analcatdata_apnea2 (id:765),RandomOverSampler,XGBClassifier,0.955,0.921,0.07,0.839,0.096,0.983,0.028,0.916,0.077,0.814,0.11,0.895
+machine_cpu (id:733),SVMSMOTE,XGBClassifier,0.757,0.912,0.065,0.866,0.095,0.975,0.029,0.908,0.07,0.816,0.129,0.895
+car-good.dat,RandomOverSampler,XGBClassifier,3.428,0.955,0.062,0.792,0.111,0.994,0.005,0.952,0.072,0.782,0.116,0.895
 analcatdata_apnea2 (id:765),SMOTETomek,XGBClassifier,1.115,0.917,0.062,0.836,0.093,0.987,0.021,0.913,0.066,0.81,0.108,0.893
 wholesale-customers (id:1511),SMOTE,LGBMClassifier,0.968,0.912,0.049,0.874,0.065,0.956,0.032,0.91,0.051,0.813,0.095,0.893
 machine_cpu (id:733),SMOTETomek,GradientBoostingClassifier,1.111,0.902,0.063,0.862,0.083,0.985,0.027,0.895,0.071,0.816,0.107,0.892
 machine_cpu (id:733),RandomOverSampler,GradientBoostingClassifier,0.958,0.906,0.065,0.864,0.092,0.972,0.047,0.9,0.071,0.815,0.124,0.891
-wholesale-customers (id:1511),SMOTE,GradientBoostingClassifier,1.819,0.911,0.045,0.871,0.058,0.956,0.034,0.91,0.046,0.806,0.086,0.891
-wholesale-customers (id:1511),RandomOverSampler,GradientBoostingClassifier,1.858,0.912,0.04,0.872,0.048,0.954,0.037,0.91,0.041,0.809,0.069,0.891
 wholesale-customers (id:1511),RandomOverSampler,LGBMClassifier,1.102,0.908,0.051,0.873,0.068,0.955,0.035,0.906,0.053,0.811,0.1,0.891
+wholesale-customers (id:1511),RandomOverSampler,GradientBoostingClassifier,1.858,0.912,0.04,0.872,0.048,0.954,0.037,0.91,0.041,0.809,0.069,0.891
+wholesale-customers (id:1511),SMOTE,GradientBoostingClassifier,1.819,0.911,0.045,0.871,0.058,0.956,0.034,0.91,0.046,0.806,0.086,0.891
 analcatdata_apnea2 (id:765),SMOTE,GradientBoostingClassifier,1.268,0.931,0.058,0.83,0.093,0.96,0.047,0.929,0.06,0.8,0.111,0.89
 analcatdata_apnea2 (id:765),SMOTE,XGBClassifier,1.011,0.914,0.073,0.83,0.109,0.987,0.021,0.909,0.079,0.804,0.125,0.889
-analcatdata_apnea2 (id:765),SMOTE,LGBMClassifier,0.659,0.913,0.068,0.83,0.107,0.986,0.023,0.908,0.077,0.803,0.123,0.888
 wholesale-customers (id:1511),SMOTETomek,XGBClassifier,1.198,0.907,0.049,0.869,0.065,0.954,0.036,0.905,0.05,0.805,0.097,0.888
-machine_cpu (id:733),SMOTETomek,LGBMClassifier,0.542,0.897,0.071,0.856,0.097,0.984,0.031,0.89,0.079,0.807,0.126,0.887
-analcatdata_apnea2 (id:765),SMOTETomek,LGBMClassifier,0.817,0.913,0.07,0.828,0.113,0.984,0.025,0.908,0.078,0.801,0.129,0.887
-machine_cpu (id:733),SMOTE,XGBClassifier,0.523,0.899,0.076,0.857,0.11,0.977,0.029,0.894,0.081,0.807,0.148,0.887
-wholesale-customers (id:1511),SMOTETomek,LGBMClassifier,1.017,0.905,0.05,0.866,0.066,0.96,0.026,0.903,0.052,0.801,0.095,0.887
+analcatdata_apnea2 (id:765),SMOTE,LGBMClassifier,0.659,0.913,0.068,0.83,0.107,0.986,0.023,0.908,0.077,0.803,0.123,0.888
 analcatdata_apnea2 (id:765),SMOTETomek,GradientBoostingClassifier,1.408,0.93,0.059,0.826,0.095,0.957,0.051,0.928,0.061,0.795,0.113,0.887
+machine_cpu (id:733),SMOTE,XGBClassifier,0.523,0.899,0.076,0.857,0.11,0.977,0.029,0.894,0.081,0.807,0.148,0.887
+machine_cpu (id:733),SMOTETomek,LGBMClassifier,0.542,0.897,0.071,0.856,0.097,0.984,0.031,0.89,0.079,0.807,0.126,0.887
 wholesale-customers (id:1511),SVMSMOTE,GradientBoostingClassifier,2.09,0.91,0.042,0.866,0.053,0.952,0.038,0.909,0.043,0.798,0.078,0.887
+wholesale-customers (id:1511),SMOTETomek,LGBMClassifier,1.017,0.905,0.05,0.866,0.066,0.96,0.026,0.903,0.052,0.801,0.095,0.887
+analcatdata_apnea2 (id:765),SMOTETomek,LGBMClassifier,0.817,0.913,0.07,0.828,0.113,0.984,0.025,0.908,0.078,0.801,0.129,0.887
 wholesale-customers (id:1511),RandomOverSampler,XGBClassifier,1.554,0.906,0.051,0.869,0.066,0.944,0.046,0.904,0.052,0.807,0.096,0.886
 car-good.dat,RandomOverSampler,GradientBoostingClassifier,2.82,0.984,0.009,0.743,0.12,0.991,0.007,0.984,0.009,0.729,0.128,0.886
 machine_cpu (id:733),SVMSMOTE,GradientBoostingClassifier,1.21,0.904,0.067,0.853,0.098,0.977,0.03,0.898,0.074,0.8,0.132,0.886
@@ -398,15 +410,15 @@ machine_cpu (id:733),SVMSMOTE,LGBMClassifier,0.626,0.902,0.066,0.85,0.093,0.976,
 machine_cpu (id:733),SMOTETomek,XGBClassifier,0.587,0.895,0.08,0.851,0.112,0.982,0.029,0.887,0.089,0.802,0.145,0.883
 wholesale-customers (id:1511),SMOTE,XGBClassifier,1.105,0.902,0.056,0.863,0.074,0.948,0.042,0.9,0.058,0.796,0.108,0.882
 wholesale-customers (id:1511),SVMSMOTE,XGBClassifier,1.387,0.904,0.049,0.86,0.064,0.944,0.039,0.902,0.05,0.79,0.094,0.88
-machine_cpu (id:733),RandomOverSampler,XGBClassifier,0.511,0.896,0.081,0.846,0.113,0.976,0.027,0.889,0.089,0.794,0.148,0.88
 analcatdata_apnea2 (id:765),SVMSMOTE,GradientBoostingClassifier,1.472,0.919,0.062,0.818,0.089,0.96,0.047,0.916,0.066,0.788,0.106,0.88
-wholesale-customers (id:1511),SVMSMOTE,LGBMClassifier,1.202,0.902,0.057,0.858,0.076,0.952,0.034,0.9,0.057,0.785,0.117,0.879
+machine_cpu (id:733),RandomOverSampler,XGBClassifier,0.511,0.896,0.081,0.846,0.113,0.976,0.027,0.889,0.089,0.794,0.148,0.88
 SPECTF (id:337),RandomOverSampler,GradientBoostingClassifier,3.241,0.888,0.064,0.922,0.038,0.957,0.033,0.886,0.067,0.74,0.124,0.879
+wholesale-customers (id:1511),SVMSMOTE,LGBMClassifier,1.202,0.902,0.057,0.858,0.076,0.952,0.034,0.9,0.057,0.785,0.117,0.879
 SPECTF (id:337),SMOTE,XGBClassifier,1.872,0.887,0.064,0.923,0.039,0.952,0.04,0.885,0.067,0.741,0.126,0.878
 car-good.dat,SMOTETomek,LGBMClassifier,2.564,0.906,0.104,0.798,0.163,0.996,0.005,0.892,0.135,0.791,0.168,0.877
 SPECTF (id:337),SMOTE,LGBMClassifier,1.119,0.885,0.069,0.923,0.038,0.958,0.037,0.882,0.073,0.737,0.132,0.877
-car-good.dat,SMOTE,LGBMClassifier,1.13,0.909,0.112,0.791,0.186,0.996,0.005,0.885,0.19,0.784,0.189,0.873
 SPECTF (id:337),RandomOverSampler,LGBMClassifier,4.313,0.878,0.067,0.923,0.036,0.959,0.033,0.875,0.071,0.731,0.127,0.873
+car-good.dat,SMOTE,LGBMClassifier,1.13,0.909,0.112,0.791,0.186,0.996,0.005,0.885,0.19,0.784,0.189,0.873
 SPECTF (id:337),SMOTE,GradientBoostingClassifier,4.74,0.883,0.072,0.917,0.04,0.95,0.042,0.881,0.076,0.724,0.137,0.871
 SPECTF (id:337),RandomOverSampler,XGBClassifier,2.201,0.878,0.065,0.921,0.032,0.95,0.036,0.875,0.068,0.727,0.117,0.87
 analcatdata_germangss (id:1025),SVMSMOTE,GradientBoostingClassifier,1.433,0.901,0.075,0.822,0.115,0.956,0.029,0.898,0.08,0.765,0.15,0.868
@@ -414,8 +426,8 @@ churn (id:40701),RandomOverSampler,LGBMClassifier,4.187,0.89,0.027,0.831,0.038,0
 SPECTF (id:337),SVMSMOTE,GradientBoostingClassifier,3.987,0.874,0.073,0.915,0.042,0.946,0.04,0.87,0.077,0.714,0.139,0.864
 SPECTF (id:337),SVMSMOTE,LGBMClassifier,1.505,0.87,0.072,0.913,0.038,0.955,0.042,0.866,0.077,0.705,0.134,0.862
 churn (id:40701),RandomOverSampler,XGBClassifier,20.273,0.882,0.026,0.829,0.039,0.919,0.02,0.876,0.029,0.802,0.044,0.862
-analcatdata_germangss (id:1025),RandomOverSampler,GradientBoostingClassifier,1.151,0.898,0.071,0.809,0.112,0.958,0.033,0.895,0.076,0.746,0.148,0.861
 phoneme (id:1489),RandomOverSampler,XGBClassifier,11.232,0.884,0.013,0.828,0.018,0.954,0.007,0.884,0.013,0.753,0.026,0.861
+analcatdata_germangss (id:1025),RandomOverSampler,GradientBoostingClassifier,1.151,0.898,0.071,0.809,0.112,0.958,0.033,0.895,0.076,0.746,0.148,0.861
 SPECTF (id:337),SMOTETomek,LGBMClassifier,1.266,0.867,0.075,0.916,0.035,0.949,0.04,0.863,0.079,0.707,0.133,0.86
 SPECTF (id:337),SVMSMOTE,XGBClassifier,2.216,0.87,0.069,0.912,0.039,0.946,0.039,0.866,0.074,0.705,0.129,0.86
 phoneme (id:1489),SMOTETomek,XGBClassifier,14.473,0.886,0.015,0.826,0.02,0.955,0.009,0.886,0.015,0.747,0.029,0.86
@@ -425,12 +437,12 @@ SPECTF (id:337),SMOTETomek,XGBClassifier,2.066,0.866,0.057,0.913,0.034,0.945,0.0
 analcatdata_germangss (id:1025),SMOTE,GradientBoostingClassifier,1.204,0.892,0.075,0.808,0.114,0.957,0.027,0.888,0.08,0.746,0.149,0.858
 analcatdata_germangss (id:1025),SMOTETomek,GradientBoostingClassifier,1.36,0.891,0.076,0.806,0.117,0.955,0.029,0.888,0.081,0.744,0.153,0.857
 phoneme (id:1489),RandomOverSampler,LGBMClassifier,1.994,0.884,0.014,0.822,0.021,0.953,0.008,0.884,0.014,0.741,0.031,0.857
-phoneme (id:1489),SMOTETomek,LGBMClassifier,2.971,0.885,0.014,0.82,0.02,0.954,0.008,0.885,0.014,0.737,0.03,0.856
 phoneme (id:1489),SVMSMOTE,XGBClassifier,20.539,0.886,0.017,0.819,0.023,0.954,0.008,0.886,0.017,0.735,0.034,0.856
+phoneme (id:1489),SMOTETomek,LGBMClassifier,2.971,0.885,0.014,0.82,0.02,0.954,0.008,0.885,0.014,0.737,0.03,0.856
 phoneme (id:1489),SVMSMOTE,LGBMClassifier,9.166,0.887,0.014,0.815,0.019,0.953,0.008,0.886,0.014,0.727,0.029,0.854
-poker-8_vs_6.dat,SMOTE,LGBMClassifier,1.599,0.892,0.19,0.8,0.371,0.962,0.103,0.804,0.37,0.8,0.371,0.852
-poker-8_vs_6.dat,SMOTETomek,LGBMClassifier,1.651,0.892,0.19,0.8,0.371,0.962,0.103,0.804,0.37,0.8,0.371,0.852
 car-good.dat,SVMSMOTE,GradientBoostingClassifier,3.058,0.935,0.057,0.71,0.107,0.987,0.011,0.932,0.06,0.695,0.113,0.852
+poker-8_vs_6.dat,SMOTETomek,LGBMClassifier,1.651,0.892,0.19,0.8,0.371,0.962,0.103,0.804,0.37,0.8,0.371,0.852
+poker-8_vs_6.dat,SMOTE,LGBMClassifier,1.599,0.892,0.19,0.8,0.371,0.962,0.103,0.804,0.37,0.8,0.371,0.852
 analcatdata_germangss (id:1025),SMOTE,LGBMClassifier,0.55,0.881,0.075,0.798,0.11,0.963,0.038,0.877,0.081,0.737,0.142,0.851
 analcatdata_germangss (id:1025),SMOTETomek,LGBMClassifier,0.76,0.878,0.071,0.798,0.106,0.961,0.038,0.874,0.076,0.737,0.139,0.85
 analcatdata_germangss (id:1025),SVMSMOTE,XGBClassifier,1.254,0.88,0.072,0.799,0.11,0.956,0.041,0.876,0.077,0.738,0.144,0.85
@@ -445,69 +457,69 @@ analcatdata_apnea3 (id:764),RandomOverSampler,GradientBoostingClassifier,1.238,0
 analcatdata_germangss (id:1025),SVMSMOTE,LGBMClassifier,0.829,0.875,0.071,0.791,0.105,0.957,0.041,0.871,0.076,0.728,0.137,0.844
 Satellite (id:40900),SMOTE,LGBMClassifier,7.405,0.873,0.09,0.751,0.128,0.993,0.008,0.857,0.11,0.747,0.13,0.844
 analcatdata_germangss (id:1025),RandomOverSampler,XGBClassifier,0.986,0.877,0.069,0.789,0.1,0.957,0.046,0.873,0.074,0.723,0.132,0.844
-analcatdata_germangss (id:1025),SMOTETomek,XGBClassifier,1.213,0.874,0.07,0.79,0.105,0.957,0.043,0.87,0.074,0.725,0.139,0.843
 Satellite (id:40900),SMOTE,XGBClassifier,21.087,0.883,0.084,0.739,0.132,0.99,0.014,0.87,0.102,0.735,0.134,0.843
-analcatdata_apnea3 (id:764),SMOTETomek,LGBMClassifier,0.884,0.882,0.079,0.764,0.11,0.966,0.033,0.873,0.09,0.731,0.125,0.843
+analcatdata_germangss (id:1025),SMOTETomek,XGBClassifier,1.213,0.874,0.07,0.79,0.105,0.957,0.043,0.87,0.074,0.725,0.139,0.843
 Satellite (id:40900),SMOTETomek,XGBClassifier,109.683,0.883,0.084,0.737,0.127,0.99,0.014,0.87,0.102,0.733,0.129,0.843
+analcatdata_apnea3 (id:764),SMOTETomek,LGBMClassifier,0.884,0.882,0.079,0.764,0.11,0.966,0.033,0.873,0.09,0.731,0.125,0.843
 analcatdata_apnea1 (id:767),RandomOverSampler,GradientBoostingClassifier,1.213,0.899,0.071,0.749,0.105,0.96,0.049,0.895,0.077,0.706,0.123,0.842
 Satellite (id:40900),SVMSMOTE,LGBMClassifier,8.404,0.865,0.09,0.754,0.134,0.989,0.013,0.847,0.112,0.751,0.136,0.841
-analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,1.901,0.86,0.089,0.932,0.029,0.936,0.036,0.851,0.098,0.619,0.147,0.84
-Satellite (id:40900),SVMSMOTE,XGBClassifier,20.749,0.871,0.085,0.745,0.13,0.987,0.012,0.856,0.104,0.741,0.131,0.84
 analcatdata_apnea1 (id:767),SMOTE,GradientBoostingClassifier,1.273,0.893,0.082,0.755,0.117,0.949,0.065,0.886,0.096,0.717,0.132,0.84
+Satellite (id:40900),SVMSMOTE,XGBClassifier,20.749,0.871,0.085,0.745,0.13,0.987,0.012,0.856,0.104,0.741,0.131,0.84
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,1.901,0.86,0.089,0.932,0.029,0.936,0.036,0.851,0.098,0.619,0.147,0.84
 analcatdata_birthday (id:968),SMOTE,XGBClassifier,1.769,0.862,0.106,0.931,0.027,0.938,0.035,0.85,0.121,0.612,0.158,0.839
-poker-8_vs_6.dat,SMOTETomek,XGBClassifier,2.609,0.883,0.201,0.771,0.395,0.983,0.055,0.78,0.397,0.771,0.395,0.838
 poker-8_vs_6.dat,SMOTE,XGBClassifier,2.392,0.883,0.201,0.771,0.395,0.983,0.055,0.78,0.397,0.771,0.395,0.838
 analcatdata_birthday (id:968),SMOTE,LGBMClassifier,0.585,0.857,0.092,0.932,0.03,0.938,0.042,0.847,0.103,0.618,0.149,0.838
+poker-8_vs_6.dat,SMOTETomek,XGBClassifier,2.609,0.883,0.201,0.771,0.395,0.983,0.055,0.78,0.397,0.771,0.395,0.838
+analcatdata_apnea1 (id:767),SVMSMOTE,GradientBoostingClassifier,1.509,0.879,0.088,0.758,0.123,0.947,0.06,0.87,0.101,0.721,0.139,0.835
 analcatdata_birthday (id:968),SVMSMOTE,LGBMClassifier,0.913,0.853,0.08,0.927,0.033,0.944,0.048,0.846,0.088,0.605,0.149,0.835
 climate-model-simulation-crashes (id:40994),SVMSMOTE,XGBClassifier,2.375,0.816,0.095,0.97,0.015,0.954,0.051,0.791,0.12,0.642,0.151,0.835
-analcatdata_apnea1 (id:767),SVMSMOTE,GradientBoostingClassifier,1.509,0.879,0.088,0.758,0.123,0.947,0.06,0.87,0.101,0.721,0.139,0.835
-analcatdata_apnea1 (id:767),RandomOverSampler,XGBClassifier,1.766,0.872,0.097,0.756,0.129,0.965,0.035,0.86,0.113,0.721,0.144,0.835
 analcatdata_apnea1 (id:767),SMOTE,XGBClassifier,1.005,0.865,0.099,0.761,0.129,0.969,0.03,0.85,0.116,0.728,0.144,0.835
-analcatdata_birthday (id:968),SMOTETomek,LGBMClassifier,0.829,0.864,0.076,0.92,0.031,0.936,0.04,0.857,0.084,0.591,0.119,0.834
+analcatdata_apnea1 (id:767),RandomOverSampler,XGBClassifier,1.766,0.872,0.097,0.756,0.129,0.965,0.035,0.86,0.113,0.721,0.144,0.835
 analcatdata_apnea1 (id:767),SMOTETomek,XGBClassifier,1.197,0.866,0.095,0.757,0.128,0.969,0.027,0.853,0.111,0.723,0.142,0.834
+analcatdata_birthday (id:968),SMOTETomek,LGBMClassifier,0.829,0.864,0.076,0.92,0.031,0.936,0.04,0.857,0.084,0.591,0.119,0.834
 analcatdata_apnea3 (id:764),SVMSMOTE,LGBMClassifier,0.969,0.872,0.092,0.751,0.14,0.961,0.04,0.862,0.102,0.716,0.16,0.832
-analcatdata_apnea3 (id:764),SMOTETomek,GradientBoostingClassifier,1.507,0.897,0.064,0.737,0.094,0.932,0.065,0.893,0.069,0.695,0.108,0.831
 analcatdata_apnea1 (id:767),SMOTETomek,GradientBoostingClassifier,1.451,0.886,0.085,0.743,0.128,0.944,0.066,0.879,0.098,0.702,0.146,0.831
-car-good.dat,SMOTETomek,XGBClassifier,4.863,0.878,0.112,0.72,0.177,0.991,0.006,0.85,0.189,0.709,0.181,0.83
+analcatdata_apnea3 (id:764),SMOTETomek,GradientBoostingClassifier,1.507,0.897,0.064,0.737,0.094,0.932,0.065,0.893,0.069,0.695,0.108,0.831
 analcatdata_apnea1 (id:767),SMOTETomek,LGBMClassifier,0.869,0.864,0.09,0.754,0.125,0.959,0.041,0.853,0.102,0.719,0.142,0.83
-analcatdata_apnea3 (id:764),SMOTE,LGBMClassifier,0.712,0.871,0.084,0.742,0.104,0.964,0.033,0.861,0.095,0.706,0.117,0.829
+car-good.dat,SMOTETomek,XGBClassifier,4.863,0.878,0.112,0.72,0.177,0.991,0.006,0.85,0.189,0.709,0.181,0.83
 churn (id:40701),RandomOverSampler,GradientBoostingClassifier,28.625,0.881,0.025,0.758,0.034,0.912,0.021,0.878,0.027,0.714,0.04,0.829
+analcatdata_apnea3 (id:764),SMOTE,LGBMClassifier,0.712,0.871,0.084,0.742,0.104,0.964,0.033,0.861,0.095,0.706,0.117,0.829
 climate-model-simulation-crashes (id:40994),SVMSMOTE,LGBMClassifier,2.493,0.812,0.109,0.971,0.017,0.943,0.065,0.774,0.182,0.638,0.202,0.828
-climate-model-simulation-crashes (id:40994),SVMSMOTE,GradientBoostingClassifier,4.982,0.823,0.106,0.966,0.016,0.947,0.054,0.79,0.18,0.61,0.193,0.827
 Satellite (id:40900),SVMSMOTE,GradientBoostingClassifier,50.873,0.887,0.081,0.703,0.125,0.972,0.037,0.875,0.099,0.699,0.127,0.827
+climate-model-simulation-crashes (id:40994),SVMSMOTE,GradientBoostingClassifier,4.982,0.823,0.106,0.966,0.016,0.947,0.054,0.79,0.18,0.61,0.193,0.827
 climate-model-simulation-crashes (id:40994),RandomOverSampler,XGBClassifier,1.743,0.801,0.096,0.972,0.015,0.944,0.054,0.77,0.125,0.643,0.172,0.826
 analcatdata_apnea1 (id:767),SVMSMOTE,XGBClassifier,1.174,0.858,0.096,0.748,0.125,0.966,0.032,0.842,0.113,0.714,0.139,0.826
 analcatdata_apnea3 (id:764),SMOTE,GradientBoostingClassifier,1.279,0.893,0.072,0.729,0.103,0.934,0.062,0.889,0.077,0.685,0.12,0.826
 analcatdata_apnea3 (id:764),RandomOverSampler,LGBMClassifier,0.653,0.871,0.09,0.739,0.119,0.96,0.034,0.86,0.104,0.702,0.134,0.826
 car-good.dat,SMOTE,XGBClassifier,3.417,0.873,0.11,0.716,0.178,0.991,0.006,0.845,0.187,0.705,0.182,0.826
 analcatdata_apnea3 (id:764),SMOTETomek,XGBClassifier,1.202,0.87,0.087,0.737,0.117,0.965,0.027,0.86,0.098,0.699,0.133,0.826
-car-good.dat,SVMSMOTE,XGBClassifier,3.296,0.863,0.098,0.719,0.149,0.99,0.006,0.844,0.129,0.707,0.154,0.825
 analcatdata_birthday (id:968),SMOTETomek,XGBClassifier,1.779,0.851,0.107,0.922,0.037,0.929,0.04,0.839,0.121,0.583,0.172,0.825
+car-good.dat,SVMSMOTE,XGBClassifier,3.296,0.863,0.098,0.719,0.149,0.99,0.006,0.844,0.129,0.707,0.154,0.825
 analcatdata_apnea3 (id:764),RandomOverSampler,XGBClassifier,1.038,0.865,0.089,0.735,0.122,0.971,0.025,0.853,0.102,0.698,0.136,0.824
 climate-model-simulation-crashes (id:40994),SMOTE,XGBClassifier,2.499,0.806,0.092,0.967,0.015,0.95,0.049,0.78,0.116,0.611,0.148,0.823
 climate-model-simulation-crashes (id:40994),SMOTETomek,XGBClassifier,2.922,0.806,0.092,0.967,0.015,0.95,0.049,0.78,0.116,0.611,0.148,0.823
 climate-model-simulation-crashes (id:40994),SMOTE,GradientBoostingClassifier,5.6,0.828,0.096,0.958,0.016,0.943,0.062,0.809,0.12,0.575,0.144,0.823
 climate-model-simulation-crashes (id:40994),SMOTETomek,GradientBoostingClassifier,5.825,0.828,0.096,0.958,0.016,0.943,0.063,0.809,0.12,0.575,0.144,0.823
-analcatdata_apnea1 (id:767),SMOTE,LGBMClassifier,0.653,0.858,0.086,0.742,0.116,0.961,0.04,0.846,0.098,0.705,0.13,0.822
 analcatdata_apnea1 (id:767),RandomOverSampler,LGBMClassifier,1.082,0.86,0.093,0.742,0.126,0.955,0.044,0.847,0.108,0.706,0.141,0.822
+analcatdata_apnea1 (id:767),SMOTE,LGBMClassifier,0.653,0.858,0.086,0.742,0.116,0.961,0.04,0.846,0.098,0.705,0.13,0.822
 analcatdata_apnea1 (id:767),SVMSMOTE,LGBMClassifier,0.88,0.853,0.103,0.744,0.145,0.96,0.039,0.837,0.122,0.71,0.161,0.821
 analcatdata_apnea3 (id:764),SMOTE,XGBClassifier,1.059,0.863,0.098,0.726,0.132,0.966,0.028,0.851,0.113,0.687,0.149,0.819
 analcatdata_halloffame (id:966),SVMSMOTE,XGBClassifier,6.55,0.86,0.048,0.718,0.076,0.965,0.018,0.852,0.054,0.687,0.085,0.816
 Satellite (id:40900),SMOTE,GradientBoostingClassifier,50.509,0.882,0.078,0.672,0.131,0.984,0.018,0.87,0.094,0.666,0.133,0.815
-arsenic-female-lung (id:950),RandomOverSampler,LGBMClassifier,0.807,0.871,0.14,0.734,0.229,0.903,0.157,0.836,0.21,0.727,0.233,0.814
-climate-model-simulation-crashes (id:40994),SMOTE,LGBMClassifier,2.417,0.801,0.112,0.968,0.015,0.939,0.06,0.759,0.188,0.602,0.195,0.814
 analcatdata_halloffame (id:966),SVMSMOTE,GradientBoostingClassifier,10.277,0.871,0.054,0.704,0.085,0.961,0.02,0.865,0.061,0.67,0.095,0.814
+climate-model-simulation-crashes (id:40994),SMOTE,LGBMClassifier,2.417,0.801,0.112,0.968,0.015,0.939,0.06,0.759,0.188,0.602,0.195,0.814
+arsenic-female-lung (id:950),RandomOverSampler,LGBMClassifier,0.807,0.871,0.14,0.734,0.229,0.903,0.157,0.836,0.21,0.727,0.233,0.814
 analcatdata_apnea3 (id:764),SVMSMOTE,XGBClassifier,1.304,0.853,0.098,0.722,0.142,0.965,0.031,0.84,0.112,0.684,0.161,0.813
-Satellite (id:40900),SMOTETomek,GradientBoostingClassifier,134.925,0.879,0.079,0.666,0.132,0.985,0.018,0.867,0.096,0.66,0.134,0.811
-climate-model-simulation-crashes (id:40994),SMOTETomek,LGBMClassifier,2.878,0.797,0.112,0.968,0.014,0.939,0.06,0.753,0.187,0.596,0.19,0.811
-analcatdata_halloffame (id:966),SMOTETomek,GradientBoostingClassifier,12.243,0.861,0.055,0.706,0.086,0.962,0.02,0.853,0.063,0.673,0.096,0.811
 analcatdata_birthday (id:968),SMOTETomek,GradientBoostingClassifier,1.669,0.843,0.098,0.912,0.037,0.913,0.051,0.837,0.106,0.552,0.167,0.811
-phoneme (id:1489),SMOTE,GradientBoostingClassifier,13.92,0.855,0.016,0.767,0.02,0.924,0.011,0.855,0.016,0.651,0.03,0.81
-analcatdata_halloffame (id:966),SVMSMOTE,LGBMClassifier,2.804,0.851,0.055,0.712,0.091,0.965,0.02,0.841,0.065,0.681,0.101,0.81
+analcatdata_halloffame (id:966),SMOTETomek,GradientBoostingClassifier,12.243,0.861,0.055,0.706,0.086,0.962,0.02,0.853,0.063,0.673,0.096,0.811
+climate-model-simulation-crashes (id:40994),SMOTETomek,LGBMClassifier,2.878,0.797,0.112,0.968,0.014,0.939,0.06,0.753,0.187,0.596,0.19,0.811
+Satellite (id:40900),SMOTETomek,GradientBoostingClassifier,134.925,0.879,0.079,0.666,0.132,0.985,0.018,0.867,0.096,0.66,0.134,0.811
 phoneme (id:1489),SMOTETomek,GradientBoostingClassifier,14.423,0.855,0.019,0.767,0.024,0.924,0.012,0.854,0.019,0.651,0.036,0.81
+analcatdata_halloffame (id:966),SVMSMOTE,LGBMClassifier,2.804,0.851,0.055,0.712,0.091,0.965,0.02,0.841,0.065,0.681,0.101,0.81
+phoneme (id:1489),SMOTE,GradientBoostingClassifier,13.92,0.855,0.016,0.767,0.02,0.924,0.011,0.855,0.016,0.651,0.03,0.81
 phoneme (id:1489),RandomOverSampler,GradientBoostingClassifier,12.469,0.854,0.019,0.767,0.024,0.924,0.012,0.854,0.019,0.652,0.036,0.81
-analcatdata_halloffame (id:966),SMOTE,GradientBoostingClassifier,9.882,0.86,0.058,0.703,0.089,0.962,0.021,0.851,0.066,0.67,0.099,0.809
 arsenic-female-lung (id:950),SMOTETomek,GradientBoostingClassifier,3.096,0.861,0.138,0.719,0.243,0.929,0.136,0.825,0.208,0.71,0.248,0.809
+analcatdata_halloffame (id:966),SMOTE,GradientBoostingClassifier,9.882,0.86,0.058,0.703,0.089,0.962,0.021,0.851,0.066,0.67,0.099,0.809
 climate-model-simulation-crashes (id:40994),RandomOverSampler,GradientBoostingClassifier,4.096,0.792,0.113,0.967,0.016,0.941,0.061,0.749,0.185,0.589,0.203,0.808
 analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,0.655,0.8,0.099,0.937,0.022,0.944,0.037,0.778,0.122,0.576,0.153,0.807
 churn (id:40701),SVMSMOTE,LGBMClassifier,12.973,0.846,0.026,0.742,0.041,0.909,0.022,0.837,0.03,0.701,0.047,0.807
@@ -515,86 +527,86 @@ analcatdata_apnea3 (id:764),SVMSMOTE,GradientBoostingClassifier,1.773,0.863,0.07
 analcatdata_birthday (id:968),RandomOverSampler,XGBClassifier,1.611,0.805,0.115,0.932,0.029,0.943,0.035,0.785,0.138,0.565,0.193,0.806
 Satellite (id:40900),RandomOverSampler,GradientBoostingClassifier,34.627,0.848,0.088,0.688,0.129,0.975,0.033,0.828,0.108,0.683,0.131,0.804
 churn (id:40701),SVMSMOTE,XGBClassifier,37.578,0.841,0.025,0.736,0.036,0.906,0.021,0.833,0.029,0.693,0.041,0.802
-arsenic-female-lung (id:950),SMOTETomek,LGBMClassifier,1.874,0.862,0.152,0.698,0.25,0.944,0.099,0.812,0.257,0.69,0.251,0.801
 phoneme (id:1489),SVMSMOTE,GradientBoostingClassifier,20.433,0.851,0.016,0.754,0.02,0.924,0.011,0.848,0.016,0.626,0.031,0.801
+arsenic-female-lung (id:950),SMOTETomek,LGBMClassifier,1.874,0.862,0.152,0.698,0.25,0.944,0.099,0.812,0.257,0.69,0.251,0.801
 arsenic-female-lung (id:950),SMOTE,GradientBoostingClassifier,2.346,0.854,0.152,0.708,0.264,0.928,0.138,0.802,0.255,0.701,0.266,0.799
 analcatdata_halloffame (id:966),SMOTETomek,XGBClassifier,8.664,0.841,0.062,0.695,0.096,0.964,0.018,0.828,0.075,0.663,0.106,0.798
-analcatdata_birthday (id:968),RandomOverSampler,GradientBoostingClassifier,1.429,0.811,0.092,0.916,0.036,0.92,0.042,0.802,0.101,0.537,0.166,0.797
 analcatdata_birthday (id:968),SVMSMOTE,GradientBoostingClassifier,1.763,0.818,0.1,0.911,0.037,0.919,0.043,0.81,0.106,0.527,0.167,0.797
 analcatdata_halloffame (id:966),SMOTE,XGBClassifier,6.1,0.839,0.062,0.694,0.101,0.964,0.017,0.826,0.073,0.662,0.112,0.797
-analcatdata_halloffame (id:966),SMOTETomek,LGBMClassifier,4.704,0.837,0.051,0.695,0.081,0.963,0.019,0.824,0.063,0.663,0.089,0.796
+analcatdata_birthday (id:968),RandomOverSampler,GradientBoostingClassifier,1.429,0.811,0.092,0.916,0.036,0.92,0.042,0.802,0.101,0.537,0.166,0.797
 climate-model-simulation-crashes (id:40994),RandomOverSampler,LGBMClassifier,2.424,0.767,0.105,0.97,0.013,0.932,0.07,0.721,0.146,0.59,0.179,0.796
-primary-tumor (id:1003),SMOTE,GradientBoostingClassifier,0.934,0.802,0.124,0.925,0.045,0.872,0.125,0.767,0.192,0.611,0.237,0.795
-analcatdata_halloffame (id:966),SMOTE,LGBMClassifier,2.243,0.833,0.054,0.695,0.085,0.965,0.018,0.819,0.067,0.664,0.094,0.795
+analcatdata_halloffame (id:966),SMOTETomek,LGBMClassifier,4.704,0.837,0.051,0.695,0.081,0.963,0.019,0.824,0.063,0.663,0.089,0.796
 arsenic-female-lung (id:950),SMOTE,LGBMClassifier,0.866,0.847,0.166,0.707,0.293,0.942,0.101,0.78,0.294,0.7,0.297,0.795
+analcatdata_halloffame (id:966),SMOTE,LGBMClassifier,2.243,0.833,0.054,0.695,0.085,0.965,0.018,0.819,0.067,0.664,0.094,0.795
+primary-tumor (id:1003),SMOTE,GradientBoostingClassifier,0.934,0.802,0.124,0.925,0.045,0.872,0.125,0.767,0.192,0.611,0.237,0.795
 arsenic-female-lung (id:950),SVMSMOTE,LGBMClassifier,1.138,0.832,0.161,0.708,0.281,0.968,0.058,0.762,0.289,0.702,0.281,0.794
 arsenic-female-lung (id:950),RandomOverSampler,GradientBoostingClassifier,2.237,0.854,0.152,0.701,0.255,0.917,0.116,0.803,0.256,0.694,0.257,0.794
 primary-tumor (id:1003),SVMSMOTE,GradientBoostingClassifier,1.195,0.798,0.123,0.929,0.043,0.858,0.143,0.759,0.192,0.619,0.238,0.793
 pc4 (id:1049),RandomOverSampler,GradientBoostingClassifier,10.594,0.874,0.048,0.662,0.071,0.942,0.021,0.872,0.05,0.603,0.082,0.791
 analcatdata_birthday (id:968),SMOTE,GradientBoostingClassifier,1.459,0.808,0.102,0.908,0.038,0.917,0.05,0.8,0.109,0.515,0.183,0.79
-Satellite (id:40900),RandomOverSampler,LGBMClassifier,4.652,0.817,0.105,0.684,0.166,0.963,0.05,0.785,0.136,0.68,0.168,0.786
 arsenic-female-lung (id:950),SMOTETomek,XGBClassifier,3.083,0.853,0.164,0.678,0.286,0.943,0.077,0.788,0.295,0.67,0.288,0.786
-vertebra-column (id:1524),RandomOverSampler,XGBClassifier,1.211,0.817,0.063,0.749,0.086,0.918,0.042,0.812,0.068,0.629,0.123,0.785
+Satellite (id:40900),RandomOverSampler,LGBMClassifier,4.652,0.817,0.105,0.684,0.166,0.963,0.05,0.785,0.136,0.68,0.168,0.786
 ada (id:41156),RandomOverSampler,GradientBoostingClassifier,10.491,0.84,0.02,0.719,0.024,0.919,0.015,0.84,0.02,0.607,0.034,0.785
-vertebra-column (id:1524),SVMSMOTE,XGBClassifier,1.143,0.819,0.063,0.748,0.082,0.916,0.047,0.815,0.066,0.62,0.123,0.784
-ada (id:41156),RandomOverSampler,LGBMClassifier,2.217,0.831,0.024,0.723,0.03,0.914,0.016,0.83,0.025,0.621,0.041,0.784
+vertebra-column (id:1524),RandomOverSampler,XGBClassifier,1.211,0.817,0.063,0.749,0.086,0.918,0.042,0.812,0.068,0.629,0.123,0.785
 vertebra-column (id:1524),SVMSMOTE,GradientBoostingClassifier,1.689,0.822,0.072,0.751,0.09,0.909,0.048,0.819,0.074,0.617,0.143,0.784
+ada (id:41156),RandomOverSampler,LGBMClassifier,2.217,0.831,0.024,0.723,0.03,0.914,0.016,0.83,0.025,0.621,0.041,0.784
+vertebra-column (id:1524),SVMSMOTE,XGBClassifier,1.143,0.819,0.063,0.748,0.082,0.916,0.047,0.815,0.066,0.62,0.123,0.784
 analcatdata_halloffame (id:966),RandomOverSampler,XGBClassifier,3.831,0.817,0.068,0.686,0.118,0.957,0.027,0.799,0.084,0.655,0.13,0.783
 arsenic-female-lung (id:950),SVMSMOTE,GradientBoostingClassifier,2.561,0.831,0.163,0.704,0.293,0.922,0.13,0.762,0.289,0.698,0.297,0.783
 primary-tumor (id:1003),SMOTETomek,GradientBoostingClassifier,1.026,0.785,0.127,0.925,0.044,0.856,0.124,0.745,0.194,0.593,0.248,0.781
-vertebra-column (id:1524),SVMSMOTE,LGBMClassifier,0.9,0.815,0.07,0.742,0.087,0.919,0.046,0.81,0.072,0.613,0.129,0.78
 analcatdata_halloffame (id:966),RandomOverSampler,GradientBoostingClassifier,7.23,0.835,0.064,0.663,0.103,0.955,0.029,0.823,0.075,0.626,0.115,0.78
-vertebra-column (id:1524),SMOTE,LGBMClassifier,0.684,0.814,0.078,0.741,0.101,0.918,0.044,0.808,0.083,0.614,0.144,0.779
-vertebra-column (id:1524),SMOTETomek,LGBMClassifier,0.787,0.815,0.066,0.744,0.086,0.912,0.046,0.811,0.069,0.613,0.13,0.779
-arsenic-female-lung (id:950),SMOTE,XGBClassifier,2.437,0.83,0.16,0.676,0.281,0.958,0.063,0.76,0.288,0.669,0.282,0.779
-ada (id:41156),SVMSMOTE,GradientBoostingClassifier,23.389,0.827,0.026,0.716,0.033,0.917,0.016,0.826,0.027,0.61,0.045,0.779
-glass1.dat,SMOTE,XGBClassifier,0.72,0.812,0.073,0.758,0.097,0.892,0.073,0.806,0.076,0.628,0.147,0.779
+vertebra-column (id:1524),SVMSMOTE,LGBMClassifier,0.9,0.815,0.07,0.742,0.087,0.919,0.046,0.81,0.072,0.613,0.129,0.78
 ada (id:41156),SMOTE,GradientBoostingClassifier,12.156,0.823,0.028,0.719,0.037,0.915,0.017,0.821,0.03,0.619,0.049,0.779
-ada (id:41156),SMOTETomek,GradientBoostingClassifier,33.729,0.821,0.027,0.717,0.035,0.915,0.017,0.818,0.029,0.617,0.046,0.778
+glass1.dat,SMOTE,XGBClassifier,0.72,0.812,0.073,0.758,0.097,0.892,0.073,0.806,0.076,0.628,0.147,0.779
+ada (id:41156),SVMSMOTE,GradientBoostingClassifier,23.389,0.827,0.026,0.716,0.033,0.917,0.016,0.826,0.027,0.61,0.045,0.779
+arsenic-female-lung (id:950),SMOTE,XGBClassifier,2.437,0.83,0.16,0.676,0.281,0.958,0.063,0.76,0.288,0.669,0.282,0.779
+vertebra-column (id:1524),SMOTETomek,LGBMClassifier,0.787,0.815,0.066,0.744,0.086,0.912,0.046,0.811,0.069,0.613,0.13,0.779
+vertebra-column (id:1524),SMOTE,LGBMClassifier,0.684,0.814,0.078,0.741,0.101,0.918,0.044,0.808,0.083,0.614,0.144,0.779
 glass1.dat,SMOTETomek,XGBClassifier,0.855,0.812,0.065,0.756,0.082,0.891,0.075,0.806,0.069,0.623,0.124,0.778
+ada (id:41156),SMOTETomek,GradientBoostingClassifier,33.729,0.821,0.027,0.717,0.035,0.915,0.017,0.818,0.029,0.617,0.046,0.778
 glass1.dat,RandomOverSampler,GradientBoostingClassifier,1.183,0.811,0.076,0.754,0.105,0.881,0.064,0.798,0.089,0.636,0.145,0.776
 churn (id:40701),SMOTETomek,XGBClassifier,77.35,0.828,0.028,0.694,0.04,0.897,0.023,0.819,0.031,0.642,0.047,0.776
-pc4 (id:1049),SMOTETomek,GradientBoostingClassifier,16.68,0.854,0.06,0.646,0.083,0.94,0.024,0.85,0.064,0.585,0.097,0.775
 vertebra-column (id:1524),SMOTE,XGBClassifier,0.911,0.81,0.075,0.738,0.098,0.914,0.045,0.806,0.079,0.608,0.145,0.775
+pc4 (id:1049),SMOTETomek,GradientBoostingClassifier,16.68,0.854,0.06,0.646,0.083,0.94,0.024,0.85,0.064,0.585,0.097,0.775
 churn (id:40701),SMOTE,LGBMClassifier,4.05,0.83,0.028,0.686,0.043,0.902,0.021,0.823,0.032,0.631,0.051,0.774
 churn (id:40701),SMOTETomek,LGBMClassifier,63.281,0.83,0.029,0.687,0.042,0.901,0.021,0.822,0.032,0.632,0.049,0.774
+glass1.dat,SMOTE,GradientBoostingClassifier,1.288,0.81,0.084,0.752,0.102,0.888,0.065,0.804,0.086,0.613,0.162,0.773
 arsenic-female-lung (id:950),RandomOverSampler,XGBClassifier,2.111,0.837,0.162,0.666,0.263,0.936,0.105,0.769,0.29,0.658,0.264,0.773
 vertebra-column (id:1524),SMOTE,GradientBoostingClassifier,1.479,0.81,0.067,0.739,0.087,0.909,0.049,0.806,0.068,0.602,0.137,0.773
 churn (id:40701),SMOTE,XGBClassifier,29.594,0.824,0.029,0.691,0.043,0.896,0.023,0.815,0.033,0.639,0.049,0.773
-glass1.dat,SMOTE,GradientBoostingClassifier,1.288,0.81,0.084,0.752,0.102,0.888,0.065,0.804,0.086,0.613,0.162,0.773
 vertebra-column (id:1524),SMOTETomek,GradientBoostingClassifier,1.57,0.808,0.077,0.736,0.1,0.907,0.053,0.805,0.079,0.597,0.155,0.771
 pc4 (id:1049),SMOTE,GradientBoostingClassifier,14.502,0.843,0.055,0.644,0.08,0.941,0.023,0.839,0.059,0.585,0.093,0.77
-ada (id:41156),SVMSMOTE,LGBMClassifier,14.321,0.81,0.026,0.709,0.039,0.913,0.016,0.805,0.029,0.611,0.052,0.77
 vertebra-column (id:1524),RandomOverSampler,LGBMClassifier,0.662,0.803,0.068,0.73,0.093,0.917,0.047,0.796,0.076,0.605,0.128,0.77
+ada (id:41156),SVMSMOTE,LGBMClassifier,14.321,0.81,0.026,0.709,0.039,0.913,0.016,0.805,0.029,0.611,0.052,0.77
 vertebra-column (id:1524),SMOTETomek,XGBClassifier,0.987,0.805,0.071,0.731,0.092,0.913,0.047,0.8,0.076,0.598,0.133,0.769
 ada (id:41156),RandomOverSampler,XGBClassifier,14.555,0.815,0.023,0.707,0.031,0.908,0.015,0.812,0.025,0.602,0.04,0.769
 glass1.dat,RandomOverSampler,XGBClassifier,0.721,0.801,0.077,0.741,0.108,0.897,0.062,0.791,0.088,0.608,0.152,0.768
 glass1.dat,SMOTE,LGBMClassifier,0.462,0.802,0.083,0.74,0.111,0.896,0.069,0.795,0.09,0.6,0.161,0.767
 analcatdata_halloffame (id:966),RandomOverSampler,LGBMClassifier,1.901,0.797,0.07,0.669,0.115,0.96,0.021,0.771,0.092,0.639,0.123,0.767
-ada (id:41156),SMOTE,LGBMClassifier,2.916,0.803,0.024,0.707,0.035,0.914,0.017,0.795,0.026,0.612,0.046,0.766
 glass1.dat,RandomOverSampler,LGBMClassifier,0.422,0.8,0.086,0.737,0.122,0.899,0.07,0.788,0.101,0.605,0.166,0.766
-arsenic-female-lung (id:950),SVMSMOTE,XGBClassifier,2.48,0.828,0.159,0.65,0.264,0.948,0.077,0.759,0.287,0.642,0.265,0.765
+ada (id:41156),SMOTE,LGBMClassifier,2.916,0.803,0.024,0.707,0.035,0.914,0.017,0.795,0.026,0.612,0.046,0.766
 pc4 (id:1049),SMOTE,LGBMClassifier,3.896,0.814,0.044,0.656,0.064,0.947,0.024,0.802,0.052,0.607,0.073,0.765
-vertebra-column (id:1524),RandomOverSampler,GradientBoostingClassifier,1.703,0.799,0.058,0.726,0.079,0.911,0.049,0.793,0.062,0.591,0.12,0.764
+arsenic-female-lung (id:950),SVMSMOTE,XGBClassifier,2.48,0.828,0.159,0.65,0.264,0.948,0.077,0.759,0.287,0.642,0.265,0.765
 churn (id:40701),SVMSMOTE,GradientBoostingClassifier,42.494,0.819,0.027,0.675,0.037,0.895,0.023,0.81,0.031,0.62,0.043,0.764
+vertebra-column (id:1524),RandomOverSampler,GradientBoostingClassifier,1.703,0.799,0.058,0.726,0.079,0.911,0.049,0.793,0.062,0.591,0.12,0.764
 glass1.dat,SMOTETomek,GradientBoostingClassifier,1.366,0.801,0.071,0.741,0.088,0.888,0.069,0.794,0.072,0.596,0.139,0.764
 ada (id:41156),SMOTETomek,LGBMClassifier,25.881,0.8,0.023,0.705,0.033,0.913,0.017,0.791,0.026,0.611,0.044,0.764
 primary-tumor (id:1003),SMOTE,XGBClassifier,0.662,0.773,0.122,0.905,0.062,0.848,0.139,0.736,0.185,0.548,0.248,0.762
 pc4 (id:1049),SVMSMOTE,LGBMClassifier,4.557,0.809,0.052,0.65,0.081,0.948,0.023,0.795,0.061,0.6,0.092,0.76
-ada (id:41156),SVMSMOTE,XGBClassifier,28.365,0.8,0.028,0.696,0.038,0.909,0.017,0.794,0.031,0.595,0.049,0.759
 pc4 (id:1049),SMOTETomek,LGBMClassifier,7.14,0.816,0.059,0.643,0.08,0.944,0.024,0.804,0.07,0.59,0.09,0.759
+ada (id:41156),SVMSMOTE,XGBClassifier,28.365,0.8,0.028,0.696,0.038,0.909,0.017,0.794,0.031,0.595,0.049,0.759
 glass1.dat,SVMSMOTE,GradientBoostingClassifier,1.472,0.799,0.072,0.739,0.089,0.872,0.069,0.793,0.073,0.594,0.141,0.759
 primary-tumor (id:1003),SMOTETomek,XGBClassifier,0.792,0.772,0.131,0.91,0.057,0.843,0.12,0.722,0.227,0.548,0.269,0.759
 pc4 (id:1049),RandomOverSampler,LGBMClassifier,2.952,0.801,0.057,0.651,0.094,0.949,0.023,0.784,0.069,0.604,0.105,0.758
-glass1.dat,SVMSMOTE,XGBClassifier,0.946,0.793,0.068,0.732,0.092,0.888,0.063,0.784,0.073,0.588,0.14,0.757
-primary-tumor (id:1003),SMOTETomek,LGBMClassifier,0.489,0.768,0.133,0.905,0.053,0.861,0.118,0.719,0.227,0.532,0.269,0.757
-glass1.dat,SMOTETomek,LGBMClassifier,0.539,0.794,0.081,0.731,0.11,0.889,0.074,0.786,0.089,0.587,0.158,0.757
 glass1.dat,SVMSMOTE,LGBMClassifier,0.649,0.795,0.093,0.731,0.128,0.884,0.064,0.785,0.104,0.589,0.183,0.757
+glass1.dat,SVMSMOTE,XGBClassifier,0.946,0.793,0.068,0.732,0.092,0.888,0.063,0.784,0.073,0.588,0.14,0.757
+glass1.dat,SMOTETomek,LGBMClassifier,0.539,0.794,0.081,0.731,0.11,0.889,0.074,0.786,0.089,0.587,0.158,0.757
 primary-tumor (id:1003),SVMSMOTE,LGBMClassifier,0.599,0.772,0.153,0.908,0.053,0.865,0.122,0.71,0.27,0.53,0.301,0.757
+primary-tumor (id:1003),SMOTETomek,LGBMClassifier,0.489,0.768,0.133,0.905,0.053,0.861,0.118,0.719,0.227,0.532,0.269,0.757
 ada (id:41156),SMOTE,XGBClassifier,17.031,0.795,0.031,0.694,0.044,0.91,0.017,0.787,0.034,0.595,0.056,0.756
-bank32nh (id:833),RandomOverSampler,GradientBoostingClassifier,97.461,0.803,0.017,0.716,0.022,0.888,0.013,0.803,0.017,0.566,0.034,0.755
-ada (id:41156),SMOTETomek,XGBClassifier,38.415,0.794,0.025,0.693,0.037,0.91,0.017,0.785,0.028,0.594,0.048,0.755
 ada_prior (id:1037),RandomOverSampler,LGBMClassifier,5.688,0.807,0.019,0.689,0.026,0.9,0.011,0.806,0.02,0.572,0.036,0.755
+ada (id:41156),SMOTETomek,XGBClassifier,38.415,0.794,0.025,0.693,0.037,0.91,0.017,0.785,0.028,0.594,0.048,0.755
+bank32nh (id:833),RandomOverSampler,GradientBoostingClassifier,97.461,0.803,0.017,0.716,0.022,0.888,0.013,0.803,0.017,0.566,0.034,0.755
 ada_prior (id:1037),RandomOverSampler,GradientBoostingClassifier,18.078,0.812,0.02,0.684,0.026,0.903,0.013,0.812,0.02,0.557,0.039,0.754
 pc4 (id:1049),SMOTETomek,XGBClassifier,13.411,0.81,0.053,0.635,0.079,0.941,0.024,0.798,0.063,0.581,0.091,0.753
 primary-tumor (id:1003),SMOTE,LGBMClassifier,0.371,0.763,0.129,0.9,0.05,0.864,0.12,0.714,0.224,0.515,0.26,0.751
@@ -610,10 +622,10 @@ bank32nh (id:833),RandomOverSampler,LGBMClassifier,8.864,0.789,0.016,0.705,0.021
 abalone-21_vs_8.dat,SVMSMOTE,GradientBoostingClassifier,2.497,0.845,0.201,0.647,0.367,0.859,0.266,0.738,0.386,0.64,0.371,0.746
 ada_prior (id:1037),SMOTE,GradientBoostingClassifier,18.393,0.79,0.022,0.682,0.032,0.893,0.014,0.784,0.024,0.575,0.044,0.745
 pc4 (id:1049),SVMSMOTE,XGBClassifier,10.327,0.796,0.047,0.628,0.067,0.944,0.022,0.779,0.059,0.576,0.075,0.745
+abalone-21_vs_8.dat,SMOTETomek,XGBClassifier,1.529,0.878,0.178,0.565,0.299,0.918,0.154,0.807,0.333,0.552,0.305,0.744
+eucalyptus (id:990),RandomOverSampler,GradientBoostingClassifier,3.384,0.771,0.046,0.826,0.045,0.84,0.05,0.769,0.046,0.514,0.098,0.744
 bank32nh (id:833),SMOTETomek,GradientBoostingClassifier,244.247,0.793,0.017,0.705,0.021,0.879,0.013,0.792,0.017,0.551,0.033,0.744
 ada_prior (id:1037),SVMSMOTE,GradientBoostingClassifier,40.889,0.789,0.02,0.681,0.029,0.895,0.015,0.783,0.023,0.574,0.039,0.744
-eucalyptus (id:990),RandomOverSampler,GradientBoostingClassifier,3.384,0.771,0.046,0.826,0.045,0.84,0.05,0.769,0.046,0.514,0.098,0.744
-abalone-21_vs_8.dat,SMOTETomek,XGBClassifier,1.529,0.878,0.178,0.565,0.299,0.918,0.154,0.807,0.333,0.552,0.305,0.744
 bank32nh (id:833),SVMSMOTE,LGBMClassifier,48.861,0.788,0.014,0.701,0.018,0.879,0.012,0.787,0.014,0.553,0.027,0.742
 eucalyptus (id:990),SMOTE,GradientBoostingClassifier,3.691,0.761,0.051,0.832,0.042,0.847,0.048,0.757,0.052,0.506,0.103,0.741
 eucalyptus (id:990),SVMSMOTE,GradientBoostingClassifier,4.321,0.766,0.051,0.827,0.047,0.843,0.054,0.762,0.053,0.509,0.106,0.741
@@ -621,12 +633,12 @@ abalone-21_vs_8.dat,SMOTE,XGBClassifier,1.341,0.878,0.178,0.557,0.287,0.915,0.15
 ada_prior (id:1037),SMOTETomek,GradientBoostingClassifier,44.364,0.785,0.019,0.676,0.028,0.89,0.015,0.777,0.021,0.569,0.039,0.739
 primary-tumor (id:1003),RandomOverSampler,GradientBoostingClassifier,0.91,0.754,0.125,0.891,0.052,0.834,0.137,0.719,0.185,0.493,0.236,0.738
 ada_prior (id:1037),SMOTE,LGBMClassifier,3.447,0.777,0.02,0.671,0.029,0.896,0.012,0.766,0.023,0.569,0.038,0.736
-ada_prior (id:1037),SVMSMOTE,LGBMClassifier,25.902,0.776,0.022,0.669,0.032,0.896,0.014,0.764,0.025,0.566,0.041,0.734
 oil_spill (id:311),SMOTETomek,GradientBoostingClassifier,19.182,0.812,0.116,0.58,0.186,0.938,0.059,0.782,0.147,0.559,0.195,0.734
+ada_prior (id:1037),SVMSMOTE,LGBMClassifier,25.902,0.776,0.022,0.669,0.032,0.896,0.014,0.764,0.025,0.566,0.041,0.734
 bank32nh (id:833),SMOTE,LGBMClassifier,10.547,0.779,0.019,0.692,0.024,0.875,0.013,0.778,0.019,0.543,0.036,0.733
-bank32nh (id:833),RandomOverSampler,XGBClassifier,87.362,0.775,0.019,0.689,0.026,0.878,0.013,0.77,0.021,0.55,0.038,0.732
-bank32nh (id:833),SMOTETomek,LGBMClassifier,159.244,0.778,0.016,0.69,0.021,0.874,0.013,0.775,0.017,0.541,0.031,0.732
 eucalyptus (id:990),SMOTETomek,LGBMClassifier,1.835,0.75,0.05,0.83,0.044,0.845,0.053,0.743,0.053,0.491,0.105,0.732
+bank32nh (id:833),SMOTETomek,LGBMClassifier,159.244,0.778,0.016,0.69,0.021,0.874,0.013,0.775,0.017,0.541,0.031,0.732
+bank32nh (id:833),RandomOverSampler,XGBClassifier,87.362,0.775,0.019,0.689,0.026,0.878,0.013,0.77,0.021,0.55,0.038,0.732
 poker-8_vs_6.dat,SVMSMOTE,GradientBoostingClassifier,3.003,0.806,0.223,0.61,0.437,0.983,0.042,0.651,0.439,0.607,0.44,0.731
 ada_prior (id:1037),SMOTE,XGBClassifier,30.686,0.773,0.021,0.665,0.03,0.89,0.013,0.761,0.024,0.56,0.038,0.73
 oil_spill (id:311),SVMSMOTE,XGBClassifier,6.48,0.778,0.078,0.605,0.149,0.936,0.058,0.742,0.105,0.588,0.154,0.73
@@ -640,8 +652,8 @@ ada_prior (id:1037),SMOTETomek,LGBMClassifier,33.179,0.768,0.021,0.661,0.031,0.8
 oil_spill (id:311),SVMSMOTE,GradientBoostingClassifier,14.157,0.78,0.099,0.589,0.175,0.948,0.043,0.742,0.133,0.571,0.181,0.726
 eucalyptus (id:990),SMOTE,LGBMClassifier,1.439,0.742,0.056,0.828,0.043,0.845,0.048,0.734,0.062,0.478,0.112,0.725
 eucalyptus (id:990),SMOTE,XGBClassifier,5.01,0.74,0.056,0.826,0.042,0.847,0.047,0.732,0.061,0.472,0.112,0.723
-bank32nh (id:833),SMOTE,XGBClassifier,106.936,0.769,0.017,0.68,0.023,0.864,0.013,0.766,0.019,0.532,0.032,0.722
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,0.868,0.795,0.164,0.636,0.287,0.836,0.191,0.716,0.287,0.625,0.293,0.722
+bank32nh (id:833),SMOTE,XGBClassifier,106.936,0.769,0.017,0.68,0.023,0.864,0.013,0.766,0.019,0.532,0.032,0.722
 abalone-21_vs_8.dat,SVMSMOTE,XGBClassifier,1.538,0.851,0.199,0.592,0.348,0.838,0.263,0.745,0.387,0.584,0.352,0.722
 abalone-21_vs_8.dat,RandomOverSampler,GradientBoostingClassifier,1.955,0.821,0.216,0.608,0.4,0.892,0.214,0.682,0.424,0.601,0.404,0.721
 bank32nh (id:833),SMOTETomek,XGBClassifier,301.179,0.768,0.017,0.678,0.023,0.865,0.013,0.764,0.018,0.53,0.033,0.721
@@ -651,8 +663,8 @@ ada_prior (id:1037),SMOTETomek,XGBClassifier,52.567,0.762,0.021,0.651,0.031,0.88
 oil_spill (id:311),SMOTE,GradientBoostingClassifier,18.382,0.786,0.125,0.563,0.204,0.947,0.05,0.744,0.165,0.543,0.213,0.717
 oil_spill (id:311),SVMSMOTE,LGBMClassifier,6.401,0.759,0.096,0.588,0.179,0.945,0.049,0.711,0.135,0.573,0.184,0.715
 primary-tumor (id:1003),RandomOverSampler,LGBMClassifier,0.37,0.731,0.125,0.873,0.05,0.861,0.112,0.671,0.244,0.426,0.245,0.712
-arsenic-male-bladder (id:947),RandomOverSampler,XGBClassifier,2.941,0.797,0.168,0.586,0.293,0.858,0.153,0.719,0.29,0.571,0.299,0.706
 oil_spill (id:311),RandomOverSampler,GradientBoostingClassifier,11.677,0.769,0.11,0.567,0.192,0.922,0.071,0.724,0.152,0.549,0.199,0.706
+arsenic-male-bladder (id:947),RandomOverSampler,XGBClassifier,2.941,0.797,0.168,0.586,0.293,0.858,0.153,0.719,0.29,0.571,0.299,0.706
 abalone-21_vs_8.dat,SVMSMOTE,LGBMClassifier,1.803,0.826,0.216,0.548,0.371,0.921,0.168,0.689,0.426,0.539,0.376,0.705
 eucalyptus (id:990),RandomOverSampler,XGBClassifier,4.576,0.719,0.049,0.816,0.044,0.839,0.052,0.708,0.053,0.436,0.098,0.704
 oil_spill (id:311),SMOTE,LGBMClassifier,6.52,0.754,0.098,0.565,0.174,0.942,0.05,0.704,0.14,0.549,0.179,0.703
@@ -672,8 +684,8 @@ arsenic-male-bladder (id:947),SVMSMOTE,GradientBoostingClassifier,2.578,0.773,0.
 arsenic-male-bladder (id:947),SMOTETomek,XGBClassifier,3.286,0.783,0.157,0.517,0.247,0.838,0.124,0.707,0.279,0.496,0.254,0.668
 arsenic-male-bladder (id:947),SMOTE,XGBClassifier,3.031,0.779,0.158,0.523,0.255,0.83,0.131,0.7,0.279,0.503,0.263,0.667
 arsenic-male-bladder (id:947),SMOTE,LGBMClassifier,0.921,0.778,0.159,0.51,0.26,0.854,0.119,0.699,0.28,0.489,0.268,0.666
-arsenic-male-bladder (id:947),SVMSMOTE,LGBMClassifier,1.114,0.779,0.161,0.504,0.254,0.862,0.135,0.688,0.305,0.485,0.256,0.664
 abalone-21_vs_8.dat,RandomOverSampler,XGBClassifier,1.434,0.787,0.226,0.55,0.42,0.825,0.276,0.616,0.447,0.543,0.424,0.664
+arsenic-male-bladder (id:947),SVMSMOTE,LGBMClassifier,1.114,0.779,0.161,0.504,0.254,0.862,0.135,0.688,0.305,0.485,0.256,0.664
 oil_spill (id:311),RandomOverSampler,LGBMClassifier,4.402,0.716,0.106,0.503,0.207,0.922,0.062,0.626,0.214,0.487,0.209,0.651
 arsenic-male-bladder (id:947),SMOTE,GradientBoostingClassifier,2.374,0.77,0.153,0.446,0.205,0.874,0.112,0.692,0.274,0.419,0.211,0.64
 arsenic-male-bladder (id:947),SMOTETomek,GradientBoostingClassifier,3.084,0.77,0.154,0.408,0.203,0.873,0.104,0.695,0.274,0.377,0.209,0.625

@@ -8,7 +8,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #, "testing_kb_results", "testing_kb_full_results", "testing_kb_characteristics"
 
 #FILE
-dataset_name = "car-vgood.dat"
+dataset_name = "dermatology-6.dat"
 
 # execute_ml_test(sys.path[0] + "/input/" + dataset_name, "")
 execute_ml(sys.path[0] + "/input/" + dataset_name, "", "kb_results", "kb_full_results", "kb_characteristics")

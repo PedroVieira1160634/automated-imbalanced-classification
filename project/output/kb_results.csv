@@ -56,3 +56,4 @@ eucalyptus (id:990),SMOTETomek,GradientBoostingClassifier,3.895,0.767,0.047,0.83
 poker-8_vs_6.dat,SMOTE,GradientBoostingClassifier,3.138,0.974,0.102,0.921,0.235,0.997,0.012,0.956,0.186,0.92,0.239,0:00:37
 kr-vs-k-zero_vs_fifteen.dat,SVMSMOTE,XGBClassifier,3.051,1.0,0.0,0.995,0.026,1.0,0.0,1.0,0.0,0.995,0.026,0:01:43
 abalone-21_vs_8.dat,SVMSMOTE,GradientBoostingClassifier,2.497,0.845,0.201,0.647,0.367,0.859,0.266,0.738,0.386,0.64,0.371,0:00:25
+car-vgood.dat,RandomOverSampler,XGBClassifier,3.459,1.0,0.001,0.993,0.029,1.0,0.0,1.0,0.001,0.992,0.03,0:00:41
