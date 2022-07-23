@@ -53,3 +53,4 @@ autos (id:975),SMOTETomek,LGBMClassifier,0.747,0.93,0.07,0.955,0.048,0.968,0.054
 dermatology (id:1010),RandomOverSampler,LGBMClassifier,0.88,0.996,0.016,0.997,0.012,1.0,0.001,0.996,0.016,0.989,0.037,0:00:27
 colleges_aaup (id:897),SVMSMOTE,LGBMClassifier,3.127,0.98,0.016,0.973,0.02,0.999,0.001,0.98,0.016,0.96,0.029,0:00:59
 eucalyptus (id:990),SMOTETomek,GradientBoostingClassifier,3.895,0.767,0.047,0.833,0.049,0.849,0.053,0.763,0.048,0.517,0.105,0:00:44
+poker-8_vs_6.dat,SMOTE,GradientBoostingClassifier,3.138,0.974,0.102,0.921,0.235,0.997,0.012,0.956,0.186,0.92,0.239,0:00:37

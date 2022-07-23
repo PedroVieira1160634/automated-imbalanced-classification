@@ -74,11 +74,11 @@ def execute_ml(dataset_location, id_openml, results_file_name, full_results_file
         
         best_result = find_best_result(resultsList)
         
-        result_updated = write_results(best_result, finish_time, "kb_results")
+        result_updated = write_results(best_result, finish_time, results_file_name)
         
-        write_full_results(resultsList, dataset_name, "kb_full_results")
+        write_full_results(resultsList, dataset_name, full_results_file_name)
         
-        write_characteristics(df_characteristics, best_result, result_updated, "kb_characteristics")
+        write_characteristics(df_characteristics, best_result, result_updated, characteristics_file_name)
         
         return dataset_name
     

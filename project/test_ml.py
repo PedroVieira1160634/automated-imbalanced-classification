@@ -7,8 +7,22 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 #, "kb_results", "kb_full_results", "kb_characteristics"
 #, "testing_kb_results", "testing_kb_full_results", "testing_kb_characteristics"
 
-# dataset_name = "car-good.dat"
-# execute_ml(sys.path[0] + "/input/" + dataset_name, "", "kb_results", "kb_full_results", "kb_characteristics")
+#FILE
+dataset_name = "poker-8_vs_6.dat"
+
+# execute_ml_test(sys.path[0] + "/input/" + dataset_name, "")
+execute_ml(sys.path[0] + "/input/" + dataset_name, "", "kb_results", "kb_full_results", "kb_characteristics")
+#FILE
+
+
+#OPENML
+#testing
+# execute_ml_test("", 975)
+
+# list_openml = [986, 43595, 1010, 897, 13, 990]
+# for id in list_openml:
+#     execute_ml_test("", id)
+#     print("\n----------------------------------\n")
 
 # execute_ml("", 975, "kb_results", "kb_full_results", "kb_characteristics")
 
@@ -16,7 +30,7 @@ print('\n\n----------------------------------start -', datetime.now(), '--------
 # for id in list_openml:
 #     execute_ml("", id, "kb_results", "kb_full_results", "kb_characteristics")
 #     print("\n----------------------------------\n")
-
+#OPENML
 
 print('----------------------------------finish -', datetime.now(), '--------------------------------------\n\n')
 
