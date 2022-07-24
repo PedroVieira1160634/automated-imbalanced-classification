@@ -2,10 +2,10 @@ import sys
 import pandas as pd
 from ml import read_file
 
-df = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
-df = df.sample(n=13)
+# df = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
+# df = df.sample(n=13)
 
-print(df[["dataset", "total elapsed time"]])
+# print(df[["dataset", "total elapsed time"]])
 
 #excel results
 
@@ -27,4 +27,6 @@ print(df[["dataset", "total elapsed time"]])
 # print("")
 
 
-
+df = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
+df.sort_values(by=['final score'], ascending=False, inplace=True)
+# df.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)

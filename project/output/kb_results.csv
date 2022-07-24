@@ -62,3 +62,5 @@ kr-vs-k-three_vs_eleven.dat,RandomOverSampler,GradientBoostingClassifier,4.87,1.
 kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,2.685,0.999,0.001,0.97,0.062,1.0,0.0,0.999,0.001,0.969,0.063,0:00:48
 kr-vs-k-zero-one_vs_draw.dat,SMOTETomek,LGBMClassifier,18.285,0.986,0.024,0.947,0.042,0.999,0.001,0.985,0.025,0.945,0.043,0:02:01
 poker-8-9_vs_6.dat,SMOTE,XGBClassifier,2.268,0.922,0.114,0.89,0.154,0.993,0.018,0.909,0.135,0.889,0.156,0:00:36
+dis (id:40713),RandomOverSampler,GradientBoostingClassifier,10.826,0.868,0.098,0.99,0.003,0.943,0.068,0.852,0.118,0.523,0.118,0:03:59
+musk (id:1116),RandomOverSampler,XGBClassifier,145.74,0.998,0.003,0.996,0.004,1.0,0.0,0.998,0.003,0.996,0.005,0:55:34
