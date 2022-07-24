@@ -27,6 +27,9 @@ from ml import read_file
 # print("")
 
 
-df = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
-df.sort_values(by=['final score'], ascending=False, inplace=True)
+
+
+# df = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
+# df.sort_values(by=['final score'], ascending=False, inplace=True)
 # df.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
+# print(df)

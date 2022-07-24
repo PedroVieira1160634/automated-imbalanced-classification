@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def execute_ml(dataset_location, id_openml, results_file_name, full_results_file_name, characteristics_file_name):
+def execute_ml(dataset_location, id_openml):
     
     try:
         if dataset_location:
@@ -35,13 +35,6 @@ def execute_ml(dataset_location, id_openml, results_file_name, full_results_file
             df, dataset_name = read_file_openml(id_openml)
         else:
             return False
-        
-        if(not results_file_name):
-            results_file_name = "kb_results"
-        if(not full_results_file_name):
-            full_results_file_name = "kb_full_results"
-        if(not characteristics_file_name):
-            characteristics_file_name = "kb_characteristics"
         
         start_time = time.time()
         
@@ -74,11 +67,11 @@ def execute_ml(dataset_location, id_openml, results_file_name, full_results_file
         
         best_result = find_best_result(resultsList)
         
-        result_updated = write_results(best_result, finish_time, results_file_name)
+        result_updated = write_results(best_result, finish_time)
         
-        write_full_results(resultsList, dataset_name, full_results_file_name)
+        write_full_results(resultsList, dataset_name)
         
-        write_characteristics(df_characteristics, best_result, result_updated, characteristics_file_name)
+        write_characteristics(df_characteristics, best_result, result_updated)
         
         return dataset_name
     
@@ -88,7 +81,7 @@ def execute_ml(dataset_location, id_openml, results_file_name, full_results_file
 
 
 
-#  TEST VERSION
+#  TEST VERSION - execute algorithms without pre processing nor writting to any KB file
 def execute_ml_test(dataset_location, id_openml):
     
     try:
@@ -149,11 +142,11 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        first_row_to_remove = write_characteristics(df_characteristics, None, False, "kb_characteristics")
+        first_row_to_remove = write_characteristics(df_characteristics, None, False)
         
         if first_row_to_remove:
-            df_dist = get_best_results_by_characteristics(dataset_name, "kb_characteristics")
-            write_characteristics_remove_current_dataset("kb_characteristics")
+            df_dist = get_best_results_by_characteristics(dataset_name)
+            write_characteristics_remove_current_dataset()
             str_output = display_final_results(df_dist)
         else:
             str_output = "Attention: this dataset was already trained before!"
@@ -404,7 +397,7 @@ def find_best_result(resultsList):
 
 
 
-def write_characteristics(df_characteristics, best_result, result_updated, file_name):
+def write_characteristics(df_characteristics, best_result, result_updated):
     if df_characteristics.empty:
         print("--df_characteristics not valid on write_characteristics--")
         print("df_characteristics:", df_characteristics)
@@ -415,7 +408,7 @@ def write_characteristics(df_characteristics, best_result, result_updated, file_
     
     try:
     
-        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",")
+        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         #print(df_kb_c, '\n')
         
         df_kb_c_without = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
@@ -451,7 +444,7 @@ def write_characteristics(df_characteristics, best_result, result_updated, file_
                 df_characteristics = df_kb_c
                 first_row_to_remove = False
         
-        df_characteristics.to_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",", index=False)
+        df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
         
     except Exception:
         traceback.print_exc()
@@ -462,7 +455,7 @@ def write_characteristics(df_characteristics, best_result, result_updated, file_
 
 
 #writes if best
-def write_results(best_result, elapsed_time, file_name):
+def write_results(best_result, elapsed_time):
     if not best_result:
         print("--best_result or elapsed_time not valid on write_results--")
         print("best_result:", best_result)
@@ -480,7 +473,7 @@ def write_results(best_result, elapsed_time, file_name):
         print("Best Final Score Obtained    :", current_value)
         print("Elapsed Time                 :", elapsed_time, "\n")
         
-        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",")
+        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
         
         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == best_result.dataset_name]
         
@@ -506,7 +499,7 @@ def write_results(best_result, elapsed_time, file_name):
                 df_kb_r.at[index, 'cohen kappa std'] = best_result.cohen_kappa_score_std
                 df_kb_r.at[index, 'total elapsed time'] = elapsed_time
                 
-                df_kb_r.to_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",", index=False)
+                df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
                 
                 result_updated = True
                 
@@ -535,7 +528,7 @@ def write_results(best_result, elapsed_time, file_name):
                 elapsed_time
             ]
 
-            df_kb_r.to_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",", index=False)
+            df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
             
             print("Results written, row added!","\n")  
         
@@ -548,7 +541,7 @@ def write_results(best_result, elapsed_time, file_name):
 
 
 #only writes at first time 
-def write_full_results(resultsList, dataset_name, file_name):
+def write_full_results(resultsList, dataset_name):
     if not resultsList or not dataset_name:
         print("--resultsList not valid on write_full_results--")
         print("resultsList:", resultsList)
@@ -557,7 +550,7 @@ def write_full_results(resultsList, dataset_name, file_name):
     
     try:
     
-        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",")
+        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
         
         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
         
@@ -585,7 +578,7 @@ def write_full_results(resultsList, dataset_name, file_name):
 
             df_kb_r.sort_values(by=['final score'], ascending=False, inplace=True)
 
-            df_kb_r.to_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",", index=False)
+            df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
             
             print("Full Results written, rows added!","\n")
         
@@ -601,13 +594,13 @@ def write_full_results(resultsList, dataset_name, file_name):
 
 
 #by Euclidean Distance
-def get_best_results_by_characteristics(dataset_name, file_name):
+def get_best_results_by_characteristics(dataset_name):
     if not dataset_name:
         print("--dataset_name not valid on get_best_results_by_characteristics--")
         print("best_result:", dataset_name)
         return False
     
-    df_c = pd.read_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",")
+    df_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
     df_c = df_c.dropna(axis=1)
     df_c = df_c.replace([np.inf, -np.inf], np.nan).dropna(axis=1)
     
@@ -641,11 +634,11 @@ def get_best_results_by_characteristics(dataset_name, file_name):
 
 
 #always writes
-def write_characteristics_remove_current_dataset(file_name):
+def write_characteristics_remove_current_dataset():
     try:
-        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",")
+        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
         df_kb_c = df_kb_c.iloc[1: , :]
-        df_kb_c.to_csv(sys.path[0] + "/output/" + file_name + ".csv", sep=",", index=False)    
+        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
         # print("Removed Current Dataset Characteristics!","\n")
     
     except Exception:
