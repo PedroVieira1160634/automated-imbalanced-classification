@@ -142,14 +142,9 @@ def execute_byCharacteristics(dataset_location, id_openml):
         
         X, y, df_characteristics = features_labels(df, dataset_name)
         
-        first_row_to_remove = write_characteristics(df_characteristics, None, False)
-        
-        if first_row_to_remove:
-            df_dist = get_best_results_by_characteristics(dataset_name)
-            write_characteristics_remove_current_dataset()
-            str_output = display_final_results(df_dist)
-        else:
-            str_output = "Attention: this dataset was already trained before!"
+        write_characteristics(df_characteristics, None, False)
+        df_dist = get_best_results_by_characteristics(dataset_name)
+        str_output = display_final_results(df_dist)
         
         return str_output
         
@@ -403,9 +398,6 @@ def write_characteristics(df_characteristics, best_result, result_updated):
         print("df_characteristics:", df_characteristics)
         return False
     
-    #execute_byCharacteristics
-    first_row_to_remove = True
-    
     try:
     
         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
@@ -442,7 +434,6 @@ def write_characteristics(df_characteristics, best_result, result_updated):
             #remains value
             else:
                 df_characteristics = df_kb_c
-                first_row_to_remove = False
         
         df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
         
@@ -450,7 +441,7 @@ def write_characteristics(df_characteristics, best_result, result_updated):
         traceback.print_exc()
         return False
 
-    return first_row_to_remove   
+    return True   
 
 
 
@@ -630,20 +621,6 @@ def get_best_results_by_characteristics(dataset_name):
     df_dist = df_dist[['pre processing', 'algorithm']]
     
     return df_dist
-
-
-
-#always writes
-def write_characteristics_remove_current_dataset():
-    try:
-        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
-        df_kb_c = df_kb_c.iloc[1: , :]
-        df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
-        # print("Removed Current Dataset Characteristics!","\n")
-    
-    except Exception:
-        traceback.print_exc()
-        return False
 
 
 

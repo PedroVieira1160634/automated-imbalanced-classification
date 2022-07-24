@@ -3,7 +3,7 @@ import time
 import datetime
 import pandas as pd
 import numpy as np
-from ml import get_best_results_by_characteristics, execute_byCharacteristics, write_characteristics_remove_current_dataset, display_final_results
+from ml import get_best_results_by_characteristics, execute_byCharacteristics, display_final_results
 
 # a = (1, 2, 3)
 # b = (4, 5, 6)
@@ -25,11 +25,11 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 # str_output = execute_byCharacteristics(sys.path[0] + "/input/" + dataset_name, "")
 # print(str_output)
 
-#40713, 1116
+#40713, 1116, ...
 
 start_time = time.time()
 
-str_output = execute_byCharacteristics("", 40713)
+str_output = execute_byCharacteristics("", 1116)
 # print("\nFinal UI Table:\n", str_output)
 
 finish_time = (round(time.time() - start_time,3))

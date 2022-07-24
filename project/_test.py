@@ -271,6 +271,19 @@ print('\n\n----------------------------------finish -', datetime.now(), '-------
 # old code
 
 
+# #always writes
+# def write_characteristics_remove_current_dataset():
+#     try:
+#         df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+#         df_kb_c = df_kb_c.iloc[1: , :]
+#         df_kb_c.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)    
+#         # print("Removed Current Dataset Characteristics!","\n")
+    
+#     except Exception:
+#         traceback.print_exc()
+#         return False
+
+
 #correlation all columns
 # corr = df.corr().abs()
 # corr = (corr.where(np.triu(np.ones(corr.shape), k=1).astype(bool))
