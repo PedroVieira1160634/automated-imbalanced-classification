@@ -87,7 +87,7 @@ def step_2():
     #datasets_openml.csv
     df_openml = pd.read_csv(sys.path[0] + "/input/" + "datasets_openml_missingvalues.csv", sep=",")
 
-    #exel results - openml csv
+    #excel results - openml csv
     
     # rows_to_keep = df_openml["imbalance ratio"] > 5
     # df_openml = df_openml[rows_to_keep]

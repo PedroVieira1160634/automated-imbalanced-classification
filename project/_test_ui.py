@@ -29,8 +29,8 @@ from ml import get_best_results_by_characteristics, execute_byCharacteristics, w
 
 start_time = time.time()
 
-str_output = execute_byCharacteristics("", 949)
-print("\nFinal UI Table:\n", str_output)
+str_output = execute_byCharacteristics("", 1116)
+# print("\nFinal UI Table:\n", str_output)
 
 finish_time = (round(time.time() - start_time,3))
 finish_time = str(datetime.timedelta(seconds=round(finish_time,0)))
