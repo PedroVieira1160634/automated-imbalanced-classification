@@ -1,0 +1,10 @@
+dataset,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
+dis (id:40713),DecisionTreeClassifier,60.061,0.804,0.995,0.804,0.78,0.682,0.813
+musk (id:1116),GaussianNB,601.496,0.998,0.991,0.998,0.998,0.989,0.995
+mfeat-fourier (id:971),KNeighborsClassifier,85.669,0.988,0.999,0.988,0.988,0.987,0.99
+Satellite (id:40900),DecisionTreeClassifier,103.826,0.874,0.811,0.874,0.865,0.808,0.846
+arsenic-male-bladder (id:947),GaussianNB,22.618,0.8,0.75,0.8,0.775,0.736,0.772
+analcatdata_apnea2 (id:765),DecisionTreeClassifier,24.533,0.902,0.833,0.902,0.899,0.804,0.868
+regime_alimentaire (id:42172),XGBClassifier,25.997,1.0,1.0,1.0,1.0,1.0,1.0
+page-blocks0.dat,XGBClassifier,106.519,0.922,0.882,0.922,0.92,0.868,0.903
+dgf_test (id:42883),XGBClassifier,487.46,0.975,0.957,0.975,0.974,0.949,0.966
