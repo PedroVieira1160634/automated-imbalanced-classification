@@ -14,8 +14,8 @@ from imblearn.metrics import geometric_mean_score
 
 print('\n\n----------------------------------start -', datetime.datetime.now(), '--------------------------------------\n\n')
 
-# df, dataset_name = read_file(sys.path[0] + "/input/" + "page-blocks0.dat")
-df, dataset_name = read_file_openml(42883)
+# df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
+df, dataset_name = read_file_openml(976)
 
 print("dataset: ", dataset_name)
 

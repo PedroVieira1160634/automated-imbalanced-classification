@@ -8,3 +8,9 @@ analcatdata_apnea2 (id:765),DecisionTreeClassifier,24.533,0.902,0.833,0.902,0.89
 regime_alimentaire (id:42172),XGBClassifier,25.997,1.0,1.0,1.0,1.0,1.0,1.0
 page-blocks0.dat,XGBClassifier,106.519,0.922,0.882,0.922,0.92,0.868,0.903
 dgf_test (id:42883),XGBClassifier,487.46,0.975,0.957,0.975,0.974,0.949,0.966
+cpu_small (id:735),XGBClassifier,530.807,0.883,0.938,0.883,0.88,0.778,0.872
+analcatdata_birthday (id:968),XGBClassifier,145.268,0.745,0.939,0.745,0.718,0.51,0.731
+optdigits (id:980),KNeighborsClassifier,490.528,0.989,0.998,0.989,0.989,0.98,0.989
+kr-vs-k-zero_vs_eight.dat,KNeighborsClassifier,84.037,1.0,1.0,1.0,1.0,1.0,1.0
+analcatdata_lawsuit (id:450),KNeighborsClassifier,48.365,0.825,0.727,0.825,0.81,0.703,0.778
+JapaneseVowels (id:976),ExtraTreesClassifier,367.78,0.974,0.992,0.974,0.974,0.953,0.973
