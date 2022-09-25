@@ -1,16 +1,16 @@
 dataset,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
-dis (id:40713),DecisionTreeClassifier,60.061,0.804,0.995,0.804,0.78,0.682,0.813
-musk (id:1116),GaussianNB,601.496,0.998,0.991,0.998,0.998,0.989,0.995
-mfeat-fourier (id:971),KNeighborsClassifier,85.669,0.988,0.999,0.988,0.988,0.987,0.99
-Satellite (id:40900),DecisionTreeClassifier,103.826,0.874,0.811,0.874,0.865,0.808,0.846
-arsenic-male-bladder (id:947),GaussianNB,22.618,0.8,0.75,0.8,0.775,0.736,0.772
-analcatdata_apnea2 (id:765),DecisionTreeClassifier,24.533,0.902,0.833,0.902,0.899,0.804,0.868
-regime_alimentaire (id:42172),XGBClassifier,25.997,1.0,1.0,1.0,1.0,1.0,1.0
-page-blocks0.dat,XGBClassifier,106.519,0.922,0.882,0.922,0.92,0.868,0.903
-dgf_test (id:42883),XGBClassifier,487.46,0.975,0.957,0.975,0.974,0.949,0.966
-cpu_small (id:735),XGBClassifier,530.807,0.883,0.938,0.883,0.88,0.778,0.872
-analcatdata_birthday (id:968),XGBClassifier,145.268,0.745,0.939,0.745,0.718,0.51,0.731
-optdigits (id:980),KNeighborsClassifier,490.528,0.989,0.998,0.989,0.989,0.98,0.989
-kr-vs-k-zero_vs_eight.dat,KNeighborsClassifier,84.037,1.0,1.0,1.0,1.0,1.0,1.0
-analcatdata_lawsuit (id:450),KNeighborsClassifier,48.365,0.825,0.727,0.825,0.81,0.703,0.778
-JapaneseVowels (id:976),ExtraTreesClassifier,367.78,0.974,0.992,0.974,0.974,0.953,0.973
+dis (id:40713),RandomForestClassifier,40.936,0.721,0.994,0.721,0.666,0.566,0.734
+musk (id:1116),GaussianNB,551.615,0.998,0.991,0.998,0.998,0.989,0.995
+mfeat-fourier (id:971),GaussianNB,79.167,0.941,0.993,0.941,0.939,0.92,0.947
+Satellite (id:40900),RandomForestClassifier,78.182,0.875,0.857,0.875,0.866,0.855,0.866
+arsenic-male-bladder (id:947),GaussianNB,17.156,0.8,0.75,0.8,0.775,0.736,0.772
+analcatdata_apnea2 (id:765),SGDClassifier,16.504,0.528,0.105,0.528,0.236,0.091,0.298
+regime_alimentaire (id:42172),RandomForestClassifier,27.762,0.972,0.917,0.972,0.972,0.888,0.944
+page-blocks0.dat,RandomForestClassifier,93.749,0.906,0.868,0.906,0.902,0.853,0.887
+dgf_test (id:42883),RandomForestClassifier,61.163,0.981,0.961,0.981,0.981,0.954,0.972
+cpu_small (id:735),RandomForestClassifier,160.055,0.89,0.939,0.89,0.888,0.784,0.878
+analcatdata_birthday (id:968),RandomForestClassifier,26.712,0.532,0.922,0.532,0.297,0.092,0.475
+optdigits (id:980),RandomForestClassifier,76.42,0.958,0.992,0.958,0.957,0.924,0.958
+kr-vs-k-zero_vs_eight.dat,GaussianNB,22.061,0.688,0.042,0.688,0.662,0.031,0.422
+analcatdata_lawsuit (id:450),GaussianNB,16.465,0.742,0.6,0.742,0.701,0.569,0.671
+JapaneseVowels (id:976),RandomForestClassifier,114.196,0.976,0.992,0.976,0.976,0.948,0.974

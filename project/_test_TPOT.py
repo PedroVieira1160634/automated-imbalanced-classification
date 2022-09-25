@@ -15,7 +15,7 @@ from imblearn.metrics import geometric_mean_score
 print('\n\n----------------------------------start -', datetime.datetime.now(), '--------------------------------------\n\n')
 
 # df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
-df, dataset_name = read_file_openml(40713)
+df, dataset_name = read_file_openml(976)
 
 print("dataset: ", dataset_name)
 
@@ -51,7 +51,7 @@ start_time = time.time()
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
 # generations=100, population_size=100
-tpot = TPOTClassifier(generations=2, population_size=5, max_time_mins=10, scoring='f1', cv=cv, n_jobs=-1, random_state=42, verbosity=2)
+tpot = TPOTClassifier(generations=2, population_size=2, max_time_mins=10, scoring='f1', cv=cv, n_jobs=-1, random_state=42, verbosity=2)
 
 model = tpot.fit(X_train, y_train.values.ravel())
 
@@ -60,6 +60,9 @@ model = tpot.fit(X_train, y_train.values.ravel())
 # print("score    : %.3f" % tpot.score(X_test, y_test.values.ravel()))
 
 model_pred = model.predict(X_test)
+
+finish_time = round(time.time() - start_time, 3)
+
 
 balanced_accuracy = round(balanced_accuracy_score(y_test, model_pred),3)
 f1_score = round(f1_score(y_test, model_pred),3)
@@ -77,7 +80,6 @@ final_score = round(np.mean([balanced_accuracy,f1_score,roc_auc_score,g_mean_sco
 print("\nfinal score  :", final_score)
 
 
-finish_time = round(time.time() - start_time, 3)
 print("\ntime (s)       :", finish_time)
 finish_time_fmt = str(datetime.timedelta(seconds=round(finish_time,0)))
 print("time (HH:mm:ss):", finish_time_fmt)
