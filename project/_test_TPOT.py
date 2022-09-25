@@ -15,7 +15,7 @@ from imblearn.metrics import geometric_mean_score
 print('\n\n----------------------------------start -', datetime.datetime.now(), '--------------------------------------\n\n')
 
 # df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
-df, dataset_name = read_file_openml(976)
+df, dataset_name = read_file_openml(40713)
 
 print("dataset: ", dataset_name)
 
@@ -51,7 +51,6 @@ start_time = time.time()
 cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=3, random_state=42)
 
 # generations=100, population_size=100
-# generations=5, population_size=10
 tpot = TPOTClassifier(generations=2, population_size=5, max_time_mins=10, scoring='f1', cv=cv, n_jobs=-1, random_state=42, verbosity=2)
 
 model = tpot.fit(X_train, y_train.values.ravel())
