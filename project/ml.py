@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import datetime
@@ -392,6 +393,14 @@ def find_best_result(resultsList):
 
 
 
+# determine if application is a script file or frozen exe
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+elif __file__:
+    application_path = os.path.dirname(__file__)
+
+
+
 def write_characteristics(df_characteristics, best_result, result_updated):
     if df_characteristics.empty:
         print("--df_characteristics not valid on write_characteristics--")
@@ -400,7 +409,7 @@ def write_characteristics(df_characteristics, best_result, result_updated):
     
     try:
     
-        df_kb_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+        df_kb_c = pd.read_csv(application_path + "/output/" + "kb_characteristics.csv", sep=",")
         #print(df_kb_c, '\n')
         
         df_kb_c_without = df_kb_c.loc[(df_kb_c["dataset"].values != df_characteristics["dataset"].values)]
@@ -435,7 +444,7 @@ def write_characteristics(df_characteristics, best_result, result_updated):
             else:
                 df_characteristics = df_kb_c
         
-        df_characteristics.to_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",", index=False)
+        df_characteristics.to_csv(application_path + "/output/" + "kb_characteristics.csv", sep=",", index=False)
         
     except Exception:
         traceback.print_exc()
@@ -464,7 +473,7 @@ def write_results(best_result, elapsed_time):
         print("Best Final Score Obtained    :", current_value)
         print("Elapsed Time                 :", elapsed_time, "\n")
         
-        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",")
+        df_kb_r = pd.read_csv(application_path + "/output/" + "kb_results.csv", sep=",")
         
         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == best_result.dataset_name]
         
@@ -490,7 +499,7 @@ def write_results(best_result, elapsed_time):
                 df_kb_r.at[index, 'cohen kappa std'] = best_result.cohen_kappa_score_std
                 df_kb_r.at[index, 'total elapsed time'] = elapsed_time
                 
-                df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+                df_kb_r.to_csv(application_path + "/output/" + "kb_results.csv", sep=",", index=False)
                 
                 result_updated = True
                 
@@ -519,7 +528,7 @@ def write_results(best_result, elapsed_time):
                 elapsed_time
             ]
 
-            df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_results.csv", sep=",", index=False)
+            df_kb_r.to_csv(application_path + "/output/" + "kb_results.csv", sep=",", index=False)
             
             print("Results written, row added!","\n")  
         
@@ -541,7 +550,7 @@ def write_full_results(resultsList, dataset_name):
     
     try:
     
-        df_kb_r = pd.read_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",")
+        df_kb_r = pd.read_csv(application_path + "/output/" + "kb_full_results.csv", sep=",")
         
         df_kb_r2 = df_kb_r.loc[df_kb_r['dataset'] == dataset_name]
         
@@ -569,7 +578,7 @@ def write_full_results(resultsList, dataset_name):
 
             df_kb_r.sort_values(by=['final score'], ascending=False, inplace=True)
 
-            df_kb_r.to_csv(sys.path[0] + "/output/" + "kb_full_results.csv", sep=",", index=False)
+            df_kb_r.to_csv(application_path + "/output/" + "kb_full_results.csv", sep=",", index=False)
             
             print("Full Results written, rows added!","\n")
         
@@ -591,7 +600,7 @@ def get_best_results_by_characteristics(dataset_name):
         print("best_result:", dataset_name)
         return False
     
-    df_c = pd.read_csv(sys.path[0] + "/output/" + "kb_characteristics.csv", sep=",")
+    df_c = pd.read_csv(application_path + "/output/" + "kb_characteristics.csv", sep=",")
     df_c = df_c.dropna(axis=1)
     df_c = df_c.replace([np.inf, -np.inf], np.nan).dropna(axis=1)
     
