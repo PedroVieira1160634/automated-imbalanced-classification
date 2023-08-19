@@ -43,8 +43,8 @@ from scipy.stats import wilcoxon
 # df_lm.sort_values(by=["order"], inplace=True)
 # # print(df_lm)
 
-# values_lm = df_lm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
-# # values_lm = df_lm['roc auc'].to_numpy()
+# # values_lm = df_lm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
+# values_lm = df_lm['roc auc'].to_numpy()
 # print("Learning Module metrics: ", values_lm)
 
 
@@ -75,8 +75,8 @@ df_rm["order"] = df_rm["order"].astype('Int32')
 df_rm.sort_values(by=["order"], inplace=True)
 # print(df_rm)
 
-values_rm = df_rm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
-# values_rm = df_rm['roc auc'].to_numpy()
+# values_rm = df_rm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
+values_rm = df_rm['roc auc'].to_numpy()
 print("Recommendation Module metrics: ", values_rm)
 
 
@@ -85,8 +85,8 @@ print("Recommendation Module metrics: ", values_rm)
 df_tpot = pd.read_csv(application_path + "/output/" + "results_TPOT.csv", sep=",")
 # print(df_tpot)
 
-values_tpot = df_tpot[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
-# values_tpot = df_tpot['roc auc'].to_numpy()
+# values_tpot = df_tpot[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
+values_tpot = df_tpot['roc auc'].to_numpy()
 print("TPOT metrics: ", values_tpot)
 
 
