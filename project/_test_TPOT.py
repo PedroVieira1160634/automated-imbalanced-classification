@@ -92,30 +92,30 @@ print("\nclassifier: ", classifier)
 
 
 
-df_tpot = pd.read_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",")
+# df_tpot = pd.read_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",")
 
-df_tpot2 = df_tpot.loc[df_tpot['dataset'] == dataset_name]
+# df_tpot2 = df_tpot.loc[df_tpot['dataset'] == dataset_name]
 
-if df_tpot2.empty :
+# if df_tpot2.empty :
 
-    df_tpot.loc[len(df_tpot.index)] = [
-        dataset_name,
-        classifier,
-        finish_time,
-        balanced_accuracy,
-        f1_score,
-        roc_auc_score,
-        g_mean_score,
-        cohen_kappa,
-        final_score
-    ]
+#     df_tpot.loc[len(df_tpot.index)] = [
+#         dataset_name,
+#         classifier,
+#         finish_time,
+#         balanced_accuracy,
+#         f1_score,
+#         roc_auc_score,
+#         g_mean_score,
+#         cohen_kappa,
+#         final_score
+#     ]
 
-    df_tpot.to_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",", index=False)
+#     df_tpot.to_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",", index=False)
     
-    print("\nTPOT Results written, rows added!","\n")
+#     print("\nTPOT Results written, rows added!","\n")
 
-else:
-    print("\nTPOT Results not written!","\n")
+# else:
+#     print("\nTPOT Results not written!","\n")
 
 
 

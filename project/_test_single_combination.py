@@ -88,9 +88,9 @@ finish_time = (round(time.time() - start_time,3))
 
 best_result = find_best_result(resultsList)
 
-result_updated = write_results(best_result, finish_time)
+# result_updated = write_results(best_result, finish_time)
 
-write_full_results(resultsList, dataset_name)
+# write_full_results(resultsList, dataset_name)
 
-write_characteristics(df_characteristics, best_result, result_updated)
+# write_characteristics(df_characteristics, best_result, result_updated)
 
