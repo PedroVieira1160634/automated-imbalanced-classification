@@ -59,8 +59,6 @@ def classify_evaluate2(X, y, balancing, balancing_technique, dataset_name):
         g_mean_score_scores = scores['test_g_mean']
         cohen_kappa_scores = scores['test_cohen_kappa']
         
-        #std
-        
         final_score_values = []
         final_score_std_values = []
         
