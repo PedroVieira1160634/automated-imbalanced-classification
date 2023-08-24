@@ -126,6 +126,9 @@ if p > alpha:
 else:
 	print('\nDifferent distribution (reject H0)')
 
+#FAZER KB CSV ?
+
+
 
 
 # import numpy as np
