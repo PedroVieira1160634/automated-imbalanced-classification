@@ -16,7 +16,6 @@ from scipy.stats import wilcoxon
 # data2 = [1.142, -0.432, -0.938, -0.729, -0.846, -0.157, 0.500, 1.183, -1.075, -0.169]
 
 
-
 # #learning module
 # df_lm = pd.read_csv(application_path + "/output/" + "kb_results.csv", sep=",")
 # df_lm = df_lm.loc[
@@ -48,62 +47,84 @@ from scipy.stats import wilcoxon
 # print("Learning Module metrics: ", values_lm)
 
 
+# #recommendation module
+# df_rm = pd.read_csv(application_path + "/output/" + "kb_full_results.csv", sep=",")
+# df_rm = df_rm.loc[
+#     ( (df_rm['dataset'] == 'dis (id:40713)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
+#     ( (df_rm['dataset'] == 'musk (id:1116)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'XGBClassifier') ) |
+#     ( (df_rm['dataset'] == 'mfeat-fourier (id:971)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'Satellite (id:40900)') & (df_rm['pre processing'] == 'SMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'arsenic-male-bladder (id:947)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
+#     ( (df_rm['dataset'] == 'analcatdata_apnea2 (id:765)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'regime_alimentaire (id:42172)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'XGBClassifier') ) |
+#     ( (df_rm['dataset'] == 'page-blocks0.dat') & (df_rm['pre processing'] == 'SMOTE') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
+#     ( (df_rm['dataset'] == 'dgf_test (id:42883)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
+#     ( (df_rm['dataset'] == 'cpu_small (id:735)') & (df_rm['pre processing'] == 'SMOTETomek') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'analcatdata_birthday (id:968)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
+#     ( (df_rm['dataset'] == 'optdigits (id:980)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'kr-vs-k-zero_vs_eight.dat') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'XGBClassifier') ) |
+#     ( (df_rm['dataset'] == 'analcatdata_lawsuit (id:450)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
+#     ( (df_rm['dataset'] == 'JapaneseVowels (id:976)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') )
+#     ]
+# # Reorder the DataFrame
+# custom_order = ["2", "3", "12", "9", "15", "13", "14", "8", "7", "10", "6", "4", "1", "11", "5"]
+# df_rm["order"] = custom_order
+# df_rm["order"] = df_rm["order"].astype('Int32')
+# df_rm.sort_values(by=["order"], inplace=True)
+# # print(df_rm)
 
-#recommendation module
-df_rm = pd.read_csv(application_path + "/output/" + "kb_full_results.csv", sep=",")
-df_rm = df_rm.loc[
-    ( (df_rm['dataset'] == 'dis (id:40713)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
-    ( (df_rm['dataset'] == 'musk (id:1116)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'XGBClassifier') ) |
-    ( (df_rm['dataset'] == 'mfeat-fourier (id:971)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'Satellite (id:40900)') & (df_rm['pre processing'] == 'SMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'arsenic-male-bladder (id:947)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
-    ( (df_rm['dataset'] == 'analcatdata_apnea2 (id:765)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'regime_alimentaire (id:42172)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'XGBClassifier') ) |
-    ( (df_rm['dataset'] == 'page-blocks0.dat') & (df_rm['pre processing'] == 'SMOTE') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
-    ( (df_rm['dataset'] == 'dgf_test (id:42883)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
-    ( (df_rm['dataset'] == 'cpu_small (id:735)') & (df_rm['pre processing'] == 'SMOTETomek') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'analcatdata_birthday (id:968)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'LGBMClassifier') ) |
-    ( (df_rm['dataset'] == 'optdigits (id:980)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'kr-vs-k-zero_vs_eight.dat') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'XGBClassifier') ) |
-    ( (df_rm['dataset'] == 'analcatdata_lawsuit (id:450)') & (df_rm['pre processing'] == 'SVMSMOTE') & (df_rm['algorithm'] == 'GradientBoostingClassifier') ) |
-    ( (df_rm['dataset'] == 'JapaneseVowels (id:976)') & (df_rm['pre processing'] == 'RandomOverSampler') & (df_rm['algorithm'] == 'GradientBoostingClassifier') )
-    ]
-# Reorder the DataFrame
-custom_order = ["2", "3", "12", "9", "15", "13", "14", "8", "7", "10", "6", "4", "1", "11", "5"]
-df_rm["order"] = custom_order
-df_rm["order"] = df_rm["order"].astype('Int32')
-df_rm.sort_values(by=["order"], inplace=True)
-# print(df_rm)
-
-# values_rm = df_rm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
-values_rm = df_rm['roc auc'].to_numpy()
-print("Recommendation Module metrics: ", values_rm)
-
+# # values_rm = df_rm[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
+# values_rm = df_rm['roc auc'].to_numpy()
+# print("Recommendation Module metrics: ", values_rm)
 
 
-#TPOT
-df_tpot = pd.read_csv(application_path + "/output/" + "results_TPOT.csv", sep=",")
-# print(df_tpot)
+# #TPOT
+# df_tpot = pd.read_csv(application_path + "/output/" + "results_TPOT.csv", sep=",")
+# # print(df_tpot)
 
-# values_tpot = df_tpot[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
-values_tpot = df_tpot['roc auc'].to_numpy()
-print("TPOT metrics: ", values_tpot)
+# # values_tpot = df_tpot[['balanced accuracy', 'f1 score', 'roc auc', 'geometric mean', 'cohen kappa']].to_numpy().flatten() #.flatten()
+# values_tpot = df_tpot['roc auc'].to_numpy()
+# print("TPOT metrics: ", values_tpot)
 
 
-data1 = values_rm
-data2 = values_tpot
+df_kb_r = pd.read_csv(application_path + "/output/" + "kb_results_sht.csv", sep=",")
+
+dataset = 'analcatdata_lawsuit (id:450)'
+
+#internal
+df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]
+df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
+
+# #external
+# df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
+# df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'TPOT')]
+
+df_kb_r_1 = df_kb_r_1['final score'].to_numpy()
+df_kb_r_2 = df_kb_r_2['final score'].to_numpy()
+
+#internal
+print("\nLearning Module Final Score by Fold: ", df_kb_r_1)
+print("\nRecommendation Module Final Score by Fold: ", df_kb_r_2)
+
+# #external
+# print("\nRecommendation Module Final Score by Fold: ", df_kb_r_1)
+# print("\nTPOT Final Score by Fold: ", df_kb_r_2)
+
+
+data1 = df_kb_r_1
+data2 = df_kb_r_2
 
 # compare samples
 stat, p = wilcoxon(data1, data2)
 # print('Statistics=%.3f, p=%.3f' % (stat, p))
-print("Statistics=", stat)
+print("\nStatistics=", stat)
 print("p=", p)
 # interpret
 alpha = 0.05
 if p > alpha:
-	print('Same distribution (fail to reject H0)')
+	print('\nSame distribution (fail to reject H0)')
 else:
-	print('Different distribution (reject H0)')
+	print('\nDifferent distribution (reject H0)')
 
 
 
