@@ -1,5 +1,45 @@
 from ml import *
 
+def write_results_sht_wilcoxon(dataset, test_type, stat, p, res):
+    if not dataset or not test_type or not stat or not p or not res:
+        print("--result not valid on write_results_sht_wilcoxon--")
+        print("dataset:", dataset)
+        print("test_type:", test_type)
+        print("stat:", stat)
+        print("p:", p)
+        print("res:", res)
+        return False
+    
+    try:
+        
+        df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht_wilcoxon.csv", sep=",")
+        
+        df_kb_r2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['test type'] == test_type)]
+        
+        if df_kb_r2.empty:
+            df_kb_r.loc[len(df_kb_r.index)] = [
+                dataset,
+                test_type,
+                stat,
+                p,
+                res
+            ]
+            
+            df_kb_r.to_csv(application_path + "/output/" + "results_sht_wilcoxon.csv", sep=",", index=False)
+
+            print("Results SHT Wilcoxon written, row added!", "\n")
+
+        else:
+            print("Results SHT Wilcoxon not written!", "\n")
+            
+    except Exception:
+        traceback.print_exc()
+        return False
+    
+    return True
+
+
+
 # Wilcoxon signed-rank test
 # from numpy.random import seed
 # from numpy.random import randn
@@ -87,9 +127,10 @@ from scipy.stats import wilcoxon
 # print("TPOT metrics: ", values_tpot)
 
 
-df_kb_r = pd.read_csv(application_path + "/output/" + "kb_results_sht.csv", sep=",")
+df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=",")
 
-dataset = 'analcatdata_lawsuit (id:450)'
+#MUDAR AQUI
+dataset = 'arsenic-male-bladder (id:947)'
 
 #internal
 df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]
@@ -106,7 +147,7 @@ df_kb_r_2 = df_kb_r_2['final score'].to_numpy()
 print("\nLearning Module Final Score by Fold: ", df_kb_r_1)
 print("\nRecommendation Module Final Score by Fold: ", df_kb_r_2)
 
-# #external
+#external
 # print("\nRecommendation Module Final Score by Fold: ", df_kb_r_1)
 # print("\nTPOT Final Score by Fold: ", df_kb_r_2)
 
@@ -121,12 +162,21 @@ print("\nStatistics=", stat)
 print("p=", p)
 # interpret
 alpha = 0.05
-if p > alpha:
-	print('\nSame distribution (fail to reject H0)')
-else:
-	print('\nDifferent distribution (reject H0)')
+res=''
 
-#FAZER KB CSV ?
+print("")
+if p > alpha:
+	res = 'Same distribution (fail to reject H0)'
+	print(res)
+else:
+	res = 'Different distribution (reject H0)'
+	print(res)
+print("")
+
+test_type = 'internal'
+# test_type = 'external'
+write_results_sht_wilcoxon(dataset, test_type, stat, p, res)
+
 
 
 

@@ -1,0 +1,6 @@
+dataset,test type,statistic,pvalue,result
+dis (id:40713),internal,143.5,0.0671412371698745,Same distribution (fail to reject H0)
+musk (id:1116),internal,0.0,0.0,Same distribution (fail to reject H0)
+mfeat-fourier (id:971),internal,7.0,0.019243734161676,Different distribution (reject H0)
+Satellite (id:40900),internal,84.5,0.012042921126176722,Different distribution (reject H0)
+arsenic-male-bladder (id:947),0.0,0.0,Same distribution (fail to reject H0)

@@ -15,9 +15,9 @@ def classify_evaluate2(X, y, balancing, balancing_technique, dataset_name):
 
     #MUDAR AQUI
     array_classifiers = [
-        # LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
+        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         # XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
-        GradientBoostingClassifier(random_state=42)
+        # GradientBoostingClassifier(random_state=42)
     ]
     
     resultsList = []
@@ -103,29 +103,29 @@ def classify_evaluate2(X, y, balancing, balancing_technique, dataset_name):
     return resultsList
 
 
-def write_results_sht(best_result):
-    if not best_result:
-        print("--best_result not valid on write_results--")
-        print("best_result:", best_result)
+def write_results_sht(result):
+    if not result:
+        print("--result not valid on write_results--")
+        print("result:", result)
         return False
     
     try:
         
         df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=",")
         
-        df_kb_r2 = df_kb_r.loc[(df_kb_r['dataset'] == best_result.dataset_name) & (df_kb_r['output app'] == best_result.output_app)]
+        df_kb_r2 = df_kb_r.loc[(df_kb_r['dataset'] == result.dataset_name) & (df_kb_r['output app'] == result.output_app)]
         
         if df_kb_r2.empty :
         
             fold = 1
-            for final_score, final_score_std in zip(best_result.final_score_values, best_result.final_score_std_values):
+            for final_score, final_score_std in zip(result.final_score_values, result.final_score_std_values):
                 df_kb_r.loc[len(df_kb_r.index)] = [
-                    best_result.dataset_name,
-                    best_result.balancing,
-                    best_result.algorithm,
-                    best_result.output_app,
+                    result.dataset_name,
+                    result.balancing,
+                    result.algorithm,
+                    result.output_app,
                     fold,
-                    best_result.time,
+                    result.time,
                     final_score,
                     final_score_std
                 ]
@@ -151,7 +151,7 @@ def write_results_sht(best_result):
 # df, dataset_name = read_file(dataset_location)
 
 #MUDAR AQUI
-id_openml = '450'
+id_openml = '947'
 df, dataset_name = read_file_openml(id_openml)
 
 
@@ -163,7 +163,7 @@ X, y, df_characteristics = features_labels(df, dataset_name)
 #MUDAR AQUI 
 # "RandomOverSampler", "SMOTE", "SVMSMOTE", "SMOTETomek"
 array_balancing = [
-    "SVMSMOTE"
+    "RandomOverSampler"
 ]
 
 resultsList = []
