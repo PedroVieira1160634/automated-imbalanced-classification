@@ -1,6 +1,16 @@
 dataset,test type,statistic,pvalue,result
 dis (id:40713),internal,143.5,0.0671412371698745,Same distribution (fail to reject H0)
-musk (id:1116),internal,0.0,0.0,Same distribution (fail to reject H0)
+musk (id:1116),internal,-,-,Same distribution
 mfeat-fourier (id:971),internal,7.0,0.019243734161676,Different distribution (reject H0)
 Satellite (id:40900),internal,84.5,0.012042921126176722,Different distribution (reject H0)
-arsenic-male-bladder (id:947),0.0,0.0,Same distribution (fail to reject H0)
+arsenic-male-bladder (id:947),internal,-,-,Same distribution
+analcatdata_apnea2 (id:765),internal,-,-,Same distribution
+regime_alimentaire (id:42172),internal,58.5,0.2394838108967593,Same distribution (fail to reject H0)
+page-blocks0.dat,internal,135.0,0.07431054726988799,Same distribution (fail to reject H0)
+dgf_test (id:42883),internal,171.0,0.908875421127445,Same distribution (fail to reject H0)
+cpu_small (id:735),internal,63.0,0.0014162892346713063,Different distribution (reject H0)
+analcatdata_birthday (id:968),internal,98.5,0.01732716698220723,Different distribution (reject H0)
+optdigits (id:980),internal,149.0,0.2172690576667412,Same distribution (fail to reject H0)
+kr-vs-k-zero_vs_eight.dat,internal,0.0,0.06788915486182899,Same distribution (fail to reject H0)
+analcatdata_lawsuit (id:450),internal,20.0,0.07163446369174455,Same distribution (fail to reject H0)
+JapaneseVowels (id:976),internal,0.0,1.714847401033251e-06,Different distribution (reject H0)

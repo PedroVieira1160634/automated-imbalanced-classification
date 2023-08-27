@@ -299,3 +299,603 @@ arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,RM,27,4.735,1.0,0
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,RM,28,4.735,0.243,0.336
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,RM,29,4.735,1.0,0.0
 arsenic-male-bladder (id:947),RandomOverSampler,LGBMClassifier,RM,30,4.735,0.673,0.17
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,1,5.043,0.832,0.083
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,2,5.043,0.965,0.032
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,3,5.043,0.894,0.043
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,4,5.043,0.904,0.082
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,5,5.043,0.868,0.039
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,6,5.043,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,7,5.043,0.893,0.092
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,8,5.043,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,9,5.043,0.865,0.114
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,10,5.043,0.962,0.037
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,11,5.043,0.865,0.072
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,12,5.043,1.0,0.0
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,13,5.043,0.966,0.032
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,14,5.043,0.817,0.122
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,15,5.043,0.924,0.065
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,16,5.043,0.925,0.066
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,17,5.043,0.826,0.043
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,18,5.043,0.818,0.109
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,19,5.043,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,20,5.043,0.77,0.12
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,21,5.043,1.0,0.0
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,22,5.043,0.901,0.053
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,23,5.043,0.931,0.057
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,24,5.043,0.706,0.135
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,25,5.043,0.889,0.065
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,26,5.043,0.893,0.091
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,27,5.043,0.961,0.036
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,28,5.043,0.793,0.133
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,29,5.043,0.926,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,LM,30,5.043,1.0,0.0
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,1,6.197,0.832,0.083
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,2,6.197,0.965,0.032
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,3,6.197,0.894,0.043
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,4,6.197,0.904,0.082
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,5,6.197,0.868,0.039
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,6,6.197,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,7,6.197,0.893,0.092
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,8,6.197,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,9,6.197,0.865,0.114
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,10,6.197,0.962,0.037
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,11,6.197,0.865,0.072
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,12,6.197,1.0,0.0
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,13,6.197,0.966,0.032
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,14,6.197,0.817,0.122
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,15,6.197,0.924,0.065
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,16,6.197,0.925,0.066
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,17,6.197,0.826,0.043
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,18,6.197,0.818,0.109
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,19,6.197,0.927,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,20,6.197,0.77,0.12
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,21,6.197,1.0,0.0
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,22,6.197,0.901,0.053
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,23,6.197,0.931,0.057
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,24,6.197,0.706,0.135
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,25,6.197,0.889,0.065
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,26,6.197,0.893,0.091
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,27,6.197,0.961,0.036
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,28,6.197,0.793,0.133
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,29,6.197,0.926,0.067
+analcatdata_apnea2 (id:765),RandomOverSampler,GradientBoostingClassifier,RM,30,6.197,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,1,5.018,0.819,0.101
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,2,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,3,5.018,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,4,5.018,0.876,0.094
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,5,5.018,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,6,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,7,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,8,5.018,0.856,0.017
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,9,5.018,0.934,0.054
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,10,5.018,0.923,0.069
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,11,5.018,0.925,0.045
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,12,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,13,5.018,0.879,0.098
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,14,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,15,5.018,0.779,0.059
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,16,5.018,0.884,0.06
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,17,5.018,0.866,0.087
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,18,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,19,5.018,0.884,0.06
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,20,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,21,5.018,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,22,5.018,0.929,0.048
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,23,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,24,5.018,0.876,0.094
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,25,5.018,0.779,0.059
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,26,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,27,5.018,0.884,0.06
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,28,5.018,0.927,0.047
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,29,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,LGBMClassifier,LM,30,5.018,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,1,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,2,8.194,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,3,8.194,0.932,0.051
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,4,8.194,0.876,0.094
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,5,8.194,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,6,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,7,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,8,8.194,0.874,0.04
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,9,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,10,8.194,0.851,0.111
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,11,8.194,0.932,0.051
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,12,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,13,8.194,0.879,0.098
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,14,8.194,0.819,0.101
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,15,8.194,0.716,0.092
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,16,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,17,8.194,0.817,0.102
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,18,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,19,8.194,0.934,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,20,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,21,8.194,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,22,8.194,0.812,0.09
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,23,8.194,0.935,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,24,8.194,0.876,0.094
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,25,8.194,0.739,0.107
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,26,8.194,1.0,0.0
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,27,8.194,0.884,0.06
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,28,8.194,0.934,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,29,8.194,0.881,0.054
+regime_alimentaire (id:42172),SVMSMOTE,XGBClassifier,RM,30,8.194,0.923,0.069
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,1,19.97,0.944,0.033
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,2,19.97,0.949,0.04
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,3,19.97,0.94,0.043
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,4,19.97,0.946,0.043
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,5,19.97,0.922,0.047
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,6,19.97,0.934,0.045
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,7,19.97,0.886,0.057
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,8,19.97,0.93,0.048
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,9,19.97,0.929,0.04
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,10,19.97,0.878,0.069
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,11,19.97,0.938,0.038
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,12,19.97,0.945,0.034
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,13,19.97,0.924,0.041
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,14,19.97,0.942,0.043
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,15,19.97,0.932,0.039
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,16,19.97,0.958,0.031
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,17,19.97,0.933,0.048
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,18,19.97,0.922,0.044
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,19,19.97,0.921,0.046
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,20,19.97,0.884,0.06
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,21,19.97,0.898,0.057
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,22,19.97,0.933,0.034
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,23,19.97,0.936,0.037
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,24,19.97,0.937,0.045
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,25,19.97,0.934,0.049
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,26,19.97,0.956,0.032
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,27,19.97,0.908,0.053
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,28,19.97,0.908,0.051
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,29,19.97,0.91,0.054
+page-blocks0.dat,RandomOverSampler,XGBClassifier,LM,30,19.97,0.93,0.048
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,1,11.008,0.934,0.049
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,2,11.008,0.939,0.051
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,3,11.008,0.922,0.06
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,4,11.008,0.942,0.042
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,5,11.008,0.922,0.047
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,6,11.008,0.931,0.053
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,7,11.008,0.893,0.06
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,8,11.008,0.938,0.05
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,9,11.008,0.922,0.051
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,10,11.008,0.884,0.073
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,11,11.008,0.93,0.051
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,12,11.008,0.915,0.058
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,13,11.008,0.932,0.038
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,14,11.008,0.914,0.069
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,15,11.008,0.906,0.057
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,16,11.008,0.944,0.046
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,17,11.008,0.911,0.061
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,18,11.008,0.934,0.041
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,19,11.008,0.93,0.052
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,20,11.008,0.887,0.069
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,21,11.008,0.9,0.064
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,22,11.008,0.941,0.038
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,23,11.008,0.925,0.052
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,24,11.008,0.927,0.055
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,25,11.008,0.946,0.048
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,26,11.008,0.949,0.04
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,27,11.008,0.906,0.058
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,28,11.008,0.902,0.064
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,29,11.008,0.908,0.064
+page-blocks0.dat,SMOTE,LGBMClassifier,RM,30,11.008,0.931,0.053
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,1,49.39,0.977,0.02
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,2,49.39,0.967,0.022
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,3,49.39,0.987,0.012
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,4,49.39,0.983,0.011
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,5,49.39,0.988,0.007
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,6,49.39,0.995,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,7,49.39,0.977,0.011
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,8,49.39,0.979,0.015
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,9,49.39,0.983,0.011
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,10,49.39,0.992,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,11,49.39,0.971,0.017
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,12,49.39,0.978,0.02
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,13,49.39,0.995,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,14,49.39,0.993,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,15,49.39,0.971,0.018
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,16,49.39,0.98,0.011
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,17,49.39,1.0,0.0
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,18,49.39,0.979,0.015
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,19,49.39,0.963,0.021
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,20,49.39,0.995,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,21,49.39,0.978,0.02
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,22,49.39,0.988,0.006
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,23,49.39,0.995,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,24,49.39,0.995,0.004
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,25,49.39,0.971,0.018
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,26,49.39,0.958,0.025
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,27,49.39,0.979,0.015
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,28,49.39,0.988,0.007
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,29,49.39,0.98,0.011
+dgf_test (id:42883),RandomOverSampler,XGBClassifier,LM,30,49.39,0.969,0.022
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,1,20.728,0.97,0.022
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,2,20.728,0.97,0.023
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,3,20.728,0.97,0.022
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,4,20.728,0.968,0.018
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,5,20.728,0.995,0.004
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,6,20.728,0.995,0.004
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,7,20.728,0.972,0.014
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,8,20.728,0.988,0.007
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,9,20.728,0.991,0.008
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,10,20.728,0.98,0.011
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,11,20.728,0.963,0.025
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,12,20.728,0.977,0.02
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,13,20.728,0.991,0.008
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,14,20.728,0.984,0.011
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,15,20.728,0.992,0.003
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,16,20.728,0.98,0.011
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,17,20.728,0.983,0.01
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,18,20.728,0.991,0.008
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,19,20.728,0.971,0.018
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,20,20.728,0.988,0.007
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,21,20.728,0.986,0.012
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,22,20.728,0.979,0.015
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,23,20.728,0.995,0.004
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,24,20.728,0.986,0.012
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,25,20.728,0.983,0.011
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,26,20.728,0.974,0.019
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,27,20.728,0.983,0.011
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,28,20.728,0.988,0.007
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,29,20.728,0.973,0.015
+dgf_test (id:42883),SVMSMOTE,LGBMClassifier,RM,30,20.728,0.983,0.011
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,1,10.76,0.902,0.06
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,2,10.76,0.923,0.047
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,3,10.76,0.928,0.044
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,4,10.76,0.908,0.057
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,5,10.76,0.932,0.042
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,6,10.76,0.906,0.058
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,7,10.76,0.912,0.055
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,8,10.76,0.915,0.05
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,9,10.76,0.923,0.046
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,10,10.76,0.919,0.052
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,11,10.76,0.921,0.046
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,12,10.76,0.921,0.048
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,13,10.76,0.932,0.042
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,14,10.76,0.898,0.063
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,15,10.76,0.912,0.052
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,16,10.76,0.922,0.048
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,17,10.76,0.914,0.054
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,18,10.76,0.91,0.056
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,19,10.76,0.925,0.045
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,20,10.76,0.917,0.051
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,21,10.76,0.92,0.051
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,22,10.76,0.9,0.06
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,23,10.76,0.908,0.055
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,24,10.76,0.915,0.052
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,25,10.76,0.919,0.048
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,26,10.76,0.909,0.055
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,27,10.76,0.923,0.046
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,28,10.76,0.923,0.046
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,29,10.76,0.927,0.047
+cpu_small (id:735),SMOTETomek,LGBMClassifier,LM,30,10.76,0.924,0.047
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,1,66.429,0.902,0.059
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,2,66.429,0.927,0.043
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,3,66.429,0.915,0.05
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,4,66.429,0.907,0.057
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,5,66.429,0.925,0.044
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,6,66.429,0.911,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,7,66.429,0.904,0.059
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,8,66.429,0.908,0.056
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,9,66.429,0.916,0.05
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,10,66.429,0.911,0.057
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,11,66.429,0.911,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,12,66.429,0.913,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,13,66.429,0.929,0.044
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,14,66.429,0.91,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,15,66.429,0.917,0.05
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,16,66.429,0.908,0.057
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,17,66.429,0.903,0.06
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,18,66.429,0.909,0.057
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,19,66.429,0.912,0.053
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,20,66.429,0.898,0.063
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,21,66.429,0.921,0.052
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,22,66.429,0.894,0.061
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,23,66.429,0.895,0.064
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,24,66.429,0.912,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,25,66.429,0.92,0.048
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,26,66.429,0.909,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,27,66.429,0.911,0.054
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,28,66.429,0.925,0.045
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,29,66.429,0.919,0.052
+cpu_small (id:735),SMOTETomek,GradientBoostingClassifier,RM,30,66.429,0.922,0.049
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,1,14.926,0.937,0.07
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,2,14.926,0.808,0.122
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,3,14.926,0.874,0.113
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,4,14.926,0.892,0.074
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,5,14.926,0.78,0.159
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,6,14.926,0.778,0.146
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,7,14.926,0.853,0.137
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,8,14.926,0.769,0.138
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,9,14.926,0.875,0.116
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,10,14.926,0.898,0.111
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,11,14.926,1.0,0.0
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,12,14.926,0.808,0.145
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,13,14.926,0.961,0.035
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,14,14.926,0.731,0.186
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,15,14.926,0.669,0.224
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,16,14.926,0.813,0.143
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,17,14.926,0.871,0.064
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,18,14.926,0.864,0.11
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,19,14.926,0.928,0.065
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,20,14.926,0.871,0.135
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,21,14.926,0.807,0.121
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,22,14.926,0.858,0.098
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,23,14.926,0.882,0.119
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,24,14.926,0.759,0.173
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,25,14.926,0.843,0.129
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,26,14.926,0.852,0.111
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,27,14.926,0.778,0.146
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,28,14.926,0.746,0.162
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,29,14.926,0.899,0.091
+analcatdata_birthday (id:968),SVMSMOTE,XGBClassifier,LM,30,14.926,0.784,0.17
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,1,6.371,0.762,0.18
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,2,6.371,0.815,0.13
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,3,6.371,0.929,0.065
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,4,6.371,0.816,0.131
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,5,6.371,0.757,0.17
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,6,6.371,0.778,0.146
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,7,6.371,0.859,0.1
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,8,6.371,0.676,0.193
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,9,6.371,0.809,0.149
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,10,6.371,0.842,0.127
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,11,6.371,0.93,0.051
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,12,6.371,0.783,0.149
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,13,6.371,0.936,0.069
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,14,6.371,0.726,0.181
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,15,6.371,0.572,0.299
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,16,6.371,0.835,0.129
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,17,6.371,0.742,0.159
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,18,6.371,0.928,0.065
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,19,6.371,0.784,0.152
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,20,6.371,0.895,0.109
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,21,6.371,0.712,0.18
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,22,6.371,0.862,0.102
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,23,6.371,0.905,0.094
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,24,6.371,0.788,0.155
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,25,6.371,0.829,0.121
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,26,6.371,0.852,0.111
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,27,6.371,0.812,0.128
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,28,6.371,0.749,0.164
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,29,6.371,0.784,0.152
+analcatdata_birthday (id:968),RandomOverSampler,LGBMClassifier,RM,30,6.371,0.738,0.186
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,1,73.736,0.977,0.017
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,2,73.736,0.982,0.012
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,3,73.736,0.977,0.017
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,4,73.736,0.978,0.018
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,5,73.736,0.988,0.008
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,6,73.736,1.0,0.0
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,7,73.736,0.986,0.011
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,8,73.736,0.992,0.007
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,9,73.736,0.975,0.019
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,10,73.736,0.986,0.011
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,11,73.736,0.977,0.017
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,12,73.736,0.983,0.013
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,13,73.736,0.983,0.014
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,14,73.736,0.989,0.01
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,15,73.736,0.965,0.026
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,16,73.736,0.989,0.009
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,17,73.736,0.989,0.009
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,18,73.736,0.997,0.004
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,19,73.736,0.997,0.004
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,20,73.736,0.989,0.008
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,21,73.736,0.989,0.009
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,22,73.736,0.974,0.019
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,23,73.736,0.994,0.004
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,24,73.736,0.986,0.011
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,25,73.736,0.971,0.021
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,26,73.736,0.977,0.017
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,27,73.736,0.997,0.004
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,28,73.736,1.0,0.0
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,29,73.736,0.974,0.018
+optdigits (id:980),SVMSMOTE,XGBClassifier,LM,30,73.736,0.992,0.007
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,1,71.496,0.975,0.02
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,2,71.496,0.972,0.023
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,3,71.496,0.983,0.014
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,4,71.496,0.981,0.017
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,5,71.496,0.988,0.008
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,6,71.496,0.992,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,7,71.496,0.987,0.013
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,8,71.496,0.989,0.01
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,9,71.496,0.979,0.02
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,10,71.496,0.986,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,11,71.496,0.981,0.016
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,12,71.496,0.98,0.016
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,13,71.496,0.976,0.023
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,14,71.496,0.992,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,15,71.496,0.968,0.023
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,16,71.496,0.986,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,17,71.496,0.986,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,18,71.496,0.992,0.011
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,19,71.496,0.995,0.007
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,20,71.496,0.981,0.015
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,21,71.496,0.987,0.013
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,22,71.496,0.978,0.02
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,23,71.496,0.989,0.01
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,24,71.496,0.989,0.01
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,25,71.496,0.962,0.027
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,26,71.496,0.988,0.008
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,27,71.496,0.982,0.02
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,28,71.496,0.992,0.007
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,29,71.496,0.983,0.012
+optdigits (id:980),RandomOverSampler,GradientBoostingClassifier,RM,30,71.496,0.988,0.017
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,1,6.895,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,2,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,3,6.895,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,4,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,5,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,6,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,7,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,8,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,9,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,10,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,11,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,12,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,13,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,14,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,15,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,16,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,17,6.895,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,18,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,19,6.895,0.918,0.098
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,20,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,21,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,22,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,23,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,24,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,25,6.895,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,26,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,27,6.895,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,28,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,29,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,GradientBoostingClassifier,LM,30,6.895,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,1,7.769,0.94,0.069
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,2,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,3,7.769,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,4,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,5,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,6,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,7,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,8,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,9,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,10,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,11,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,12,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,13,7.769,0.849,0.076
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,14,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,15,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,16,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,17,7.769,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,18,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,19,7.769,0.682,0.175
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,20,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,21,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,22,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,23,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,24,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,25,7.769,0.941,0.07
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,26,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,27,7.769,0.789,0.118
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,28,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,29,7.769,1.0,0.0
+kr-vs-k-zero_vs_eight.dat,SVMSMOTE,XGBClassifier,RM,30,7.769,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,1,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,2,4.357,0.737,0.093
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,3,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,4,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,5,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,6,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,7,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,8,4.357,0.899,0.09
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,9,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,10,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,11,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,12,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,13,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,14,4.357,0.839,0.156
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,15,4.357,0.908,0.097
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,16,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,17,4.357,0.75,0.12
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,18,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,19,4.357,0.908,0.097
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,20,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,21,4.357,0.908,0.097
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,22,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,23,4.357,0.908,0.097
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,24,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,25,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,26,4.357,0.746,0.112
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,27,4.357,0.908,0.097
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,28,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,29,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),RandomOverSampler,LGBMClassifier,LM,30,4.357,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,1,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,2,6.096,0.737,0.093
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,3,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,4,6.096,0.9,0.09
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,5,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,6,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,7,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,8,6.096,0.838,0.156
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,9,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,10,6.096,0.855,0.161
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,11,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,12,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,13,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,14,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,15,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,16,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,17,6.096,0.75,0.12
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,18,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,19,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,20,6.096,0.847,0.155
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,21,6.096,0.9,0.09
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,22,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,23,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,24,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,25,6.096,0.908,0.097
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,26,6.096,0.748,0.116
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,27,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,28,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,29,6.096,1.0,0.0
+analcatdata_lawsuit (id:450),SVMSMOTE,GradientBoostingClassifier,RM,30,6.096,1.0,0.0
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,1,39.014,0.991,0.007
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,2,39.014,0.982,0.015
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,3,39.014,0.989,0.01
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,4,39.014,0.986,0.012
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,5,39.014,0.986,0.012
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,6,39.014,0.997,0.004
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,7,39.014,0.99,0.009
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,8,39.014,0.988,0.01
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,9,39.014,0.994,0.005
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,10,39.014,0.985,0.012
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,11,39.014,0.985,0.011
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,12,39.014,0.989,0.013
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,13,39.014,0.986,0.012
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,14,39.014,0.989,0.01
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,15,39.014,0.987,0.011
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,16,39.014,0.995,0.005
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,17,39.014,0.99,0.009
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,18,39.014,0.988,0.008
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,19,39.014,0.99,0.007
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,20,39.014,0.992,0.006
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,21,39.014,0.988,0.009
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,22,39.014,0.991,0.007
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,23,39.014,0.984,0.013
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,24,39.014,0.99,0.009
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,25,39.014,0.99,0.008
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,26,39.014,0.988,0.011
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,27,39.014,0.998,0.003
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,28,39.014,0.989,0.013
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,29,39.014,0.981,0.015
+JapaneseVowels (id:976),SVMSMOTE,LGBMClassifier,LM,30,39.014,0.984,0.013
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,1,100.012,0.982,0.02
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,2,100.012,0.969,0.03
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,3,100.012,0.972,0.028
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,4,100.012,0.977,0.022
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,5,100.012,0.975,0.026
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,6,100.012,0.979,0.021
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,7,100.012,0.972,0.026
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,8,100.012,0.961,0.033
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,9,100.012,0.964,0.031
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,10,100.012,0.972,0.026
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,11,100.012,0.963,0.032
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,12,100.012,0.969,0.034
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,13,100.012,0.978,0.021
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,14,100.012,0.974,0.024
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,15,100.012,0.971,0.029
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,16,100.012,0.974,0.025
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,17,100.012,0.978,0.022
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,18,100.012,0.982,0.015
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,19,100.012,0.972,0.026
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,20,100.012,0.971,0.025
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,21,100.012,0.972,0.025
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,22,100.012,0.977,0.023
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,23,100.012,0.972,0.026
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,24,100.012,0.967,0.03
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,25,100.012,0.978,0.018
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,26,100.012,0.979,0.022
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,27,100.012,0.976,0.022
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,28,100.012,0.969,0.031
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,29,100.012,0.975,0.024
+JapaneseVowels (id:976),RandomOverSampler,GradientBoostingClassifier,RM,30,100.012,0.977,0.022

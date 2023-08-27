@@ -15,9 +15,9 @@ def classify_evaluate2(X, y, balancing, balancing_technique, dataset_name):
 
     #MUDAR AQUI
     array_classifiers = [
-        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
+        # LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         # XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
-        # GradientBoostingClassifier(random_state=42)
+        GradientBoostingClassifier(random_state=42)
     ]
     
     resultsList = []
@@ -151,8 +151,9 @@ def write_results_sht(result):
 # df, dataset_name = read_file(dataset_location)
 
 #MUDAR AQUI
-id_openml = '947'
+id_openml = '976'
 df, dataset_name = read_file_openml(id_openml)
+# df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
 
 
 
@@ -160,7 +161,7 @@ start_time = time.time()
         
 X, y, df_characteristics = features_labels(df, dataset_name)
 
-#MUDAR AQUI 
+#MUDAR AQUI
 # "RandomOverSampler", "SMOTE", "SVMSMOTE", "SMOTETomek"
 array_balancing = [
     "RandomOverSampler"

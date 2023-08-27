@@ -1,7 +1,7 @@
 from ml import *
 
 def write_results_sht_wilcoxon(dataset, test_type, stat, p, res):
-    if not dataset or not test_type or not stat or not p or not res:
+    if not dataset or not test_type: #or not stat or not p or not res:
         print("--result not valid on write_results_sht_wilcoxon--")
         print("dataset:", dataset)
         print("test_type:", test_type)
@@ -130,7 +130,7 @@ from scipy.stats import wilcoxon
 df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=",")
 
 #MUDAR AQUI
-dataset = 'arsenic-male-bladder (id:947)'
+dataset = 'JapaneseVowels (id:976)'
 
 #internal
 df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]
