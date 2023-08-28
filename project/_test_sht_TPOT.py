@@ -11,13 +11,67 @@ from imblearn.over_sampling import SMOTE
 from tpot import TPOTClassifier
 from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score, make_scorer, cohen_kappa_score
 from imblearn.metrics import geometric_mean_score
+from ml import *
 
 print('\n\n----------------------------------start -', datetime.datetime.now(), '--------------------------------------\n\n')
 
+class ResultsSHT(object):
+    def __init__(self, dataset_name, algorithm, output_app, time, final_score_values, final_score_std_values):
+        self.dataset_name = dataset_name
+        # self.balancing = balancing
+        self.algorithm = algorithm
+        self.output_app = output_app
+        self.time = time
+        self.final_score_values = final_score_values
+        self.final_score_std_values = final_score_std_values
+        
+def write_results_sht(result):
+    if not result:
+        print("--result not valid on write_results--")
+        print("result:", result)
+        return False
+    
+    try:
+        
+        df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=",")
+        
+        df_kb_r2 = df_kb_r.loc[(df_kb_r['dataset'] == result.dataset_name) & (df_kb_r['output app'] == result.output_app)]
+        
+        if df_kb_r2.empty :
+        
+            fold = 1
+            for final_score, final_score_std in zip(result.final_score_values, result.final_score_std_values):
+                df_kb_r.loc[len(df_kb_r.index)] = [
+                    result.dataset_name,
+                    '-', # result.balancing,
+                    result.algorithm,
+                    result.output_app,
+                    fold,
+                    result.time,
+                    final_score,
+                    final_score_std
+                ]
+                fold += 1
+
+            df_kb_r.to_csv(application_path + "/output/" + "results_sht.csv", sep=",", index=False)
+            
+            print("Results SHT written, row added!","\n")
+        
+        else:
+            print("Results SHT not written!","\n")
+        
+    except Exception:
+        traceback.print_exc()
+        return False
+    
+    return True
+
+#MUDAR AQUI
 # df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
-df, dataset_name = read_file_openml(450)
+df, dataset_name = read_file_openml(976)
 
 print("dataset: ", dataset_name)
+
 
 X = df.iloc[: , :-1]
 y = df.iloc[: , -1:]
@@ -45,6 +99,7 @@ if preserve_name:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42) #test_size=0.25
+
 
 start_time = time.time()
 
@@ -181,21 +236,31 @@ final_score = round(np.mean([balanced_accuracy,f1,roc_auc,g_mean_score,cohen_kap
 print("\nfinal score  :", final_score)
 
 
-print("\ntime (s)       :", finish_time)
-finish_time_fmt = str(datetime.timedelta(seconds=round(finish_time,0)))
-print("time (HH:mm:ss):", finish_time_fmt)
+# print("\ntime (s)       :", finish_time)
+# finish_time_fmt = str(datetime.timedelta(seconds=round(finish_time,0)))
+# print("time (HH:mm:ss):", finish_time_fmt)
 
 
 # # print("class name: ", tpot.__class__.__name__)
 classifier = str(tpot._optimized_pipeline)
 classifier = classifier.split("(", 1)[0]
-print("\nclassifier: ", classifier)
+# print("\nclassifier: ", classifier)
 # print("\nclassifier: ")
 
 
+output_app = 'TPOT'
+
+print("")
+print("APP:", output_app)
+print("classifier:", classifier)
+print("finish_time:", finish_time)
+print("")
+
+r1 = ResultsSHT(dataset_name, classifier, output_app, finish_time, final_score_values, final_score_std_values)
+
+write_results_sht(r1)
 
 
-#write
 
 
 

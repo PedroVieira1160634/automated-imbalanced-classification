@@ -133,23 +133,23 @@ df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=","
 dataset = 'JapaneseVowels (id:976)'
 
 #internal
-df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]
-df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
+# df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]
+# df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
 
 # #external
-# df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
-# df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'TPOT')]
+df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'RM')]
+df_kb_r_2 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'TPOT')]
 
 df_kb_r_1 = df_kb_r_1['final score'].to_numpy()
 df_kb_r_2 = df_kb_r_2['final score'].to_numpy()
 
 #internal
-print("\nLearning Module Final Score by Fold: ", df_kb_r_1)
-print("\nRecommendation Module Final Score by Fold: ", df_kb_r_2)
+# print("\nLearning Module Final Score by Fold: ", df_kb_r_1)
+# print("\nRecommendation Module Final Score by Fold: ", df_kb_r_2)
 
 #external
-# print("\nRecommendation Module Final Score by Fold: ", df_kb_r_1)
-# print("\nTPOT Final Score by Fold: ", df_kb_r_2)
+print("\nRecommendation Module Final Score by Fold: ", df_kb_r_1)
+print("\nTPOT Final Score by Fold: ", df_kb_r_2)
 
 
 data1 = df_kb_r_1
@@ -173,8 +173,8 @@ else:
 	print(res)
 print("")
 
-test_type = 'internal'
-# test_type = 'external'
+# test_type = 'internal'
+test_type = 'external'
 write_results_sht_wilcoxon(dataset, test_type, stat, p, res)
 
 
