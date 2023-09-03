@@ -130,7 +130,7 @@ from scipy.stats import wilcoxon
 df_kb_r = pd.read_csv(application_path + "/output/" + "results_sht.csv", sep=",")
 
 #MUDAR AQUI
-dataset = 'JapaneseVowels (id:976)'
+dataset = 'arsenic-male-bladder (id:947)'
 
 #internal
 # df_kb_r_1 = df_kb_r.loc[(df_kb_r['dataset'] == dataset) & (df_kb_r['output app'] == 'LM')]

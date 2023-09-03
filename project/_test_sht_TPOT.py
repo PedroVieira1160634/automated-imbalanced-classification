@@ -66,8 +66,9 @@ def write_results_sht(result):
     
     return True
 
+
 #MUDAR AQUI
-# df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat")
+# df, dataset_name = read_file(sys.path[0] + "/input/" + "kr-vs-k-zero_vs_eight.dat") #"page-blocks0.dat
 df, dataset_name = read_file_openml(976)
 
 print("dataset: ", dataset_name)
@@ -128,7 +129,7 @@ model = tpot.fit(X_train, y_train.values.ravel())
 
 # print("score    : %.3f" % tpot.score(X_test, y_test.values.ravel()))
 
-model_pred = model.predict(X_test)
+# model_pred = model.predict(X_test)
 
 finish_time = round(time.time() - start_time, 3)
 
@@ -141,35 +142,6 @@ best_pipeline = tpot.fitted_pipeline_
 scores = cross_validate(best_pipeline, X, y.values.ravel(), scoring=scoring, cv=cv, n_jobs=-1)
 # print("\nscores: ", scores)
 
-
-
-
-# param_grid = {
-#     'n_estimators': [100, 200, 300],
-#     'max_depth': [3, 4, 5],
-#     'learning_rate': [0.01, 0.1, 0.2],
-# }
-
-# grid_search = GridSearchCV(model, param_grid={}, scoring=scoring, cv=cv, n_jobs=-1, refit=False)
-# grid_search.fit(X_train, y_train)
-# cv_results = grid_search.cv_results_
-# print("cv_results: ", cv_results)
-
-# # # Get the cross-validation results
-# # cv_results = model.cv_results_
-# # print("cv_results: ", cv_results)
-
-# # Access the scores for each fold
-# f1_scores = cv_results['mean_test_f1']
-# print("f1_scores: ", f1_scores)
-
-# # You can also access scores for other metrics in a similar way, e.g., balanced_accuracy
-# balanced_accuracy_scores = cv_results['mean_test_balanced_accuracy']
-# print("balanced_accuracy_scores: ", balanced_accuracy_scores)
-
-# # Print the scores for each fold
-# for fold, (f1, balanced_accuracy) in enumerate(zip(f1_scores, balanced_accuracy_scores)):
-#     print(f"Fold {fold+1}: F1 Score = {f1:.4f}, Balanced Accuracy = {balanced_accuracy:.4f}")
 
 
 
@@ -217,22 +189,23 @@ print("geometric mean score :", g_mean_score)
 print("cohen kappa  :", cohen_kappa)
 
 
-balanced_accuracy = round(balanced_accuracy_score(y_test, model_pred),3)
-f1 = round(f1_score(y_test, model_pred),3)
-roc_auc = round(roc_auc_score(y_test, model_pred),3)
-g_mean_score = round(geometric_mean_score(y_test, model_pred),3)
-cohen_kappa = round(cohen_kappa_score(y_test, model_pred),3)
+# balanced_accuracy = round(balanced_accuracy_score(y_test, model_pred),3)
+# f1 = round(f1_score(y_test, model_pred),3)
+# roc_auc = round(roc_auc_score(y_test, model_pred),3)
+# g_mean_score = round(geometric_mean_score(y_test, model_pred),3)
+# cohen_kappa = round(cohen_kappa_score(y_test, model_pred),3)
 
-print("\npredict:")
-print("balanced accuracy :", balanced_accuracy)
-print("f1 score :", f1)
-print("roc auc  :", roc_auc)
-print("geometric mean score :", g_mean_score)
-print("cohen kappa  :", cohen_kappa)
+# print("\npredict:")
+# print("balanced accuracy :", balanced_accuracy)
+# print("f1 score :", f1)
+# print("roc auc  :", roc_auc)
+# print("geometric mean score :", g_mean_score)
+# print("cohen kappa  :", cohen_kappa)
 
 
 
 final_score = round(np.mean([balanced_accuracy,f1,roc_auc,g_mean_score,cohen_kappa]),3)
+final_score_std = round(np.std([balanced_accuracy,f1,roc_auc,g_mean_score,cohen_kappa]),3)
 print("\nfinal score  :", final_score)
 
 
@@ -258,36 +231,42 @@ print("")
 
 r1 = ResultsSHT(dataset_name, classifier, output_app, finish_time, final_score_values, final_score_std_values)
 
-write_results_sht(r1)
+# write_results_sht(r1)
 
 
 
 
 
-# df_tpot = pd.read_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",")
+df_tpot = pd.read_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",")
 
-# df_tpot2 = df_tpot.loc[df_tpot['dataset'] == dataset_name]
+df_tpot2 = df_tpot.loc[df_tpot['dataset'] == dataset_name]
 
-# if df_tpot2.empty :
+if df_tpot2.empty :
 
-#     df_tpot.loc[len(df_tpot.index)] = [
-#         dataset_name,
-#         classifier,
-#         finish_time,
-#         balanced_accuracy,
-#         f1_score,
-#         roc_auc_score,
-#         g_mean_score,
-#         cohen_kappa,
-#         final_score
-#     ]
+    df_tpot.loc[len(df_tpot.index)] = [
+        dataset_name,
+        classifier,
+        finish_time,
+        balanced_accuracy,
+        balanced_accuracy_std,
+        f1,
+        f1_score_std,
+        roc_auc,
+        roc_auc_score_std,
+        g_mean_score,
+        g_mean_score_std,
+        cohen_kappa,
+        cohen_kappa_std,
+        final_score,
+        final_score_std
+    ]
 
-#     df_tpot.to_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",", index=False)
-    
-#     print("\nTPOT Results written, rows added!","\n")
+    df_tpot.to_csv(sys.path[0] + "/output/" + "results_TPOT.csv", sep=",", index=False)
 
-# else:
-#     print("\nTPOT Results not written!","\n")
+    print("\nTPOT Results written, rows added!","\n")
+
+else:
+    print("\nTPOT Results not written!","\n")
 
 
 

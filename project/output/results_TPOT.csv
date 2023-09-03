@@ -1,16 +1,16 @@
-dataset,algorithm,time,balanced accuracy,f1 score,roc auc,geometric mean,cohen kappa,final score
-dis (id:40713),RandomForestClassifier,40.936,0.721,0.994,0.721,0.666,0.566,0.734
-musk (id:1116),GaussianNB,551.615,0.998,0.991,0.998,0.998,0.989,0.995
-mfeat-fourier (id:971),GaussianNB,79.167,0.941,0.993,0.941,0.939,0.92,0.947
-Satellite (id:40900),RandomForestClassifier,78.182,0.875,0.857,0.875,0.866,0.855,0.866
-arsenic-male-bladder (id:947),GaussianNB,17.156,0.8,0.75,0.8,0.775,0.736,0.772
-analcatdata_apnea2 (id:765),SGDClassifier,16.504,0.528,0.105,0.528,0.236,0.091,0.298
-regime_alimentaire (id:42172),RandomForestClassifier,27.762,0.972,0.917,0.972,0.972,0.888,0.944
-page-blocks0.dat,RandomForestClassifier,93.749,0.906,0.868,0.906,0.902,0.853,0.887
-dgf_test (id:42883),RandomForestClassifier,61.163,0.981,0.961,0.981,0.981,0.954,0.972
-cpu_small (id:735),RandomForestClassifier,160.055,0.89,0.939,0.89,0.888,0.784,0.878
-analcatdata_birthday (id:968),RandomForestClassifier,26.712,0.532,0.922,0.532,0.297,0.092,0.475
-optdigits (id:980),RandomForestClassifier,76.42,0.958,0.992,0.958,0.957,0.924,0.958
-kr-vs-k-zero_vs_eight.dat,GaussianNB,22.061,0.688,0.042,0.688,0.662,0.031,0.422
-analcatdata_lawsuit (id:450),GaussianNB,16.465,0.742,0.6,0.742,0.701,0.569,0.671
-JapaneseVowels (id:976),RandomForestClassifier,114.196,0.976,0.992,0.976,0.976,0.948,0.974
+dataset,algorithm,time,balanced accuracy,balanced accuracy std,f1 score,f1 score std,roc auc,roc auc std,geometric mean,geometric mean std,cohen kappa,cohen kappa std,final score,final score std
+dis (id:40713),RandomForestClassifier,44.908,0.677,0.109,0.993,0.002,0.677,0.109,0.549,0.234,0.416,0.215,0.662,0.191
+musk (id:1116),GaussianNB,609.552,0.996,0.002,0.978,0.01,0.996,0.002,0.996,0.002,0.974,0.012,0.988,0.01
+mfeat-fourier (id:971),GaussianNB,76.032,0.974,0.02,0.997,0.002,0.974,0.02,0.974,0.02,0.966,0.022,0.977,0.01
+Satellite (id:40900),RandomForestClassifier,89.403,0.809,0.089,0.74,0.136,0.809,0.089,0.778,0.116,0.737,0.137,0.775,0.032
+arsenic-male-bladder (id:947),GaussianNB,52.007,0.771,0.157,0.63,0.303,0.771,0.157,0.673,0.3,0.623,0.304,0.694,0.065
+analcatdata_apnea2 (id:765),SGDClassifier,37.265,0.667,0.15,0.385,0.328,0.667,0.15,0.463,0.368,0.349,0.315,0.506,0.136
+regime_alimentaire (id:42172),RandomForestClassifier,44.859,0.827,0.147,0.722,0.246,0.827,0.147,0.785,0.222,0.669,0.273,0.766,0.062
+page-blocks0.dat,RandomForestClassifier,153.82,0.914,0.028,0.871,0.034,0.914,0.028,0.91,0.03,0.858,0.037,0.893,0.024
+dgf_test (id:42883),RandomForestClassifier,147.829,0.975,0.011,0.949,0.017,0.975,0.011,0.974,0.011,0.939,0.02,0.962,0.015
+cpu_small (id:735),RandomForestClassifier,382.424,0.903,0.009,0.944,0.005,0.903,0.009,0.901,0.01,0.813,0.016,0.893,0.043
+analcatdata_birthday (id:968),RandomForestClassifier,28.573,0.725,0.121,0.926,0.03,0.725,0.121,0.664,0.193,0.456,0.21,0.699,0.15
+optdigits (id:980),RandomForestClassifier,77.178,0.971,0.014,0.995,0.002,0.971,0.014,0.971,0.014,0.953,0.016,0.972,0.013
+kr-vs-k-zero_vs_eight.dat,RandomForestClassifier,30.908,0.903,0.128,0.862,0.186,0.903,0.128,0.884,0.157,0.861,0.188,0.883,0.019
+analcatdata_lawsuit (id:450),GaussianNB,16.852,0.813,0.185,0.634,0.323,0.813,0.185,0.718,0.346,0.612,0.336,0.718,0.085
+JapaneseVowels (id:976),RandomForestClassifier,119.504,0.969,0.009,0.991,0.002,0.969,0.009,0.969,0.009,0.945,0.013,0.969,0.015
