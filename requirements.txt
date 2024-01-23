@@ -64,9 +64,9 @@ pyrsistent==0.18.0
 PySimpleGUI==4.60.0
 python-dateutil==2.8.1
 pytz==2022.1
-pywin32==302
-pywin32-ctypes==0.2.0
-pywinpty==2.0.2
+#pywin32==302
+#pywin32-ctypes==0.2.0
+#pywinpty==2.0.2
 pyzmq==22.3.0
 qtconsole==4.7.7
 QtPy==1.9.0

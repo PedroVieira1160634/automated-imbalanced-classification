@@ -42,16 +42,16 @@ def execute_ml(dataset_location, id_openml):
         X, y, df_characteristics = features_labels(df, dataset_name)
         
         # array_balancing = ["(no pre processing)"]
-        # array_balancing = [
-        #     "(no pre processing)", 
-        #     "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
-        #     "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
-        #     "SMOTEENN", "SMOTETomek"
-        # ]
         array_balancing = [
-            "RandomOverSampler", "SMOTE", "SVMSMOTE",
-            "SMOTETomek"
+            "(no pre processing)", 
+            "ClusterCentroids", "CondensedNearestNeighbour", "EditedNearestNeighbours", "RepeatedEditedNearestNeighbours", "AllKNN", "InstanceHardnessThreshold", "NearMiss", "NeighbourhoodCleaningRule", "OneSidedSelection", "RandomUnderSampler", "TomekLinks",
+            "RandomOverSampler", "SMOTE", "ADASYN", "BorderlineSMOTE", "KMeansSMOTE", "SVMSMOTE",
+            "SMOTEENN", "SMOTETomek"
         ]
+        # array_balancing = [
+        #     "RandomOverSampler", "SMOTE", "SVMSMOTE",
+        #     "SMOTETomek"
+        # ]
         
         resultsList = []
         i = 1
@@ -320,16 +320,16 @@ def pre_processing(balancing):
 def classify_evaluate(X, y, balancing, balancing_technique, dataset_name):
 
     array_classifiers = [
-        # # LogisticRegression(random_state=42,max_iter=10000)
-        # # ,GaussianNB() #no random_state (naive bayes)
-        # # ,SVC(random_state=42)
-        # # ,KNeighborsClassifier() #no random_state
-        LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
+        LogisticRegression(random_state=42,max_iter=10000)
+        ,GaussianNB() #no random_state (naive bayes)
+        ,SVC(random_state=42)
+        ,KNeighborsClassifier() #no random_state
+        ,LGBMClassifier(random_state=42, objective='binary', class_weight='balanced', n_jobs=-1)
         ,XGBClassifier(random_state=42, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss', n_jobs=-1) #eval_metric=f1_score ; gpu; gpu_predictor
-        # # ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-        # # ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
-        # # ,AdaBoostClassifier(random_state=42)
-        # # ,BaggingClassifier(random_state=42, n_jobs=-1)
+        ,RandomForestClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+        ,ExtraTreesClassifier(random_state=42, class_weight='balanced', n_jobs=-1)
+        ,AdaBoostClassifier(random_state=42)
+        ,BaggingClassifier(random_state=42, n_jobs=-1)
         ,GradientBoostingClassifier(random_state=42)
     ]
     
