@@ -1,1 +1,11 @@
 dataset,pre processing,algorithm,time,balanced accuracy,balanced accuracy std,f1 score,f1 score std,roc auc,roc auc std,geometric mean,geometric mean std,cohen kappa,cohen kappa std,total elapsed time
+poker-8-9_vs_6.dat,ADASYN,ExtraTreesClassifier,2.095,0.983,0.062,0.978,0.083,1.0,0.0,0.98,0.073,0.978,0.084,0:14:26
+kr-vs-k-zero-one_vs_draw.dat,ADASYN,XGBClassifier,5.023,0.992,0.017,0.953,0.043,0.999,0.001,0.992,0.017,0.951,0.045,0:33:57
+kr-vs-k-zero_vs_eight.dat,RandomOverSampler,RandomForestClassifier,2.181,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0:14:29
+kr-vs-k-three_vs_eleven.dat,OneSidedSelection,AdaBoostClassifier,1.997,0.998,0.011,0.996,0.016,1.0,0.0,0.998,0.012,0.996,0.016,0:22:21
+dermatology-6.dat,EditedNearestNeighbours,ExtraTreesClassifier,1.474,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0:04:22
+car-vgood.dat,RandomOverSampler,XGBClassifier,3.297,1.0,0.001,0.993,0.029,1.0,0.0,1.0,0.001,0.992,0.03,0:32:30
+abalone-21_vs_8.dat,EditedNearestNeighbours,LGBMClassifier,0.562,0.846,0.201,0.658,0.372,0.923,0.16,0.739,0.386,0.653,0.375,0:05:22
+kr-vs-k-zero_vs_fifteen.dat,(no pre processing),LogisticRegression,0.26,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0:10:53
+poker-8_vs_6.dat,ADASYN,GradientBoostingClassifier,2.345,0.983,0.09,0.94,0.208,0.999,0.006,0.966,0.179,0.939,0.209,0:14:13
+car-good.dat,TomekLinks,LGBMClassifier,0.858,0.991,0.015,0.87,0.086,0.998,0.002,0.991,0.016,0.864,0.091,0:28:15

@@ -4,19 +4,20 @@ from ml import execute_ml, execute_ml_test
 
 print('\n\n----------------------------------start -', datetime.now(), '--------------------------------------')
 
-#FILE
+# FILE
 
 # dataset_name = "car-good.dat"
-# # execute_ml_test(sys.path[0] + "/input/" + dataset_name, "")
-# # execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+# execute_ml_test(sys.path[0] + "/input/" + dataset_name, "")
+# execute_ml(sys.path[0] + "/input/" + dataset_name, "")
 
 # list_files = ["poker-8-9_vs_6.dat","kr-vs-k-zero-one_vs_draw.dat","kr-vs-k-zero_vs_eight.dat","kr-vs-k-three_vs_eleven.dat","dermatology-6.dat",
 #                "car-vgood.dat","abalone-21_vs_8.dat","kr-vs-k-zero_vs_fifteen.dat","poker-8_vs_6.dat","car-good.dat","page-blocks0.dat","glass1.dat"]
-# for dataset_name in list_files:
-#     execute_ml(sys.path[0] + "/input/" + dataset_name, "")
-#     print("\n----------------------------------\n")
+list_files = ["page-blocks0.dat","glass1.dat"]
+for dataset_name in list_files:
+    execute_ml(sys.path[0] + "/input/" + dataset_name, "")
+    print("\n----------------------------------\n")
 
-# #FILE
+#FILE
 
 
 # #OPENML
