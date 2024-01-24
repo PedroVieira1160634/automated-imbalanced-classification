@@ -9,3 +9,5 @@ abalone-21_vs_8.dat,EditedNearestNeighbours,LGBMClassifier,0.562,0.846,0.201,0.6
 kr-vs-k-zero_vs_fifteen.dat,(no pre processing),LogisticRegression,0.26,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0:10:53
 poker-8_vs_6.dat,ADASYN,GradientBoostingClassifier,2.345,0.983,0.09,0.94,0.208,0.999,0.006,0.966,0.179,0.939,0.209,0:14:13
 car-good.dat,TomekLinks,LGBMClassifier,0.858,0.991,0.015,0.87,0.086,0.998,0.002,0.991,0.016,0.864,0.091,0:28:15
+page-blocks0.dat,EditedNearestNeighbours,XGBClassifier,5.808,0.957,0.016,0.88,0.025,0.991,0.005,0.957,0.016,0.865,0.028,1:33:44
+glass1.dat,ADASYN,RandomForestClassifier,1.971,0.837,0.07,0.788,0.086,0.91,0.054,0.83,0.077,0.675,0.129,0:05:20
