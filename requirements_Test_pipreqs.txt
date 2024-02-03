@@ -1,0 +1,12 @@
+imbalanced-learn==0.9.0
+lightgbm==3.3.2
+numpy>=1.22.0
+openml==0.12.2
+pandas>=1.4.2
+pymfe==0.4.1
+PySimpleGUI==4.60.0
+scikit-learn>=1.0.2
+scipy>=1.8.0
+setuptools==58.0.4
+TPOT==0.11.7
+xgboost==1.6.0
