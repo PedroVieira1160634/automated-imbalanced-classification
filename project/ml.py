@@ -394,6 +394,7 @@ def find_best_result(resultsList):
 
 
 # determine if application is a script file or frozen exe
+application_path = ""
 if getattr(sys, 'frozen', False):
     application_path = os.path.dirname(sys.executable)
 elif __file__:

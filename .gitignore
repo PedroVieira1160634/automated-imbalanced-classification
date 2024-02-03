@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 project/input/inters-data.csv
+project/input/train_red.csv
