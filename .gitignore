@@ -130,3 +130,10 @@ dmypy.json
 
 project/input/inters-data.csv
 project/input/train_red.csv
+requirements_Linux.txt
+requirements_Linux.txt
+requirements_Windows.txt
+environment_old.yml
+requirements_old_Linux.txt
+requirements_old_MacOS.txt
+requirements_old_Windows.txt
